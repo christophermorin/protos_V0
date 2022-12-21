@@ -1,0 +1,21 @@
+{
+  "name": "root",
+  "version": "1.0.0",
+  "description": "root",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "concurrently \"cd ./server && npm run server\" \"cd ./client && npm run dev\"",
+    "lint": "eslint ."
+  },
+  "keywords": [
+    "root"
+  ],
+  "author": "CM",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^7.6.0",
+    "eslint": "^8.30.0",
+    "eslint-plugin-react": "^7.31.11"
+  }
+}
