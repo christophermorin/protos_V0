@@ -22,11 +22,4 @@ app.use(express.json())
 app.use('/api/protos', protosRouter)
 app.use('/api/jobs', jobsRouter)
 
-
-
-app.get("/api/v1", (req, res) => {
-  console.log("getting")
-  res.send("Hello World")
-})
-
 module.exports = app

@@ -1,5 +1,5 @@
 import NavBar from "./components/NavBar"
-import Active from "./components/Active"
+import Active from "./components/active_protos/Active"
 import Build from "./components/build_protos/Build"
 import Library from "./components/Library"
 import {

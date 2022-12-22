@@ -2,6 +2,11 @@ const protosRouter = require('express').Router()
 const Protos = require('../models/ProtosModel')
 const logger = require('../utils/logger')
 
+protosRouter.get('/', async (req, res) => {
+  const protos = await Protos.find()
+  return res.status(200).json(protos)
+})
+
 protosRouter.post('/', async (req, res) => {
   const proto = new Protos(req.body)
   console.log(proto)
