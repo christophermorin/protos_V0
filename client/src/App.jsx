@@ -6,12 +6,13 @@ import {
   BrowserRouter as Router,
   Routes, Route, Link
 } from "react-router-dom"
-import { Container } from '@mui/material'
+import { Container, CssBaseline } from '@mui/material'
 
 
 const App = () => {
   return (
     <Router>
+      <CssBaseline />
       <NavBar />
       <Container>
         <Routes>
