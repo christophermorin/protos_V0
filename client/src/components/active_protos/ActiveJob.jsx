@@ -3,7 +3,18 @@ import StarBorderPurple500Icon from '@mui/icons-material/StarBorderPurple500';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import DeleteIcon from '@mui/icons-material/Delete';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+
+import ActiveTimer from "./ActiveTimer";
+import PlayArrowIcon from '@mui/icons-material/PlayArrow';
+import StopIcon from '@mui/icons-material/Stop';
+import RestartAltIcon from '@mui/icons-material/RestartAlt';
+
 export default function ActiveJob({ job }) {
+
+
+
+
+
   return (
     <Accordion>
       <AccordionSummary
@@ -23,13 +34,17 @@ export default function ActiveJob({ job }) {
         </Typography>
         <Box sx={{
           display: 'flex',
-          justifyContent: 'flex-end'
+          justifyContent: 'space-between',
+          alignItems: 'center'
         }}>
-          <Tooltip title="Delete">
-            <IconButton>
-              <DeleteIcon />
-            </IconButton>
-          </Tooltip>
+          <Box sx={{
+            display: 'flex'
+          }}>
+            <ActiveTimer />
+            <PlayArrowIcon />
+            <StopIcon />
+            <RestartAltIcon />
+          </Box>
           <Tooltip title="Complete">
             <IconButton>
               <CheckCircleIcon />
@@ -40,3 +55,21 @@ export default function ActiveJob({ job }) {
     </Accordion>
   )
 }
+
+
+
+{/* <Box sx={{
+  display: 'flex',
+  justifyContent: 'flex-end'
+}}>
+  <Tooltip title="Delete">
+    <IconButton>
+      <DeleteIcon />
+    </IconButton>
+  </Tooltip>
+  <Tooltip title="Complete">
+    <IconButton>
+      <CheckCircleIcon />
+    </IconButton>
+  </Tooltip>
+</Box> */}

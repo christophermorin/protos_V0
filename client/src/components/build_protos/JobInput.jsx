@@ -1,7 +1,7 @@
-import { TextField, Autocomplete, Button, createFilterOptions, Slider, Switch, FormGroup, FormControlLabel } from "@mui/material"
+import { TextField, Autocomplete, Button, createFilterOptions, Slider, Switch, FormGroup, FormControlLabel, Box } from "@mui/material"
 import { useState } from "react"
 
-export default function JobInput({ setTempJobs, listAllJobs }) {
+export default function JobInput({ setnewCreatedJobs, listAllJobs, setListAllJobs, setNewProtoJobs }) {
   const [value, setValue] = useState('') // This state is only used here
   const [description, setDescription] = useState('')
   const [notification, setNotification] = useState(false)
@@ -21,7 +21,20 @@ export default function JobInput({ setTempJobs, listAllJobs }) {
         notification: notification,
         isComplete: false
       }
-      setTempJobs(prevState => [...prevState, newJob])
+      setNewProtoJobs(prevState => [...prevState, newJob])
+      setnewCreatedJobs(prevState => [...prevState, newJob])
+      setListAllJobs(prevState => [...prevState, newJob])
+      setValue('')
+      setDescription('')
+      setNotification(false)
+    }
+    else {
+      setNewProtoJobs(prevState => [...prevState, {
+        title: value.title,
+        description: description || value.description,
+        notification: notification || value.notification,
+        isComplete: false
+      }])
     }
   }
 
@@ -42,10 +55,16 @@ export default function JobInput({ setTempJobs, listAllJobs }) {
   ]
   console.log(value)
   return (
-    <div>
+    <Box sx={{
+      display: 'flex',
+      flexDirection: 'column',
+      gap: 2,
+      minWidth: 300
+    }}>
       <Autocomplete
         value={value}
         onChange={(event, newValue) => {
+          console.log(newValue)
           if (typeof newValue === 'string') {
             setValue({
               title: newValue
@@ -108,12 +127,16 @@ export default function JobInput({ setTempJobs, listAllJobs }) {
         marks={marks}
         min={0}
         max={100}
+        sx={{
+          width: 200,
+          alignSelf: 'center'
+        }}
       />
       <FormGroup>
-        <FormControlLabel control={<Switch />} label="Timer" />
         <FormControlLabel control={<Switch />} checked={notification} onChange={() => setNotification(!notification)} label="Set Reminder" />
+        <FormControlLabel control={<Switch />} label="Timer" />
       </FormGroup>
       <Button onClick={addJobToDB}>Add Job</Button>
-    </div>
+    </Box>
   )
 }

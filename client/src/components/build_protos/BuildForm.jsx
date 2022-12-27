@@ -16,11 +16,12 @@ import JobsList from "./JobsList"
 export default function BuildForm() {
   const [title, setTitle] = useState('') // This state can stay here
   const [description, setDescription] = useState('') // This state can stay here
-  const [listAllJobs, setListAllJobs] = useState()
+  const [listAllJobs, setListAllJobs] = useState() // This is a list of all stored jobs in the DB
 
-  const [jobFormVisible, setJobFormVisible] = useState(false)
+  const [jobFormVisible, setJobFormVisible] = useState(false) // setting the visibilty of add job form
 
-  const [tempJobs, setTempJobs] = useState([])
+  const [newCreatedJobs, setnewCreatedJobs] = useState([]) // These are jobs that are newly created
+  const [newProtoJobs, setNewProtoJobs] = useState([]) // These are jobs being added to a created proto
 
   useEffect(() => {
     const getJobs = async () => {
@@ -34,52 +35,39 @@ export default function BuildForm() {
     const newProto = {
       title: title,
       description: description,
-      jobs: tempJobs
+      jobs: newProtoJobs
     }
     await axios.post('/api/protos', newProto)
-    await axios.post('/api/jobs', tempJobs)
+
+    await axios.post('/api/jobs', newCreatedJobs)
   }
 
   const toggleJobsVisible = () => {
     setJobFormVisible(prevState => !prevState)
   }
 
+
   return (
-    // <div>
-    //   <Grid container spacing={2} direction="column" alignItems="center">
-    //     <Grid item xs={4}>
-    //       <TextField id="proto-title" label="Title" variant="filled" value={title} onChange={(e) => setTitle(e.target.value)} />
-    //     </Grid>
-    //     <Grid item xs={2}>
-    //       <TextField id="proto-description" label="Description" variant="filled" multiline rows={5} value={description} sx={{ width: '360px' }} onChange={(e) => setDescription(e.target.value)} />
-    //     </Grid>
-    //     <Grid item xs={4}>
-    //       <JobInput listAllJobs={listAllJobs} setTempJobs={setTempJobs} />
-    //       <Button onClick={createProto}>Create Proto</Button>
-    //     </Grid>
-    //     <Grid item xs={8}>
-    //     </Grid>
-    //   </Grid>
-    //   <Grid container direction="column" alignItems="center" >
-    //     <Typography>
-    //       Proto Jobs
-    //     </Typography>
-    //   </Grid>
-    // </div>
     <Box
       sx={{
         display: 'flex',
         flexDirection: 'column',
-        // alignItems: 'center',
+        alignItems: 'center',
         gap: 1,
         padding: 5
       }}
     >
-
-      <TextField id="proto-title" label="Title" variant="filled" value={title} onChange={(e) => setTitle(e.target.value)} />
-      <TextField id="proto-description" label="Description" variant="filled" multiline value={description} onChange={(e) => setDescription(e.target.value)} />
+      <Box sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: 2,
+        minWidth: 300
+      }}>
+        <TextField id="proto-title" label="Title" variant="filled" value={title} onChange={(e) => setTitle(e.target.value)} />
+        <TextField id="proto-description" label="Description" variant="filled" multiline value={description} onChange={(e) => setDescription(e.target.value)} />
+      </Box>
       <Button onClick={toggleJobsVisible}>Add Job</Button>
-      {jobFormVisible && <JobInput listAllJobs={listAllJobs} setTempJobs={setTempJobs} />}
+      {jobFormVisible && <JobInput listAllJobs={listAllJobs} setnewCreatedJobs={setnewCreatedJobs} setListAllJobs={setListAllJobs} setNewProtoJobs={setNewProtoJobs} />}
       <Button onClick={createProto}>Create Proto</Button>
     </Box>
   )
