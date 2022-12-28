@@ -4,6 +4,8 @@ import { Paper, Box, Stack, Accordion, AccordionSummary, AccordionDetails, Typog
 import ActiveJobsList from "./ActiveJobsList"
 import ActiveProtoHeader from "./ActiveProtoHeader"
 
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+
 export default function ActiveProtosList({ proto }) {
   // const [temp, setTemp] = useState()
   // useEffect(() => {
@@ -21,7 +23,7 @@ export default function ActiveProtosList({ proto }) {
         marginTop: 10
       }}
     >
-      <Paper
+      <Box
         sx={{
           width: 360,
           minHeight: 300,
@@ -30,8 +32,11 @@ export default function ActiveProtosList({ proto }) {
         elevation={3}
       >
         <ActiveProtoHeader headers={proto} />
-        <ActiveJobsList jobs={proto.jobs} />
-      </Paper>
+        <Paper>
+          <ActiveJobsList jobs={proto.jobs} />
+        </Paper>
+
+      </Box>
     </Box >
   )
 }

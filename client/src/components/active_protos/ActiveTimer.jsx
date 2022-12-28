@@ -1,10 +1,17 @@
 import Countdown from 'react-countdown';
 import { Typography } from '@mui/material';
 
-export default function ActiveTimer() {
+export default function ActiveTimer({ timer }) {
 
   // Random component
-  const Completionist = () => <span>Zero</span>
+  const Completionist = () => <Typography sx={{
+    fontWeight: 'bold',
+    fontSize: 14,
+    background: 'lightgrey',
+    padding: '0 5px'
+  }}>
+    00:00
+  </Typography>
 
   // Renderer callback with condition
   const renderer = ({ hours, minutes, seconds, completed }) => {
@@ -14,8 +21,13 @@ export default function ActiveTimer() {
     } else {
       // Render a countdown
       return (
-        <Typography>
-          {hours} : {minutes} : {seconds}
+        <Typography sx={{
+          fontWeight: 'bold',
+          fontSize: 14,
+          background: 'lightgrey',
+          padding: '0 5px'
+        }}>
+          {hours}:{minutes}:{seconds}
         </Typography>
       )
     }
@@ -24,7 +36,7 @@ export default function ActiveTimer() {
   return (
     <div>
       <Countdown
-        date={Date.now() + 5000}
+        date={Date.now() + timer * 60000}
         renderer={renderer}
       />
     </div>

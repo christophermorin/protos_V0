@@ -5,7 +5,7 @@ export default function ActiveProtoHeader({ headers }) {
       sx={{
         paddingLeft: 1,
         paddingRight: 1,
-        marginBottom: 10
+        marginBottom: 5
 
       }}
     >
@@ -13,7 +13,7 @@ export default function ActiveProtoHeader({ headers }) {
       <Paper
         sx={{
           position: 'relative',
-          top: 30,
+          top: 20,
           padding: 1
         }}
       >

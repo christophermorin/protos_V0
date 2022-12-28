@@ -1,6 +1,7 @@
 import ActiveProtosList from "./ActiveProtosList";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import JobCard from "./JobCard";
 
 export default function Active() {
   const [temp, setTemp] = useState()

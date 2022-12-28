@@ -1,10 +1,12 @@
-import { TextField, Autocomplete, Button, createFilterOptions, Slider, Switch, FormGroup, FormControlLabel, Box } from "@mui/material"
+import { TextField, Autocomplete, Button, createFilterOptions, Slider, Switch, FormGroup, FormControlLabel, Box, Typography } from "@mui/material"
 import { useState } from "react"
 
 export default function JobInput({ setnewCreatedJobs, listAllJobs, setListAllJobs, setNewProtoJobs }) {
   const [value, setValue] = useState('') // This state is only used here
   const [description, setDescription] = useState('')
   const [notification, setNotification] = useState(false)
+  const [timerChecked, setTimerChecked] = useState(false)
+  const [timerValue, setTimerValue] = useState('')
 
   const filter = createFilterOptions()
 
@@ -18,6 +20,7 @@ export default function JobInput({ setnewCreatedJobs, listAllJobs, setListAllJob
       const newJob = {
         title: value,
         description: description,
+        timer: Number(timerValue) || null,
         notification: notification,
         isComplete: false
       }
@@ -27,11 +30,14 @@ export default function JobInput({ setnewCreatedJobs, listAllJobs, setListAllJob
       setValue('')
       setDescription('')
       setNotification(false)
+      setTimerChecked(false)
+      setTimerValue('')
     }
     else {
       setNewProtoJobs(prevState => [...prevState, {
         title: value.title,
         description: description || value.description,
+        timer: Number(timerValue) || value.timer,
         notification: notification || value.notification,
         isComplete: false
       }])
@@ -58,7 +64,7 @@ export default function JobInput({ setnewCreatedJobs, listAllJobs, setListAllJob
     <Box sx={{
       display: 'flex',
       flexDirection: 'column',
-      gap: 2,
+      gap: 1,
       minWidth: 300
     }}>
       <Autocomplete
@@ -116,7 +122,26 @@ export default function JobInput({ setnewCreatedJobs, listAllJobs, setListAllJob
         renderOption={(props, option) => <li {...props}>{option.title}</li>}
         renderInput={(params) => <TextField name="proto_job" label="Job Title" {...params} required />}
       />
+
+      <Typography sx={{
+        fontSize: 11,
+        color: 'grey',
+        fontWeight: 'bold',
+        margin: 0
+      }}>
+        Search from pre-existing jobs or create your own
+      </Typography>
+
       <TextField name='description' label="Description" value={description} onChange={(e) => setDescription(e.target.value)}></TextField>
+
+      <Typography sx={{
+        fontSize: 11,
+        color: 'grey',
+        fontWeight: 'bold',
+        margin: 0
+      }}>
+        Optional: Describe how to carry out this job
+      </Typography>
 
       <Slider
         aria-label="Importance"
@@ -134,9 +159,40 @@ export default function JobInput({ setnewCreatedJobs, listAllJobs, setListAllJob
       />
       <FormGroup>
         <FormControlLabel control={<Switch />} checked={notification} onChange={() => setNotification(!notification)} label="Set Reminder" />
-        <FormControlLabel control={<Switch />} label="Timer" />
+        <Typography sx={{
+          fontSize: 11,
+          color: 'grey',
+          fontWeight: 'bold',
+          margin: 0
+        }}>
+          Have Protos remind you of an upcoming job
+        </Typography>
+        <FormControlLabel control={<Switch />} checked={timerChecked} label="Timer" onChange={() => setTimerChecked(!timerChecked)} />
+        <Typography sx={{
+          fontSize: 11,
+          color: 'grey',
+          fontWeight: 'bold',
+          margin: 0
+        }}>
+          Set the total time you would like to work on this job
+        </Typography>
       </FormGroup>
-      <Button onClick={addJobToDB}>Add Job</Button>
+      {timerChecked &&
+        <div style={{
+          display: 'flex',
+          alignItems: 'flex-end',
+          gap: 10
+        }}>
+          <TextField
+            value={timerValue}
+            inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
+            sx={{ width: 100 }}
+            onChange={(e) => setTimerValue(e.target.value)} />
+          <span>min</span>
+        </div>
+      }
+
+      <Button onClick={addJobToDB} variant="contained">Add Job</Button>
     </Box>
   )
 }
