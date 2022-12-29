@@ -7,6 +7,7 @@ import { useState } from 'react';
 export default function JobCard({ job }) {
   const [toolTip, setToolTip] = useState(false)
 
+  const tempColorCard = `rgba(${job.cardColor.r}, ${job.cardColor.g}, ${job.cardColor.b}, ${job.cardColor.a})`
 
   return (
     <div>
@@ -14,7 +15,9 @@ export default function JobCard({ job }) {
         display: 'flex',
         maxWidth: 360,
         gap: 2,
-        padding: 2
+        padding: 2,
+        background: `linear-gradient(135deg, ${tempColorCard}, rgba(255,255,255) 20%)`,
+        border: `1px solid ${tempColorCard}`
 
       }}>
         <Box sx={{

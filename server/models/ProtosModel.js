@@ -3,11 +3,13 @@ const mongoose = require('mongoose')
 const protosSchema = new mongoose.Schema({
   title: String,
   description: String,
+  timeOfDay: String,
   jobs: [
     {
       title: String,
       description: String,
       timer: Number,
+      cardColor: Object,
       notification: Boolean,
       isComplete: Boolean,
     }

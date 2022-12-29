@@ -5,68 +5,67 @@ import ActiveTimer from '../active_protos/ActiveTimer';
 
 
 export default function DisplayNewJob({ job, deleteJob }) {
-
+  const colorChoice = `rgba(${job.cardColor.r}, ${job.cardColor.g}, ${job.cardColor.b}, ${job.cardColor.a})`
   return (
-    <div>
-      <Paper sx={{
+
+    <Paper sx={{
+      display: 'flex',
+      maxWidth: 360,
+      gap: 2,
+      padding: 2,
+      background: `linear-gradient(135deg, ${colorChoice}, rgba(255,255,255) 20%)`,
+      border: `1px solid ${colorChoice}`
+    }}>
+      <Box sx={{
         display: 'flex',
-        maxWidth: 360,
-        gap: 2,
-        padding: 2
+        alignItems: 'center'
       }}>
-        <Box sx={{
-          display: 'flex',
-          alignItems: 'center'
-        }}>
-          <StarBorderPurple500Icon />
+        <StarBorderPurple500Icon />
+      </Box>
+      <Box sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+        flexGrow: 1,
+        gap: 2
+      }}>
+        <Box>
+          <Typography
+            sx={{
+              fontWeight: 'bold'
+            }}
+          >{job.title}</Typography>
         </Box>
         <Box sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'space-between',
-          flexGrow: 1,
-          gap: 2
+          // display: 'flex',
+          // flexDirection: 'row',
+          // gap: 2,
+          // alignItems: 'center'
         }}>
-          <Box>
-            <Typography
-              sx={{
-                fontWeight: 'bold'
-              }}
-            >{job.title}</Typography>
-          </Box>
-          <Box sx={{
-            display: 'flex',
-            flexDirection: 'row',
-            gap: 2,
-            alignItems: 'center'
-          }}>
-            <Button
-              onClick={() => deleteJob(job.title)}
-              sx={{
-                padding: 0,
-                margin: 0,
-              }}>
-              Delete
-            </Button>
-          </Box>
+          <Button
+            onClick={() => deleteJob(job.title)}
+            sx={{
+              padding: 0,
+              margin: 0,
+              minWidth: 0,
+              textTransform: 'none'
+            }}>
+            Delete
+          </Button>
         </Box>
-        <Box sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'space-between',
-          alignItems: 'center'
-        }}>
-          <Tooltip title={job.description} placement="top-end">
-            <HelpIcon />
-          </Tooltip>
-          {/* <FormGroup>
-            <FormControlLabel control={<Switch />} label="Reminder" labelPlacement='top'>
-            </FormControlLabel>
-          </FormGroup> */}
-          {/* <Switch label="Notification" /> */}
-          <ActiveTimer timer={job.timer} />
-        </Box>
-      </Paper>
-    </div>
+      </Box>
+      <Box sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+
+      }}>
+        <Tooltip title={job.description} placement="top-end">
+          <HelpIcon />
+        </Tooltip>
+        <ActiveTimer timer={job.timer} />
+      </Box>
+    </Paper>
   )
 }
