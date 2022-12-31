@@ -7,14 +7,15 @@ import {
   Routes, Route, Link
 } from "react-router-dom"
 import { Container, CssBaseline } from '@mui/material'
+import './Draft.css'
 
 
 const App = () => {
   return (
-    <Router>
+    <Router >
       <CssBaseline />
       <NavBar />
-      <Container>
+      <Container >
         <Routes>
           {/* <Route path="/" element={<App />} /> */}
           <Route path="/active" element={<Active />} />
@@ -22,7 +23,7 @@ const App = () => {
           <Route path="/library" element={<Library />} />
         </Routes>
       </Container>
-    </Router>
+    </Router >
   )
 }
 

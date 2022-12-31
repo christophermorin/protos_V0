@@ -1,11 +1,24 @@
-import StarBorderPurple500Icon from '@mui/icons-material/StarBorderPurple500';
+import PlayCircleIcon from '@mui/icons-material/PlayCircle';
+import StopCircleIcon from '@mui/icons-material/StopCircle';
+
 import HelpIcon from '@mui/icons-material/Help';
 import { Box, Typography, Tooltip, Button, Paper, TextField } from "@mui/material"
 
 import ActiveTimer from './ActiveTimer';
 import { useState } from 'react';
+
 export default function JobCard({ job }) {
   const [toolTip, setToolTip] = useState(false)
+  const [timer, setTimer] = useState(false)
+
+  const handleTimer = () => {
+    setTimer(!timer)
+  }
+
+
+
+
+
 
   const tempColorCard = `rgba(${job.cardColor.r}, ${job.cardColor.g}, ${job.cardColor.b}, ${job.cardColor.a})`
 
@@ -15,7 +28,7 @@ export default function JobCard({ job }) {
         display: 'flex',
         maxWidth: 360,
         gap: 2,
-        padding: 2,
+        padding: 1,
         background: `linear-gradient(135deg, ${tempColorCard}, rgba(255,255,255) 20%)`,
         border: `1px solid ${tempColorCard}`
 
@@ -24,7 +37,9 @@ export default function JobCard({ job }) {
           display: 'flex',
           alignItems: 'center'
         }}>
-          <StarBorderPurple500Icon />
+          {!timer ? <PlayCircleIcon fontSize='large' onClick={handleTimer} /> : <StopCircleIcon fontSize='large' onClick={handleTimer} />}
+          {/* <PlayCircleIcon fontSize='large' onClick={handleTimer} /> */}
+          {/* <StopCircleIcon fontSize='large' onClick={handleTimer} /> */}
         </Box>
         <Box sx={{
           display: 'flex',
@@ -44,11 +59,27 @@ export default function JobCard({ job }) {
           <Box sx={{
             display: 'flex',
             flexDirection: 'row',
-            gap: 5,
+            gap: 2,
             alignItems: 'center'
           }}>
-            <Typography>Delete</Typography>
-            <Typography>Complete</Typography>
+            <Typography
+              variant='subtitle2'
+              sx={{ '&:hover': { color: 'red' }, cursor: 'pointer' }}
+            >
+              Delete
+            </Typography>
+            <Typography
+              variant='subtitle2'
+              sx={{ '&:hover': { color: 'red' }, cursor: 'pointer' }}
+            >
+              Reset
+            </Typography>
+            <Typography
+              variant='subtitle2'
+              sx={{ '&:hover': { color: 'green' }, cursor: 'pointer' }}
+            >
+              Complete
+            </Typography>
           </Box>
         </Box>
         <Box sx={{
@@ -60,7 +91,7 @@ export default function JobCard({ job }) {
           <Tooltip title={job.description} placement="top-end">
             <HelpIcon onClick={() => setToolTip(!toolTip)} />
           </Tooltip>
-          <ActiveTimer timer={job.timer} />
+          <ActiveTimer jobTimer={job.timer} timerState={timer} />
         </Box>
       </Paper>
     </div>

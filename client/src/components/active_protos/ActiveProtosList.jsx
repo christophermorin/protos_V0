@@ -4,7 +4,10 @@ import { Paper, Box, Stack, Accordion, AccordionSummary, AccordionDetails, Typog
 import ActiveJobsList from "./ActiveJobsList"
 import ActiveProtoHeader from "./ActiveProtoHeader"
 
+
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import ActiveWhy from "./ActiveWhy"
+
 
 export default function ActiveProtosList({ proto }) {
   // const [temp, setTemp] = useState()
@@ -15,28 +18,48 @@ export default function ActiveProtosList({ proto }) {
   //   }
   //   getProtos()
   // }, [])
+
+
   return (
     <Box
       sx={{
-        display: 'flex',
-        justifyContent: 'center',
-        marginTop: 10
+        width: 360,
+        padding: 1,
       }}
     >
-      <Box
-        sx={{
-          width: 360,
-          minHeight: 300,
-          padding: 1,
-        }}
-        elevation={3}
-      >
-        <ActiveProtoHeader headers={proto} />
-        <Paper>
-          <ActiveJobsList jobs={proto.jobs} />
-        </Paper>
+      <ActiveProtoHeader headers={proto} />
 
-      </Box>
-    </Box >
+      {proto.description && <Accordion>
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="The Why"
+          id="proto-why"
+        >
+          The Why...
+        </AccordionSummary>
+        <AccordionDetails>
+          {/* <Paper> */}
+          <ActiveWhy storedState={proto.description} />
+          {/* </Paper> */}
+        </AccordionDetails>
+      </Accordion>}
+
+      <Accordion>
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="The How"
+          id="proto-how"
+        >
+          The How...
+        </AccordionSummary>
+        <AccordionDetails>
+          {/* <Paper> */}
+          <ActiveJobsList jobs={proto.jobs} />
+          {/* </Paper> */}
+        </AccordionDetails>
+      </Accordion>
+      {/* <TestHtml storedState={proto.description} /> */}
+
+    </Box>
   )
 }

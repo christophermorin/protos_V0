@@ -7,7 +7,7 @@ const protosSchema = new mongoose.Schema({
   jobs: [
     {
       title: String,
-      description: String,
+      description: Object,
       timer: Number,
       cardColor: Object,
       notification: Boolean,

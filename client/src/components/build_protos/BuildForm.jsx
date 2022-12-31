@@ -2,6 +2,8 @@ import axios from 'axios'
 import { Button, Typography, Box, } from "@mui/material"
 import { useState, useEffect } from 'react'
 
+import { EditorState, convertToRaw } from 'draft-js'
+
 import CreateProtoForm from "./CreateProtoForm"
 import NewJobList from "./NewJobList"
 import CreateJobForm from "./CreateJobForm"
@@ -12,6 +14,12 @@ export default function BuildForm() {
   const [protoTimeOfDay, setProtoTimeOfDay] = useState('') // This state can stau here
   const [newProtoJobs, setNewProtoJobs] = useState([]) // These are jobs being added to a created proto
   // const [listAllJobs, setListAllJobs] = useState() ***UNUSED
+
+  const [editorState, setEditorState] = useState(
+    () => EditorState.createEmpty(),
+  )
+  const editorJSON = JSON.stringify(convertToRaw(editorState.getCurrentContent()));
+
   const [color, setColor] = useState({
     r: '255',
     g: '255',
@@ -33,11 +41,10 @@ export default function BuildForm() {
   //   }
   //   getJobs()
   // }, [])
-
   const createProto = async () => {
     const newProto = {
       title: protoTitle,
-      description: protoDescription,
+      description: editorJSON,
       timeOfDay: protoTimeOfDay,
       jobs: newProtoJobs
     }
@@ -60,6 +67,9 @@ export default function BuildForm() {
         protoDescription={protoDescription}
         handleTimeOfDay={handleTimeOfDay}
         protoTimeOfDay={protoTimeOfDay}
+
+        editorState={editorState}
+        setEditorState={setEditorState}
       />
       <NewJobList
         newProtoJobs={newProtoJobs}
