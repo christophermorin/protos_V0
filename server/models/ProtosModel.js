@@ -12,6 +12,7 @@ const protosSchema = new mongoose.Schema({
       cardColor: Object,
       notification: Boolean,
       isComplete: Boolean,
+      isHidden: Boolean,
     }
   ]
 })

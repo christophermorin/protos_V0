@@ -7,7 +7,7 @@ import 'draft-js/dist/Draft.css';
 export default function ActiveWhy(props) {
   const text = EditorState.createWithContent(convertFromRaw(JSON.parse(props.storedState)));
   return (
-    <div>
+    <div style={{ background: 'white', padding: '10px' }}>
       <Editor editorState={text} readOnly={true} blockStyleFn={getBlockStyle}
         customStyleMap={styleMap} />
     </div>

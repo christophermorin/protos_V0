@@ -29,7 +29,7 @@ export default function ActiveProtosList({ proto }) {
     >
       <ActiveProtoHeader headers={proto} />
 
-      {proto.description && <Accordion>
+      {proto.description && <Accordion defaultExpanded>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls="The Why"
@@ -44,7 +44,8 @@ export default function ActiveProtosList({ proto }) {
         </AccordionDetails>
       </Accordion>}
 
-      <Accordion>
+      <Accordion
+        defaultExpanded>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls="The How"

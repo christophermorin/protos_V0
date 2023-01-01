@@ -59,7 +59,9 @@ export default function AddNewJob({ setNewProtoJobs, cardColor, setColor }) {
       title: jobTitle,
       description: jobDesc,
       timer: jobTimer,
-      cardColor: cardColor
+      cardColor: cardColor,
+      isComplete: false,
+      isHidden: false,
     }
     setNewProtoJobs(prevState => [...prevState, newJob])
     cancelAllFields()

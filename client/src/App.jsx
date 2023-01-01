@@ -15,7 +15,7 @@ const App = () => {
     <Router >
       <CssBaseline />
       <NavBar />
-      <Container >
+      <Container>
         <Routes>
           {/* <Route path="/" element={<App />} /> */}
           <Route path="/active" element={<Active />} />

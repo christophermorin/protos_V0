@@ -6,6 +6,7 @@ import ActiveTimer from '../active_protos/ActiveTimer';
 
 export default function DisplayNewJob({ job, deleteJob }) {
   const colorChoice = `rgba(${job.cardColor.r}, ${job.cardColor.g}, ${job.cardColor.b}, ${job.cardColor.a})`
+  console.log(job.timer)
   return (
 
     <Paper sx={{
@@ -64,7 +65,7 @@ export default function DisplayNewJob({ job, deleteJob }) {
         <Tooltip title={job.description} placement="top-end">
           <HelpIcon />
         </Tooltip>
-        <ActiveTimer timer={job.timer} />
+        <ActiveTimer jobTimer={job.timer} />
       </Box>
     </Paper>
   )

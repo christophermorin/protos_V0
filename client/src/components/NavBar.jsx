@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 
 export default function NavBar() {
   return (
-    <Box sx={{ flexGrow: 1 }}>
+    <Box>
       <AppBar position="static">
         <Toolbar style={styles}>
           <Button color="inherit" component={Link} to="/active">Active</Button>
