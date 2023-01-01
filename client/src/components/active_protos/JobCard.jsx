@@ -41,7 +41,7 @@ export default function JobCard({ job }) {
     }}>
       <Paper sx={{
         display: 'flex',
-        maxWidth: 360,
+        // maxWidth: 360,
         gap: 2,
         padding: 1,
         background: `linear-gradient(135deg, ${tempColorCard}, rgba(255,255,255) 20%)`,

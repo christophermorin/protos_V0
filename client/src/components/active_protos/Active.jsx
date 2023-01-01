@@ -1,30 +1,31 @@
 import ActiveProtosList from "./ActiveProtosList";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { Box, Stack } from "@mui/material";
+import { Box, Divider, Stack } from "@mui/material";
 
 export default function Active() {
-  const [temp, setTemp] = useState()
+  const [activeProtos, setActiveProtos] = useState()
   useEffect(() => {
     const getProtos = async () => {
       await axios.get('/api/protos')
-        .then(res => setTemp(res.data))
+        .then(res => setActiveProtos(res.data))
     }
     getProtos()
   }, [])
-  const protoList = temp && temp.map(proto => {
+  const protoList = activeProtos && activeProtos.map(proto => {
     return (
       <ActiveProtosList key={proto._id} proto={proto} />
     )
   })
 
   return (
-    <Stack spacing={1}
+    <Stack spacing={3}
       sx={{
-        display: 'flex',
-        alignItems: 'center',
-        flexDirection: 'column',
+        // display: 'flex',
+        // alignItems: 'center',
+        // flexDirection: 'column',
         marginTop: 5,
+        marginBottom: 5
       }}>
       {protoList}
     </Stack>

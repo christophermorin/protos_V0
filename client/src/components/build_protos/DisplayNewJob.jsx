@@ -11,7 +11,7 @@ export default function DisplayNewJob({ job, deleteJob }) {
 
     <Paper sx={{
       display: 'flex',
-      maxWidth: 360,
+      // maxWidth: 360,
       gap: 2,
       padding: 2,
       background: `linear-gradient(135deg, ${colorChoice}, rgba(255,255,255) 20%)`,
