@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { Button, Typography, Box, } from "@mui/material"
+import { Button, Typography, Box, Grid } from "@mui/material"
 import { useState, useEffect } from 'react'
 
 import { EditorState, convertToRaw } from 'draft-js'
@@ -53,42 +53,48 @@ export default function BuildForm() {
     // await axios.post('/api/jobs', newCreatedJobs)
   }
   return (
-    <Box
-      sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        gap: 1,
-      }}>
-      <CreateProtoForm
-        setProtoTitle={setProtoTitle}
-        setProtoDescription={setProtoDescription}
-        protoTitle={protoTitle}
-        protoDescription={protoDescription}
-        handleTimeOfDay={handleTimeOfDay}
-        protoTimeOfDay={protoTimeOfDay}
+    // <Box
+    //   sx={{
+    //     display: 'flex',
+    //     flexDirection: 'column',
+    //     alignItems: 'center',
+    //     gap: 1,
+    //   }}>
+    <Grid container spacing={2} sx={{ marginTop: 5 }}>
+      <Grid item sm={12} md={6}>
+        <CreateProtoForm
+          setProtoTitle={setProtoTitle}
+          setProtoDescription={setProtoDescription}
+          protoTitle={protoTitle}
+          protoDescription={protoDescription}
+          handleTimeOfDay={handleTimeOfDay}
+          protoTimeOfDay={protoTimeOfDay}
+          editorState={editorState}
+          setEditorState={setEditorState}
+        />
+      </Grid>
+      <Grid item sm={12} md={6}>
+        <NewJobList
+          newProtoJobs={newProtoJobs}
+          setNewProtoJobs={setNewProtoJobs}
+        />
+        {/* <Typography>
+          Add a New Job
+        </Typography> */}
+        <CreateJobForm
+          setNewProtoJobs={setNewProtoJobs}
+          cardColor={color}
+          setColor={setColor}
+        />
 
-        editorState={editorState}
-        setEditorState={setEditorState}
-      />
-      <NewJobList
-        newProtoJobs={newProtoJobs}
-        setNewProtoJobs={setNewProtoJobs}
-      />
-      <Typography>
-        Add a New Job
-      </Typography>
-      <CreateJobForm
-        setNewProtoJobs={setNewProtoJobs}
-        cardColor={color}
-        setColor={setColor}
-      />
+      </Grid>
       <Button
         sx={{ marginTop: 5 }}
         onClick={createProto}
         variant="contained">
         Create Proto
       </Button>
-    </Box>
+      {/* </Box> */}
+    </Grid>
   )
 }

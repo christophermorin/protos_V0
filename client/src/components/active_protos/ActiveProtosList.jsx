@@ -1,13 +1,11 @@
 import { useEffect, useState } from "react"
 import axios from 'axios'
-import { Paper, Box, Stack, Accordion, AccordionSummary, AccordionDetails, Typography } from "@mui/material"
+import { Accordion, AccordionSummary, AccordionDetails, Grid, Divider } from "@mui/material"
 import ActiveJobsList from "./ActiveJobsList"
 import ActiveProtoHeader from "./ActiveProtoHeader"
 
-
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ActiveWhy from "./ActiveWhy"
-
 
 export default function ActiveProtosList({ proto }) {
   // const [temp, setTemp] = useState()
@@ -19,48 +17,41 @@ export default function ActiveProtosList({ proto }) {
   //   getProtos()
   // }, [])
 
-
   return (
-    <Box
-      sx={{
-        width: 360,
-        padding: 1,
-      }}
-    >
-      <ActiveProtoHeader headers={proto} />
+    <Grid container spacing={0.5}>
+      <Grid item xs={12}>
+        <ActiveProtoHeader headers={proto} />
+      </Grid>
+      <Grid item xs={12} md={6}>
+        {proto.description && <Accordion defaultExpanded>
+          <AccordionSummary
+            expandIcon={<ExpandMoreIcon />}
+            aria-controls="The Why"
+            id="proto-why"
+          >
+            The Why...
+          </AccordionSummary>
+          <AccordionDetails>
+            <ActiveWhy storedState={proto.description} />
+          </AccordionDetails>
+        </Accordion>}
+      </Grid>
 
-      {proto.description && <Accordion defaultExpanded>
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="The Why"
-          id="proto-why"
-        >
-          The Why...
-        </AccordionSummary>
-        <AccordionDetails>
-          {/* <Paper> */}
-          <ActiveWhy storedState={proto.description} />
-          {/* </Paper> */}
-        </AccordionDetails>
-      </Accordion>}
-
-      <Accordion
-        defaultExpanded>
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="The How"
-          id="proto-how"
-        >
-          The How...
-        </AccordionSummary>
-        <AccordionDetails>
-          {/* <Paper> */}
-          <ActiveJobsList jobs={proto.jobs} />
-          {/* </Paper> */}
-        </AccordionDetails>
-      </Accordion>
-      {/* <TestHtml storedState={proto.description} /> */}
-
-    </Box>
+      <Grid item xs={12} md={6}>
+        <Accordion
+          defaultExpanded>
+          <AccordionSummary
+            expandIcon={<ExpandMoreIcon />}
+            aria-controls="The How"
+            id="proto-how"
+          >
+            The How...
+          </AccordionSummary>
+          <AccordionDetails>
+            <ActiveJobsList jobs={proto.jobs} />
+          </AccordionDetails>
+        </Accordion>
+      </Grid>
+    </Grid>
   )
 }

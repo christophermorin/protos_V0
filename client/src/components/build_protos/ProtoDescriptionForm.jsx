@@ -38,7 +38,7 @@ export default function ProtoDescriptionForm({ editorState, setEditorState }) {
           onToggle={toggleInlineStyle}
         />
       </div>
-      <div style={{ width: '300px', padding: '0 10px' }}>
+      <div style={{ padding: '0 10px' }}>
         <Editor
           className={className}
           editorState={editorState}

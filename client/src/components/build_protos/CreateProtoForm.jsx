@@ -17,15 +17,21 @@ export default function CreateProtoForm({ setProtoTitle, setProtoDescription, pr
 
   return (
     <Paper sx={{
-      display: 'flex',
-      flexDirection: 'column',
-      justifyContent: 'space-between',
-      alignItems: 'center',
-      flexGrow: 1,
-      gap: 2,
-      padding: 5,
-      marginTop: 5,
-      maxWidth: 360
+      textAlign: 'center',
+
+
+
+      // justifyContent: 'center'
+      // display: 'flex',
+      // flexDirection: 'column',
+      // justifyContent: 'space-between',
+      // alignItems: 'center',
+      // flexGrow: 1,
+      // gap: 2,
+      // padding: 5,
+      // marginTop: 5,
+      // maxWidth: 360
+      // textAlign: 'center'
 
     }}>
       <Box>
@@ -54,14 +60,14 @@ export default function CreateProtoForm({ setProtoTitle, setProtoDescription, pr
           onChange={(e) => setProtoDescription(e.target.value)}
           fullWidth
         /> */}
-        {/* <Typography sx={{
+        <Typography sx={{
           fontSize: 11,
           color: 'grey',
           fontWeight: 'bold',
           margin: '10px 0'
         }}>
           Describe your Proto. What is it you are trying to achieve? What are the benefits of implementing this Proto into your life?
-        </Typography> */}
+        </Typography>
         <ProtoDescriptionForm editorState={editorState} setEditorState={setEditorState} />
 
         {/* <ProtoDescriptionForm /> */}

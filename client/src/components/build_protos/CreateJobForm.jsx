@@ -71,12 +71,12 @@ export default function AddNewJob({ setNewProtoJobs, cardColor, setColor }) {
       <Paper
         sx={{
           display: 'flex',
-          maxWidth: 360,
           gap: 2,
           padding: 2,
           background: `linear-gradient(135deg, rgba(${cardColor.r}, ${cardColor.g}, ${cardColor.b}, ${cardColor.a}), rgba(255,255,255) 20%)`,
           border: `1px solid rgba(${cardColor.r}, ${cardColor.g}, ${cardColor.b}, ${cardColor.a})`
-        }}>
+        }}
+      >
         <Box
           sx={{
             display: 'flex',
@@ -150,11 +150,7 @@ export default function AddNewJob({ setNewProtoJobs, cardColor, setColor }) {
           <Tooltip title='Description' placement="top-end">
             <Button>Extras</Button>
           </Tooltip>
-          {/* <FormGroup>
-            <FormControlLabel control={<Switch />} label="Reminder" labelPlacement='top'>
-            </FormControlLabel>
-          </FormGroup> */}
-          {/* <Switch label="Notification" /> */}
+
           <TextField
             type='number'
             max={60}
