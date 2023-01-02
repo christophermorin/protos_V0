@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import axios from 'axios'
-import { Accordion, AccordionSummary, AccordionDetails, Grid, Divider } from "@mui/material"
+import { Accordion, AccordionSummary, AccordionDetails, Grid, Typography } from "@mui/material"
 import ActiveJobsList from "./ActiveJobsList"
 import ActiveProtoHeader from "./ActiveProtoHeader"
 
@@ -16,20 +16,25 @@ export default function ActiveProtosList({ proto }) {
   //   }
   //   getProtos()
   // }, [])
-
   return (
     <Grid container spacing={0.5}>
       <Grid item xs={12}>
-        <ActiveProtoHeader headers={proto} />
+        <ActiveProtoHeader proto={proto} />
       </Grid>
       <Grid item xs={12} md={6}>
-        {proto.description && <Accordion defaultExpanded>
+        {proto.description && <Accordion >
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
             aria-controls="The Why"
             id="proto-why"
           >
-            The Why...
+            <Typography
+              variant="subtitle2"
+              fontSize={15}
+              fontWeight={'bold'}
+            >
+              The Why
+            </Typography>
           </AccordionSummary>
           <AccordionDetails>
             <ActiveWhy storedState={proto.description} />
@@ -45,7 +50,13 @@ export default function ActiveProtosList({ proto }) {
             aria-controls="The How"
             id="proto-how"
           >
-            The How...
+            <Typography
+              variant="subtitle2"
+              fontSize={15}
+              fontWeight={'bold'}
+            >
+              The How
+            </Typography>
           </AccordionSummary>
           <AccordionDetails>
             <ActiveJobsList jobs={proto.jobs} />

@@ -2,7 +2,7 @@ import PlayCircleIcon from '@mui/icons-material/PlayCircle';
 import StopCircleIcon from '@mui/icons-material/StopCircle';
 
 import HelpIcon from '@mui/icons-material/Help';
-import { Box, Typography, Tooltip, Button, Paper, TextField } from "@mui/material"
+import { Box, Typography, Tooltip, Button, Paper, TextField, Grid } from "@mui/material"
 import axios from 'axios'
 
 import ActiveTimer from './ActiveTimer';
@@ -11,7 +11,7 @@ import { useState } from 'react';
 export default function JobCard({ job }) {
   const [toolTip, setToolTip] = useState(false)
   const [timer, setTimer] = useState(false)
-  const [complete, setComplete] = useState(job.complete)
+  const [complete, setComplete] = useState(job.isComplete)
   const [hidden, setHidden] = useState(false) // intial state should be job.isHidden
 
   const handleTimer = () => {
@@ -28,9 +28,6 @@ export default function JobCard({ job }) {
     setHidden(res.data.isHidden)
   }
 
-
-
-
   const tempColorCard = `rgba(${job.cardColor.r}, ${job.cardColor.g}, ${job.cardColor.b}, ${job.cardColor.a})`
 
   return (
@@ -38,10 +35,10 @@ export default function JobCard({ job }) {
       display: hidden ? 'none' : null,
       textDecoration: complete ? 'line-through' : null,
       opacity: complete ? 0.4 : null,
+
     }}>
       <Paper sx={{
         display: 'flex',
-        // maxWidth: 360,
         gap: 2,
         padding: 1,
         background: `linear-gradient(135deg, ${tempColorCard}, rgba(255,255,255) 20%)`,
@@ -64,6 +61,7 @@ export default function JobCard({ job }) {
           <Box>
             <Typography sx={{
               fontWeight: 'bold'
+
             }}>
               {job.title}
             </Typography>
@@ -75,20 +73,20 @@ export default function JobCard({ job }) {
             alignItems: 'center'
           }}>
             <Typography
-              variant='subtitle2'
+              variant='caption'
               sx={{ '&:hover': { color: 'red' }, cursor: 'pointer', }}
               onClick={hideJob}
             >
               Hide
             </Typography>
             <Typography
-              variant='subtitle2'
+              variant='caption'
               sx={{ '&:hover': { color: 'red' }, cursor: 'pointer' }}
             >
               Reset
             </Typography>
             <Typography
-              variant='subtitle2'
+              variant='caption'
               sx={{ '&:hover': { color: 'green' }, cursor: 'pointer' }}
               onClick={markComplete}
             >

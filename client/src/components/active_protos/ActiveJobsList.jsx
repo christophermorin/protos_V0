@@ -1,10 +1,8 @@
-import { Stack, Accordion, AccordionSummary, AccordionDetails, Typography } from "@mui/material"
-// import ActiveJob from "./ActiveJob"
+import { Stack } from "@mui/material"
 import JobCard from "./JobCard"
 export default function ActiveJobsList({ jobs }) {
   const jobslist = jobs ? jobs.map(job => {
     return (
-      // <ActiveJob key={job._id} job={job} />
       <JobCard key={job._id} job={job} />
     )
   })

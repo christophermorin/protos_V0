@@ -1,38 +1,18 @@
-import { Box, TextField, Typography, Paper, Checkbox, FormControl, FormGroup, FormControlLabel, FormLabel, InputLabel, Select, MenuItem, Slider, ToggleButton, ToggleButtonGroup, Tooltip } from '@mui/material'
+import { Box, TextField, Typography, Paper, ToggleButton, ToggleButtonGroup, Tooltip } from '@mui/material'
 
 import ProtoDescriptionForm from './ProtoDescriptionForm';
-
 import WbTwilightIcon from '@mui/icons-material/WbTwilight';
 import WbSunnyIcon from '@mui/icons-material/WbSunny';
 import NightlightIcon from '@mui/icons-material/Nightlight';
 import ReplayCircleFilledIcon from '@mui/icons-material/ReplayCircleFilled';
-import { useState } from 'react';
 
-export default function CreateProtoForm({ setProtoTitle, setProtoDescription, protoTitle, protoDescription, handleTimeOfDay, protoTimeOfDay, editorState, setEditorState }) {
-  // const [timeOfDay, setTimeOfDay] = useState('')
 
-  // const handleTimeOfDay = (event, time) => {
-  //   setTimeOfDay(time)
-  // }
+export default function CreateProtoForm({ setProtoTitle, protoTitle, handleTimeOfDay, protoTimeOfDay, editorState, setEditorState }) {
 
   return (
     <Paper sx={{
       textAlign: 'center',
-
-
-
-      // justifyContent: 'center'
-      // display: 'flex',
-      // flexDirection: 'column',
-      // justifyContent: 'space-between',
-      // alignItems: 'center',
-      // flexGrow: 1,
-      // gap: 2,
-      // padding: 5,
-      // marginTop: 5,
-      // maxWidth: 360
-      // textAlign: 'center'
-
+      padding: 2
     }}>
       <Box>
         <TextField
@@ -42,7 +22,6 @@ export default function CreateProtoForm({ setProtoTitle, setProtoDescription, pr
           value={protoTitle}
           onChange={(e) => setProtoTitle(e.target.value)}
           fullWidth
-
         />
         <Typography sx={{
           fontSize: 11,
@@ -52,14 +31,6 @@ export default function CreateProtoForm({ setProtoTitle, setProtoDescription, pr
         }}>
           Choose a title for your Proto. Short and sweet is best!
         </Typography>
-        {/* <TextField
-          id="proto-description"
-          label="Description"
-          variant="standard"
-          multiline value={protoDescription}
-          onChange={(e) => setProtoDescription(e.target.value)}
-          fullWidth
-        /> */}
         <Typography sx={{
           fontSize: 11,
           color: 'grey',
@@ -69,10 +40,7 @@ export default function CreateProtoForm({ setProtoTitle, setProtoDescription, pr
           Describe your Proto. What is it you are trying to achieve? What are the benefits of implementing this Proto into your life?
         </Typography>
         <ProtoDescriptionForm editorState={editorState} setEditorState={setEditorState} />
-
-        {/* <ProtoDescriptionForm /> */}
       </Box>
-
       {/* Seperate into new component */}
       <ToggleButtonGroup
         value={protoTimeOfDay}
@@ -80,6 +48,7 @@ export default function CreateProtoForm({ setProtoTitle, setProtoDescription, pr
         onChange={handleTimeOfDay}
         aria-label="text alignment"
         size="small"
+        sx={{ marginTop: 2 }}
       >
         <ToggleButton value="morning" aria-label="morning">
           <Tooltip title='Morning' placement="top-end">
@@ -102,7 +71,6 @@ export default function CreateProtoForm({ setProtoTitle, setProtoDescription, pr
           </Tooltip>
         </ToggleButton>
       </ToggleButtonGroup>
-
     </Paper>
   )
 }

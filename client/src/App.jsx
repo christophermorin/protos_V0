@@ -5,17 +5,16 @@ import Library from "./components/Library"
 import Footer from "./components/Footer"
 import {
   BrowserRouter as Router,
-  Routes, Route, Link
+  Routes, Route
 } from "react-router-dom"
 import { Container, CssBaseline } from '@mui/material'
 import './Draft.css'
-
 
 const App = () => {
   return (
     <Router >
       <CssBaseline />
-      <div style={{ background: 'grey', minHeight: '95vh', display: 'flex', flexDirection: 'column', justifyContent: 'flex-start' }}>
+      <div style={{ minHeight: '95vh', display: 'flex', flexDirection: 'column', justifyContent: 'flex-start' }}>
         <NavBar />
         <Container>
           <Routes>

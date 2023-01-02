@@ -1,8 +1,5 @@
 import { Editor, convertFromRaw, EditorState } from 'draft-js';
-// import '../../Draft.css'
 import 'draft-js/dist/Draft.css';
-
-
 
 export default function ActiveWhy(props) {
   const text = EditorState.createWithContent(convertFromRaw(JSON.parse(props.storedState)));
@@ -30,9 +27,3 @@ const styleMap = {
     padding: 2,
   },
 };
-
-// const style = {
-//   background: 'black',
-//   border: '1px solid black',
-//   color: 'white'
-// }

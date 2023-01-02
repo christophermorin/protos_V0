@@ -19,7 +19,6 @@ function MyTimer({ expiryTimestamp, timerState }) {
       resume()
     }
     else if (!timerState) {
-
       pause()
     }
   }, [timerState])
@@ -39,7 +38,7 @@ function MyTimer({ expiryTimestamp, timerState }) {
 
 export default function ActiveTimer({ timerState, jobTimer }) {
   const time = new Date();
-  time.setSeconds(time.getSeconds() + jobTimer * 60); // 10 minutes timer
+  time.setSeconds(time.getSeconds() + jobTimer * 60);
   return (
     <div>
       <MyTimer expiryTimestamp={time} timerState={timerState} />

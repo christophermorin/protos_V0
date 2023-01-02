@@ -1,5 +1,5 @@
 import ColorizeOutlinedIcon from '@mui/icons-material/ColorizeOutlined';
-import { Box, Typography, Tooltip, Button, Paper, TextField, Switch, FormControlLabel, FormGroup } from "@mui/material"
+import { Box, Tooltip, Button, Paper, TextField } from "@mui/material"
 import { useState } from 'react';
 import ColorPicker from './ColorPicker';
 
@@ -27,12 +27,6 @@ export default function AddNewJob({ setNewProtoJobs, cardColor, setColor }) {
   });
 
   const [displayColorPicker, setDisplayColorPicker] = useState(false)
-  // const [color, setColor] = useState({
-  //   r: '255',
-  //   g: '255',
-  //   b: '255',
-  //   a: '1',
-  // })
 
   const toggleColorPicker = () => {
     setDisplayColorPicker(!displayColorPicker)
@@ -74,7 +68,7 @@ export default function AddNewJob({ setNewProtoJobs, cardColor, setColor }) {
           gap: 2,
           padding: 2,
           background: `linear-gradient(135deg, rgba(${cardColor.r}, ${cardColor.g}, ${cardColor.b}, ${cardColor.a}), rgba(255,255,255) 20%)`,
-          border: `1px solid rgba(${cardColor.r}, ${cardColor.g}, ${cardColor.b}, ${cardColor.a})`
+          border: `1px solid rgba(${cardColor.r}, ${cardColor.g}, ${cardColor.b}, ${cardColor.a})`,
         }}
       >
         <Box
@@ -83,7 +77,6 @@ export default function AddNewJob({ setNewProtoJobs, cardColor, setColor }) {
             alignItems: 'flex-start',
           }}>
           <ColorizeOutlinedIcon onClick={toggleColorPicker} sx={{
-            // color: `rgba(${color.r}, ${color.g}, ${color.b}, ${color.a})`,
             fontSize: '30px'
           }} />
           <ColorPicker displayColorPicker={displayColorPicker} changeColor={changeColor} color={cardColor} />

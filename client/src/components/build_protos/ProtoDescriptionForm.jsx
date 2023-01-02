@@ -1,13 +1,7 @@
 import { Editor, EditorState, RichUtils } from 'draft-js';
 import 'draft-js/dist/Draft.css';
-import { Typography } from '@mui/material';
-
 
 export default function ProtoDescriptionForm({ editorState, setEditorState }) {
-  // const [editorState, setEditorState] = useState(
-  //   () => EditorState.createEmpty(),
-  // )
-
   const toggleBlockType = (blockType) => {
     setEditorState(RichUtils.toggleBlockType(editorState, blockType))
   }
@@ -18,16 +12,8 @@ export default function ProtoDescriptionForm({ editorState, setEditorState }) {
 
 
   let className = 'RichEditor-editor';
-  // let contentState = editorState.getCurrentContent();
-  // console.log(contentState.hasText())
-  // if (!contentState.hasText()) {
-  //   if (contentState.getBlockMap().first().getType() !== 'unstyled') {
-  //     className += ' RichEditor-hidePlaceholder';
-  //   }
-  // }
-
   return (
-    <div className='RichEditor-root' style={{ marginTop: '20px' }}>
+    <div className='RichEditor-root' style={{ marginTop: '20px', }}>
       <div style={{ borderBottom: '1px solid #999', marginBottom: '5px' }}>
         <BlockStyleControls
           editorState={editorState}
@@ -38,7 +24,9 @@ export default function ProtoDescriptionForm({ editorState, setEditorState }) {
           onToggle={toggleInlineStyle}
         />
       </div>
-      <div style={{ padding: '0 10px' }}>
+      <div style={{
+        padding: '0 10px', wordBreak: "break-all", minHeight: '100px'
+      }}>
         <Editor
           className={className}
           editorState={editorState}

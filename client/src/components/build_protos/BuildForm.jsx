@@ -1,6 +1,6 @@
 import axios from 'axios'
-import { Button, Typography, Box, Grid } from "@mui/material"
-import { useState, useEffect } from 'react'
+import { Button, Grid } from "@mui/material"
+import { useState } from 'react'
 
 import { EditorState, convertToRaw } from 'draft-js'
 
@@ -53,13 +53,6 @@ export default function BuildForm() {
     // await axios.post('/api/jobs', newCreatedJobs)
   }
   return (
-    // <Box
-    //   sx={{
-    //     display: 'flex',
-    //     flexDirection: 'column',
-    //     alignItems: 'center',
-    //     gap: 1,
-    //   }}>
     <Grid container spacing={2} sx={{ marginTop: 5 }}>
       <Grid item sm={12} md={6}>
         <CreateProtoForm
@@ -74,27 +67,23 @@ export default function BuildForm() {
         />
       </Grid>
       <Grid item sm={12} md={6}>
-        <NewJobList
-          newProtoJobs={newProtoJobs}
-          setNewProtoJobs={setNewProtoJobs}
-        />
-        {/* <Typography>
-          Add a New Job
-        </Typography> */}
+        {newProtoJobs.length > 0 &&
+          <NewJobList
+            newProtoJobs={newProtoJobs}
+            setNewProtoJobs={setNewProtoJobs}
+          />}
         <CreateJobForm
           setNewProtoJobs={setNewProtoJobs}
           cardColor={color}
           setColor={setColor}
         />
-
       </Grid>
       <Button
-        sx={{ marginTop: 5 }}
+        sx={{ margin: '0 auto', marginTop: 5, marginBottom: 5 }}
         onClick={createProto}
         variant="contained">
         Create Proto
       </Button>
-      {/* </Box> */}
     </Grid>
   )
 }

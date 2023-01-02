@@ -1,5 +1,19 @@
 import { Paper, Typography, Box } from "@mui/material"
-export default function ActiveProtoHeader({ headers }) {
+import { useEffect, useState } from "react"
+export default function ActiveProtoHeader({ proto }) {
+  const [jobCount, setJobCount] = useState(proto.jobs.length)
+  const [completedJobs, setCompletedJobs] = useState()
+  useEffect(() => {
+    let complete = 0
+    proto.jobs.forEach(job => {
+      if (job.isComplete) {
+        complete += 1
+      }
+    })
+    setCompletedJobs(complete)
+  }, [proto])
+
+
   return (
     <Paper
       sx={{
@@ -8,7 +22,7 @@ export default function ActiveProtoHeader({ headers }) {
       }}
     >
       <Typography sx={{ textAlign: 'center' }} variant="h4">
-        {headers.title}
+        {proto.title}
       </Typography>
       <Box sx={{
         display: 'flex',
@@ -16,7 +30,7 @@ export default function ActiveProtoHeader({ headers }) {
         marginTop: 2,
         gap: 2,
       }}>
-        <Typography variant="caption">0/5 Jobs Complete</Typography>
+        <Typography variant="caption">{completedJobs}/{jobCount} Jobs Complete</Typography>
         <Typography variant="caption">Total TIme</Typography>
         <Typography variant="caption">Sometihng Else</Typography>
       </Box>

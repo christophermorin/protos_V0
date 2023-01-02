@@ -1,5 +1,5 @@
 import StarBorderPurple500Icon from '@mui/icons-material/StarBorderPurple500';
-import { Box, Typography, Tooltip, Button, Paper, TextField, Switch, FormControlLabel, FormGroup } from "@mui/material"
+import { Box, Typography, Tooltip, Button, Paper } from "@mui/material"
 import HelpIcon from '@mui/icons-material/Help';
 import ActiveTimer from '../active_protos/ActiveTimer';
 
@@ -11,7 +11,6 @@ export default function DisplayNewJob({ job, deleteJob }) {
 
     <Paper sx={{
       display: 'flex',
-      // maxWidth: 360,
       gap: 2,
       padding: 2,
       background: `linear-gradient(135deg, ${colorChoice}, rgba(255,255,255) 20%)`,
@@ -37,12 +36,7 @@ export default function DisplayNewJob({ job, deleteJob }) {
             }}
           >{job.title}</Typography>
         </Box>
-        <Box sx={{
-          // display: 'flex',
-          // flexDirection: 'row',
-          // gap: 2,
-          // alignItems: 'center'
-        }}>
+        <Box>
           <Button
             onClick={() => deleteJob(job.title)}
             sx={{

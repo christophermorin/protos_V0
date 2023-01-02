@@ -14,8 +14,7 @@ export default function NewJobList({ newProtoJobs, setNewProtoJobs }) {
   })
   return (
     <Stack spacing={1} sx={{
-      // width: 360,
-      margin: '5 0'
+      marginBottom: 2
     }}>
       {currentJobsList}
     </Stack>

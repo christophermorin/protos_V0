@@ -8,19 +8,15 @@ const theme = createTheme({
   palette: {
     type: 'light',
     primary: {
-      main: '#7b87b5',
+      main: '#c73f3f',
     },
     secondary: {
-      main: '#f50057',
+      main: '#e5d67e',
       light: '#ff4674',
     },
-    background: {
-      default: 'black',
-      paper: '#f3f3f3',
+    text: {
+      primary: '#000000',
     },
-    h3: {
-      default: 'red'
-    }
   },
 });
 
