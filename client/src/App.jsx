@@ -16,12 +16,14 @@ const App = () => {
       <CssBaseline />
       <div style={{ minHeight: '95vh', display: 'flex', flexDirection: 'column', justifyContent: 'flex-start' }}>
         <NavBar />
-        <Container>
+        <Container maxWidth="xl">
           <Routes>
             {/* <Route path="/" element={<App />} /> */}
             <Route path="/active" element={<Active />} />
             <Route path="/build" element={<Build />} />
             <Route path="/library" element={<Library />} />
+
+            <Route path="/active/:id" element={<Active />} />
           </Routes>
         </Container>
       </div>

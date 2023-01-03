@@ -7,7 +7,7 @@ import ActiveProtoHeader from "./ActiveProtoHeader"
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ActiveWhy from "./ActiveWhy"
 
-export default function ActiveProtosList({ proto }) {
+export default function ActiveProtosList({ proto, index }) {
   // const [temp, setTemp] = useState()
   // useEffect(() => {
   //   const getProtos = async () => {
