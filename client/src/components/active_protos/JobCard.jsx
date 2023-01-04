@@ -8,7 +8,7 @@ import axios from 'axios'
 import ActiveTimer from './ActiveTimer';
 import { useState } from 'react';
 
-export default function JobCard({ job }) {
+export default function JobCard({ job, protoId }) {
   const [toolTip, setToolTip] = useState(false)
   const [timer, setTimer] = useState(false)
   const [complete, setComplete] = useState(job.isComplete)
@@ -19,16 +19,16 @@ export default function JobCard({ job }) {
   }
 
   const markComplete = async () => {
-    const res = await axios.post(`/api/protos/completeJob/${job._id}`)
-    setComplete(res.data.isComplete)
+    setComplete(!complete)
+    console.log(job._id)
   }
 
   const hideJob = async () => {
-    const res = await axios.post(`/api/protos/hideJob/${job._id}`)
-    setHidden(res.data.isHidden)
+    setHidden(!hidden)
   }
 
   const tempColorCard = `rgba(${job.cardColor.r}, ${job.cardColor.g}, ${job.cardColor.b}, ${job.cardColor.a})`
+
 
   return (
     <div style={{

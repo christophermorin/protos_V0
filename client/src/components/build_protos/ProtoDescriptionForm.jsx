@@ -41,7 +41,6 @@ export default function ProtoDescriptionForm({ editorState, setEditorState }) {
 }
 
 function getBlockStyle(block) {
-  console.log(block.getType())
   switch (block.getType()) {
     case 'blockquote': return 'RichEditor-blockquote';
     case 'code-block': return 'RichEditor-codeblock';
