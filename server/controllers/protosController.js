@@ -23,17 +23,20 @@ protosRouter.post('/', async (req, res) => {
 })
 
 protosRouter.post('/completeJob/:id', async (req, res) => {
-  const id = req.params.id
-  const proto = await Protos.findOneAndUpdate({ "protos.jobs": id })
+  const jobId = req.params.id
+  const protoId = req.body
+  console.log(protoId)
+  const proto = await Protos.findById(jobId)
+  console.log(proto)
 
-  try {
-    const protoJob = proto.jobs.find(job => job.id === id)
-    protoJob.isComplete = !protoJob.isComplete
-    await proto.save()
-    return res.status(200).json(protoJob)
-  } catch (error) {
-    logger.error(error)
-  }
+  // try {
+  //   const protoJob = proto.jobs.find(job => job.id === id)
+  //   protoJob.isComplete = !protoJob.isComplete
+  //   await proto.save()
+  //   return res.status(200).json(protoJob)
+  // } catch (error) {
+  //   logger.error(error)
+  // }
 })
 
 protosRouter.post('/hideJob/:id', async (req, res) => {

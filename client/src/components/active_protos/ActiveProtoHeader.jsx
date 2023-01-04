@@ -3,6 +3,7 @@ import { useEffect, useState } from "react"
 export default function ActiveProtoHeader({ proto }) {
   const [jobCount, setJobCount] = useState(proto.jobs.length)
   const [completedJobs, setCompletedJobs] = useState()
+
   useEffect(() => {
     let complete = 0
     proto.jobs.forEach(job => {
