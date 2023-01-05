@@ -18,11 +18,12 @@ export default function ActiveProtoHeader({ proto }) {
   return (
     <Paper
       sx={{
-        paddingLeft: 1,
-        paddingRight: 1,
+        padding: 2,
+        // paddingLeft: 1,
+        // paddingRight: 1,
       }}
     >
-      <Typography sx={{ textAlign: 'center' }} variant="h4">
+      <Typography sx={{ textAlign: 'center' }} variant="h4" fontWeight={700}>
         {proto.title}
       </Typography>
       <Box sx={{
@@ -31,9 +32,9 @@ export default function ActiveProtoHeader({ proto }) {
         marginTop: 2,
         gap: 2,
       }}>
-        <Typography variant="caption">{completedJobs}/{jobCount} Jobs Complete</Typography>
-        <Typography variant="caption">Total TIme</Typography>
-        <Typography variant="caption">Sometihng Else</Typography>
+        <Typography variant="caption" fontWeight={500}>{completedJobs}/{jobCount} Jobs Complete</Typography>
+        <Typography variant="caption" fontWeight={500}>Total TIme</Typography>
+        <Typography variant="caption" fontWeight={500}>Sometihng Else</Typography>
       </Box>
     </Paper>
   )

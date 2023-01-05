@@ -53,8 +53,8 @@ export default function BuildForm() {
     // await axios.post('/api/jobs', newCreatedJobs)
   }
   return (
-    <Grid container spacing={2} sx={{ marginTop: 5 }}>
-      <Grid item sm={12} md={6}>
+    <Grid container spacing={2} sx={{ marginTop: 5, justifyContent: 'center' }}>
+      <Grid item xs={12} md={6}>
         <CreateProtoForm
           setProtoTitle={setProtoTitle}
           setProtoDescription={setProtoDescription}
@@ -65,25 +65,25 @@ export default function BuildForm() {
           editorState={editorState}
           setEditorState={setEditorState}
         />
-      </Grid>
-      <Grid item sm={12} md={6}>
         {newProtoJobs.length > 0 &&
           <NewJobList
             newProtoJobs={newProtoJobs}
             setNewProtoJobs={setNewProtoJobs}
           />}
+        {/* </Grid> */}
+        {/* <Grid item xs={12} md={6}> */}
         <CreateJobForm
           setNewProtoJobs={setNewProtoJobs}
           cardColor={color}
           setColor={setColor}
         />
+        <Button
+          sx={{ margin: '0 auto', marginTop: 5, marginBottom: 5, display: 'flex', justifyContent: 'center' }}
+          onClick={createProto}
+          variant="contained">
+          Create Proto
+        </Button>
       </Grid>
-      <Button
-        sx={{ margin: '0 auto', marginTop: 5, marginBottom: 5 }}
-        onClick={createProto}
-        variant="contained">
-        Create Proto
-      </Button>
-    </Grid>
+    </Grid >
   )
 }

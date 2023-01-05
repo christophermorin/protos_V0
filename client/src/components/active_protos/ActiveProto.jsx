@@ -10,12 +10,12 @@ import ActiveWhy from "./ActiveWhy"
 export default function ActiveProto({ proto }) {
 
   return (
-    <Grid container spacing={0.5} key={proto._id}>
+    <Grid container spacing={0.5} key={proto._id} sx={{ marginTop: 5 }}>
       <Grid item xs={12}>
         <ActiveProtoHeader proto={proto} />
       </Grid>
       <Grid item xs={12} >
-        {proto.description && <Accordion >
+        {proto.description && <Accordion disableGutters={true} >
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
             aria-controls="The Why"
@@ -24,7 +24,7 @@ export default function ActiveProto({ proto }) {
             <Typography
               variant="subtitle2"
               fontSize={15}
-              fontWeight={'bold'}
+              fontWeight={700}
             >
               The Why
             </Typography>
@@ -37,7 +37,10 @@ export default function ActiveProto({ proto }) {
 
         {/* <Grid item xs={12} md={6}> */}
         <Accordion
-          defaultExpanded>
+          disableGutters={true}
+          defaultExpanded
+          sx={{ marginTop: '5px' }}
+        >
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
             aria-controls="The How"

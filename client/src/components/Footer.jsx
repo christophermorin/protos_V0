@@ -1,7 +1,8 @@
+import { Box } from '@mui/material'
 export default function Footer() {
   return (
-    <div style={{ color: 'white', height: '5vh' }}>
+    <Box style={{ color: 'white', height: '5vh' }} sx={{ backgroundColor: 'primary.main' }}>
 
-    </div>
+    </Box>
   )
 }

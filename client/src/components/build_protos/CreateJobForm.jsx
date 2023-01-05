@@ -44,7 +44,7 @@ export default function AddNewJob({ setNewProtoJobs, cardColor, setColor }) {
       r: '255',
       g: '255',
       b: '255',
-      a: '1',
+      a: '0',
     })
   }
 
@@ -69,6 +69,7 @@ export default function AddNewJob({ setNewProtoJobs, cardColor, setColor }) {
           padding: 2,
           background: `linear-gradient(135deg, rgba(${cardColor.r}, ${cardColor.g}, ${cardColor.b}, ${cardColor.a}), rgba(255,255,255) 20%)`,
           border: `1px solid rgba(${cardColor.r}, ${cardColor.g}, ${cardColor.b}, ${cardColor.a})`,
+          marginTop: 5
         }}
       >
         <Box

@@ -41,14 +41,15 @@ export default function JobCard({ job, protoId }) {
         display: 'flex',
         gap: 2,
         padding: 1,
-        background: `linear-gradient(135deg, ${tempColorCard}, rgba(255,255,255) 20%)`,
-        border: `1px solid ${tempColorCard}`,
+        background: `linear-gradient(135deg, ${tempColorCard} 10%, #fff 80%)`,
+        boxShadow: `2px 2px 0  rgba(0,0,0,0.4)`,
+        // border: `2px solid ${tempColorCard}`,
       }}>
         <Box sx={{
           display: 'flex',
           alignItems: 'center'
         }}>
-          {!timer ? <PlayCircleIcon fontSize='large' onClick={handleTimer} /> : <StopCircleIcon fontSize='large' onClick={handleTimer} />}
+          {!timer ? <PlayCircleIcon fontSize='large' onClick={handleTimer} /> : <StopCircleIcon fontSize='large' onClick={handleTimer} sx={{ color: 'red' }} />}
         </Box>
         <Box sx={{
           display: 'flex',
@@ -74,6 +75,7 @@ export default function JobCard({ job, protoId }) {
           }}>
             <Typography
               variant='caption'
+              fontWeight={500}
               sx={{ '&:hover': { color: 'red' }, cursor: 'pointer', }}
               onClick={hideJob}
             >
@@ -81,12 +83,14 @@ export default function JobCard({ job, protoId }) {
             </Typography>
             <Typography
               variant='caption'
+              fontWeight={500}
               sx={{ '&:hover': { color: 'red' }, cursor: 'pointer' }}
             >
               Reset
             </Typography>
             <Typography
               variant='caption'
+              fontWeight={500}
               sx={{ '&:hover': { color: 'green' }, cursor: 'pointer' }}
               onClick={markComplete}
             >
@@ -106,6 +110,6 @@ export default function JobCard({ job, protoId }) {
           <ActiveTimer jobTimer={job.timer} timerState={timer} />
         </Box>
       </Paper>
-    </div>
+    </div >
   )
 }

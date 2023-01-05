@@ -1,57 +1,62 @@
-import { Tabs, Tab, Drawer, Button, Grid, Box, Typography } from '@mui/material'
-import { Link } from 'react-router-dom'
+import { Tabs, Tab, Grid, Box, Zoom } from '@mui/material'
+
 
 import { useState } from 'react'
-
-import Accordion from '@mui/material/Accordion';
-import AccordionSummary from '@mui/material/AccordionSummary';
-import AccordionDetails from '@mui/material/AccordionDetails';
 
 import ActiveProto from './ActiveProto';
 
 export default function ProtoTabs({ activeProtos }) {
-  const [value, setValue] = useState(0);
-  const [testArr, setTestArr] = useState([])
+  // const [value, setValue] = useState(0);
+  const [protoArr, setProtoArr] = useState([])
+  // const [checked, setChecked] = useState(false)
 
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
 
-  const handleClick = (proto) => {
-    const found = testArr.find(p => p._id === proto._id)
+  // const handleChange = (event, newValue) => {
+  //   setValue(newValue);
+  // };
+
+  const handleClick = (event, proto) => {
+    event.target.style.color = 'red'
+    const found = protoArr.find(p => p._id === proto._id)
     if (!found) {
-      setTestArr(prevState => [...prevState, proto])
+      setProtoArr(prevState => [...prevState, proto])
     } else {
-      const filter = testArr.filter(p => p._id !== proto._id)
-      setTestArr(filter)
+      const filter = protoArr.filter(p => p._id !== proto._id)
+      event.target.style.color = ''
+
+      setProtoArr(filter)
+
     }
   }
 
-  const TabPanel = (props) => {
-    const { value, index, children } = props
-    return (
-      <div
-        role="tabpanel"
-        hidden={value !== index}
-      >
-        {value === index && (
-          <Box>
-            {children}
-          </Box>
-        )}
-      </div>
-    )
-  }
+
+
+  // const TabPanel = (props) => {
+  //   const { value, index, children } = props
+  //   return (
+  //     <div
+  //       role="tabpanel"
+  //       hidden={value !== index}
+  //     >
+  //       {value === index && (
+  //         <Box>
+  //           {children}
+  //         </Box>
+  //       )}
+  //     </div>
+  //   )
+  // }
 
   //Display clicked protos
-  const displayProtos = testArr.map(proto => {
+  const displayProtos = protoArr.map(proto => {
     return (
-      <Box key={proto._id} width={360}>
-        <ActiveProto proto={proto} key={proto._id} />
-      </Box>
+      <Zoom in={true} key={proto._id}>
+        <Box width={360} sx={{ margin: '0 10px' }}>
+          <ActiveProto proto={proto} />
+        </Box>
+      </Zoom>
     )
   })
-
 
   // Display one proto with tabs
   // const displayProtos = activeProtos.map((proto, i) => {
@@ -64,7 +69,8 @@ export default function ProtoTabs({ activeProtos }) {
 
   const tabCount = activeProtos.map(proto => {
     return (
-      <Tab key={proto._id} label={proto.title} onClick={() => handleClick(proto)} />
+      <Tab key={proto._id} label={proto.title} onClick={() => handleClick(event, proto)}
+      />
     )
   })
 
@@ -78,8 +84,7 @@ export default function ProtoTabs({ activeProtos }) {
     <Box>
       <Box>
         <Tabs
-          value={value}
-          onChange={handleChange}
+          value={false}
           variant="scrollable"
           scrollButtons
           allowScrollButtonsMobile
@@ -87,10 +92,13 @@ export default function ProtoTabs({ activeProtos }) {
           {tabCount}
         </Tabs>
       </Box>
-      <Grid container>
+      {displayProtos.length > 0 ? <Grid container sx={{ justifyContent: 'center' }}>
         {displayProtos}
-      </Grid>
-    </Box>
+      </Grid> : <div style={{ minHeight: '80vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }} >No active Protos...</div>}
+      {/* <Grid container>
+        {displayProtos}
+      </Grid> */}
+    </Box >
   )
 }
 
