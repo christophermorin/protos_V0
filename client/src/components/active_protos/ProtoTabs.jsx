@@ -6,14 +6,7 @@ import { useState } from 'react'
 import ActiveProto from './ActiveProto';
 
 export default function ProtoTabs({ activeProtos }) {
-  // const [value, setValue] = useState(0);
   const [protoArr, setProtoArr] = useState([])
-  // const [checked, setChecked] = useState(false)
-
-
-  // const handleChange = (event, newValue) => {
-  //   setValue(newValue);
-  // };
 
   const handleClick = (event, proto) => {
     event.target.style.color = 'red'
@@ -30,23 +23,6 @@ export default function ProtoTabs({ activeProtos }) {
   }
 
 
-
-  // const TabPanel = (props) => {
-  //   const { value, index, children } = props
-  //   return (
-  //     <div
-  //       role="tabpanel"
-  //       hidden={value !== index}
-  //     >
-  //       {value === index && (
-  //         <Box>
-  //           {children}
-  //         </Box>
-  //       )}
-  //     </div>
-  //   )
-  // }
-
   //Display clicked protos
   const displayProtos = protoArr.map(proto => {
     return (
@@ -58,26 +34,12 @@ export default function ProtoTabs({ activeProtos }) {
     )
   })
 
-  // Display one proto with tabs
-  // const displayProtos = activeProtos.map((proto, i) => {
-  //   return (
-  //     <TabPanel key={proto._id} value={value} index={i}>
-  //       <ActiveProto proto={proto} />
-  //     </TabPanel>
-  //   )
-  // })
-
   const tabCount = activeProtos.map(proto => {
     return (
       <Tab key={proto._id} label={proto.title} onClick={() => handleClick(event, proto)}
       />
     )
   })
-
-
-
-
-
 
   return (
 

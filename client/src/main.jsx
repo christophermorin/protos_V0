@@ -43,8 +43,7 @@ const theme = createTheme({
     fontFamily: '"Poppins", "Helvetica", "Arial", sans-serif',
   },
 });
-// #e4e5f1
-// linear - gradient(122deg, rgba(233, 230, 247, 1) 0 %, rgba(201, 219, 226, 1) 87 %, rgba(217, 231, 233, 1) 87 %)
+
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <Provider store={store}>
