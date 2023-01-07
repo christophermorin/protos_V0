@@ -13,7 +13,9 @@ const theme = createTheme({
         body: {
           // backgroundColor: '#FAACA8,',
           // backgroundImage: `linear-gradient(19deg, #FAACA8 0%, #DDD6F3 100%)`,
-          backgroundImage: 'linear-gradient(122deg, rgba(218,216,240,1) 10%, rgba(233,230,247,1) 10%, rgba(201,219,226,1) 85%, rgba(217,231,233,1) 85%)',
+          backgroundImage: 'linear-gradient(90deg, rgba(201,219,226,1) 15%, rgba(218,216,240,1) 95%)',
+          // backgroundImage: 'linear-gradient(90deg, rgba(218,216,240,1) 10%, rgba(233,230,247,1) 10%, rgba(201,219,226,1) 85%, rgba(217,231,233,1) 85%)',
+
         },
       },
     },

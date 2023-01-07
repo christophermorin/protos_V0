@@ -16,18 +16,18 @@ const App = () => {
   return (
     <Router >
       <CssBaseline />
-      <div style={{ minHeight: '95vh', display: 'flex', flexDirection: 'column', justifyContent: 'flex-start' }}>
-        <NavBar />
-        <Container maxWidth="xl">
-          <Routes>
-            {/* <Route path="/" element={<App />} /> */}
-            <Route path="/active" element={<Active />} />
-            <Route path="/build" element={<Build />} />
-            <Route path="/library" element={<Library />} />
-          </Routes>
-        </Container>
-      </div>
-      <Footer />
+      {/* <div style={{ minHeight: '95vh', display: 'flex', flexDirection: 'column', justifyContent: 'flex-start' }}> */}
+      <NavBar />
+      <Container maxWidth="xl" sx={{ backgroundImage: 'linear-gradient(90deg, rgba(201,219,226,1) 15%, rgba(218,216,240,1) 95%)' }}>
+        <Routes>
+          {/* <Route path="/" element={<App />} /> */}
+          <Route path="/active" element={<Active />} />
+          <Route path="/build" element={<Build />} />
+          <Route path="/library" element={<Library />} />
+        </Routes>
+      </Container>
+      {/* </div> */}
+      {/* <Footer /> */}
     </Router >
   )
 }
