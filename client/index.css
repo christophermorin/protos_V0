@@ -13,3 +13,29 @@ body,
 /* body {
   background: linear-gradient(122deg, rgba(218, 216, 240, 1) 10%, rgba(233, 230, 247, 1) 10%, rgba(201, 219, 226, 1) 85%, rgba(217, 231, 233, 1) 85%);
 } */
+
+
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 8px;
+  padding: 0;
+  margin: 0;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: transparent;
+
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #000;
+  border-radius: 100px;
+}
+
+/* Handle on hover */
+/* ::-webkit-scrollbar-thumb:hover {
+  background: #f02;
+} */

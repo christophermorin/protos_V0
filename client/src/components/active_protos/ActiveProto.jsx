@@ -1,7 +1,6 @@
 import ActiveProtoHeader from "./ActiveProtoHeader"
-import ActiveWhy from "./ActiveWhy"
 import JobCard from "./JobCard"
-import { Accordion, AccordionSummary, AccordionDetails, Grid, Typography, Stack, Box } from "@mui/material"
+import { Accordion, AccordionSummary, AccordionDetails, Grid, Typography, Stack, Box, Tooltip } from "@mui/material"
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 export default function ActiveProto({ proto }) {
@@ -13,14 +12,12 @@ export default function ActiveProto({ proto }) {
   })
 
   return (
-    <Grid container spacing={0.5} key={proto._id} sx={{ marginTop: 5 }}>
+    <Grid container spacing={0.5} key={proto._id} sx={{ marginTop: 2, }}>
       <Grid item xs={12}>
-        <ActiveProtoHeader
-          protoTitle={proto.title}
-        />
+        <ActiveProtoHeader protoTitle={proto.title} protoDescription={proto.description} />
       </Grid>
       <Grid item xs={12} >
-        {proto.description &&
+        {/* {proto.description &&
           <Accordion disableGutters={true} >
             <AccordionSummary
               expandIcon={<ExpandMoreIcon />}
@@ -38,7 +35,7 @@ export default function ActiveProto({ proto }) {
             <AccordionDetails>
               <ActiveWhy protoDescription={proto.description} />
             </AccordionDetails>
-          </Accordion>}
+          </Accordion>} */}
         <Accordion
           disableGutters={true}
           defaultExpanded
@@ -58,7 +55,7 @@ export default function ActiveProto({ proto }) {
             </Typography>
           </AccordionSummary>
           <AccordionDetails>
-            <Stack spacing={1}>
+            <Stack spacing={1} sx={{ maxHeight: '55vh', overflowY: 'scroll' }}>
               {jobslist}
             </Stack>
           </AccordionDetails>

@@ -24,11 +24,13 @@ export default function ProtoTabs() {
   //Display clicked protos
   const displayProtos = protoArr.map(proto => {
     return (
-      <Zoom in={true} key={proto._id}>
-        <Box width={360} sx={{ margin: '0 10px' }}>
-          <ActiveProto proto={proto} />
-        </Box>
-      </Zoom>
+      <Grid item sx={{ padding: '0 10px', }}>
+        <Zoom in={true} key={proto._id}>
+          <Box>
+            <ActiveProto proto={proto} />
+          </Box>
+        </Zoom>
+      </Grid >
     )
   })
 
@@ -61,7 +63,7 @@ export default function ProtoTabs() {
       <Box>
         {displayProtos.length > 0
           ?
-          <Grid container direction='row' wrap='nowrap' sx={{ overflowX: 'scroll', minHeight: '80vh' }}>
+          <Grid container direction='row' wrap='nowrap' sx={{ overflowX: 'scroll', height: '88vh', }} >
             {displayProtos}
           </Grid>
           :

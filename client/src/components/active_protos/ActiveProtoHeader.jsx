@@ -1,6 +1,7 @@
 import { Paper, Typography, Box } from "@mui/material"
+import ActiveReason from "./ActiveReason"
 import { useEffect, useState } from "react"
-export default function ActiveProtoHeader({ protoTitle }) {
+export default function ActiveProtoHeader({ protoTitle, protoDescription }) {
   // const [jobCount, setJobCount] = useState(protoJobs.length)
   // const [completedJobs, setCompletedJobs] = useState()
 
@@ -18,18 +19,21 @@ export default function ActiveProtoHeader({ protoTitle }) {
   return (
     <Paper
       sx={{ padding: 2, }}>
-      <Typography sx={{ textAlign: 'center' }} variant="h4" fontWeight={700}>
-        {protoTitle}
-      </Typography>
+      <Box>
+        <Typography variant="h4" fontWeight={700}>
+          {protoTitle}
+        </Typography>
+      </Box>
       <Box sx={{
         display: 'flex',
-        justifyContent: 'center',
+        // justifyContent: 'center',
+        alignItems: 'center',
         marginTop: 2,
         gap: 2,
       }}>
+        <ActiveReason protoDescription={protoDescription} />
         <Typography variant="caption" fontWeight={500}>Job Count</Typography>
         <Typography variant="caption" fontWeight={500}>Total TIme</Typography>
-        <Typography variant="caption" fontWeight={500}>Sometihng Else</Typography>
       </Box>
     </Paper>
   )

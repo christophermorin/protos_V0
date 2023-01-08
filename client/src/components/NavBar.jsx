@@ -43,9 +43,10 @@ export default function NavBar() {
             </IconButton>
           </Box>
           <Box>
+            <Button color="inherit" component={Link} to="/">Home</Button>
             <Button color="inherit" component={Link} to="/active">Active</Button>
             <Button color="inherit" component={Link} to="/build">Build</Button>
-            <Button color="inherit" component={Link} to="/library">Library</Button>
+            {/* <Button color="inherit" component={Link} to="/library">Library</Button> */}
           </Box>
           <Box>
             <IconButton
