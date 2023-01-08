@@ -1,15 +1,11 @@
+import ActiveTimer from './ActiveTimer';
 import PlayCircleIcon from '@mui/icons-material/PlayCircle';
 import StopCircleIcon from '@mui/icons-material/StopCircle';
-
 import HelpIcon from '@mui/icons-material/Help';
-import { Box, Typography, Tooltip, Button, Paper, TextField, Grid } from "@mui/material"
-import axios from 'axios'
-
-import ActiveTimer from './ActiveTimer';
+import { Box, Typography, Tooltip, Paper, } from "@mui/material"
 import { useState } from 'react';
 
 export default function JobCard({ job, protoId }) {
-  const [toolTip, setToolTip] = useState(false)
   const [timer, setTimer] = useState(false)
   const [complete, setComplete] = useState(job.isComplete)
   const [hidden, setHidden] = useState(false) // intial state should be job.isHidden
@@ -105,7 +101,7 @@ export default function JobCard({ job, protoId }) {
           alignItems: 'center'
         }}>
           <Tooltip title={job.description} placement="top-end">
-            <HelpIcon onClick={() => setToolTip(!toolTip)} />
+            <HelpIcon />
           </Tooltip>
           <ActiveTimer jobTimer={job.timer} timerState={timer} />
         </Box>

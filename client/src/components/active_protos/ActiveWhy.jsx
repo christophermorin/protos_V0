@@ -1,8 +1,8 @@
 import { Editor, convertFromRaw, EditorState } from 'draft-js';
-import 'draft-js/dist/Draft.css';
+// import 'draft-js/dist/Draft.css';
 
-export default function ActiveWhy(props) {
-  const text = EditorState.createWithContent(convertFromRaw(JSON.parse(props.storedState)));
+export default function ActiveWhy({ protoDescription }) {
+  const text = EditorState.createWithContent(convertFromRaw(JSON.parse(protoDescription)));
   return (
     <div style={{ background: 'white', padding: '10px' }}>
       <Editor editorState={text} readOnly={true} blockStyleFn={getBlockStyle}

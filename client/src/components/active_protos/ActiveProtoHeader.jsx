@@ -1,30 +1,25 @@
 import { Paper, Typography, Box } from "@mui/material"
 import { useEffect, useState } from "react"
-export default function ActiveProtoHeader({ proto }) {
-  const [jobCount, setJobCount] = useState(proto.jobs.length)
-  const [completedJobs, setCompletedJobs] = useState()
+export default function ActiveProtoHeader({ protoTitle }) {
+  // const [jobCount, setJobCount] = useState(protoJobs.length)
+  // const [completedJobs, setCompletedJobs] = useState()
 
-  useEffect(() => {
-    let complete = 0
-    proto.jobs.forEach(job => {
-      if (job.isComplete) {
-        complete += 1
-      }
-    })
-    setCompletedJobs(complete)
-  }, [proto])
+  // useEffect(() => {
+  //   let complete = 0
+  //   protoJobs.forEach(job => {
+  //     if (job.isComplete) {
+  //       complete += 1
+  //     }
+  //   })
+  //   setCompletedJobs(complete)
+  // }, [])
 
 
   return (
     <Paper
-      sx={{
-        padding: 2,
-        // paddingLeft: 1,
-        // paddingRight: 1,
-      }}
-    >
+      sx={{ padding: 2, }}>
       <Typography sx={{ textAlign: 'center' }} variant="h4" fontWeight={700}>
-        {proto.title}
+        {protoTitle}
       </Typography>
       <Box sx={{
         display: 'flex',
@@ -32,7 +27,7 @@ export default function ActiveProtoHeader({ proto }) {
         marginTop: 2,
         gap: 2,
       }}>
-        <Typography variant="caption" fontWeight={500}>{completedJobs}/{jobCount} Jobs Complete</Typography>
+        <Typography variant="caption" fontWeight={500}>Job Count</Typography>
         <Typography variant="caption" fontWeight={500}>Total TIme</Typography>
         <Typography variant="caption" fontWeight={500}>Sometihng Else</Typography>
       </Box>

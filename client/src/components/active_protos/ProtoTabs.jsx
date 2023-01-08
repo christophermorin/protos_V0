@@ -1,11 +1,10 @@
-import { Tabs, Tab, Grid, Box, Zoom } from '@mui/material'
-
-
+import ActiveProto from './ActiveProto';
+import { protoDb } from '../../protoDb';
+import { Tabs, Tab, Grid, Box, Zoom, } from '@mui/material'
 import { useState } from 'react'
 
-import ActiveProto from './ActiveProto';
 
-export default function ProtoTabs({ activeProtos }) {
+export default function ProtoTabs() {
   const [protoArr, setProtoArr] = useState([])
 
   const handleClick = (event, proto) => {
@@ -22,7 +21,6 @@ export default function ProtoTabs({ activeProtos }) {
     }
   }
 
-
   //Display clicked protos
   const displayProtos = protoArr.map(proto => {
     return (
@@ -34,7 +32,7 @@ export default function ProtoTabs({ activeProtos }) {
     )
   })
 
-  const tabCount = activeProtos.map(proto => {
+  const tabCount = protoDb.map(proto => {
     return (
       <Tab key={proto._id} label={proto.title} onClick={() => handleClick(event, proto)}
       />
@@ -44,22 +42,31 @@ export default function ProtoTabs({ activeProtos }) {
   return (
 
     <Box>
+      <Tabs
+        value={false}
+        variant="scrollable"
+        scrollButtons
+        allowScrollButtonsMobile
+      >
+        {tabCount}
+      </Tabs>
+      {/* <Tabs
+        value={false}
+        variant="scrollable"
+
+    
+      >
+        {displayProtos}
+      </Tabs> */}
       <Box>
-        <Tabs
-          value={false}
-          variant="scrollable"
-          scrollButtons
-          allowScrollButtonsMobile
-        >
-          {tabCount}
-        </Tabs>
+        {displayProtos.length > 0
+          ?
+          <Grid container direction='row' wrap='nowrap' sx={{ overflowX: 'scroll', minHeight: '80vh' }}>
+            {displayProtos}
+          </Grid>
+          :
+          <div style={{ display: 'flex', justifyContent: 'center' }} >No active Protos...</div>}
       </Box>
-      {displayProtos.length > 0 ? <Grid container sx={{ justifyContent: 'center' }}>
-        {displayProtos}
-      </Grid> : <div style={{ minHeight: '80vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }} >No active Protos...</div>}
-      {/* <Grid container>
-        {displayProtos}
-      </Grid> */}
     </Box >
   )
 }

@@ -1,12 +1,12 @@
 import axios from 'axios'
-import { Button, Grid } from "@mui/material"
+import { Button, Grid, Stack } from "@mui/material"
 import { useState } from 'react'
 
 import { EditorState, convertToRaw } from 'draft-js'
 
 import CreateProtoForm from "./CreateProtoForm"
-import NewJobList from "./NewJobList"
 import CreateJobForm from "./CreateJobForm"
+import DisplayNewJob from './DisplayNewJob'
 
 export default function BuildForm() {
   const [protoTitle, setProtoTitle] = useState('') // This state can stay here
@@ -31,16 +31,17 @@ export default function BuildForm() {
     setProtoTimeOfDay(time)
   }
 
-  // const [newCreatedJobs, setnewCreatedJobs] = useState([]) These are jobs that are newly created, used to add unique jobs to DB when a protos is created. *** UNUSED
+  const deleteJob = (title) => {
+    const filtered = newProtoJobs.filter(job => job.title !== title)
+    setNewProtoJobs(filtered)
+  }
 
-  // Getting all unique jobs from DB on load. UNUSED
-  // useEffect(() => {
-  //   const getJobs = async () => {
-  //     const allJobs = await axios.get('/api/jobs')
-  //     setListAllJobs(allJobs.data)
-  //   }
-  //   getJobs()
-  // }, [])
+  const currentJobsList = newProtoJobs.map(job => {
+    return (
+      <DisplayNewJob key={job.title} job={job} deleteJob={deleteJob} />
+    )
+  })
+
   const createProto = async () => {
     const newProto = {
       title: protoTitle,
@@ -49,8 +50,6 @@ export default function BuildForm() {
       jobs: newProtoJobs
     }
     await axios.post('/api/protos', newProto)
-
-    // await axios.post('/api/jobs', newCreatedJobs)
   }
   return (
     <Grid container spacing={2} sx={{ marginTop: 5, justifyContent: 'center' }}>
@@ -65,13 +64,12 @@ export default function BuildForm() {
           editorState={editorState}
           setEditorState={setEditorState}
         />
-        {newProtoJobs.length > 0 &&
-          <NewJobList
-            newProtoJobs={newProtoJobs}
-            setNewProtoJobs={setNewProtoJobs}
-          />}
-        {/* </Grid> */}
-        {/* <Grid item xs={12} md={6}> */}
+        <Stack
+          spacing={1}
+          sx={{ marginTop: 5 }}
+        >
+          {currentJobsList}
+        </Stack>
         <CreateJobForm
           setNewProtoJobs={setNewProtoJobs}
           cardColor={color}

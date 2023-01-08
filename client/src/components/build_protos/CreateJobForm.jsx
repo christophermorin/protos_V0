@@ -10,22 +10,6 @@ export default function AddNewJob({ setNewProtoJobs, cardColor, setColor }) {
   const [jobDesc, setJobDesc] = useState('')
   const [jobTimer, setJobTimer] = useState('')
 
-  const theme = createTheme({
-    status: {
-      danger: '#e53e3e',
-    },
-    palette: {
-      primary: {
-        main: '#0971f1',
-        darker: '#053e85',
-      },
-      neutral: {
-        main: '#64748B',
-        contrastText: '#fff',
-      },
-    },
-  });
-
   const [displayColorPicker, setDisplayColorPicker] = useState(false)
 
   const toggleColorPicker = () => {
@@ -61,103 +45,96 @@ export default function AddNewJob({ setNewProtoJobs, cardColor, setColor }) {
     cancelAllFields()
   }
   return (
-    <ThemeProvider theme={theme}>
-      <Paper
+    <Paper
+      sx={{
+        display: 'flex',
+        gap: 2,
+        padding: 2,
+        background: `linear-gradient(135deg, rgba(${cardColor.r}, ${cardColor.g}, ${cardColor.b}, ${cardColor.a}), rgba(255,255,255) 20%)`,
+        border: `1px solid rgba(${cardColor.r}, ${cardColor.g}, ${cardColor.b}, ${cardColor.a})`,
+        marginTop: 5
+      }}
+    >
+      <Box
         sx={{
           display: 'flex',
-          gap: 2,
-          padding: 2,
-          background: `linear-gradient(135deg, rgba(${cardColor.r}, ${cardColor.g}, ${cardColor.b}, ${cardColor.a}), rgba(255,255,255) 20%)`,
-          border: `1px solid rgba(${cardColor.r}, ${cardColor.g}, ${cardColor.b}, ${cardColor.a})`,
-          marginTop: 5
-        }}
-      >
-        <Box
-          sx={{
-            display: 'flex',
-            alignItems: 'flex-start',
-          }}>
-          <ColorizeOutlinedIcon onClick={toggleColorPicker} sx={{
-            fontSize: '30px'
-          }} />
-          <ColorPicker displayColorPicker={displayColorPicker} changeColor={changeColor} color={cardColor} />
-        </Box>
-        <Box sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'space-between',
-          flexGrow: 1,
-          gap: 2
+          alignItems: 'flex-start',
         }}>
-          <Box>
-            <TextField
-              id="standard-basic"
-              label="Title"
-              variant="standard"
-              value={jobTitle}
-              color="neutral"
-              onChange={(e) => setJobTitle(e.target.value)}
-            />
-            <TextField
-              id="standard-basic"
-              label="Description"
-              multiline
-              fullWidth
-              variant="standard"
-              value={jobDesc}
-              color={"neutral"}
-              onChange={(e) => setJobDesc(e.target.value)}
-            />
-          </Box>
-          <Box sx={{
-            display: 'flex',
-            flexDirection: 'row',
-            gap: 2,
-            alignItems: 'center'
-          }}>
-            <Button
-              onClick={createJob}
-              color="neutral"
-              sx={{
-                padding: 0,
-                margin: 0,
-              }}>
-              Create
-            </Button>
-            <Button
-              onClick={cancelAllFields}
-              color="neutral"
-              sx={{
-                padding: 0,
-                margin: 0
-              }}>
-              Cancel
-            </Button>
-          </Box>
-        </Box>
-        <Box sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'space-between',
-          alignItems: 'center'
-        }}>
-          <Tooltip title='Description' placement="top-end">
-            <Button>Extras</Button>
-          </Tooltip>
-
+        <ColorizeOutlinedIcon onClick={toggleColorPicker} sx={{
+          fontSize: '30px'
+        }} />
+        <ColorPicker displayColorPicker={displayColorPicker} changeColor={changeColor} color={cardColor} />
+      </Box>
+      <Box sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+        flexGrow: 1,
+        gap: 2
+      }}>
+        <Box>
           <TextField
-            type='number'
-            max={60}
             id="standard-basic"
-            label="Timer"
+            label="Title"
             variant="standard"
-            value={jobTimer}
-            onChange={(e) => setJobTimer(+e.target.value)}
-            color="neutral"
-            sx={{ maxWidth: 100 }}
+            value={jobTitle}
+            // color="neutral"
+            onChange={(e) => setJobTitle(e.target.value)}
+          />
+          <TextField
+            id="standard-basic"
+            label="Description"
+            multiline
+            fullWidth
+            variant="standard"
+            value={jobDesc}
+            onChange={(e) => setJobDesc(e.target.value)}
           />
         </Box>
-      </Paper>
-    </ThemeProvider>
+        <Box sx={{
+          display: 'flex',
+          flexDirection: 'row',
+          gap: 2,
+          alignItems: 'center'
+        }}>
+          <Button
+            onClick={createJob}
+            sx={{
+              padding: 0,
+              margin: 0,
+            }}>
+            Create
+          </Button>
+          <Button
+            onClick={cancelAllFields}
+            sx={{
+              padding: 0,
+              margin: 0
+            }}>
+            Cancel
+          </Button>
+        </Box>
+      </Box>
+      <Box sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+        alignItems: 'center'
+      }}>
+        <Tooltip title='Description' placement="top-end">
+          <Button>Extras</Button>
+        </Tooltip>
+
+        <TextField
+          type='number'
+          id="standard-basic"
+          label="Timer"
+          variant="standard"
+          value={jobTimer}
+          onChange={(e) => setJobTimer(+e.target.value)}
+          sx={{ maxWidth: 100 }}
+        />
+      </Box>
+    </Paper>
   )
 }

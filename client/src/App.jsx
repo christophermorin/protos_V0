@@ -1,33 +1,28 @@
 import NavBar from "./components/NavBar"
-import Active from "./components/active_protos/Active"
-import Build from "./components/build_protos/Build"
+import BuildForm from "./components/build_protos/BuildForm"
 import Library from "./components/Library"
-import Footer from "./components/Footer"
-
+import ProtoTabs from "./components/active_protos/ProtoTabs"
 import {
   BrowserRouter as Router,
   Routes, Route
 } from "react-router-dom"
 import { Container, CssBaseline } from '@mui/material'
 import './Draft.css'
+// import 'draft-js/dist/Draft.css';
 
 const App = () => {
 
   return (
     <Router >
       <CssBaseline />
-      {/* <div style={{ minHeight: '95vh', display: 'flex', flexDirection: 'column', justifyContent: 'flex-start' }}> */}
       <NavBar />
-      <Container maxWidth="xl" sx={{ backgroundImage: 'linear-gradient(90deg, rgba(201,219,226,1) 15%, rgba(218,216,240,1) 95%)' }}>
+      <Container maxWidth="xl" sx={{}}>
         <Routes>
-          {/* <Route path="/" element={<App />} /> */}
-          <Route path="/active" element={<Active />} />
-          <Route path="/build" element={<Build />} />
+          <Route path="/active" element={<ProtoTabs />} />
+          <Route path="/build" element={<BuildForm />} />
           <Route path="/library" element={<Library />} />
         </Routes>
       </Container>
-      {/* </div> */}
-      {/* <Footer /> */}
     </Router >
   )
 }

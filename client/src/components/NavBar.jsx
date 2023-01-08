@@ -1,8 +1,10 @@
-import { AppBar, Toolbar, Button, Box, Drawer, IconButton } from '@mui/material'
+import { AppBar, Toolbar, Button, Box, Drawer, IconButton, List, ListItem, ListItemButton, ListItemIcon, ListItemText } from '@mui/material'
 import { useState } from 'react';
 import { Link } from "react-router-dom"
 import MenuIcon from '@mui/icons-material/Menu';
 import AccountCircle from '@mui/icons-material/AccountCircle';
+
+import InboxIcon from '@mui/icons-material/Inbox';
 
 export default function NavBar() {
   const [sideBar, setSideBar] = useState(false)
@@ -10,6 +12,20 @@ export default function NavBar() {
   const toggleDrawer = () => {
     setSideBar(!sideBar)
   }
+
+  const tempList = ['Home', 'Dashboard', 'Resources', 'Market'].map(item => {
+    return (
+      <ListItem disablePadding key={item}>
+        <ListItemButton>
+          <ListItemIcon>
+            <InboxIcon />
+          </ListItemIcon>
+          <ListItemText primary={item} />
+        </ListItemButton>
+      </ListItem>
+    )
+  })
+
   return (
     <Box>
       <AppBar position="static">
@@ -50,7 +66,19 @@ export default function NavBar() {
         onClose={toggleDrawer}
         sx={{ width: 200 }}
       >
-        Testing
+        <List sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', height: '100%', paddingTop: 5 }}>
+          <div>
+            {tempList}
+          </div>
+          <ListItem disablePadding>
+            <ListItemButton>
+              <ListItemIcon>
+                <InboxIcon />
+              </ListItemIcon>
+              <ListItemText primary='Settings' />
+            </ListItemButton>
+          </ListItem>
+        </List>
       </Drawer>
     </Box>
   );
