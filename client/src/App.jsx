@@ -13,7 +13,6 @@ import './Draft.css'
 // import 'draft-js/dist/Draft.css';
 
 const App = () => {
-
   return (
     <Router >
       <CssBaseline />

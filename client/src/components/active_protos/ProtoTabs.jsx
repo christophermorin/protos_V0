@@ -10,12 +10,13 @@ export default function ProtoTabs() {
   const handleClick = (event, proto) => {
     event.target.style.color = 'red'
     const found = protoArr.find(p => p._id === proto._id)
+    console.log(protoArr.indexOf(found))
     if (!found) {
       setProtoArr(prevState => [...prevState, proto])
     } else {
+      protoArr.splice(protoArr.indexOf(found), 1)
       const filter = protoArr.filter(p => p._id !== proto._id)
       event.target.style.color = ''
-
       setProtoArr(filter)
 
     }
