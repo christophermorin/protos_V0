@@ -1,11 +1,7 @@
-/* body {
-  margin: 0;
-} */
-
-
 html,
 body,
 #app,
+#root,
 #app>div {
   height: 100%;
 }

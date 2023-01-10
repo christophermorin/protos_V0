@@ -27,8 +27,8 @@ export default function NavBar() {
   })
 
   return (
-    <Box>
-      <AppBar position="static">
+    <Box height={56}>
+      <AppBar position="relative" sx={{ height: 'inherit', justifyContent: 'center' }}>
         <Toolbar style={styles}>
           <Box>
             <IconButton
@@ -46,7 +46,6 @@ export default function NavBar() {
             <Button color="inherit" component={Link} to="/">Home</Button>
             <Button color="inherit" component={Link} to="/active">Active</Button>
             <Button color="inherit" component={Link} to="/build">Build</Button>
-            {/* <Button color="inherit" component={Link} to="/library">Library</Button> */}
           </Box>
           <Box>
             <IconButton

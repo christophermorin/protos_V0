@@ -5,7 +5,7 @@ import HelpIcon from '@mui/icons-material/Help';
 import { Box, Typography, Tooltip, Paper, } from "@mui/material"
 import { useState } from 'react';
 
-export default function JobCard({ job, protoId }) {
+export default function JobCard({ job }) {
   const [timer, setTimer] = useState(false)
   const [complete, setComplete] = useState(job.isComplete)
   const [hidden, setHidden] = useState(false) // intial state should be job.isHidden
@@ -25,7 +25,6 @@ export default function JobCard({ job, protoId }) {
 
   const tempColorCard = `rgba(${job.cardColor.r}, ${job.cardColor.g}, ${job.cardColor.b}, ${job.cardColor.a})`
 
-
   return (
     <div style={{
       display: hidden ? 'none' : null,
@@ -39,7 +38,6 @@ export default function JobCard({ job, protoId }) {
         padding: 1,
         background: `linear-gradient(135deg, ${tempColorCard} 10%, #fff 80%)`,
         boxShadow: `2px 2px 0  rgba(0,0,0,0.4)`,
-        // border: `2px solid ${tempColorCard}`,
       }}>
         <Box sx={{
           display: 'flex',

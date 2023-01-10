@@ -1,16 +1,15 @@
 import ActiveProto from './ActiveProto';
-import { protoDb } from '../../protoDb';
 import { Tabs, Tab, Grid, Box, Zoom, } from '@mui/material'
 import { useState } from 'react'
-
+import { useSelector } from 'react-redux'
 
 export default function ProtoTabs() {
   const [protoArr, setProtoArr] = useState([])
+  const activeProtos = useSelector(state => state.activeProtos)
 
   const handleClick = (event, proto) => {
     event.target.style.color = 'red'
     const found = protoArr.find(p => p._id === proto._id)
-    console.log(protoArr.indexOf(found))
     if (!found) {
       setProtoArr(prevState => [...prevState, proto])
     } else {
@@ -18,15 +17,14 @@ export default function ProtoTabs() {
       const filter = protoArr.filter(p => p._id !== proto._id)
       event.target.style.color = ''
       setProtoArr(filter)
-
     }
   }
 
-  //Display clicked protos
+  //Display selected protos
   const displayProtos = protoArr.map(proto => {
     return (
-      <Grid item sx={{ padding: '0 10px', }}>
-        <Zoom in={true} key={proto._id}>
+      <Grid item key={proto._id} sx={{ padding: '0 10px', }}>
+        <Zoom in={true}>
           <Box>
             <ActiveProto proto={proto} />
           </Box>
@@ -35,7 +33,7 @@ export default function ProtoTabs() {
     )
   })
 
-  const tabCount = protoDb.map(proto => {
+  const tabCount = activeProtos.map(proto => {
     return (
       <Tab key={proto._id} label={proto.title} onClick={() => handleClick(event, proto)}
       />
@@ -43,7 +41,6 @@ export default function ProtoTabs() {
   })
 
   return (
-
     <Box>
       <Tabs
         value={false}
@@ -53,14 +50,6 @@ export default function ProtoTabs() {
       >
         {tabCount}
       </Tabs>
-      {/* <Tabs
-        value={false}
-        variant="scrollable"
-
-    
-      >
-        {displayProtos}
-      </Tabs> */}
       <Box>
         {displayProtos.length > 0
           ?
@@ -73,4 +62,3 @@ export default function ProtoTabs() {
     </Box >
   )
 }
-

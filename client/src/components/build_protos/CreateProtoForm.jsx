@@ -9,11 +9,8 @@ import ReplayCircleFilledIcon from '@mui/icons-material/ReplayCircleFilled';
 
 export default function CreateProtoForm({ setProtoTitle, protoTitle, handleTimeOfDay, protoTimeOfDay, editorState, setEditorState }) {
 
-
-
-  // Use a factory function for protos?
-
-
+  // factory ?
+  // Break down
   return (
     <Paper sx={{
       textAlign: 'center',

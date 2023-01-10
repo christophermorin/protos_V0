@@ -1,9 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit'
-import protosReducer from '../reducers/protosReducer'
+import userProtosReducer from '../reducers/userProtosReducer'
+import activeProtosReducer from '../reducers/activeProtosReducer'
 
 const store = configureStore({
   reducer: {
-    protos: protosReducer
+    userProtos: userProtosReducer,
+    activeProtos: activeProtosReducer
   }
 })
 

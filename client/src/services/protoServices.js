@@ -1,10 +1,9 @@
 import axios from 'axios'
 const baseUrl = '/api/protos'
 
-const getAllProtos = async () => {
-  const result = await axios.get(`${baseUrl}`)
-  return result.data
+const getAllUserProtos = async () => {
+  const results = await axios.get(`${baseUrl}`)
+  return results.data
 }
 
-
-export default { getAllProtos }
+export default { getAllUserProtos }

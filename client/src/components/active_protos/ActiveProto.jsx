@@ -17,29 +17,9 @@ export default function ActiveProto({ proto }) {
         <ActiveProtoHeader protoTitle={proto.title} protoDescription={proto.description} />
       </Grid>
       <Grid item xs={12} >
-        {/* {proto.description &&
-          <Accordion disableGutters={true} >
-            <AccordionSummary
-              expandIcon={<ExpandMoreIcon />}
-              aria-controls="The Why"
-              id="proto-why"
-            >
-              <Typography
-                variant="subtitle2"
-                fontSize={15}
-                fontWeight={700}
-              >
-                The Why
-              </Typography>
-            </AccordionSummary>
-            <AccordionDetails>
-              <ActiveWhy protoDescription={proto.description} />
-            </AccordionDetails>
-          </Accordion>} */}
         <Accordion
           disableGutters={true}
           defaultExpanded
-        // sx={{ marginTop: '5px' }}
         >
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}

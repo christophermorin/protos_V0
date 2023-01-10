@@ -1,21 +1,21 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-const ProtoSlice = createSlice({
-  name: 'protos',
+const UserProtos = createSlice({
+  name: 'userProtos',
   initialState: [],
   reducers: {
     setAllProtos(state, action) {
       return action.payload
-    }
+    },
   }
 })
 
-export const { setAllProtos } = ProtoSlice.actions
+export const { setAllProtos } = UserProtos.actions
 
-export const setProtos = (protos) => {
+export const setAllProtosList = (protos) => {
   return (dispatch) => {
     dispatch(setAllProtos(protos))
   }
 }
 
-export default ProtoSlice.reducer
+export default UserProtos.reducer

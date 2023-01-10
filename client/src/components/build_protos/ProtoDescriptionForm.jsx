@@ -10,7 +10,6 @@ export default function ProtoDescriptionForm({ editorState, setEditorState }) {
     setEditorState(RichUtils.toggleInlineStyle(editorState, inlineStyle))
   }
 
-
   let className = 'RichEditor-editor';
   return (
     <div className='RichEditor-root' style={{ marginTop: '20px', }}>

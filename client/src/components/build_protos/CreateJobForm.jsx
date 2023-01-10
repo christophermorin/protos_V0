@@ -3,8 +3,6 @@ import { Box, Tooltip, Button, Paper, TextField } from "@mui/material"
 import { useState } from 'react';
 import ColorPicker from './ColorPicker';
 
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-
 export default function AddNewJob({ setNewProtoJobs, cardColor, setColor }) {
   const [jobTitle, setJobTitle] = useState('')
   const [jobDesc, setJobDesc] = useState('')

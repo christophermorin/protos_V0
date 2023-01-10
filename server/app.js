@@ -6,7 +6,7 @@ const cors = require('cors')
 const mongoose = require('mongoose')
 // Routers
 const protosRouter = require('./controllers/protosController')
-const jobsRouter = require('./controllers/jobsController')
+const activeProtosRouter = require('./controllers/activeProtosController')
 
 const mongoUrl = config.DB_URI
 mongoose.connect(mongoUrl)
@@ -20,6 +20,6 @@ app.use(express.static('build'))
 app.use(express.json())
 
 app.use('/api/protos', protosRouter)
-app.use('/api/jobs', jobsRouter)
+app.use('/api/activeProtos', activeProtosRouter)
 
 module.exports = app

@@ -1,10 +1,7 @@
 import Popover from '@mui/material/Popover';
 import { useState } from 'react';
 import HelpIcon from '@mui/icons-material/Help';
-
 import { Editor, convertFromRaw, EditorState } from 'draft-js';
-
-
 
 export default function ActiveReason({ protoDescription }) {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -21,7 +18,6 @@ export default function ActiveReason({ protoDescription }) {
   const id = open ? 'simple-popover' : undefined;
 
   const text = EditorState.createWithContent(convertFromRaw(JSON.parse(protoDescription)));
-
 
   return (
     <div>
@@ -49,7 +45,6 @@ export default function ActiveReason({ protoDescription }) {
     </div>
   );
 }
-
 
 function getBlockStyle(block) {
   switch (block.getType()) {
