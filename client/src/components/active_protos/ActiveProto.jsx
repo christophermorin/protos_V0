@@ -10,7 +10,6 @@ export default function ActiveProto({ proto }) {
       <JobCard key={job._id} job={job} protoId={proto._Id} />
     )
   })
-
   return (
     <Grid container spacing={0.5} key={proto._id} sx={{ marginTop: 2, }}>
       <Grid item xs={12}>

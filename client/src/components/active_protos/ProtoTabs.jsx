@@ -19,7 +19,6 @@ export default function ProtoTabs() {
       setProtoArr(filter)
     }
   }
-
   //Display selected protos
   const displayProtos = protoArr.map(proto => {
     return (
