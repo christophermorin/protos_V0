@@ -1,7 +1,6 @@
 import { TextField, Box, Button } from "@mui/material"
 import { useState } from "react"
-import userServices from "../../services/userServices";
-import SignUpDialog from "./SignUpDialog";
+import SignUpDialog from './SignUpDialog'
 
 export default function Home({ handleLogin }) {
   const [username, setUsername] = useState('')

@@ -1,18 +1,15 @@
 const mongoose = require('mongoose')
 const express = require('express')
 const cors = require('cors')
-const passport = require('passport')
-const passportLocal = require('passport-local').Strategy
-const cookieParser = require('cookie-parser')
-const bcrypt = require('bcryptjs')
-const session = require('express-session')
-// const bodyParser = require('body-parser') Not needed because of express.json()?
 const config = require('./utils/config')
 const logger = require('./utils/logger')
 const app = express()
+
+const middleware = require('./utils/middleware')
 const protosRouter = require('./controllers/protosController')
 const activeProtosRouter = require('./controllers/activeProtosController')
-const usersRouter = require('./controllers/usersController')
+const userRouter = require('./controllers/userController')
+const loginRouter = require('./controllers/loginController')
 
 // ---------------------- IMPORTS END --------------------------------------
 const mongoUrl = config.DB_URI
@@ -26,29 +23,24 @@ mongoose.connect(mongoUrl, {
   .catch(error => logger.error(error))
 
 // Middleware
-app.use(express.json())
-app.use(express.static('build'))
 app.use(
   cors({
     origin: "http://localhost:3000",
     credentials: true,
   })
 );
-app.use(
-  session({
-    secret: config.SECRET,
-    resave: true,
-    saveUninitialized: true,
-  })
-);
-app.use(cookieParser(config.SECRET));
-app.use(passport.initialize());
-app.use(passport.session());
-require("./utils/passportConfig")(passport);
+app.use(express.static('build'))
+app.use(express.json())
+
 
 // Routes
-app.use('/api/', usersRouter)
+
+app.use('/api/users', userRouter)
+app.use('/api/login', loginRouter)
 app.use('/api/protos', protosRouter)
 app.use('/api/activeProtos', activeProtosRouter)
+
+app.use(middleware.unknownEndpoint)
+app.use(middleware.errorHandler)
 
 module.exports = app
