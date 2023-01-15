@@ -1,4 +1,4 @@
-import { AppBar, Toolbar, Button, Box, Drawer, IconButton, List, ListItem, ListItemButton, ListItemIcon, ListItemText } from '@mui/material'
+import { AppBar, Toolbar, Button, Box, Drawer, IconButton, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Menu, MenuItem } from '@mui/material'
 import { useState } from 'react';
 import { Link } from "react-router-dom"
 import MenuIcon from '@mui/icons-material/Menu';
@@ -6,8 +6,24 @@ import AccountCircle from '@mui/icons-material/AccountCircle';
 
 import InboxIcon from '@mui/icons-material/Inbox';
 
-export default function NavBar() {
+export default function NavBar({ setUser }) {
   const [sideBar, setSideBar] = useState(false)
+  const [anchorEl, setAnchorEl] = useState(null);
+
+  const open = Boolean(anchorEl);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const logoutUser = () => {
+    window.localStorage.clear()
+    setAnchorEl(null);
+    setUser(null)
+  }
 
   const toggleDrawer = () => {
     setSideBar(!sideBar)
@@ -54,9 +70,21 @@ export default function NavBar() {
               aria-controls="menu-appbar"
               aria-haspopup="true"
               color="inherit"
+              onClick={handleClick}
             >
               <AccountCircle />
             </IconButton>
+            <Menu
+              id="user-menu"
+              anchorEl={anchorEl}
+              open={open}
+              onClose={handleClose}
+
+            >
+              <MenuItem onClick={handleClose}>Profile</MenuItem>
+              <MenuItem onClick={handleClose}>My account</MenuItem>
+              <MenuItem onClick={logoutUser}>Logout</MenuItem>
+            </Menu>
           </Box>
         </Toolbar>
       </AppBar>

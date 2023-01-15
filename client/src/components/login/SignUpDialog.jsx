@@ -1,14 +1,15 @@
 import { useState } from "react";
 import { Dialog, TextField, Button } from "@mui/material";
-import axios from "axios";
+import userServices from "../../services/userServices";
 
-export default function SignUpDialog({ open, closeSignUp }) {
+export default function SignUpDialog({ open, closeSignUp, setOpen }) {
   const [username, setUsername] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
 
-  const handleSignUp = async () => {
+  const handleSignUp = async (event) => {
+    event.preventDefault()
     if (confirmPassword !== password) {
       console.log('Passwords must match')
       return
@@ -18,17 +19,21 @@ export default function SignUpDialog({ open, closeSignUp }) {
       email: email,
       password: password,
     }
-    // Create userServices
-    const result = await axios.post('/api/users', newUser)
     try {
-      console.log(`${newUser.username} created`)
+      const result = await userServices.userSignUp(newUser)
+      console.log(result.data) // prints new user data
+      setUsername('')
+      setEmail('')
+      setPassword('')
+      setConfirmPassword('')
+      setOpen(false)
     } catch (error) {
-
+      console.log(error.response.data.error) // prints error msg
     }
-
-    // Create Notifications
   }
 
+
+  // Form Group?
   return (
     <Dialog
       open={open}

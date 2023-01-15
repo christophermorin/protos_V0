@@ -10,7 +10,7 @@ const api = supertest(app)
 // ********************************* User Tests**********************************
 // ******************************************************************************
 describe('Creating new users', () => {
-  beforeEach(helper.createRootUser)
+  beforeEach(helper.createRootUsers)
   test('creation succeeds with a fresh username', async () => {
     const usersAtStart = await helper.usersInDb()
     const newUser = {
@@ -72,7 +72,7 @@ describe('Creating new users', () => {
 // ********************************* Login Tests*********************************
 // ******************************************************************************
 describe('Logging users in', () => {
-  beforeEach(helper.createRootUser)
+  beforeEach(helper.createRootUsers)
   test('Successfull login, returns token and username', async () => {
     const user = {
       username: 'root',
@@ -90,7 +90,7 @@ describe('Logging users in', () => {
   test('Invalid password or username fails with proper status code and message', async () => {
     const user = {
       username: 'notRoot',
-      password: 'duck'
+      password: 'nope'
     }
     const result = await api
       .post('/api/login')
@@ -106,10 +106,10 @@ describe('Logging users in', () => {
 // ******************************************************************************
 // ********************************* Proto Tests*********************************
 // ******************************************************************************
-describe('Creating new Protos', () => {
+describe('Creating and getting Protos', () => {
   beforeEach(async () => {
     await Protos.deleteMany({})
-    helper.createRootUser
+    helper.createRootUsers
   })
   test('logged in user can create a new proto', async () => {
     const protosAtStart = await helper.protosInDb()
@@ -135,6 +135,31 @@ describe('Creating new Protos', () => {
 
     const protosAtEnd = await helper.protosInDb()
     expect(protosAtEnd).toHaveLength(protosAtStart.length + 1)
+  })
+  test('can retrieve protos created by logged user', async () => {
+    // Log as first user and create one proto
+    const firstUser = await helper.logInUser('root', 'squirrel')
+    await helper.createOneProto
+      (
+        firstUser.body.token,
+        helper.initialProtos[0]
+      )
+    // Log as second user and create one proto
+    const secondUser = await helper.logInUser('duck', 'goose')
+    await helper.createOneProto
+      (
+        secondUser.body.token,
+        helper.initialProtos[1]
+      )
+    // Get all protos creatd by first user
+    const result = await api
+      .get(`/api/protos/${firstUser.body.id}`)
+      .expect(200)
+      .expect('Content-Type', /application\/json/)
+
+    expect(result.body[0].user.id).toEqual(firstUser.body.id)
+    expect(result.body[0].title).toContain('One test')
+
   })
 })
 

@@ -1,27 +1,39 @@
 import { TextField, Box, Button } from "@mui/material"
 import { useState } from "react"
 import SignUpDialog from './SignUpDialog'
+import loginServices from "../../services/loginServices"
+import protoServices from "../../services/protoServices"
 
-export default function Home({ handleLogin }) {
+export default function Register({ setUser }) {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
 
+  // Signup Dialog state
   const [open, setOpen] = useState(false)
-
   const openSignUp = () => {
     setOpen(true)
   }
-
   const closeSignUp = () => {
     setOpen(false)
   }
-  // const handleLogin = async () => {
-  //   try {
-  //     const results = await userServices.userLogIn({ username: username, password: password })
-  //   } catch (error) {
-  //     console.log(error)
-  //   }
-  // }
+
+
+  const handleLogin = async (event) => {
+    event.preventDefault()
+    const user = {
+      username: username,
+      password: password
+    }
+    try {
+      const result = await loginServices.loginUser(user)
+      window.localStorage.setItem('user', JSON.stringify(result.data))
+      protoServices.setToken(result.data.token)
+      setUser(result.data)
+    } catch (error) {
+      console.log(error.response.data.error)
+    }
+
+  }
 
   return (
     <div style={styles.container}>
@@ -40,7 +52,7 @@ export default function Home({ handleLogin }) {
             onChange={(e) => setPassword(e.target.value)}
           />
         </Box>
-        <Button onClick={() => handleLogin({ username: username, password: password })}>Login</Button>
+        <Button onClick={handleLogin}>Login</Button>
         <Button onClick={openSignUp}>Signup</Button>
       </Box>
       <SignUpDialog open={open} setOpen={setOpen} closeSignUp={closeSignUp} />

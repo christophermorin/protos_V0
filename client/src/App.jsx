@@ -22,51 +22,35 @@ import { useDispatch } from "react-redux"
 // import 'draft-js/dist/Draft.css';
 
 const App = () => {
-  const [user, setUser] = useState(false)
-
+  const [user, setUser] = useState(JSON.parse(window.localStorage.getItem('user') || null))
   const dispatch = useDispatch()
 
-  // Setting all user protos list: used in Home/Dialog
-  useEffect(() => {
-    const getUserProtos = async () => {
-      try {
-        const result = await protoServices.getAllUserProtos()
-        dispatch(setAllProtosList(result))
-      } catch (error) {
-        console.log(error)
-      }
-    }
-    getUserProtos()
-  }, [])
-
   // Setting current active proto list. Used in ProtoTabs.
-  useEffect(() => {
-    const getActive = async () => {
-      try {
-        const result = await activeProtoServices.getActiveProtos()
-        if (result.length > 0) {
-          dispatch(setAllActiveList(result[0].activeProtos))
-        }
-      } catch (error) {
-        console.log(error)
-      }
-    }
-    getActive()
-  }, [])
+  // useEffect(() => {
+  //   const getActive = async () => {
+  //     try {
+  //       const result = await activeProtoServices.getActiveProtos()
+  //       if (result.length > 0) {
+  //         dispatch(setAllActiveList(result[0].activeProtos))
+  //       }
+  //     } catch (error) {
+  //       console.log(error)
+  //     }
+  //   }
+  //   getActive()
+  // }, [])
 
 
-  const handleLogin = async () => {
 
-  }
   return (
     <Router >
       <CssBaseline />
       {user ?
         <>
-          <NavBar />
+          <NavBar setUser={setUser} />
           <Container maxWidth="false" sx={{ padding: '0 10px', height: 'calc(100% - 56px)' }} >
             <Routes>
-              <Route path="/" element={<Home />} />
+              <Route path="/" element={<Home user={user} />} />
               <Route path="/active" element={<ProtoTabs />} />
               <Route path="/build" element={<BuildForm />} />
               <Route path="/library" element={<Library />} />
@@ -74,7 +58,7 @@ const App = () => {
           </Container>
         </>
         :
-        <Register handleLogin={handleLogin} />
+        <Register setUser={setUser} />
       }
     </Router >
   )

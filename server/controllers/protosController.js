@@ -12,10 +12,8 @@ const getTokenFrom = req => {
   return null
 }
 
-
-
-protosRouter.get('/', async (req, res, next) => {
-  const protos = await Protos.findOne({}).populate('user', { username: 1 })
+protosRouter.get('/:id', async (req, res, next) => {
+  const protos = await Protos.find({ user: req.params.id }).populate('user', { username: 1 })
   try {
     return res.status(200).json(protos)
   } catch (error) {

@@ -1,14 +1,43 @@
 const Users = require('../models/UserModel')
 const Protos = require('../models/ProtosModel')
 const bcrypt = require('bcrypt')
+const supertest = require('supertest')
+const app = require('../app')
 
-// Creating a defaul user
-const createRootUser = async () => {
+const api = supertest(app)
+
+
+// Creating a root user
+const createRootUsers = async () => {
   await Users.deleteMany({})
-  const passwordHash = await bcrypt.hash('squirrel', 10)
-  const user = new Users({ username: 'root', passwordHash, email: 'mail@mail.mail' })
+  for (let user of initialUsers) {
+    const passwordHash = await bcrypt.hash(user.password, 10)
+    const result = new Users({ username: user.username, passwordHash, email: user.email })
 
-  await user.save()
+    await result.save()
+  }
+}
+
+// Log in root user
+const logInUser = async (username, password) => {
+  const user = await api
+    .post('/api/login')
+    .send({ username: username, password: password })
+    .expect(200)
+    .expect('Content-Type', /application\/json/)
+  return user
+}
+
+// Create one Protos as logged uer
+const createOneProto = async (token, proto) => {
+  const result = await api
+    .post('/api/protos')
+    .set({ Authorization: `bearer ${token}` })
+    .send(proto)
+    .expect(201)
+    .expect('Content-Type', /application\/json/)
+
+  return result
 }
 
 // Getting initial state of Users DB
@@ -36,4 +65,24 @@ const initialProtos = [
   },
 ]
 
-module.exports = { initialProtos, usersInDb, createRootUser, protosInDb }
+const initialUsers = [
+  {
+    username: 'root',
+    email: 'tree@tree.mail',
+    password: 'squirrel'
+  },
+  {
+    username: 'duck',
+    email: 'duck@duck.mail',
+    password: 'goose'
+  }
+]
+
+module.exports = {
+  initialProtos,
+  usersInDb,
+  createRootUsers,
+  protosInDb,
+  logInUser,
+  createOneProto
+}

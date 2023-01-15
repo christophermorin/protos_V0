@@ -7,6 +7,7 @@ import { EditorState, convertToRaw } from 'draft-js'
 import CreateProtoForm from "./CreateProtoForm"
 import CreateJobForm from "./CreateJobForm"
 import DisplayNewJob from './DisplayNewJob'
+import protoServices from '../../services/protoServices'
 
 export default function BuildForm() {
   const [protoTitle, setProtoTitle] = useState('') // This state can stay here
@@ -46,10 +47,13 @@ export default function BuildForm() {
     const newProto = {
       title: protoTitle,
       description: editorJSON,
-      timeOfDay: protoTimeOfDay,
-      jobs: newProtoJobs
     }
-    await axios.post('/api/protos', newProto)
+    try {
+      const result = await protoServices.createNewProto(newProto)
+      console.log(result)
+    } catch (error) {
+      console.log(error)
+    }
   }
   return (
     <Grid container spacing={2} sx={{ marginTop: 5, justifyContent: 'center' }}>
