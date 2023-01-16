@@ -4,7 +4,7 @@ import { Button, Grid, Box } from "@mui/material"
 import { useDispatch } from "react-redux"
 import { useEffect, useState } from "react"
 import RocketLaunchIcon from '@mui/icons-material/RocketLaunch';
-// import HandymanIcon from '@mui/icons-material/Handyman';
+import HandymanIcon from '@mui/icons-material/Handyman';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 
 import HomeDialog from "./HomeDialog"
@@ -38,7 +38,7 @@ export default function Home({ user }) {
     <Grid container justifyContent='center' alignItems='center' flexGrow={1} gap={5} height={'100%'}>
       <Grid item>
         <Box>
-          {/* <HandymanIcon style={styles.icon} /> */}
+          <HandymanIcon style={styles.icon} />
         </Box>
       </Grid>
       <Grid item onClick={openDialog}>
@@ -48,7 +48,7 @@ export default function Home({ user }) {
       </Grid>
       <Grid item>
         <Box>
-          Dashboard
+          <DashboardIcon style={styles.icon} />
         </Box>
       </Grid>
       <HomeDialog open={open} handleClose={handleClose} />
@@ -63,6 +63,7 @@ const styles = {
     border: '1px solid black',
     height: '200px',
     width: '200px',
+    cursor: 'pointer'
   },
   start: {
     border: '1px solid black',
