@@ -1,13 +1,12 @@
-import axios from 'axios'
-import { Button, Grid, Stack } from "@mui/material"
 import { useState } from 'react'
-
-import { EditorState, convertToRaw } from 'draft-js'
-
+import { useSelector } from 'react-redux'
 import CreateProtoForm from "./CreateProtoForm"
 import CreateJobForm from "./CreateJobForm"
 import DisplayNewJob from './DisplayNewJob'
 import protoServices from '../../services/protoServices'
+import { Button, Grid, Stack } from "@mui/material"
+import { EditorState, convertToRaw } from 'draft-js'
+
 
 export default function BuildForm() {
   const [protoTitle, setProtoTitle] = useState('') // This state can stay here
@@ -15,6 +14,9 @@ export default function BuildForm() {
   const [protoTimeOfDay, setProtoTimeOfDay] = useState('') // This state can stau here
   const [newProtoJobs, setNewProtoJobs] = useState([]) // These are jobs being added to a created proto
   // const [listAllJobs, setListAllJobs] = useState() ***UNUSED
+
+  const user = useSelector(state => state.userAuth)
+
 
   const [editorState, setEditorState] = useState(
     () => EditorState.createEmpty(),
@@ -47,9 +49,11 @@ export default function BuildForm() {
     const newProto = {
       title: protoTitle,
       description: editorJSON,
+      timeOfDay: protoTimeOfDay,
+      jobs: newProtoJobs
     }
     try {
-      const result = await protoServices.createNewProto(newProto)
+      const result = await protoServices.createNewProto(newProto, user.token)
       console.log(result)
     } catch (error) {
       console.log(error)

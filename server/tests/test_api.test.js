@@ -130,8 +130,9 @@ describe('Creating and getting Protos', () => {
       .expect('Content-Type', /application\/json/)
 
     expect(result.body.user).toEqual(user.body.id)
-    expect(result.body.title).toContain('One test')
-    expect(result.body.description).toContain('Testing protos')
+    expect(result.body.title).toContain('one test')
+    expect(result.body.description).toContain('testing protos')
+    expect(result.body.jobs).toHaveLength(2)
 
     const protosAtEnd = await helper.protosInDb()
     expect(protosAtEnd).toHaveLength(protosAtStart.length + 1)
@@ -158,7 +159,7 @@ describe('Creating and getting Protos', () => {
       .expect('Content-Type', /application\/json/)
 
     expect(result.body[0].user.id).toEqual(firstUser.body.id)
-    expect(result.body[0].title).toContain('One test')
+    expect(result.body[0].title).toContain('one test')
 
   })
 })

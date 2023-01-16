@@ -1,5 +1,5 @@
-import { Paper, Typography, Box } from "@mui/material"
 import ActiveReason from "./ActiveReason"
+import { Paper, Typography, Box } from "@mui/material"
 export default function ActiveProtoHeader({ protoTitle, protoDescription }) {
 
   return (

@@ -1,9 +1,9 @@
+import { useState } from 'react';
 import ActiveTimer from './ActiveTimer';
+import { Box, Typography, Tooltip, Paper, } from "@mui/material"
 import PlayCircleIcon from '@mui/icons-material/PlayCircle';
 import StopCircleIcon from '@mui/icons-material/StopCircle';
 import HelpIcon from '@mui/icons-material/Help';
-import { Box, Typography, Tooltip, Paper, } from "@mui/material"
-import { useState } from 'react';
 
 export default function JobCard({ job }) {
   const [timer, setTimer] = useState(false)

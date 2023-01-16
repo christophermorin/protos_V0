@@ -9,7 +9,6 @@ export default function HomeDialog({ open, handleClose }) {
   const userProtos = useSelector(state => state.userProtos)
   const dispatch = useDispatch()
 
-
   const createActiveList = async () => {
     if (activeList.length === 0) {
       console.log('Error: Protos list empty')
@@ -60,4 +59,3 @@ export default function HomeDialog({ open, handleClose }) {
     </Dialog >
   )
 }
-

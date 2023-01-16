@@ -1,11 +1,9 @@
-import { Box, TextField, Typography, Paper, ToggleButton, ToggleButtonGroup, Tooltip } from '@mui/material'
-
 import ProtoDescriptionForm from './ProtoDescriptionForm';
+import { Box, TextField, Typography, Paper, ToggleButton, ToggleButtonGroup, Tooltip } from '@mui/material'
 import WbTwilightIcon from '@mui/icons-material/WbTwilight';
 import WbSunnyIcon from '@mui/icons-material/WbSunny';
 import NightlightIcon from '@mui/icons-material/Nightlight';
 import ReplayCircleFilledIcon from '@mui/icons-material/ReplayCircleFilled';
-
 
 export default function CreateProtoForm({ setProtoTitle, protoTitle, handleTimeOfDay, protoTimeOfDay, editorState, setEditorState }) {
 

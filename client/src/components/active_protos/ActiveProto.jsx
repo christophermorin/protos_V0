@@ -11,7 +11,7 @@ export default function ActiveProto({ proto }) {
     )
   })
   return (
-    <Grid container spacing={0.5} key={proto._id} sx={{ marginTop: 2, }}>
+    <Grid container spacing={0.5} key={proto._id} sx={{ marginTop: 2, minWidth: '360px' }}>
       <Grid item xs={12}>
         <ActiveProtoHeader protoTitle={proto.title} protoDescription={proto.description} />
       </Grid>

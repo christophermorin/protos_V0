@@ -1,14 +1,17 @@
-import { AppBar, Toolbar, Button, Box, Drawer, IconButton, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Menu, MenuItem } from '@mui/material'
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { Link } from "react-router-dom"
+import InboxIcon from '@mui/icons-material/Inbox';
+import { setUserAuth } from '../reducers/userAuthReducer';
+import { AppBar, Toolbar, Button, Box, Drawer, IconButton, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Menu, MenuItem } from '@mui/material'
 import MenuIcon from '@mui/icons-material/Menu';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 
-import InboxIcon from '@mui/icons-material/Inbox';
-
-export default function NavBar({ setUser }) {
+export default function NavBar() {
   const [sideBar, setSideBar] = useState(false)
   const [anchorEl, setAnchorEl] = useState(null);
+
+  const dispatch = useDispatch()
 
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -22,7 +25,7 @@ export default function NavBar({ setUser }) {
   const logoutUser = () => {
     window.localStorage.clear()
     setAnchorEl(null);
-    setUser(null)
+    dispatch(setUserAuth(null))
   }
 
   const toggleDrawer = () => {
@@ -91,8 +94,12 @@ export default function NavBar({ setUser }) {
       <Drawer
         anchor='left'
         open={sideBar}
+        variant="temporary"
         onClose={toggleDrawer}
-        sx={{ width: 200 }}
+        sx={{
+          display: { md: 'block', lg: 'none' },
+          '& .MuiDrawer-paper': { boxSizing: 'border-box', width: '200px' },
+        }}
       >
         <List sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', height: '100%', paddingTop: 5 }}>
           <div>
@@ -108,6 +115,33 @@ export default function NavBar({ setUser }) {
           </ListItem>
         </List>
       </Drawer>
+
+      <Drawer
+        anchor='left'
+        open
+        variant="permanent"
+
+        // onClose={toggleDrawer}
+        sx={{
+          display: { xs: 'none', lg: 'block' },
+          '& .MuiDrawer-paper': { boxSizing: 'border-box', width: '200px', backgroundColor: '#1976d2' },
+        }}
+      >
+        <List sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', height: '100%', paddingTop: 5 }}>
+          <div>
+            {tempList}
+          </div>
+          <ListItem disablePadding>
+            <ListItemButton>
+              <ListItemIcon>
+                <InboxIcon />
+              </ListItemIcon>
+              <ListItemText primary='Settings' />
+            </ListItemButton>
+          </ListItem>
+        </List>
+      </Drawer>
+
     </Box>
   );
 }

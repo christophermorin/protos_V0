@@ -1,7 +1,7 @@
-import StarBorderPurple500Icon from '@mui/icons-material/StarBorderPurple500';
-import { Box, Typography, Tooltip, Button, Paper } from "@mui/material"
 import HelpIcon from '@mui/icons-material/Help';
 import ActiveTimer from '../active_protos/ActiveTimer';
+import { Box, Typography, Tooltip, Button, Paper } from "@mui/material"
+import StarBorderPurple500Icon from '@mui/icons-material/StarBorderPurple500';
 
 // Replace sx styling
 

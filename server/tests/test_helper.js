@@ -56,12 +56,60 @@ const protosInDb = async () => {
 // Used to create default protos
 const initialProtos = [
   {
-    title: "One test",
-    description: "Testing protos",
+    title: "one test",
+    description: "testing protos",
+    timeOfDay: "morning",
+    jobs: [
+      {
+        title: "job one",
+        description: "testing protos one",
+        timer: 10,
+        cardColor: {
+          r: 125,
+          g: 0,
+          b: 10,
+          a: 1
+        },
+        notification: false,
+        isComplete: false,
+        isHidden: false,
+      },
+      {
+        title: "job two",
+        description: "testing protos one",
+        timer: 10,
+        cardColor: {
+          r: 125,
+          g: 0,
+          b: 10,
+          a: 1
+        },
+        notification: false,
+        isComplete: false,
+        isHidden: false,
+      }
+    ],
   },
   {
-    title: "Two test",
-    description: "Testing protos",
+    title: "two test",
+    description: "testing protos",
+    timeOfDay: "afternoon",
+    jobs: [
+      {
+        title: "tob two",
+        description: "testing protos two",
+        timer: 20,
+        cardColor: {
+          r: 125,
+          g: 0,
+          b: 10,
+          a: 1
+        },
+        notification: false,
+        isComplete: false,
+        isHidden: false,
+      }
+    ],
   },
 ]
 
@@ -69,7 +117,7 @@ const initialUsers = [
   {
     username: 'root',
     email: 'tree@tree.mail',
-    password: 'squirrel'
+    password: 'squirrel',
   },
   {
     username: 'duck',

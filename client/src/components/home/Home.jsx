@@ -1,23 +1,23 @@
+import { useEffect, useState } from "react"
+import { useDispatch, useSelector } from "react-redux"
+import HomeDialog from "./HomeDialog"
 import protoServices from "../../services/protoServices"
 import { setAllProtosList } from "../../reducers/userProtosReducer"
-import { Button, Grid, Box } from "@mui/material"
-import { useDispatch } from "react-redux"
-import { useEffect, useState } from "react"
+import { Grid, Box } from "@mui/material"
 import RocketLaunchIcon from '@mui/icons-material/RocketLaunch';
 import HandymanIcon from '@mui/icons-material/Handyman';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 
-import HomeDialog from "./HomeDialog"
 
-export default function Home({ user }) {
+export default function Home() {
   const dispatch = useDispatch()
   const [open, setOpen] = useState(false)
 
+  const user = useSelector(state => state.userAuth)
   useEffect(() => {
     const getUserProtos = async () => {
       try {
         const result = await protoServices.getAllUserProtos(user.id)
-        console.log(result)
         dispatch(setAllProtosList(result))
       } catch (error) {
         console.log(error)
@@ -53,8 +53,6 @@ export default function Home({ user }) {
       </Grid>
       <HomeDialog open={open} handleClose={handleClose} />
     </Grid>
-
-
   )
 }
 
@@ -70,5 +68,4 @@ const styles = {
     height: '200px',
     width: '180px',
   }
-
 }
