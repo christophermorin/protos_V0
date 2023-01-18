@@ -36,8 +36,8 @@ export default function JobCard({ job }) {
         display: 'flex',
         gap: 2,
         padding: 1,
-        background: `linear-gradient(135deg, ${tempColorCard} 10%, #fff 80%)`,
-        boxShadow: `2px 2px 0  rgba(0,0,0,0.4)`,
+        // background: `linear-gradient(135deg, ${tempColorCard} 10%, #fff 80%)` || null
+        // boxShadow: `2px 2px 0  rgba(0,0,0,0.4)`,
       }}>
         <Box sx={{
           display: 'flex',

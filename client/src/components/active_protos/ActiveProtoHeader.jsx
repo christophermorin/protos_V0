@@ -4,7 +4,7 @@ export default function ActiveProtoHeader({ protoTitle, protoDescription }) {
 
   return (
     <Paper
-      sx={{ padding: 2, }}>
+      sx={{ padding: 2, background: '#eeeeee' }}>
       <Box>
         <Typography variant="h4" fontWeight={700}>
           {protoTitle}

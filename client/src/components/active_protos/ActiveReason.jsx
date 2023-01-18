@@ -32,7 +32,7 @@ export default function ActiveReason({ protoDescription }) {
           horizontal: 'left',
         }}
         PaperProps={{
-          sx: { width: 310 }
+          sx: { width: { xs: '325px', md: '600px' } }
         }}
         scroll='paper'
 

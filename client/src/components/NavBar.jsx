@@ -26,6 +26,7 @@ export default function NavBar() {
     window.localStorage.clear()
     setAnchorEl(null);
     dispatch(setUserAuth(null))
+    // Clear all states
   }
 
   const toggleDrawer = () => {

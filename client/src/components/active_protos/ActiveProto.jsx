@@ -11,7 +11,7 @@ export default function ActiveProto({ proto }) {
     )
   })
   return (
-    <Grid container spacing={0.5} key={proto._id} sx={{ marginTop: 2, minWidth: '360px' }}>
+    <Grid container spacing={0.5} key={proto._id} sx={{ marginTop: 2, maxWidth: { xs: 'unset', md: '360px' }, minWidth: '360px' }}>
       <Grid item xs={12}>
         <ActiveProtoHeader protoTitle={proto.title} protoDescription={proto.description} />
       </Grid>
@@ -24,6 +24,7 @@ export default function ActiveProto({ proto }) {
             expandIcon={<ExpandMoreIcon />}
             aria-controls="The How"
             id="proto-how"
+            sx={{ background: '#eeeeee' }}
           >
             <Typography
               variant="subtitle2"
@@ -33,8 +34,8 @@ export default function ActiveProto({ proto }) {
               The How
             </Typography>
           </AccordionSummary>
-          <AccordionDetails>
-            <Stack spacing={1} sx={{ maxHeight: '55vh', overflowY: 'scroll' }}>
+          <AccordionDetails sx={{ background: '#eeeeee' }}>
+            <Stack spacing={1} sx={{ maxHeight: '55vh', overflowY: 'scroll', paddingBottom: 1, }}>
               {jobslist}
             </Stack>
           </AccordionDetails>

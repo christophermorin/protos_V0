@@ -9,14 +9,20 @@ export default function HomeDialog({ open, handleClose }) {
   const userProtos = useSelector(state => state.userProtos)
   const dispatch = useDispatch()
 
+  const user = useSelector(state => state.userAuth)
+
   const createActiveList = async () => {
     if (activeList.length === 0) {
       console.log('Error: Protos list empty')
       return
     }
     try {
-      const newList = { activeProtos: activeList }
+      const newList = {
+        list: activeList,
+        user: user.id
+      }
       const results = await activeProtoServices.createActiveList(newList)
+      console.log(results)
       dispatch(setAllActiveList(results.activeProtos))
     } catch (error) {
       console.log(error)

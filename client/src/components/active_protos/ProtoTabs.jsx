@@ -1,26 +1,31 @@
-import { useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useState, useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 import ActiveProto from './ActiveProto';
 import { Tabs, Tab, Grid, Box, Zoom, } from '@mui/material'
+import activeProtoServices from '../../services/activeProtoServices'
+import { setAllActiveList } from '../../reducers/activeProtosReducer';
 
 export default function ProtoTabs() {
   const [protoArr, setProtoArr] = useState([])
   const activeProtos = useSelector(state => state.activeProtos)
+  const user = useSelector(state => state.userAuth)
+
+  const dispatch = useDispatch()
 
   // Setting current active proto list.Used in ProtoTabs.
-  // useEffect(() => {
-  //   const getActive = async () => {
-  //     try {
-  //       const result = await activeProtoServices.getActiveProtos()
-  //       if (result.length > 0) {
-  //         dispatch(setAllActiveList(result[0].activeProtos))
-  //       }
-  //     } catch (error) {
-  //       console.log(error)
-  //     }
-  //   }
-  //   getActive()
-  // }, [])
+  useEffect(() => {
+    const getActive = async () => {
+      try {
+        const result = await activeProtoServices.getActiveProtos(user.id)
+        if (result.length > 0) {
+          dispatch(setAllActiveList(result[0].activeProtos))
+        }
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    getActive()
+  }, [])
 
   const handleClick = (event, proto) => {
     event.target.style.color = 'red'
