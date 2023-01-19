@@ -3,7 +3,7 @@ const baseUrl = '/api/activeProtos'
 
 const getActiveProtos = async (user) => {
   const results = await axios.get(`${baseUrl}/${user}`)
-  return results.data
+  return results.data[0]
 }
 
 const createActiveList = async (protos, token) => {
@@ -14,4 +14,13 @@ const createActiveList = async (protos, token) => {
   return results.data
 }
 
-export default { getActiveProtos, createActiveList }
+const addOneToActive = async (listId, proto) => {
+  await axios.put(`${baseUrl}/${listId}`, proto)
+}
+
+const deleteOneFromActive = async (listId, protoId) => {
+  const result = await axios.post(`${baseUrl}/delete/${listId}`, { protoId: protoId })
+  return result.data
+}
+
+export default { getActiveProtos, createActiveList, addOneToActive, deleteOneFromActive }

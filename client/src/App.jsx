@@ -10,6 +10,10 @@ import Home from "./components/home/Home"
 import ProtoTabs from "./components/active_protos/ProtoTabs"
 import BuildForm from "./components/build_protos/BuildForm"
 import Library from "./components/Library"
+
+import activeProtoServices from "./services/activeProtoServices"
+import { setAllActiveList } from "./reducers/activeProtosReducer"
+
 import { setUserAuth } from "./reducers/userAuthReducer"
 import { Container, CssBaseline } from '@mui/material'
 import './Draft.css'
@@ -21,6 +25,20 @@ const App = () => {
   useEffect(() => {
     dispatch(setUserAuth(JSON.parse(window.localStorage.getItem('user') || null)))
   }, [])
+
+  // useEffect(() => {
+  //   const getActive = async () => {
+  //     try {
+  //       const result = await activeProtoServices.getActiveProtos(user.id)
+  //       if (result) {
+  //         dispatch(setAllActiveList(result))
+  //       }
+  //     } catch (error) {
+  //       console.log(error)
+  //     }
+  //   }
+  //   getActive()
+  // }, [])
 
   return (
     <Router >

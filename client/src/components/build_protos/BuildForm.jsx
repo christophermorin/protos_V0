@@ -1,10 +1,14 @@
 import { useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import CreateProtoForm from "./CreateProtoForm"
 import CreateJobForm from "./CreateJobForm"
 import DisplayNewJob from './DisplayNewJob'
 import protoServices from '../../services/protoServices'
-import { Button, Grid, Stack } from "@mui/material"
+
+import activeProtoServices from '../../services/activeProtoServices'
+import { addOne } from '../../reducers/activeProtosReducer'
+
+import { Button, Grid, Stack, Switch, FormControlLabel, FormGroup } from "@mui/material"
 import { EditorState, convertToRaw } from 'draft-js'
 
 
@@ -13,10 +17,12 @@ export default function BuildForm() {
   const [protoDescription, setProtoDescription] = useState('') // This state can stay here
   const [protoTimeOfDay, setProtoTimeOfDay] = useState('') // This state can stau here
   const [newProtoJobs, setNewProtoJobs] = useState([]) // These are jobs being added to a created proto
+  const [checked, setChecked] = useState(false)
   // const [listAllJobs, setListAllJobs] = useState() ***UNUSED
+  const dispatch = useDispatch()
 
   const user = useSelector(state => state.userAuth)
-
+  const activeProtos = useSelector(state => state.activeProtos)
 
   const [editorState, setEditorState] = useState(
     () => EditorState.createEmpty(),
@@ -32,6 +38,10 @@ export default function BuildForm() {
 
   const handleTimeOfDay = (event, time) => {
     setProtoTimeOfDay(time)
+  }
+
+  const handleChecked = () => {
+    setChecked(!checked)
   }
 
   const deleteJob = (title) => {
@@ -54,9 +64,12 @@ export default function BuildForm() {
     }
     try {
       const result = await protoServices.createNewProto(newProto, user.token)
-      console.log(result)
+      if (result && checked) {
+        const addOne = await activeProtoServices.addOneToActive(activeProtos._id, result)
+        dispatch(addOne(result))
+      }
     } catch (error) {
-      console.log(error)
+      console.log(error.response.data.error)
     }
   }
   return (
@@ -89,6 +102,12 @@ export default function BuildForm() {
           variant="contained">
           Create Proto
         </Button>
+
+        {activeProtos &&
+          <FormGroup>
+            <FormControlLabel control={<Switch checked={checked} onClick={handleChecked} />} label="Add to active list" />
+          </FormGroup>}
+
       </Grid>
     </Grid >
   )

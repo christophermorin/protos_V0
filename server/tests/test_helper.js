@@ -1,5 +1,6 @@
 const Users = require('../models/UserModel')
 const Protos = require('../models/ProtosModel')
+const ActiveProtos = require('../models/ActiveProtosModel')
 const bcrypt = require('bcrypt')
 const supertest = require('supertest')
 const app = require('../app')
@@ -36,7 +37,6 @@ const createOneProto = async (token, proto) => {
     .send(proto)
     .expect(201)
     .expect('Content-Type', /application\/json/)
-
   return result
 }
 
@@ -50,6 +50,11 @@ const usersInDb = async () => {
 const protosInDb = async () => {
   const protos = await Protos.find({})
   return protos.map(proto => proto.toJSON())
+}
+
+const activeProtoInDb = async () => {
+  const activeProto = await ActiveProtos.find().sort({ _id: -1 }).limit(1)
+  return activeProto
 }
 
 
@@ -132,5 +137,6 @@ module.exports = {
   createRootUsers,
   protosInDb,
   logInUser,
-  createOneProto
+  createOneProto,
+  activeProtoInDb
 }

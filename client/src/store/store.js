@@ -2,12 +2,17 @@ import { configureStore } from '@reduxjs/toolkit'
 import userProtosReducer from '../reducers/userProtosReducer'
 import activeProtosReducer from '../reducers/activeProtosReducer'
 import userAuthReducer from '../reducers/userAuthReducer'
+import displayedProtosReducer from '../reducers/displayedProtosReducer'
+
+// create a displayedProtosStore
+
 
 const store = configureStore({
   reducer: {
     userProtos: userProtosReducer,
     activeProtos: activeProtosReducer,
-    userAuth: userAuthReducer
+    userAuth: userAuthReducer,
+    displayedProtos: displayedProtosReducer
   }
 })
 

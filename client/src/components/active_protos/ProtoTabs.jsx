@@ -4,12 +4,13 @@ import ActiveProto from './ActiveProto';
 import { Tabs, Tab, Grid, Box, Zoom, } from '@mui/material'
 import activeProtoServices from '../../services/activeProtoServices'
 import { setAllActiveList } from '../../reducers/activeProtosReducer';
+import { addProto, removeOneProto } from '../../reducers/displayedProtosReducer';
 
 export default function ProtoTabs() {
-  const [protoArr, setProtoArr] = useState([])
-  const activeProtos = useSelector(state => state.activeProtos)
+  const [displayedProtosArray, setDisplayedProtosArray] = useState([])
+  const protoList = useSelector(state => state.activeProtos)
   const user = useSelector(state => state.userAuth)
-
+  const displayedProtos = useSelector(state => state.displayedProtos)
   const dispatch = useDispatch()
 
   // Setting current active proto list.Used in ProtoTabs.
@@ -17,8 +18,8 @@ export default function ProtoTabs() {
     const getActive = async () => {
       try {
         const result = await activeProtoServices.getActiveProtos(user.id)
-        if (result.length > 0) {
-          dispatch(setAllActiveList(result[0].activeProtos))
+        if (result) {
+          dispatch(setAllActiveList(result))
         }
       } catch (error) {
         console.log(error)
@@ -29,18 +30,44 @@ export default function ProtoTabs() {
 
   const handleClick = (event, proto) => {
     event.target.style.color = 'red'
-    const found = protoArr.find(p => p.id === proto.id)
+    const found = displayedProtos.find(item => item.id === proto.id)
     if (!found) {
-      setProtoArr(prevState => [...prevState, proto])
-    } else {
-      protoArr.splice(protoArr.indexOf(found), 1)
-      const filter = protoArr.filter(p => p.id !== proto.id)
+      dispatch(addProto(proto))
+    }
+    else {
+      dispatch(removeOneProto(proto))
       event.target.style.color = ''
-      setProtoArr(filter)
     }
   }
+
+
+  // const handleClick = (event, proto) => {
+  //   event.target.style.color = 'red'
+  //   const found = displayedProtosArray.find(p => p.id === proto.id)
+  //   if (!found) {
+  //     setDisplayedProtosArray(prevState => [...prevState, proto])
+  //   } else {
+  //     displayedProtosArray.splice(displayedProtosArray.indexOf(found), 1)
+  //     const filter = displayedProtosArray.filter(p => p.id !== proto.id)
+  //     event.target.style.color = ''
+  //     setDisplayedProtosArray(filter)
+  //   }
+  // }
+
+
+
+
+  const tabCount = protoList ? protoList.activeProtos.map(proto => {
+    return (
+      <Tab key={proto.id} label={proto.title} onClick={() => handleClick(event, proto)}
+      />
+    )
+
+  })
+    :
+    null
   //Display selected protos
-  const displayProtos = protoArr.map(proto => {
+  const displayed = displayedProtos ? displayedProtos.map(proto => {
     return (
       <Grid item key={proto.id} sx={{ padding: '0 10px', }}>
         <Zoom in={true}>
@@ -51,13 +78,8 @@ export default function ProtoTabs() {
       </Grid >
     )
   })
-
-  const tabCount = activeProtos.map(proto => {
-    return (
-      <Tab key={proto.id} label={proto.title} onClick={() => handleClick(event, proto)}
-      />
-    )
-  })
+    :
+    null
 
   return (
     <Box
@@ -72,10 +94,10 @@ export default function ProtoTabs() {
         {tabCount}
       </Tabs>
       <Box>
-        {displayProtos.length > 0
+        {displayedProtos.length > 0
           ?
           <Grid container direction='row' wrap='nowrap' sx={{ overflowX: 'scroll', height: '88vh', }} >
-            {displayProtos}
+            {displayed}
           </Grid>
           :
           <div style={{ display: 'flex', justifyContent: 'center' }} >No active Protos...</div>}

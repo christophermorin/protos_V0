@@ -22,8 +22,7 @@ export default function HomeDialog({ open, handleClose }) {
         user: user.id
       }
       const results = await activeProtoServices.createActiveList(newList)
-      console.log(results)
-      dispatch(setAllActiveList(results.activeProtos))
+      dispatch(setAllActiveList(results))
     } catch (error) {
       console.log(error)
     }
