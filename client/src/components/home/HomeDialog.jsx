@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
+import StylishButton from "../StylishButton"
 import activeProtoServices from "../../services/activeProtoServices"
 import { setAllActiveList } from "../../reducers/activeProtosReducer"
 import { Dialog, DialogContent, DialogActions, Button, Box, Autocomplete, TextField } from "@mui/material"
@@ -45,19 +46,17 @@ export default function HomeDialog({ open, handleClose }) {
             getOptionLabel={(option) => option.title}
             renderInput={(params) => <TextField {...params} label="Protos" />}
           />
-          <Box display='flex' flexDirection='column'>
-            <Button>
-              Build New Proto
-            </Button>
-            <Button>
-              Use Template
-            </Button>
+          <Box display='flex' flexDirection='column' gap={1}>
+            <StylishButton title={'Build New Proto'} />
+            <StylishButton title={'Use Template'} />
           </Box>
           <DialogActions>
-            <Button onClick={handleClose}>
+            <StylishButton action={createActiveList} title={'Create'} />
+            <StylishButton action={handleClose} title={'Cancel'} color={'secondary'} />
+            {/* <Button onClick={handleClose}>
               Cancel
-            </Button>
-            <Button onClick={createActiveList}>Create</Button>
+            </Button> */}
+            {/* <Button onClick={createActiveList}>Create</Button> */}
           </DialogActions>
         </Box>
       </DialogContent>
