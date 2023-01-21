@@ -2,28 +2,35 @@ import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import StylishButton from "../StylishButton"
 import activeProtoServices from "../../services/activeProtoServices"
-import { setAllActiveList } from "../../reducers/activeProtosReducer"
+import { setActiveProtos } from "../../reducers/activeProtosReducer"
+import { clearDisplayProtoList } from "../../reducers/displayedProtosReducer"
 import { Dialog, DialogContent, DialogActions, Button, Box, Autocomplete, TextField } from "@mui/material"
 
 export default function HomeDialog({ open, handleClose }) {
-  const [activeList, setActiveList] = useState([])
+  const [selectedProtos, setSelectedProtos] = useState([])
   const userProtos = useSelector(state => state.userProtos)
   const dispatch = useDispatch()
+
+  // const options = userProtos.map(proto => proto)
+
+  // const sorted = options.sort((a, b) => -b.timeOfDay.localeCompare(a.timeOfDay))
+
 
   const user = useSelector(state => state.userAuth)
 
   const createActiveList = async () => {
-    if (activeList.length === 0) {
+    if (selectedProtos.length === 0) {
       console.log('Error: Protos list empty')
       return
     }
     try {
-      const newList = {
-        list: activeList,
+      const newActiveProtos = {
+        list: selectedProtos,
         user: user.id
       }
-      const results = await activeProtoServices.createActiveList(newList)
-      dispatch(setAllActiveList(results))
+      const createdList = await activeProtoServices.createActiveList(newActiveProtos)
+      // dispatch(setActiveProtos(createdList.activeProtos))
+      dispatch(clearDisplayProtoList())
     } catch (error) {
       console.log(error)
     }
@@ -32,32 +39,29 @@ export default function HomeDialog({ open, handleClose }) {
   return (
     <Dialog open={open} onClose={handleClose}>
       <DialogContent>
-        <Box display='flex' flexDirection='column' justifyContent='center' alignItems='center'>
+        <Box display='flex' flexDirection='column' justifyContent='center' alignItems='center' gap={5}>
+          <Box display='flex' flexDirection='row' flexWrap={true} gap={1}>
+            <StylishButton title={'Use Template'} />
+          </Box>
           <Autocomplete
             id="grouped-demo"
-            sx={{ minWidth: 300 }}
-            value={activeList}
+            sx={{ minWidth: { xs: 300, md: 500 }, padding: 5 }}
+            value={selectedProtos}
             onChange={(event, newValue) => {
-              setActiveList(newValue);
+              setSelectedProtos(newValue);
             }}
             multiple
             options={userProtos}
-            groupBy={(option) => option.timeOfDay}
+            // groupBy={(option) => option.timeOfDay}
             getOptionLabel={(option) => option.title}
             renderInput={(params) => <TextField {...params} label="Protos" />}
+
           />
-          <Box display='flex' flexDirection='column' gap={1}>
-            <StylishButton title={'Build New Proto'} />
-            <StylishButton title={'Use Template'} />
-          </Box>
-          <DialogActions>
+
+          <Box display={'flex'} flexDirection='row' justifyContent='space-between' gap={10}>
             <StylishButton action={createActiveList} title={'Create'} />
             <StylishButton action={handleClose} title={'Cancel'} color={'secondary'} />
-            {/* <Button onClick={handleClose}>
-              Cancel
-            </Button> */}
-            {/* <Button onClick={createActiveList}>Create</Button> */}
-          </DialogActions>
+          </Box>
         </Box>
       </DialogContent>
     </Dialog >

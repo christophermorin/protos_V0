@@ -33,10 +33,10 @@ export default function NavBar() {
     setSideBar(!sideBar)
   }
 
-  const tempList = ['Home', 'Dashboard', 'Resources', 'Market'].map(item => {
+  const tempList = ['Home', 'Dashboard', 'Resources', 'Market', 'Library'].map(item => {
     return (
       <ListItem disablePadding key={item}>
-        <ListItemButton>
+        <ListItemButton component={Link} to={`/${item}`}>
           <ListItemIcon>
             <InboxIcon />
           </ListItemIcon>

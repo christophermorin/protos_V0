@@ -10,6 +10,7 @@ const userSchema = new mongoose.Schema({
       ref: 'Protos'
     }
   ],
+  activeList: Array
 })
 
 userSchema.set('toJSON', {

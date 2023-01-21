@@ -4,7 +4,7 @@ const ActiveProtos = createSlice({
   name: 'activeProtos',
   initialState: null,
   reducers: {
-    setActiveProtos(state, action) {
+    setNewActiveProtos(state, action) {
       return action.payload
     },
     addOne(state, action) {
@@ -13,11 +13,11 @@ const ActiveProtos = createSlice({
   }
 })
 
-export const { setActiveProtos, addOne } = ActiveProtos.actions
+export const { setNewActiveProtos, addOne } = ActiveProtos.actions
 
-export const setAllActiveList = (protos) => {
+export const setActiveProtos = (protos) => {
   return (dispatch) => {
-    dispatch(setActiveProtos(protos))
+    dispatch(setNewActiveProtos(protos))
   }
 }
 

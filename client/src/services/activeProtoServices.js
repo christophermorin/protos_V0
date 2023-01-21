@@ -3,7 +3,7 @@ const baseUrl = '/api/activeProtos'
 
 const getActiveProtos = async (user) => {
   const results = await axios.get(`${baseUrl}/${user}`)
-  return results.data[0]
+  return results.data
 }
 
 const createActiveList = async (protos, token) => {

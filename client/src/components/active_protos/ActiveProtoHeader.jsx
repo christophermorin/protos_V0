@@ -1,7 +1,7 @@
 import { useState } from "react";
 import ActiveReason from "./ActiveReason"
 import activeProtoServices from "../../services/activeProtoServices";
-import { setAllActiveList } from "../../reducers/activeProtosReducer";
+import { setActiveProtos } from "../../reducers/activeProtosReducer";
 import { protoWasDeleted } from "../../reducers/displayedProtosReducer";
 import { Paper, Typography, Box, IconButton, Menu, MenuItem } from "@mui/material"
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
@@ -18,6 +18,7 @@ export default function ActiveProtoHeader({ protoTitle, protoDescription, protoI
 
   const dispatch = useDispatch()
   const activeList = useSelector(state => state.activeProtos)
+  const user = useSelector(state => state.userAuth)
 
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -29,8 +30,8 @@ export default function ActiveProtoHeader({ protoTitle, protoDescription, protoI
   };
 
   const handleDelete = async () => {
-    const result = await activeProtoServices.deleteOneFromActive(activeList._id, protoId)
-    dispatch(setAllActiveList(result))
+    const result = await activeProtoServices.deleteOneFromActive(user.id, protoId)
+    dispatch(setActiveProtos(result))
     dispatch(protoWasDeleted(protoId))
   }
   return (

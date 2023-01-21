@@ -1,13 +1,12 @@
-import { useState, useEffect } from 'react'
+import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import ActiveProto from './ActiveProto';
 import { Tabs, Tab, Grid, Box, Zoom, } from '@mui/material'
 import activeProtoServices from '../../services/activeProtoServices'
-import { setAllActiveList } from '../../reducers/activeProtosReducer';
+import { setActiveProtos } from '../../reducers/activeProtosReducer';
 import { addProto, removeOneProto } from '../../reducers/displayedProtosReducer';
 
 export default function ProtoTabs() {
-  const [displayedProtosArray, setDisplayedProtosArray] = useState([])
   const protoList = useSelector(state => state.activeProtos)
   const user = useSelector(state => state.userAuth)
   const displayedProtos = useSelector(state => state.displayedProtos)
@@ -19,7 +18,7 @@ export default function ProtoTabs() {
       try {
         const result = await activeProtoServices.getActiveProtos(user.id)
         if (result) {
-          dispatch(setAllActiveList(result))
+          dispatch(setActiveProtos(result))
         }
       } catch (error) {
         console.log(error)
@@ -40,24 +39,7 @@ export default function ProtoTabs() {
     }
   }
 
-
-  // const handleClick = (event, proto) => {
-  //   event.target.style.color = 'red'
-  //   const found = displayedProtosArray.find(p => p.id === proto.id)
-  //   if (!found) {
-  //     setDisplayedProtosArray(prevState => [...prevState, proto])
-  //   } else {
-  //     displayedProtosArray.splice(displayedProtosArray.indexOf(found), 1)
-  //     const filter = displayedProtosArray.filter(p => p.id !== proto.id)
-  //     event.target.style.color = ''
-  //     setDisplayedProtosArray(filter)
-  //   }
-  // }
-
-
-
-
-  const tabCount = protoList ? protoList.activeProtos.map(proto => {
+  const tabCount = protoList ? protoList.map(proto => {
     return (
       <Tab key={proto.id} label={proto.title} onClick={() => handleClick(event, proto)}
       />
@@ -66,6 +48,7 @@ export default function ProtoTabs() {
   })
     :
     null
+
   //Display selected protos
   const displayed = displayedProtos ? displayedProtos.map(proto => {
     return (

@@ -12,7 +12,6 @@ import BuildForm from "./components/build_protos/BuildForm"
 import Library from "./components/Library"
 
 import activeProtoServices from "./services/activeProtoServices"
-import { setAllActiveList } from "./reducers/activeProtosReducer"
 
 import { setUserAuth } from "./reducers/userAuthReducer"
 import { Container, CssBaseline } from '@mui/material'
@@ -26,20 +25,6 @@ const App = () => {
     dispatch(setUserAuth(JSON.parse(window.localStorage.getItem('user') || null)))
   }, [])
 
-  // useEffect(() => {
-  //   const getActive = async () => {
-  //     try {
-  //       const result = await activeProtoServices.getActiveProtos(user.id)
-  //       if (result) {
-  //         dispatch(setAllActiveList(result))
-  //       }
-  //     } catch (error) {
-  //       console.log(error)
-  //     }
-  //   }
-  //   getActive()
-  // }, [])
-
   return (
     <Router >
       <CssBaseline />
@@ -51,7 +36,7 @@ const App = () => {
               <Route path="/" element={<Home user={user} />} />
               <Route path="/active" element={<ProtoTabs />} />
               <Route path="/build" element={<BuildForm />} />
-              <Route path="/library" element={<Library />} />
+              <Route path="/Library" element={<Library />} />
             </Routes>
           </Container>
         </>

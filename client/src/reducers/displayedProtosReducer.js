@@ -7,6 +7,9 @@ const DisplayedProtos = createSlice({
     buildList(state, action) {
       return [...state, action.payload]
     },
+    clearList(state, action) {
+      return []
+    },
     removeOneProto(state, action) {
       return state.filter(proto => proto.id !== action.payload.id)
     },
@@ -16,7 +19,7 @@ const DisplayedProtos = createSlice({
   }
 })
 
-export const { buildList, removeOneProto, protoWasDeleted } = DisplayedProtos.actions
+export const { buildList, removeOneProto, protoWasDeleted, clearList } = DisplayedProtos.actions
 
 
 
@@ -35,6 +38,12 @@ export const removeProto = (proto) => {
 export const protoDeleted = (protoId) => {
   return (dispatch) => {
     dispatch(protoWasDeleted(protoId))
+  }
+}
+
+export const clearDisplayProtoList = () => {
+  return (dispatch) => {
+    dispatch(clearList())
   }
 }
 
