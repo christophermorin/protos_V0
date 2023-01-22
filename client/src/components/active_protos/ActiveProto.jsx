@@ -2,18 +2,22 @@ import ActiveProtoHeader from "./ActiveProtoHeader"
 import JobCard from "./JobCard"
 import { Accordion, AccordionSummary, AccordionDetails, Grid, Typography, Stack, Box, Tooltip } from "@mui/material"
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import { useSelector } from "react-redux";
+import activeProtoServices from "../../services/activeProtoServices";
 
 export default function ActiveProto({ proto }) {
+  const activeList = useSelector(state => state.activeProtos)
 
   const jobslist = proto.jobs.map(job => {
     return (
-      <JobCard key={job._id} job={job} protoId={proto._Id} />
+      <JobCard key={job._id} job={job} listId={activeList._id} protoId={proto.id} />
     )
   })
+
   return (
     <Grid container spacing={0.5} key={proto._id} sx={{ marginTop: 2, maxWidth: { xs: 'unset', md: '360px' }, minWidth: '360px' }}>
       <Grid item xs={12}>
-        <ActiveProtoHeader protoTitle={proto.title} protoDescription={proto.description} protoId={proto.id} />
+        <ActiveProtoHeader protoTitle={proto.title} protoDescription={proto.description} protoId={proto.id} listId={activeList._id} />
       </Grid>
       <Grid item xs={12} >
         <Accordion

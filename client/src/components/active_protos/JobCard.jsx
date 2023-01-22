@@ -1,26 +1,49 @@
 import { useState } from 'react';
 import ActiveTimer from './ActiveTimer';
 import { Box, Typography, Tooltip, Paper, } from "@mui/material"
+import activeProtoServices from '../../services/activeProtoServices';
 import PlayCircleIcon from '@mui/icons-material/PlayCircle';
 import StopCircleIcon from '@mui/icons-material/StopCircle';
 import HelpIcon from '@mui/icons-material/Help';
 
-export default function JobCard({ job }) {
+export default function JobCard({ job, listId, protoId }) {
   const [timer, setTimer] = useState(false)
   const [complete, setComplete] = useState(job.isComplete)
-  const [hidden, setHidden] = useState(false) // intial state should be job.isHidden
+  const [hidden, setHidden] = useState(job.isHidden) // intial state should be job.isHidden
+
+
 
   const handleTimer = () => {
     setTimer(!timer)
   }
-
-  const markComplete = async () => {
-    setComplete(!complete)
-    console.log(job._id)
+  const toggleJobComplete = async () => {
+    try {
+      setComplete(!complete)
+      await activeProtoServices.toggleJobComplete(
+        listId,
+        {
+          protoId: protoId,
+          jobId: job._id,
+          isComplete: complete
+        })
+    } catch (error) {
+      console.log('In toggleJobComplete', error)
+    }
   }
 
-  const hideJob = async () => {
-    setHidden(!hidden)
+  const setJobHidden = async () => {
+    try {
+      setHidden(true)
+      await activeProtoServices.setJobHidden(
+        listId,
+        {
+          protoId: protoId,
+          jobId: job._id,
+          isHidden: true
+        })
+    } catch (error) {
+      console.log('In setJobHidden', error)
+    }
   }
 
   const tempColorCard = `rgba(${job.cardColor.r}, ${job.cardColor.g}, ${job.cardColor.b}, ${job.cardColor.a})`
@@ -71,7 +94,7 @@ export default function JobCard({ job }) {
               variant='caption'
               fontWeight={500}
               sx={{ '&:hover': { color: 'red' }, cursor: 'pointer', }}
-              onClick={hideJob}
+              onClick={setJobHidden}
             >
               Hide
             </Typography>
@@ -86,7 +109,7 @@ export default function JobCard({ job }) {
               variant='caption'
               fontWeight={500}
               sx={{ '&:hover': { color: 'green' }, cursor: 'pointer' }}
-              onClick={markComplete}
+              onClick={toggleJobComplete}
             >
               Complete
             </Typography>

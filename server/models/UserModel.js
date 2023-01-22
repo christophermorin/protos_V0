@@ -10,8 +10,14 @@ const userSchema = new mongoose.Schema({
       ref: 'Protos'
     }
   ],
-  activeList: Array
+  activeList: {
+    type: mongoose.Schema.Types.ObjectId,
+
+    ref: 'ActiveProtos',
+    id: mongoose.Schema.Types.ObjectId,
+  }
 })
+
 
 userSchema.set('toJSON', {
   transform: (document, returnedObject) => {

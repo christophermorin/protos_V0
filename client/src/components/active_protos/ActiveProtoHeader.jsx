@@ -7,18 +7,13 @@ import { Paper, Typography, Box, IconButton, Menu, MenuItem } from "@mui/materia
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import { useSelector, useDispatch } from 'react-redux'
 
-
-// pull in active proto list from store
-// proto id from props
-// on delete, findOne and delete using active proto id
-// delete by proto id
-
-export default function ActiveProtoHeader({ protoTitle, protoDescription, protoId }) {
+export default function ActiveProtoHeader({ protoTitle, protoDescription, protoId, listId }) {
   const [anchorEl, setAnchorEl] = useState(null);
 
   const dispatch = useDispatch()
   const activeList = useSelector(state => state.activeProtos)
   const user = useSelector(state => state.userAuth)
+  const displayedProtos = useSelector(state => state.displayedProtos)
 
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -30,10 +25,17 @@ export default function ActiveProtoHeader({ protoTitle, protoDescription, protoI
   };
 
   const handleDelete = async () => {
-    const result = await activeProtoServices.deleteOneFromActive(user.id, protoId)
+    const result = await activeProtoServices.deleteOneFromActive(
+      activeList._id,
+      {
+        protoId: protoId,
+        userId: user.id
+      }
+    )
     dispatch(setActiveProtos(result))
     dispatch(protoWasDeleted(protoId))
   }
+
   return (
     <Paper
       sx={{ padding: 2, background: '#eeeeee' }}>

@@ -12,13 +12,14 @@ export default function ProtoTabs() {
   const displayedProtos = useSelector(state => state.displayedProtos)
   const dispatch = useDispatch()
 
+
   // Setting current active proto list.Used in ProtoTabs.
   useEffect(() => {
     const getActive = async () => {
       try {
-        const result = await activeProtoServices.getActiveProtos(user.id)
-        if (result) {
-          dispatch(setActiveProtos(result))
+        const returnedList = await activeProtoServices.getActiveProtos(user.id)
+        if (returnedList) {
+          dispatch(setActiveProtos(returnedList))
         }
       } catch (error) {
         console.log(error)
@@ -39,7 +40,7 @@ export default function ProtoTabs() {
     }
   }
 
-  const tabCount = protoList ? protoList.map(proto => {
+  const tabCount = protoList ? protoList.activeProtos.map(proto => {
     return (
       <Tab key={proto.id} label={proto.title} onClick={() => handleClick(event, proto)}
       />

@@ -15,11 +15,11 @@ const DisplayedProtos = createSlice({
     },
     protoWasDeleted(state, action) {
       return state.filter(proto => proto.id !== action.payload)
-    }
+    },
   }
 })
 
-export const { buildList, removeOneProto, protoWasDeleted, clearList } = DisplayedProtos.actions
+export const { buildList, removeOneProto, protoWasDeleted, clearList, } = DisplayedProtos.actions
 
 
 
