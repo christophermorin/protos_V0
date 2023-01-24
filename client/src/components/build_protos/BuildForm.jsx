@@ -78,8 +78,8 @@ export default function BuildForm({ open, handleCloseBuild }) {
   }
   return (
     <Dialog open={open || false} onClose={handleCloseBuild}>
-      <Grid container spacing={2} sx={{ marginTop: 2, justifyContent: 'center' }}>
-        <Grid item xs={12} md={6}>
+      <Grid container sx={{ padding: 2 }}>
+        <Grid item xs={12}>
           <CreateProtoForm
             setProtoTitle={setProtoTitle}
             setProtoDescription={setProtoDescription}
@@ -92,7 +92,7 @@ export default function BuildForm({ open, handleCloseBuild }) {
           />
           <Stack
             spacing={1}
-            sx={{ marginTop: 5 }}
+            sx={{ marginTop: 5, }}
           >
             {currentJobsList}
           </Stack>
@@ -101,17 +101,17 @@ export default function BuildForm({ open, handleCloseBuild }) {
             cardColor={color}
             setColor={setColor}
           />
+          {activeProtos &&
+            <FormGroup sx={{ marginTop: 2 }}>
+              <FormControlLabel control={<Switch checked={checked} onClick={handleChecked} />} label="Add Proto to active list" />
+            </FormGroup>}
           <Button
-            sx={{ margin: '0 auto', marginTop: 5, marginBottom: 5, display: 'flex', justifyContent: 'center' }}
+            sx={{ margin: '0 auto', marginTop: 2, marginBottom: 5, display: 'flex', justifyContent: 'center' }}
             onClick={createProto}
             variant="contained">
             Create Proto
           </Button>
 
-          {activeProtos &&
-            <FormGroup>
-              <FormControlLabel control={<Switch checked={checked} onClick={handleChecked} />} label="Add to active list" />
-            </FormGroup>}
 
         </Grid>
       </Grid >

@@ -12,33 +12,33 @@ export default function CreateProtoForm({ setProtoTitle, protoTitle, handleTimeO
   return (
     <Paper sx={{
       textAlign: 'center',
-      padding: 2
+      border: '1px solid black'
     }}>
-      <Box>
+      <Box >
         <TextField
           id="proto-title"
           label="Proto Title..."
-          variant="standard"
+          variant="filled"
           value={protoTitle}
           onChange={(e) => setProtoTitle(e.target.value)}
           fullWidth
         />
-        <Typography sx={{
+        {/* <Typography sx={{
           fontSize: 11,
           color: 'grey',
           fontWeight: 'bold',
           margin: 0
         }}>
           Choose a title for your Proto. Short and sweet is best!
-        </Typography>
-        <Typography sx={{
+        </Typography> */}
+        {/* <Typography sx={{
           fontSize: 11,
           color: 'grey',
           fontWeight: 'bold',
           margin: '10px 0'
         }}>
           Describe your Proto. What is it you are trying to achieve? What are the benefits of implementing this Proto into your life?
-        </Typography>
+        </Typography> */}
         <ProtoDescriptionForm editorState={editorState} setEditorState={setEditorState} />
       </Box>
       {/* Seperate into new component */}
@@ -48,7 +48,7 @@ export default function CreateProtoForm({ setProtoTitle, protoTitle, handleTimeO
         onChange={handleTimeOfDay}
         aria-label="text alignment"
         size="small"
-        sx={{ marginTop: 2 }}
+        sx={{ marginTop: 2, marginBottom: 2 }}
       >
         <ToggleButton value="morning" aria-label="morning">
           <Tooltip title='Morning' placement="top-end">

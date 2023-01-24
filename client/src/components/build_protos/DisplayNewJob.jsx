@@ -1,7 +1,10 @@
 import HelpIcon from '@mui/icons-material/Help';
 import ActiveTimer from '../active_protos/ActiveTimer';
-import { Box, Typography, Tooltip, Button, Paper } from "@mui/material"
+import { Box, Typography, Tooltip, Button, Paper, Grid } from "@mui/material"
 import StarBorderPurple500Icon from '@mui/icons-material/StarBorderPurple500';
+import PlayCircleIcon from '@mui/icons-material/PlayCircle';
+import StylishButton from '../StylishButton';
+
 
 // Replace sx styling
 
@@ -10,57 +13,57 @@ export default function DisplayNewJob({ job, deleteJob }) {
   return (
 
     <Paper sx={{
-      display: 'flex',
-      gap: 2,
-      padding: 2,
+      padding: 1,
       background: `linear-gradient(135deg, ${colorChoice}, rgba(255,255,255) 20%)`,
-      border: `1px solid ${colorChoice}`
+      border: `1px solid black`
     }}>
-      <Box sx={{
-        display: 'flex',
-        alignItems: 'center'
-      }}>
-        <StarBorderPurple500Icon />
-      </Box>
-      <Box sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'space-between',
-        flexGrow: 1,
-        gap: 2
-      }}>
-        <Box>
-          <Typography
-            sx={{
-              fontWeight: 'bold'
-            }}
-          >{job.title}</Typography>
-        </Box>
-        <Box>
-          <Button
-            onClick={() => deleteJob(job.title)}
-            sx={{
-              padding: 0,
-              margin: 0,
-              minWidth: 0,
-              textTransform: 'none'
-            }}>
-            Delete
-          </Button>
-        </Box>
-      </Box>
-      <Box sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'space-between',
-        alignItems: 'center',
+      <Grid container>
+        <Grid item xs={2} sm={1} display="flex" alignItems="center">
+          <PlayCircleIcon fontSize="large" />
+        </Grid>
+        <Grid container item xs={8} sm={10} direction="column" gap={2}>
+          <Box>
+            <Typography
+              sx={{
+                fontWeight: 'bold'
+              }}
+            >{job.title}</Typography>
+          </Box>
+          <Box display="flex" gap={2}>
+            <Typography
+              variant='caption'
+              fontWeight={500}
+              sx={{ color: 'red', cursor: 'pointer', }}
+              onClick={() => deleteJob(job.title)}
+            >
+              Delete
+            </Typography>
+            <Typography
+              variant='caption'
+              fontWeight={500}
+              sx={{ cursor: 'not-allowed', }}
+            >
+              Reset
+            </Typography>
+            <Typography
+              variant='caption'
+              fontWeight={500}
+              sx={{ cursor: 'not-allowed' }}
+            >
+              Complete
+            </Typography>
 
-      }}>
-        <Tooltip title={job.description} placement="top-end">
-          <HelpIcon />
-        </Tooltip>
-        <ActiveTimer jobTimer={job.timer} />
-      </Box>
+          </Box>
+        </Grid>
+        <Grid item xs={2} sm={1} >
+          <Box display="flex" flexDirection="column" gap={1} alignItems="flex-end">
+            <Tooltip title={job.description} placement="top-end">
+              <HelpIcon />
+            </Tooltip>
+            <ActiveTimer jobTimer={job.timer} />
+          </Box>
+        </Grid>
+      </Grid>
     </Paper>
   )
 }

@@ -1,5 +1,6 @@
 import { Editor, EditorState, RichUtils } from 'draft-js';
 import 'draft-js/dist/Draft.css';
+import { useRef } from 'react';
 
 export default function ProtoDescriptionForm({ editorState, setEditorState }) {
   const toggleBlockType = (blockType) => {
@@ -8,6 +9,11 @@ export default function ProtoDescriptionForm({ editorState, setEditorState }) {
 
   const toggleInlineStyle = (inlineStyle) => {
     setEditorState(RichUtils.toggleInlineStyle(editorState, inlineStyle))
+  }
+
+  const editor = useRef(null);
+  function focusEditor() {
+    editor.current.focus();
   }
 
   let className = 'RichEditor-editor';
@@ -23,10 +29,12 @@ export default function ProtoDescriptionForm({ editorState, setEditorState }) {
           onToggle={toggleInlineStyle}
         />
       </div>
-      <div style={{
-        padding: '0 10px', wordBreak: "break-all", minHeight: '100px'
+      {/* wordBreak: "break-all" */}
+      <div onClick={focusEditor} style={{
+        padding: '0 10px', minHeight: '100px', cursor: 'text'
       }}>
         <Editor
+          ref={editor}
           className={className}
           editorState={editorState}
           onChange={setEditorState}
@@ -65,8 +73,8 @@ const BLOCK_TYPES = [
   { label: 'H6', style: 'header-six' },
   { label: 'UL', style: 'unordered-list-item' },
   { label: 'OL', style: 'ordered-list-item' },
-  { label: 'Block', style: 'blockquote' },
-  { label: 'Code', style: 'code-block' },
+  // { label: 'Block', style: 'blockquote' },
+  // { label: 'Code', style: 'code-block' },
 ];
 
 const BlockStyleControls = (props) => {
@@ -118,7 +126,7 @@ const INLINE_STYLES = [
 const InlineStyleControls = (props) => {
   const currentStyle = props.editorState.getCurrentInlineStyle();
   return (
-    <div className="RichEditor-controls">
+    <div className="RichEditor-controls" style={{ marginBottom: 10 }}>
       {INLINE_STYLES.map(type =>
         <StyleButton
           key={type.label}

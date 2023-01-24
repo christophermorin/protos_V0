@@ -10,7 +10,6 @@
   cursor: text;
   font-size: 16px;
   margin-top: 10px;
-
 }
 
 .RichEditor-editor .public-DraftEditorPlaceholder-root,
@@ -55,7 +54,6 @@
   margin-bottom: 2px;
   user-select: none;
   text-align: center;
-
 }
 
 .RichEditor-styleButton {

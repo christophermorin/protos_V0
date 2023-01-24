@@ -91,12 +91,7 @@ export default function JobCard({ job, listId, protoId }) {
               {job.title}
             </Typography>
           </Box>
-          <Box sx={{
-            display: 'flex',
-            flexDirection: 'row',
-            gap: 2,
-            alignItems: 'center'
-          }}>
+          <Box display="flex" gap={2}>
             <Typography
               variant='caption'
               fontWeight={500}

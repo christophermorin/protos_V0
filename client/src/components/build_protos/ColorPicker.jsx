@@ -7,8 +7,8 @@ export default function ColorPicker({ displayColorPicker, changeColor, color }) 
       popover: {
         position: 'absolute',
         zIndex: '2',
-        bottom: 20,
-        left: -40
+        bottom: 10,
+        left: -220
       },
       box: {
         position: 'relative'

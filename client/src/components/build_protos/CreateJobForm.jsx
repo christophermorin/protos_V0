@@ -1,5 +1,6 @@
+import StylishButton from '../StylishButton'
 import ColorizeOutlinedIcon from '@mui/icons-material/ColorizeOutlined';
-import { Box, Tooltip, Button, Paper, TextField } from "@mui/material"
+import { Box, Tooltip, Button, Paper, TextField, Grid } from "@mui/material"
 import { useState } from 'react';
 import ColorPicker from './ColorPicker';
 
@@ -49,90 +50,64 @@ export default function AddNewJob({ setNewProtoJobs, cardColor, setColor }) {
         gap: 2,
         padding: 2,
         background: `linear-gradient(135deg, rgba(${cardColor.r}, ${cardColor.g}, ${cardColor.b}, ${cardColor.a}), rgba(255,255,255) 20%)`,
-        border: `1px solid rgba(${cardColor.r}, ${cardColor.g}, ${cardColor.b}, ${cardColor.a})`,
-        marginTop: 5
+        // border: `1px solid rgba(${cardColor.r}, ${cardColor.g}, ${cardColor.b}, ${cardColor.a})`,
+        marginTop: 5,
+        border: "1px solid black"
       }}
     >
-      <Box
-        sx={{
-          display: 'flex',
-          alignItems: 'flex-start',
-        }}>
-        <ColorizeOutlinedIcon onClick={toggleColorPicker} sx={{
-          fontSize: '30px'
-        }} />
-        <ColorPicker displayColorPicker={displayColorPicker} changeColor={changeColor} color={cardColor} />
-      </Box>
-      <Box sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'space-between',
-        flexGrow: 1,
-        gap: 2
-      }}>
-        <Box>
+      <Grid container spacing={2}>
+        <Grid item xs={12} md={10}>
           <TextField
             id="standard-basic"
-            label="Title"
-            variant="standard"
+            label="Job Title"
+            variant="filled"
             value={jobTitle}
-            // color="neutral"
+            fullWidth
             onChange={(e) => setJobTitle(e.target.value)}
           />
           <TextField
             id="standard-basic"
-            label="Description"
+            label="Job Description"
             multiline
             fullWidth
-            variant="standard"
+            variant="filled"
             value={jobDesc}
             onChange={(e) => setJobDesc(e.target.value)}
+            sx={{ marginTop: 2 }}
           />
-        </Box>
-        <Box sx={{
-          display: 'flex',
-          flexDirection: 'row',
-          gap: 2,
-          alignItems: 'center'
-        }}>
-          <Button
-            onClick={createJob}
-            sx={{
-              padding: 0,
-              margin: 0,
-            }}>
-            Create
-          </Button>
-          <Button
-            onClick={cancelAllFields}
-            sx={{
-              padding: 0,
-              margin: 0
-            }}>
-            Cancel
-          </Button>
-        </Box>
-      </Box>
-      <Box sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'space-between',
-        alignItems: 'center'
-      }}>
-        <Tooltip title='Description' placement="top-end">
-          <Button>Extras</Button>
-        </Tooltip>
-
-        <TextField
-          type='number'
-          id="standard-basic"
-          label="Timer"
-          variant="standard"
-          value={jobTimer}
-          onChange={(e) => setJobTimer(+e.target.value)}
-          sx={{ maxWidth: 100 }}
-        />
-      </Box>
-    </Paper>
+        </Grid>
+        <Grid item xs={12} md={2} alignSelf="flex-end" justifyContent="flex-end">
+          <TextField
+            type='number'
+            id="standard-basic"
+            label="Timer"
+            variant="standard"
+            value={jobTimer}
+            onChange={(e) => setJobTimer(+e.target.value)}
+            sx={{ maxWidth: 100 }}
+          />
+        </Grid>
+        <Grid item xs={10} >
+          <Box display="flex" gap={2}>
+            <StylishButton
+              action={createJob}
+              title={'Create'}
+            />
+            <StylishButton
+              action={cancelAllFields}
+              title={'Cancel'}
+            />
+          </Box>
+        </Grid>
+        <Grid item xs={2}>
+          <Box display="flex" justifyContent="flex-end">
+            <ColorizeOutlinedIcon onClick={toggleColorPicker} sx={{
+              fontSize: '30px',
+            }} />
+            <ColorPicker displayColorPicker={displayColorPicker} changeColor={changeColor} color={cardColor} />
+          </Box>
+        </Grid>
+      </Grid>
+    </Paper >
   )
 }
