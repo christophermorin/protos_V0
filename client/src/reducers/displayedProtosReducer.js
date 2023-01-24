@@ -16,10 +16,24 @@ const DisplayedProtos = createSlice({
     protoWasDeleted(state, action) {
       return state.filter(proto => proto.id !== action.payload)
     },
+    updateOneJob(state, action) {
+      const protos = action.payload
+      const result = state.map(proto => proto.id)
+      const test = []
+      for (let i = 0; i < result.length; i++) {
+        for (let j = 0; j < protos.length; j++) {
+          if (result[i] === protos[j].id) {
+            test.push(protos[j])
+          }
+        }
+      }
+
+      return test
+    }
   }
 })
 
-export const { buildList, removeOneProto, protoWasDeleted, clearList, } = DisplayedProtos.actions
+export const { buildList, removeOneProto, protoWasDeleted, clearList, updateOneJob } = DisplayedProtos.actions
 
 
 
@@ -44,6 +58,12 @@ export const protoDeleted = (protoId) => {
 export const clearDisplayProtoList = () => {
   return (dispatch) => {
     dispatch(clearList())
+  }
+}
+
+export const updateJobFromDisplayedList = (protos) => {
+  return (dispatch) => {
+    dispatch(updateOneJob(protos))
   }
 }
 

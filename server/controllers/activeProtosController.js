@@ -76,29 +76,32 @@ activeProtosRouter.put('/job/complete/:id', async (req, res, next) => {
   const activeListId = req.params.id
   const { protoId, jobId, isComplete } = req.body
   try {
-    await ActiveProtos.findByIdAndUpdate(activeListId,
+    const result = await ActiveProtos.findByIdAndUpdate(activeListId,
       { $set: { "activeProtos.$[outer].jobs.$[inner].isComplete": !isComplete } },
       {
-        "arrayFilters": [{ "outer.id": protoId }, { "inner._id": jobId }]
+        "arrayFilters": [{ "outer.id": protoId }, { "inner._id": jobId }],
+        new: true,
       }
     )
-    return res.status(201).json(!isComplete)
+    console.log(result)
+    return res.status(201).json(result)
   } catch (error) {
     next(error)
   }
 })
 
-activeProtosRouter.put('/job/hidden/:id', async (req, res, next) => {
+activeProtosRouter.put('/job/delete/:id', async (req, res, next) => {
   const activeListId = req.params.id
-  const { protoId, jobId, isHidden } = req.body
+  const { protoId, jobId } = req.body
   try {
-    await ActiveProtos.findByIdAndUpdate(activeListId,
-      { $set: { "activeProtos.$[outer].jobs.$[inner].isHidden": isHidden } },
+    const result = await ActiveProtos.findByIdAndUpdate(activeListId,
+      { $pull: { "activeProtos.$[outer].jobs": { _id: jobId } } },
       {
-        "arrayFilters": [{ "outer.id": protoId }, { "inner._id": jobId }]
+        "arrayFilters": [{ "outer.id": protoId }, { "inner._id": jobId }],
+        new: true,
       }
     )
-    return res.status(201).json(isHidden)
+    return res.status(201).json(result)
   } catch (error) {
     next(error)
   }

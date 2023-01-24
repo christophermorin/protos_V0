@@ -8,19 +8,18 @@ import protoServices from '../../services/protoServices'
 import activeProtoServices from '../../services/activeProtoServices'
 import { addOne } from '../../reducers/activeProtosReducer'
 
-import { Button, Grid, Stack, Switch, FormControlLabel, FormGroup } from "@mui/material"
+import { Button, Grid, Stack, Switch, FormControlLabel, FormGroup, Dialog } from "@mui/material"
 import { EditorState, convertToRaw } from 'draft-js'
 
 
-export default function BuildForm() {
+export default function BuildForm({ open, handleCloseBuild }) {
   const [protoTitle, setProtoTitle] = useState('') // This state can stay here
   const [protoDescription, setProtoDescription] = useState('') // This state can stay here
   const [protoTimeOfDay, setProtoTimeOfDay] = useState('') // This state can stau here
   const [newProtoJobs, setNewProtoJobs] = useState([]) // These are jobs being added to a created proto
   const [checked, setChecked] = useState(false)
-  // const [listAllJobs, setListAllJobs] = useState() ***UNUSED
-  const dispatch = useDispatch()
 
+  const dispatch = useDispatch()
   const user = useSelector(state => state.userAuth)
   const activeProtos = useSelector(state => state.activeProtos)
 
@@ -65,50 +64,52 @@ export default function BuildForm() {
     try {
       const result = await protoServices.createNewProto(newProto, user.token)
       if (result && checked) {
-        const addOne = await activeProtoServices.addOneToActive(activeProtos._id, result)
+        const addOneProto = await activeProtoServices.addOneToActive(activeProtos._id, result)
         dispatch(addOne(result))
       }
     } catch (error) {
-      console.log(error.response.data.error)
+      console.log(error)
     }
   }
   return (
-    <Grid container spacing={2} sx={{ marginTop: 5, justifyContent: 'center' }}>
-      <Grid item xs={12} md={6}>
-        <CreateProtoForm
-          setProtoTitle={setProtoTitle}
-          setProtoDescription={setProtoDescription}
-          protoTitle={protoTitle}
-          protoDescription={protoDescription}
-          handleTimeOfDay={handleTimeOfDay}
-          protoTimeOfDay={protoTimeOfDay}
-          editorState={editorState}
-          setEditorState={setEditorState}
-        />
-        <Stack
-          spacing={1}
-          sx={{ marginTop: 5 }}
-        >
-          {currentJobsList}
-        </Stack>
-        <CreateJobForm
-          setNewProtoJobs={setNewProtoJobs}
-          cardColor={color}
-          setColor={setColor}
-        />
-        <Button
-          sx={{ margin: '0 auto', marginTop: 5, marginBottom: 5, display: 'flex', justifyContent: 'center' }}
-          onClick={createProto}
-          variant="contained">
-          Create Proto
-        </Button>
+    <Dialog open={open || false} onClose={handleCloseBuild}>
+      <Grid container spacing={2} sx={{ marginTop: 5, justifyContent: 'center' }}>
+        <Grid item xs={12} md={6}>
+          <CreateProtoForm
+            setProtoTitle={setProtoTitle}
+            setProtoDescription={setProtoDescription}
+            protoTitle={protoTitle}
+            protoDescription={protoDescription}
+            handleTimeOfDay={handleTimeOfDay}
+            protoTimeOfDay={protoTimeOfDay}
+            editorState={editorState}
+            setEditorState={setEditorState}
+          />
+          <Stack
+            spacing={1}
+            sx={{ marginTop: 5 }}
+          >
+            {currentJobsList}
+          </Stack>
+          <CreateJobForm
+            setNewProtoJobs={setNewProtoJobs}
+            cardColor={color}
+            setColor={setColor}
+          />
+          <Button
+            sx={{ margin: '0 auto', marginTop: 5, marginBottom: 5, display: 'flex', justifyContent: 'center' }}
+            onClick={createProto}
+            variant="contained">
+            Create Proto
+          </Button>
 
-        {activeProtos &&
-          <FormGroup>
-            <FormControlLabel control={<Switch checked={checked} onClick={handleChecked} />} label="Add to active list" />
-          </FormGroup>}
+          {activeProtos &&
+            <FormGroup>
+              <FormControlLabel control={<Switch checked={checked} onClick={handleChecked} />} label="Add to active list" />
+            </FormGroup>}
 
-      </Grid>
-    </Grid >
+        </Grid>
+      </Grid >
+    </Dialog >
   )
 }

@@ -1,7 +1,10 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import ActiveTimer from './ActiveTimer';
 import { Box, Typography, Tooltip, Paper, } from "@mui/material"
 import activeProtoServices from '../../services/activeProtoServices';
+import { updateJobFromDisplayedList } from '../../reducers/displayedProtosReducer';
+import { setActiveProtos } from '../../reducers/activeProtosReducer';
 import PlayCircleIcon from '@mui/icons-material/PlayCircle';
 import StopCircleIcon from '@mui/icons-material/StopCircle';
 import HelpIcon from '@mui/icons-material/Help';
@@ -10,7 +13,7 @@ export default function JobCard({ job, listId, protoId }) {
   const [timer, setTimer] = useState(false)
   const [complete, setComplete] = useState(job.isComplete)
   const [hidden, setHidden] = useState(job.isHidden) // intial state should be job.isHidden
-
+  const dispatch = useDispatch()
 
 
   const handleTimer = () => {
@@ -19,30 +22,34 @@ export default function JobCard({ job, listId, protoId }) {
   const toggleJobComplete = async () => {
     try {
       setComplete(!complete)
-      await activeProtoServices.toggleJobComplete(
+      const result = await activeProtoServices.toggleJobComplete(
         listId,
         {
           protoId: protoId,
           jobId: job._id,
           isComplete: complete
         })
+      dispatch(updateJobFromDisplayedList(result.activeProtos))
+      dispatch(setActiveProtos(result))
+      console.log(result)
     } catch (error) {
       console.log('In toggleJobComplete', error)
     }
   }
 
-  const setJobHidden = async () => {
+  const deleteJob = async () => {
     try {
-      setHidden(true)
-      await activeProtoServices.setJobHidden(
+      // setHidden(true)
+      const result = await activeProtoServices.deleteJob(
         listId,
         {
           protoId: protoId,
           jobId: job._id,
-          isHidden: true
         })
+      dispatch(updateJobFromDisplayedList(result.activeProtos)) ///delete this and everything in reducer to reset
+      dispatch(setActiveProtos(result))
     } catch (error) {
-      console.log('In setJobHidden', error)
+      console.log('In deleteJob', error)
     }
   }
 
@@ -94,7 +101,7 @@ export default function JobCard({ job, listId, protoId }) {
               variant='caption'
               fontWeight={500}
               sx={{ '&:hover': { color: 'red' }, cursor: 'pointer', }}
-              onClick={setJobHidden}
+              onClick={deleteJob}
             >
               Hide
             </Typography>

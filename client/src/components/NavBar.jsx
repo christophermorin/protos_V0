@@ -7,7 +7,7 @@ import { AppBar, Toolbar, Button, Box, Drawer, IconButton, List, ListItem, ListI
 import MenuIcon from '@mui/icons-material/Menu';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 
-export default function NavBar() {
+export default function NavBar({ handleOpenBuild }) {
   const [sideBar, setSideBar] = useState(false)
   const [anchorEl, setAnchorEl] = useState(null);
 
@@ -65,7 +65,7 @@ export default function NavBar() {
           <Box>
             <Button color="inherit" component={Link} to="/">Home</Button>
             <Button color="inherit" component={Link} to="/active">Active</Button>
-            <Button color="inherit" component={Link} to="/build">Build</Button>
+            <Button color="inherit" onClick={handleOpenBuild}>Build</Button>
           </Box>
           <Box>
             <IconButton

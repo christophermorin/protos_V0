@@ -12,7 +12,6 @@ export default function ProtoTabs() {
   const displayedProtos = useSelector(state => state.displayedProtos)
   const dispatch = useDispatch()
 
-
   // Setting current active proto list.Used in ProtoTabs.
   useEffect(() => {
     const getActive = async () => {
@@ -67,7 +66,7 @@ export default function ProtoTabs() {
 
   return (
     <Box
-      margin={{ xs: 'none', md: '0 200px' }}
+      marginLeft={{ xs: 'none', md: '200px' }}
     >
       <Tabs
         value={false}

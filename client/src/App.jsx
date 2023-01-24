@@ -1,4 +1,4 @@
-import { useEffect } from "react"
+import { useState, useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import {
   BrowserRouter as Router,
@@ -21,6 +21,18 @@ const App = () => {
   const dispatch = useDispatch()
   const user = useSelector(state => state.userAuth)
 
+  // Testing build dialog
+  const [toggleBuild, setToggleBuild] = useState()
+
+  const handleOpenBuild = () => {
+    setToggleBuild(!toggleBuild)
+  }
+  const handleCloseBuild = () => {
+    setToggleBuild(false)
+  }
+
+
+
   useEffect(() => {
     dispatch(setUserAuth(JSON.parse(window.localStorage.getItem('user') || null)))
   }, [])
@@ -30,12 +42,12 @@ const App = () => {
       <CssBaseline />
       {user ?
         <>
-          <NavBar />
+          <NavBar handleOpenBuild={handleOpenBuild} />
+          <BuildForm open={toggleBuild} handleCloseBuild={handleCloseBuild} />
           <Container maxWidth='false' sx={{ padding: '0 10px', height: 'calc(100% - 56px)' }}>
             <Routes>
               <Route path="/" element={<Home user={user} />} />
               <Route path="/active" element={<ProtoTabs />} />
-              <Route path="/build" element={<BuildForm />} />
               <Route path="/Library" element={<Library />} />
             </Routes>
           </Container>

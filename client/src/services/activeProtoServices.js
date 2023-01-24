@@ -28,9 +28,9 @@ const toggleJobComplete = async (listId, { protoId, jobId, isComplete }) => {
   return completedStatus.data
 }
 
-const setJobHidden = async (listId, { protoId, jobId, isHidden }) => {
-  const hiddenStatus = await axios.put(`${baseUrl}/job/hidden/${listId}`, { protoId, jobId, isHidden })
-  return hiddenStatus.data
+const deleteJob = async (listId, { protoId, jobId }) => {
+  const deleteStatus = await axios.put(`${baseUrl}/job/delete/${listId}`, { protoId, jobId })
+  return deleteStatus.data
 }
 
-export default { getActiveProtos, createActiveList, addOneToActive, deleteOneFromActive, toggleJobComplete, setJobHidden, }
+export default { getActiveProtos, createActiveList, addOneToActive, deleteOneFromActive, toggleJobComplete, deleteJob, }

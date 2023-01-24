@@ -8,7 +8,9 @@ const ActiveProtos = createSlice({
       return action.payload
     },
     addOne(state, action) {
-      return [...state, action.payload]
+      const newActiveList = state
+      newActiveList.activeProtos.push(action.payload)
+      return newActiveList
     }
   }
 })
