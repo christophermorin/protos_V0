@@ -55,6 +55,10 @@ export default function BuildForm({ open, handleCloseBuild }) {
   })
 
   const createProto = async () => {
+    if (!protoTitle) {
+      console.log('Title required')
+      return -1
+    }
     const newProto = {
       title: protoTitle,
       description: editorJSON,
@@ -62,6 +66,7 @@ export default function BuildForm({ open, handleCloseBuild }) {
       jobs: newProtoJobs
     }
     try {
+
       const result = await protoServices.createNewProto(newProto, user.token)
       if (result && checked) {
         const addOneProto = await activeProtoServices.addOneToActive(activeProtos._id, result)
@@ -73,7 +78,7 @@ export default function BuildForm({ open, handleCloseBuild }) {
   }
   return (
     <Dialog open={open || false} onClose={handleCloseBuild}>
-      <Grid container spacing={2} sx={{ marginTop: 5, justifyContent: 'center' }}>
+      <Grid container spacing={2} sx={{ marginTop: 2, justifyContent: 'center' }}>
         <Grid item xs={12} md={6}>
           <CreateProtoForm
             setProtoTitle={setProtoTitle}

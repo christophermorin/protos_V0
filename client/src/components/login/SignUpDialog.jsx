@@ -2,6 +2,8 @@ import { useState } from "react";
 import { Dialog, TextField, Button } from "@mui/material";
 import userServices from "../../services/userServices";
 
+// Switch to form group?
+
 export default function SignUpDialog({ open, closeSignUp, setOpen }) {
   const [username, setUsername] = useState('')
   const [email, setEmail] = useState('')
@@ -9,7 +11,6 @@ export default function SignUpDialog({ open, closeSignUp, setOpen }) {
   const [confirmPassword, setConfirmPassword] = useState('')
 
   const handleSignUp = async (event) => {
-    event.preventDefault()
     if (confirmPassword !== password) {
       console.log('Passwords must match')
       return
@@ -21,7 +22,6 @@ export default function SignUpDialog({ open, closeSignUp, setOpen }) {
     }
     try {
       const result = await userServices.userSignUp(newUser)
-      console.log(result.data) // prints new user data
       setUsername('')
       setEmail('')
       setPassword('')
@@ -32,8 +32,6 @@ export default function SignUpDialog({ open, closeSignUp, setOpen }) {
     }
   }
 
-
-  // Form Group?
   return (
     <Dialog
       open={open}

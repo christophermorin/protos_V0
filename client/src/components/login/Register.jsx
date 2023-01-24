@@ -5,6 +5,8 @@ import loginServices from "../../services/loginServices"
 import { setUserAuth } from "../../reducers/userAuthReducer"
 import { TextField, Box, Button } from "@mui/material"
 
+// Switch to form group?
+
 export default function Register() {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
@@ -20,17 +22,17 @@ export default function Register() {
     setOpen(false)
   }
 
-  const handleLogin = async (event) => {
-    event.preventDefault()
+  const handleLogin = async () => {
     const user = {
       username: username,
       password: password
     }
     try {
-      const result = await loginServices.loginUser(user)
-      window.localStorage.setItem('user', JSON.stringify(result.data))
-      dispatch(setUserAuth(result.data))
+      const userAuth = await loginServices.loginUser(user)
+      window.localStorage.setItem('user', JSON.stringify(userAuth))
+      dispatch(setUserAuth(userAuth))
     } catch (error) {
+      //Needs error notification
       console.log(error.response.data.error)
     }
   }

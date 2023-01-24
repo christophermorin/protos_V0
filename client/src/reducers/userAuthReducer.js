@@ -4,17 +4,17 @@ const UserAuth = createSlice({
   name: 'userAuth',
   initialState: null,
   reducers: {
-    setUserAuth(state, action) {
+    setAuth(state, action) {
       return action.payload
     },
   }
 })
 
-export const { setUserAuth } = UserAuth.actions
+export const { setAuth } = UserAuth.actions
 
-export const setAuth = (token) => {
+export const setUserAuth = (token) => {
   return (dispatch) => {
-    dispatch(setUserAuth(token))
+    dispatch(setAuth(token))
   }
 }
 

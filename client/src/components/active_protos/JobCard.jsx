@@ -53,7 +53,7 @@ export default function JobCard({ job, listId, protoId }) {
     }
   }
 
-  const tempColorCard = `rgba(${job.cardColor.r}, ${job.cardColor.g}, ${job.cardColor.b}, ${job.cardColor.a})`
+  // const tempColorCard = `rgba(${job.cardColor.r}, ${job.cardColor.g}, ${job.cardColor.b}, ${job.cardColor.a})`
 
   return (
     <div style={{
@@ -103,7 +103,7 @@ export default function JobCard({ job, listId, protoId }) {
               sx={{ '&:hover': { color: 'red' }, cursor: 'pointer', }}
               onClick={deleteJob}
             >
-              Hide
+              Delete
             </Typography>
             <Typography
               variant='caption'
@@ -129,6 +129,8 @@ export default function JobCard({ job, listId, protoId }) {
           alignItems: 'center'
         }}>
           <Tooltip title={job.description} placement="top-end">
+            {/* {!timer ? <PlayCircleIcon fontSize='large' onClick={handleTimer} /> : <StopCircleIcon fontSize='large' onClick={handleTimer} sx={{ color: 'red' }} />} */}
+
             <HelpIcon />
           </Tooltip>
           <ActiveTimer jobTimer={job.timer} timerState={timer} />

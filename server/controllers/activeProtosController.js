@@ -108,14 +108,3 @@ activeProtosRouter.put('/job/delete/:id', async (req, res, next) => {
 })
 
 module.exports = activeProtosRouter
-
-
-// const selectedList = new ActiveProtos(req.body)
-// try {
-//   const newActiveList = await selectedList.save()
-//   logger.info(newActiveList)
-//   return res.status(201).json(newActiveList)
-// } catch (error) {
-//   logger.error(error)
-// }
-// })

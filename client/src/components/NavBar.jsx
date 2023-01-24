@@ -3,7 +3,21 @@ import { useDispatch } from 'react-redux';
 import { Link } from "react-router-dom"
 import InboxIcon from '@mui/icons-material/Inbox';
 import { setUserAuth } from '../reducers/userAuthReducer';
-import { AppBar, Toolbar, Button, Box, Drawer, IconButton, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Menu, MenuItem } from '@mui/material'
+import {
+  AppBar,
+  Toolbar,
+  Button,
+  Box,
+  Drawer,
+  IconButton,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemIcon,
+  ListItemText,
+  Menu,
+  MenuItem
+} from '@mui/material'
 import MenuIcon from '@mui/icons-material/Menu';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 
@@ -33,14 +47,14 @@ export default function NavBar({ handleOpenBuild }) {
     setSideBar(!sideBar)
   }
 
-  const tempList = ['Home', 'Dashboard', 'Resources', 'Market', 'Library'].map(item => {
+  const sideBarOptions = ['Home', 'Dashboard', 'Resources', 'Market', 'Library'].map(option => {
     return (
-      <ListItem disablePadding key={item}>
-        <ListItemButton component={Link} to={`/${item}`}>
+      <ListItem disablePadding key={option}>
+        <ListItemButton component={Link} to={`/${option}`}>
           <ListItemIcon>
             <InboxIcon />
           </ListItemIcon>
-          <ListItemText primary={item} />
+          <ListItemText primary={option} />
         </ListItemButton>
       </ListItem>
     )
@@ -83,7 +97,6 @@ export default function NavBar({ handleOpenBuild }) {
               anchorEl={anchorEl}
               open={open}
               onClose={handleClose}
-
             >
               <MenuItem onClick={handleClose}>Profile</MenuItem>
               <MenuItem onClick={handleClose}>My account</MenuItem>
@@ -104,7 +117,7 @@ export default function NavBar({ handleOpenBuild }) {
       >
         <List sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', height: '100%', paddingTop: 5 }}>
           <div>
-            {tempList}
+            {sideBarOptions}
           </div>
           <ListItem disablePadding>
             <ListItemButton>
@@ -130,7 +143,7 @@ export default function NavBar({ handleOpenBuild }) {
       >
         <List sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', height: '100%', paddingTop: 5 }}>
           <div>
-            {tempList}
+            {sideBarOptions}
           </div>
           <ListItem disablePadding>
             <ListItemButton>
