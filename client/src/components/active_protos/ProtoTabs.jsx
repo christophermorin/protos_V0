@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import ActiveProto from './ActiveProto';
-import { Tabs, Tab, Grid, Box, Zoom, } from '@mui/material'
+import { Tabs, Tab, Grid, Box, Zoom } from '@mui/material'
 import activeProtoServices from '../../services/activeProtoServices'
 import { setActiveProtos } from '../../reducers/activeProtosReducer';
 import { addProto, removeOneProto } from '../../reducers/displayedProtosReducer';
@@ -40,8 +40,16 @@ export default function ProtoTabs() {
   }
 
   const tabCount = protoList ? protoList.activeProtos.map(proto => {
+    const colors = ['yellow', 'orange', 'darkblue', 'green']
+
+    const styles = {
+      // backgroundColor: colors[proto.timeOfDay],
+      borderRadius: '5px',
+      border: '1px solid black',
+      marginRight: 10
+    }
     return (
-      <Tab key={proto.id} label={proto.title} onClick={() => handleClick(event, proto)}
+      <Tab style={styles} key={proto.id} label={proto.title} onClick={() => handleClick(event, proto)}
       />
     )
 
@@ -73,13 +81,14 @@ export default function ProtoTabs() {
         variant="scrollable"
         scrollButtons
         allowScrollButtonsMobile
+        sx={{ marginTop: 1 }}
       >
         {tabCount}
       </Tabs>
       <Box>
         {displayedProtos.length > 0
           ?
-          <Grid container direction='row' wrap='nowrap' sx={{ overflowX: 'scroll', height: '88vh', }} >
+          <Grid container direction='row' wrap='nowrap' sx={{ overflowX: 'scroll', height: '88vh' }} >
             {displayed}
           </Grid>
           :

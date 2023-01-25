@@ -50,22 +50,22 @@ export default function CreateProtoForm({ setProtoTitle, protoTitle, handleTimeO
         size="small"
         sx={{ marginTop: 2, marginBottom: 2 }}
       >
-        <ToggleButton value="morning" aria-label="morning">
+        <ToggleButton value={0} aria-label="morning">
           <Tooltip title='Morning' placement="top-end">
             <WbTwilightIcon sx={{ color: "#ffd600" }} />
           </Tooltip>
         </ToggleButton>
-        <ToggleButton value="afternoon" aria-label="afternoon">
+        <ToggleButton value={1} aria-label="afternoon">
           <Tooltip title='Afternoon' placement="top-end">
             <WbSunnyIcon sx={{ color: 'orange' }} />
           </Tooltip>
         </ToggleButton>
-        <ToggleButton value="evening" aria-label="evening">
+        <ToggleButton value={2} aria-label="evening">
           <Tooltip title='Evening' placement="top-end">
             <NightlightIcon sx={{ color: 'darkblue' }} />
           </Tooltip>
         </ToggleButton>
-        <ToggleButton value="continuous" aria-label="continuous" >
+        <ToggleButton value={3} aria-label="continuous" >
           <Tooltip title='Continuous' placement="top-end">
             <ReplayCircleFilledIcon sx={{ color: 'green' }} />
           </Tooltip>
