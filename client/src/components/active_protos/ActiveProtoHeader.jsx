@@ -85,6 +85,6 @@ export default function ActiveProtoHeader({ protoTitle, protoDescription, protoI
         <Typography variant="caption" fontWeight={500}>Job Count</Typography>
         <Typography variant="caption" fontWeight={500}>Total TIme</Typography>
       </Box>
-    </Paper>
+    </Paper >
   )
 }

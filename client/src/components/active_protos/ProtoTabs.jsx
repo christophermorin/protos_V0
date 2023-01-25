@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import ActiveProto from './ActiveProto';
 import { Tabs, Tab, Grid, Box, Zoom } from '@mui/material'
@@ -73,27 +73,29 @@ export default function ProtoTabs() {
     null
 
   return (
-    <Box
-      marginLeft={{ xs: 'none', md: '200px' }}
-    >
-      <Tabs
-        value={false}
-        variant="scrollable"
-        scrollButtons
-        allowScrollButtonsMobile
-        sx={{ marginTop: 1 }}
-      >
-        {tabCount}
-      </Tabs>
-      <Box>
+    <Grid container direction='row' height={'100%'} alignContent="flex-start" >
+      <Grid item xs={12} sx={{ marginLeft: { xs: 'none', md: '200px' } }}>
+        <Tabs
+          value={false}
+          variant="scrollable"
+          scrollButtons
+          allowScrollButtonsMobile
+          sx={{ marginTop: 1, marginBottom: 1 }}
+        >
+          {tabCount}
+        </Tabs>
+      </Grid>
+      <Grid item xs={12} height="calc(100% - 64px)" sx={{ overflowX: 'scroll', marginLeft: { xs: 'none', md: '200px' }, }}>
         {displayedProtos.length > 0
           ?
-          <Grid container direction='row' wrap='nowrap' sx={{ overflowX: 'scroll', height: '88vh' }} >
+          <Grid container direction='row' wrap='nowrap' alignContent={'flex-start'}>
             {displayed}
           </Grid>
           :
           <div style={{ display: 'flex', justifyContent: 'center' }} >No active Protos...</div>}
-      </Box>
-    </Box >
+      </Grid>
+    </Grid >
   )
 }
+
+// sx={{ height: '88vh' }}
