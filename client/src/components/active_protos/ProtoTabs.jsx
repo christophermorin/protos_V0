@@ -1,6 +1,7 @@
-import { useEffect, useRef } from 'react'
+import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import ActiveProto from './ActiveProto';
+import SpeedDialMenu from '../Utilities/SpeedDIalMenu';
 import { Tabs, Tab, Grid, Box, Zoom } from '@mui/material'
 import activeProtoServices from '../../services/activeProtoServices'
 import { setActiveProtos } from '../../reducers/activeProtosReducer';
@@ -93,6 +94,7 @@ export default function ProtoTabs() {
           </Grid>
           :
           <div style={{ display: 'flex', justifyContent: 'center' }} >No active Protos...</div>}
+        <SpeedDialMenu />
       </Grid>
     </Grid >
   )

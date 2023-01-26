@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import ActiveTimer from './ActiveTimer';
 import { Box, Typography, Tooltip, Paper, } from "@mui/material"
 import activeProtoServices from '../../services/activeProtoServices';
-import { updateJobFromDisplayedList } from '../../reducers/displayedProtosReducer';
+import { updateDisplayedList } from '../../reducers/displayedProtosReducer';
 import { setActiveProtos } from '../../reducers/activeProtosReducer';
 import PlayCircleIcon from '@mui/icons-material/PlayCircle';
 import StopCircleIcon from '@mui/icons-material/StopCircle';
@@ -29,7 +29,9 @@ export default function JobCard({ job, listId, protoId }) {
           jobId: job._id,
           isComplete: complete
         })
-      dispatch(updateJobFromDisplayedList(result.activeProtos))
+      const updatedProto = result.activeProtos.find(proto => proto.id === protoId)
+      dispatch(updateDisplayedList(updatedProto))
+      // dispatch(updateJobFromDisplayedList(result.activeProtos))
       dispatch(setActiveProtos(result))
       console.log(result)
     } catch (error) {
@@ -46,7 +48,9 @@ export default function JobCard({ job, listId, protoId }) {
           protoId: protoId,
           jobId: job._id,
         })
-      dispatch(updateJobFromDisplayedList(result.activeProtos)) ///delete this and everything in reducer to reset
+      const updatedProto = result.activeProtos.find(proto => proto.id === protoId)
+      dispatch(updateDisplayedList(updatedProto))
+      // dispatch(updateJobFromDisplayedList(result.activeProtos))
       dispatch(setActiveProtos(result))
     } catch (error) {
       console.log('In deleteJob', error)

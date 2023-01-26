@@ -4,6 +4,10 @@ const protosSchema = new mongoose.Schema({
   title: String,
   description: String,
   timeOfDay: String,
+  isComplete: {
+    type: Boolean,
+    default: false
+  },
   jobs: [
     {
       title: String,

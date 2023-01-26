@@ -13,6 +13,9 @@ import Library from "./components/Library"
 
 import activeProtoServices from "./services/activeProtoServices"
 
+import protoServices from "./services/protoServices"
+import { setAllProtosList } from "./reducers/userProtosReducer"
+
 import { setUserAuth } from "./reducers/userAuthReducer"
 import { Container, CssBaseline } from '@mui/material'
 import './Draft.css'
@@ -21,7 +24,7 @@ const App = () => {
   const dispatch = useDispatch()
   const user = useSelector(state => state.userAuth)
 
-  // Testing build dialog
+  // Build dialog*********************************
   const [toggleBuild, setToggleBuild] = useState()
 
   const handleOpenBuild = () => {
@@ -30,9 +33,24 @@ const App = () => {
   const handleCloseBuild = () => {
     setToggleBuild(false)
   }
+  // *********************************************
 
+  // Fetching all user created protos and populating dropdown lists in home and speeddial add.
+  useEffect(() => {
+    const getUserProtos = async () => {
+      try {
+        if (user) {
+          const result = await protoServices.getAllUserProtos(user.id)
+          dispatch(setAllProtosList(result))
+        }
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    getUserProtos()
+  }, [user])
 
-
+  // Confirm that user auth still valid. JWT will have an expiration time.
   useEffect(() => {
     dispatch(setUserAuth(JSON.parse(window.localStorage.getItem('user') || null)))
   }, [])

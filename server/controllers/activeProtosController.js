@@ -37,7 +37,7 @@ activeProtosRouter.post('/', async (req, res, next) => {
     next(error)
   }
 })
-
+// Add one proto to active list
 activeProtosRouter.put('/:id', async (req, res) => {
   const activeProtoId = req.params.id
   const newProto = req.body
@@ -48,7 +48,21 @@ activeProtosRouter.put('/:id', async (req, res) => {
     console.log(error)
   }
 })
+// Add many protos to active list
+activeProtosRouter.put('/add-many/:id', async (req, res, next) => {
+  const activeProtoId = req.params.id
+  const newProtos = req.body
+  try {
+    const activeList = await ActiveProtos.findOneAndUpdate({ _id: activeProtoId },
+      { $addToSet: { activeProtos: { $each: [...newProtos] } } }, { new: true })
+    return res.status(201).json(activeList)
+  } catch (error) {
+    console.log(error)
+    next(error)
+  }
+})
 
+// Delete one proto from active list
 activeProtosRouter.post('/delete/:id', async (req, res, next) => {
   const activeListId = req.params.id
   const { protoId, userId } = req.body
@@ -69,6 +83,37 @@ activeProtosRouter.post('/delete/:id', async (req, res, next) => {
     next(error)
   }
 })
+// Delete/Clear active protos list
+activeProtosRouter.delete('/delete-many/:id', async (req, res, next) => {
+  const activeListId = req.params.id
+  try {
+    const activeList = await ActiveProtos.findByIdAndDelete(activeListId)
+    await Users.findByIdAndUpdate(activeList.user, { activeList: null })
+    return res.status(201).json(null)
+  } catch (error) {
+    console.log('In delete many from list')
+    next(error)
+  }
+})
+
+// Mark one proto complete
+activeProtosRouter.put('/complete/:id', async (req, res, next) => {
+  const activeListId = req.params.id
+  const { protoId, isComplete } = req.body
+  console.log(isComplete)
+  try {
+    const result = await ActiveProtos.findByIdAndUpdate(activeListId,
+      { $set: { "activeProtos.$[outer].isComplete": !isComplete } },
+      {
+        "arrayFilters": [{ "outer.id": protoId }],
+        new: true,
+      }
+    )
+    return res.status(200).json(result.activeProtos)
+  } catch (error) {
+    next(error)
+  }
+})
 
 
 //ActiveProto job routes
@@ -84,7 +129,7 @@ activeProtosRouter.put('/job/complete/:id', async (req, res, next) => {
       }
     )
     console.log(result)
-    return res.status(201).json(result)
+    return res.status(200).json(result)
   } catch (error) {
     next(error)
   }

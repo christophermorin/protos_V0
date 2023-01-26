@@ -11,7 +11,7 @@ const ActiveProtos = createSlice({
       const newActiveList = state
       newActiveList.activeProtos.push(action.payload)
       return newActiveList
-    }
+    },
   }
 })
 

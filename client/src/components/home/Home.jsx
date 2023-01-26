@@ -10,21 +10,9 @@ import DashboardIcon from '@mui/icons-material/Dashboard';
 
 
 export default function Home() {
-  const dispatch = useDispatch()
   const [open, setOpen] = useState(false)
 
-  const user = useSelector(state => state.userAuth)
-  useEffect(() => {
-    const getUserProtos = async () => {
-      try {
-        const result = await protoServices.getAllUserProtos(user.id)
-        dispatch(setAllProtosList(result))
-      } catch (error) {
-        console.log(error)
-      }
-    }
-    getUserProtos()
-  }, [])
+  // Moved fetching all user protos to App
 
   const openDialog = () => {
     setOpen(true)

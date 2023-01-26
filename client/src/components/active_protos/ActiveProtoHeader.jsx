@@ -2,12 +2,12 @@ import { useState } from "react";
 import ActiveReason from "./ActiveReason"
 import activeProtoServices from "../../services/activeProtoServices";
 import { setActiveProtos } from "../../reducers/activeProtosReducer";
-import { protoWasDeleted } from "../../reducers/displayedProtosReducer";
+import { protoWasDeleted, updateDisplayedList } from "../../reducers/displayedProtosReducer";
 import { Paper, Typography, Box, IconButton, Menu, MenuItem } from "@mui/material"
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import { useSelector, useDispatch } from 'react-redux'
 
-export default function ActiveProtoHeader({ protoTitle, protoDescription, protoId, listId }) {
+export default function ActiveProtoHeader({ protoTitle, protoDescription, protoId, listId, isComplete }) {
   const [anchorEl, setAnchorEl] = useState(null);
 
   const dispatch = useDispatch()
@@ -36,11 +36,26 @@ export default function ActiveProtoHeader({ protoTitle, protoDescription, protoI
     dispatch(protoWasDeleted(protoId))
   }
 
+  const handleComplete = async () => {
+    try {
+      const result = await activeProtoServices.completeProto(activeList._id,
+        {
+          protoId: protoId,
+          isComplete: isComplete
+        })
+      const completedProto = result.find(proto => proto.id === protoId)
+      dispatch(updateDisplayedList(completedProto))
+    } catch (error) {
+      console.log('In complete proto', error)
+    }
+
+  }
+
   return (
     <Paper
-      sx={{ padding: 2, background: '#eeeeee' }}>
+      sx={{ padding: '16px 16px 0 16px', background: '#eeeeee' }}>
       <Box display={'flex'} justifyContent='space-between'>
-        <Typography variant="h4" fontWeight={700}>
+        <Typography variant="h5" fontWeight={700}>
           {protoTitle}
         </Typography>
 
@@ -78,12 +93,21 @@ export default function ActiveProtoHeader({ protoTitle, protoDescription, protoI
       <Box sx={{
         display: 'flex',
         alignItems: 'center',
-        marginTop: 2,
+        justifyContent: 'flex-start',
         gap: 2,
       }}>
         <ActiveReason protoDescription={protoDescription} />
-        <Typography variant="caption" fontWeight={500}>Job Count</Typography>
-        <Typography variant="caption" fontWeight={500}>Total TIme</Typography>
+        <Typography
+          variant='caption'
+          fontWeight={500}
+          sx={{
+            '&:hover': { color: 'red' },
+            cursor: 'pointer',
+          }}
+          onClick={handleComplete}
+        >
+          Complete
+        </Typography>
       </Box>
     </Paper >
   )

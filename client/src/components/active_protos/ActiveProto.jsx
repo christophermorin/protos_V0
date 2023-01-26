@@ -1,9 +1,8 @@
 import ActiveProtoHeader from "./ActiveProtoHeader"
 import JobCard from "./JobCard"
-import { Accordion, AccordionSummary, AccordionDetails, Grid, Typography, Stack, Box, Tooltip } from "@mui/material"
+import { Accordion, AccordionSummary, AccordionDetails, Grid, Typography, Stack } from "@mui/material"
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { useSelector } from "react-redux";
-import activeProtoServices from "../../services/activeProtoServices";
 
 export default function ActiveProto({ proto }) {
   const activeList = useSelector(state => state.activeProtos)
@@ -17,7 +16,7 @@ export default function ActiveProto({ proto }) {
   return (
     <Grid container spacing={0.5} key={proto._id} sx={{ maxWidth: { xs: 'unset', md: '360px' }, minWidth: '360px' }}>
       <Grid item xs={12}>
-        <ActiveProtoHeader protoTitle={proto.title} protoDescription={proto.description} protoId={proto.id} listId={activeList._id} />
+        <ActiveProtoHeader protoTitle={proto.title} protoDescription={proto.description} protoId={proto.id} listId={activeList._id} isComplete={proto.isComplete} />
       </Grid>
       <Grid item xs={12} >
         <Accordion
@@ -29,14 +28,17 @@ export default function ActiveProto({ proto }) {
             aria-controls="The How"
             id="proto-how"
             sx={{ background: '#eeeeee' }}
+
           >
-            <Typography
+            <Typography variant="caption" fontWeight={500}>Job Count</Typography>
+            <Typography variant="caption" fontWeight={500}>Total TIme</Typography>
+            {/* <Typography
               variant="subtitle2"
               fontSize={15}
               fontWeight={'bold'}
             >
               The How
-            </Typography>
+            </Typography> */}
           </AccordionSummary>
           <AccordionDetails sx={{ background: '#eeeeee' }}>
             <Stack spacing={1} sx={{ maxHeight: '55vh', overflowY: 'scroll', paddingBottom: 1, }}>
