@@ -47,7 +47,7 @@ export default function NavBar({ handleOpenBuild }) {
     setSideBar(!sideBar)
   }
 
-  const sideBarOptions = ['Home', 'Dashboard', 'Resources', 'Market', 'Library'].map(option => {
+  const sideBarOptions = ['Home', 'Dashboard', 'Library'].map(option => {
     return (
       <ListItem disablePadding key={option}>
         <ListItemButton component={Link} to={`/${option}`}>

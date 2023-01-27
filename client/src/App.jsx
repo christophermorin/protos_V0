@@ -9,7 +9,7 @@ import NavBar from "./components/NavBar"
 import Home from "./components/home/Home"
 import ProtoTabs from "./components/active_protos/ProtoTabs"
 import BuildForm from "./components/build_protos/BuildForm"
-import Library from "./components/Library"
+import Library from "./components/library/Library"
 
 import activeProtoServices from "./services/activeProtoServices"
 

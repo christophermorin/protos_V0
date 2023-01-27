@@ -74,8 +74,15 @@ export default function ProtoTabs() {
     null
 
   return (
-    <Grid container direction='row' height={'100%'} alignContent="flex-start" >
-      <Grid item xs={12} sx={{ marginLeft: { xs: 'none', md: '200px' } }}>
+    <Grid
+      container
+      direction='row'
+      height={'100%'}
+      alignContent="flex-start">
+      <Grid
+        item xs={12}
+        marginLeft={{ xs: 'none', md: '200px' }}
+      >
         <Tabs
           value={false}
           variant="scrollable"
@@ -86,10 +93,20 @@ export default function ProtoTabs() {
           {tabCount}
         </Tabs>
       </Grid>
-      <Grid item xs={12} height="calc(100% - 64px)" sx={{ overflowX: 'scroll', marginLeft: { xs: 'none', md: '200px' }, }}>
+      <Grid
+        item xs={12}
+        height="calc(100% - 64px)"
+        marginLeft={{ xs: 'none', md: '200px' }}
+        sx={{ overflowX: 'scroll', }}
+      >
         {displayedProtos.length > 0
           ?
-          <Grid container direction='row' wrap='nowrap' alignContent={'flex-start'}>
+          <Grid
+            container
+            direction='row'
+            wrap='nowrap'
+            alignContent={'flex-start'}
+          >
             {displayed}
           </Grid>
           :
