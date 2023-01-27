@@ -2,22 +2,18 @@ import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import StylishButton from "../StylishButton"
 import activeProtoServices from "../../services/activeProtoServices"
-import { setActiveProtos } from "../../reducers/activeProtosReducer"
 import { clearDisplayProtoList } from "../../reducers/displayedProtosReducer"
-import { Dialog, DialogContent, DialogActions, Button, Box, Autocomplete, TextField } from "@mui/material"
+import { Dialog, DialogContent, Box, Autocomplete, TextField } from "@mui/material"
 
 export default function HomeDialog({ open, handleClose }) {
   const [selectedProtos, setSelectedProtos] = useState([])
   const userProtos = useSelector(state => state.userProtos)
   const dispatch = useDispatch()
 
-  // const options = userProtos.map(proto => proto)
-
-  // const sorted = options.sort((a, b) => -b.timeOfDay.localeCompare(a.timeOfDay))
-
-
   const user = useSelector(state => state.userAuth)
 
+  // Creates a new active proto list
+  // Clears currently displayed protos on creation
   const createActiveList = async () => {
     if (selectedProtos.length === 0) {
       console.log('Error: Protos list empty')
@@ -25,17 +21,15 @@ export default function HomeDialog({ open, handleClose }) {
     }
     try {
       const newActiveProtos = {
-        list: selectedProtos,
+        selectedProtos: selectedProtos,
         user: user.id
       }
-      const createdList = await activeProtoServices.createActiveList(newActiveProtos)
-      // dispatch(setActiveProtos(createdList.activeProtos))
+      await activeProtoServices.createActiveList(newActiveProtos)
       dispatch(clearDisplayProtoList())
     } catch (error) {
       console.log(error)
     }
   }
-
   return (
     <Dialog open={open} onClose={handleClose}>
       <DialogContent>
@@ -55,9 +49,7 @@ export default function HomeDialog({ open, handleClose }) {
             // groupBy={(option) => option.timeOfDay}
             getOptionLabel={(option) => option.title}
             renderInput={(params) => <TextField {...params} label="Protos" />}
-
           />
-
           <Box display={'flex'} flexDirection='row' justifyContent='space-between' gap={10}>
             <StylishButton action={createActiveList} title={'Create'} />
             <StylishButton action={handleClose} title={'Cancel'} color={'secondary'} />

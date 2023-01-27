@@ -23,7 +23,8 @@ export const setActiveProtos = (protos) => {
   }
 }
 
-export const addOneProto = (proto) => {
+export const activeProtoAddOne = (proto) => {
+  console.log(proto)
   return (dispatch) => {
     dispatch(addOne(proto))
   }

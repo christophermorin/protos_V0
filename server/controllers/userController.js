@@ -37,7 +37,7 @@ usersRouter.post('/', async (req, res, next) => {
 
 // This was once just a simple find({}), using the users id?
 usersRouter.get('/protos/:id', async (req, res) => {
-  const user = await Users.findById(req.params.id).populate('protos')
+  const user = await Users.findById(req.params.id)
   try {
     res.status(200).json(user.protos)
   } catch (error) {

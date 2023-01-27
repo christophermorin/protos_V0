@@ -11,28 +11,15 @@ const DisplayedProtos = createSlice({
       return []
     },
     removeOneProto(state, action) { // Using the tabs click
-      return state.filter(proto => proto.id !== action.payload.id)
+      return state.filter(proto => proto._id !== action.payload._id)
     },
     updateList(state, action) {
       const newProto = action.payload
-      return state.map(proto => proto.id === newProto.id ? newProto : proto)
+      return state.map(proto => proto._id === newProto._id ? newProto : proto)
     },
     protoWasDeleted(state, action) {
-      return state.filter(proto => proto.id !== action.payload)
+      return state.filter(proto => proto._id !== action.payload)
     },
-    // updateOneJob(state, action) {
-    //   const protos = action.payload
-    //   const result = state.map(proto => proto.id)
-    //   const test = []
-    //   for (let i = 0; i < result.length; i++) {
-    //     for (let j = 0; j < protos.length; j++) {
-    //       if (result[i] === protos[j].id) {
-    //         test.push(protos[j])
-    //       }
-    //     }
-    //   }
-    //   return test
-    // }
   }
 })
 
@@ -40,13 +27,13 @@ export const { buildList, removeOneProto, protoWasDeleted, clearList, updateList
 
 
 
-export const addProto = (proto) => {
+export const displayedAddOne = (proto) => {
   return (dispatch) => {
     dispatch(buildList(proto))
   }
 }
 
-export const removeProto = (proto) => {
+export const displayedRemoveOne = (proto) => {
   return (dispatch) => {
     dispatch(removeOneProto(proto))
   }
@@ -64,7 +51,7 @@ export const clearDisplayProtoList = () => {
   }
 }
 
-export const updateDisplayedList = (newProto) => {
+export const displayedUpdateList = (newProto) => {
   return (dispatch) => {
     dispatch(updateList(newProto))
   }

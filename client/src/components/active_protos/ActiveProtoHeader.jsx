@@ -1,19 +1,17 @@
 import { useState } from "react";
+import { useSelector, useDispatch } from 'react-redux'
 import ActiveReason from "./ActiveReason"
 import activeProtoServices from "../../services/activeProtoServices";
 import { setActiveProtos } from "../../reducers/activeProtosReducer";
-import { protoWasDeleted, updateDisplayedList } from "../../reducers/displayedProtosReducer";
+import { protoWasDeleted, displayedUpdateList } from "../../reducers/displayedProtosReducer";
 import { Paper, Typography, Box, IconButton, Menu, MenuItem } from "@mui/material"
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
-import { useSelector, useDispatch } from 'react-redux'
 
 export default function ActiveProtoHeader({ protoTitle, protoDescription, protoId, listId, isComplete }) {
   const [anchorEl, setAnchorEl] = useState(null);
-
   const dispatch = useDispatch()
   const activeList = useSelector(state => state.activeProtos)
   const user = useSelector(state => state.userAuth)
-  const displayedProtos = useSelector(state => state.displayedProtos)
 
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -23,7 +21,7 @@ export default function ActiveProtoHeader({ protoTitle, protoDescription, protoI
   const handleClose = () => {
     setAnchorEl(null);
   };
-
+  // Needs error handling.
   const handleDelete = async () => {
     const result = await activeProtoServices.deleteOneFromActive(
       activeList._id,
@@ -35,7 +33,7 @@ export default function ActiveProtoHeader({ protoTitle, protoDescription, protoI
     dispatch(setActiveProtos(result))
     dispatch(protoWasDeleted(protoId))
   }
-
+  // Needs error handling.
   const handleComplete = async () => {
     try {
       const result = await activeProtoServices.completeProto(activeList._id,
@@ -43,12 +41,11 @@ export default function ActiveProtoHeader({ protoTitle, protoDescription, protoI
           protoId: protoId,
           isComplete: isComplete
         })
-      const completedProto = result.find(proto => proto.id === protoId)
-      dispatch(updateDisplayedList(completedProto))
+      const updatedProto = result.find(proto => proto._id === protoId)
+      dispatch(displayedUpdateList(updatedProto))
     } catch (error) {
       console.log('In complete proto', error)
     }
-
   }
 
   return (
@@ -58,8 +55,6 @@ export default function ActiveProtoHeader({ protoTitle, protoDescription, protoI
         <Typography variant="h5" fontWeight={700}>
           {protoTitle}
         </Typography>
-
-
         <IconButton
           size="large"
           aria-label="proto options"
@@ -83,12 +78,9 @@ export default function ActiveProtoHeader({ protoTitle, protoDescription, protoI
             vertical: 'top',
             horizontal: 'left',
           }}
-
         >
           <MenuItem onClick={handleDelete}>Delete</MenuItem>
         </Menu>
-
-
       </Box>
       <Box sx={{
         display: 'flex',

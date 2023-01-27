@@ -8,7 +8,6 @@ const UserProtos = createSlice({
       return action.payload
     },
     addFromBuild(state, action) {
-      console.log('here')
       return [...state, action.payload]
     }
   }
@@ -16,13 +15,13 @@ const UserProtos = createSlice({
 
 export const { setAllProtos, addFromBuild } = UserProtos.actions
 
-export const setAllProtosList = (protos) => {
+export const setUserProtosList = (protos) => {
   return (dispatch) => {
     dispatch(setAllProtos(protos))
   }
 }
-
-export const addOneFromBuild = (proto) => {
+// Adds recently built proto to user proto lists in dropdowns
+export const userProtosAddOne = (proto) => {
   return (dispatch) => {
     dispatch(addFromBuild(proto))
   }

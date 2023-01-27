@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import ActiveTimer from './ActiveTimer';
 import { Box, Typography, Tooltip, Paper, } from "@mui/material"
 import activeProtoServices from '../../services/activeProtoServices';
-import { updateDisplayedList } from '../../reducers/displayedProtosReducer';
+import { displayedUpdateList } from '../../reducers/displayedProtosReducer';
 import { setActiveProtos } from '../../reducers/activeProtosReducer';
 import PlayCircleIcon from '@mui/icons-material/PlayCircle';
 import StopCircleIcon from '@mui/icons-material/StopCircle';
@@ -29,11 +29,10 @@ export default function JobCard({ job, listId, protoId }) {
           jobId: job._id,
           isComplete: complete
         })
-      const updatedProto = result.activeProtos.find(proto => proto.id === protoId)
-      dispatch(updateDisplayedList(updatedProto))
+      const updatedProto = result.activeProtos.find(proto => proto._id === protoId)
+      dispatch(displayedUpdateList(updatedProto))
       // dispatch(updateJobFromDisplayedList(result.activeProtos))
       dispatch(setActiveProtos(result))
-      console.log(result)
     } catch (error) {
       console.log('In toggleJobComplete', error)
     }
@@ -48,8 +47,8 @@ export default function JobCard({ job, listId, protoId }) {
           protoId: protoId,
           jobId: job._id,
         })
-      const updatedProto = result.activeProtos.find(proto => proto.id === protoId)
-      dispatch(updateDisplayedList(updatedProto))
+      const updatedProto = result.activeProtos.find(proto => proto._id === protoId)
+      dispatch(displayedUpdateList(updatedProto))
       // dispatch(updateJobFromDisplayedList(result.activeProtos))
       dispatch(setActiveProtos(result))
     } catch (error) {

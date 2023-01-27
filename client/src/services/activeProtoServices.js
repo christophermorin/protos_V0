@@ -7,25 +7,25 @@ const getActiveProtos = async (user) => {
   return results.data
 }
 
-const createActiveList = async (protos, token) => {
+const createActiveList = async (newActiveProtos, token) => {
   const config = {
     headers: { Authorization: `bearer ${token}` },
   }
-  const results = await axios.post(`${baseUrl}`, protos, config)
+  const results = await axios.post(`${baseUrl}`, newActiveProtos, config)
   return results.data
 }
 
 const addOneToActive = async (listId, proto) => {
-  await axios.put(`${baseUrl}/${listId}`, proto)
+  await axios.put(`${baseUrl}/add-one/${listId}`, proto)
 }
-// WORKING **************************************************************************************
+
 const addManyToActive = async (listId, protos) => {
   const result = await axios.put(`${baseUrl}/add-many/${listId}`, protos)
   return result.data
 }
 
 const deleteOneFromActive = async (listId, { protoId, userId }) => {
-  const result = await axios.post(`${baseUrl}/delete/${listId}`, { protoId: protoId, userId: userId })
+  const result = await axios.post(`${baseUrl}/delete-one/${listId}`, { protoId: protoId, userId: userId })
   return result.data
 }
 

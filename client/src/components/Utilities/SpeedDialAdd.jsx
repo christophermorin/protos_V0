@@ -8,10 +8,13 @@ export default function SpeedDialAdd({ open, handleClose }) {
   const [selectedProtos, setSelectedProtos] = useState([])
   const userProtos = useSelector(state => state.userProtos)
   const activeProtos = useSelector(state => state.activeProtos)
-
   const dispatch = useDispatch()
 
   const addToList = async () => {
+    if (!activeProtos) {
+      console.log('No list currently active, please create one')
+      return -1
+    }
     try {
       const result = await activeProtoServices.addManyToActive(activeProtos._id, selectedProtos)
       dispatch(setActiveProtos(result))

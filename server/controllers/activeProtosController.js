@@ -16,33 +16,33 @@ activeProtosRouter.get('/:id', async (req, res, next) => {
     next(error)
   }
 })
-
+// Creating a new active protos list
 activeProtosRouter.post('/', async (req, res, next) => {
   const userId = req.body.user
-  const newList = req.body.list
+  const selectedProtos = req.body.selectedProtos
   try {
     const user = await Users.findById(userId)
     if (user) {
-      const list = new ActiveProtos({
-        activeProtos: newList,
+      const activeProtos = new ActiveProtos({
+        activeProtos: selectedProtos,
         user: user._id
       })
-      const newActiveList = await list.save()
+      const newActiveList = await activeProtos.save()
       user.activeList = newActiveList.id
-      user.save()
+      await user.save()
       return res.status(201).json(newActiveList)
     }
   } catch (error) {
-    logger.error(error)
+    logger.error('In creating new active protos list', error)
     next(error)
   }
 })
-// Add one proto to active list
-activeProtosRouter.put('/:id', async (req, res) => {
-  const activeProtoId = req.params.id
+// Add one proto to active protos list
+activeProtosRouter.put('/add-one/:id', async (req, res) => {
+  const activeProtosId = req.params.id
   const newProto = req.body
   try {
-    const activeList = await ActiveProtos.findOneAndUpdate({ _id: activeProtoId }, { $push: { activeProtos: newProto } })
+    const activeList = await ActiveProtos.findOneAndUpdate({ _id: activeProtosId }, { $push: { activeProtos: newProto } })
     return res.status(201).json(activeList)
   } catch (error) {
     console.log(error)
@@ -63,12 +63,12 @@ activeProtosRouter.put('/add-many/:id', async (req, res, next) => {
 })
 
 // Delete one proto from active list
-activeProtosRouter.post('/delete/:id', async (req, res, next) => {
+activeProtosRouter.post('/delete-one/:id', async (req, res, next) => {
   const activeListId = req.params.id
   const { protoId, userId } = req.body
   try {
     const activeList = await ActiveProtos.findById(activeListId)
-    activeList.activeProtos = activeList.activeProtos.filter(proto => proto.id !== protoId)
+    activeList.activeProtos = activeList.activeProtos.filter(proto => proto._id !== protoId)
     if (activeList.activeProtos.length === 0) {
       await ActiveProtos.findByIdAndDelete(activeListId)
       await Users.findByIdAndUpdate(userId, { activeList: null })
@@ -100,23 +100,26 @@ activeProtosRouter.delete('/delete-many/:id', async (req, res, next) => {
 activeProtosRouter.put('/complete/:id', async (req, res, next) => {
   const activeListId = req.params.id
   const { protoId, isComplete } = req.body
-  console.log(isComplete)
   try {
     const result = await ActiveProtos.findByIdAndUpdate(activeListId,
       { $set: { "activeProtos.$[outer].isComplete": !isComplete } },
       {
-        "arrayFilters": [{ "outer.id": protoId }],
+        "arrayFilters": [{ "outer._id": protoId }],
         new: true,
       }
     )
+    console.log(result)
     return res.status(200).json(result.activeProtos)
   } catch (error) {
     next(error)
   }
 })
 
+// *********************************************************************
+//  ActiveProto job routes
+// *********************************************************************
 
-//ActiveProto job routes
+// Complete one job
 activeProtosRouter.put('/job/complete/:id', async (req, res, next) => {
   const activeListId = req.params.id
   const { protoId, jobId, isComplete } = req.body
@@ -124,7 +127,7 @@ activeProtosRouter.put('/job/complete/:id', async (req, res, next) => {
     const result = await ActiveProtos.findByIdAndUpdate(activeListId,
       { $set: { "activeProtos.$[outer].jobs.$[inner].isComplete": !isComplete } },
       {
-        "arrayFilters": [{ "outer.id": protoId }, { "inner._id": jobId }],
+        "arrayFilters": [{ "outer._id": protoId }, { "inner._id": jobId }],
         new: true,
       }
     )
@@ -134,7 +137,7 @@ activeProtosRouter.put('/job/complete/:id', async (req, res, next) => {
     next(error)
   }
 })
-
+//Delete one job
 activeProtosRouter.put('/job/delete/:id', async (req, res, next) => {
   const activeListId = req.params.id
   const { protoId, jobId } = req.body
@@ -142,7 +145,7 @@ activeProtosRouter.put('/job/delete/:id', async (req, res, next) => {
     const result = await ActiveProtos.findByIdAndUpdate(activeListId,
       { $pull: { "activeProtos.$[outer].jobs": { _id: jobId } } },
       {
-        "arrayFilters": [{ "outer.id": protoId }, { "inner._id": jobId }],
+        "arrayFilters": [{ "outer._id": protoId }, { "inner._id": jobId }],
         new: true,
       }
     )

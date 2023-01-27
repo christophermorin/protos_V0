@@ -17,6 +17,7 @@ const createNewProto = async (newProto, token) => {
     headers: { Authorization: `bearer ${token}` },
   }
   const results = await axios.post(`${baseUrl}`, newProto, config)
+  console.log(results)
   return results.data
 }
 

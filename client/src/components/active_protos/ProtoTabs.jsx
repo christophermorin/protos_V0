@@ -5,14 +5,13 @@ import SpeedDialMenu from '../Utilities/SpeedDIalMenu';
 import { Tabs, Tab, Grid, Box, Zoom } from '@mui/material'
 import activeProtoServices from '../../services/activeProtoServices'
 import { setActiveProtos } from '../../reducers/activeProtosReducer';
-import { addProto, removeOneProto } from '../../reducers/displayedProtosReducer';
+import { displayedAddOne, displayedRemoveOne } from '../../reducers/displayedProtosReducer';
 
 export default function ProtoTabs() {
   const protoList = useSelector(state => state.activeProtos)
   const user = useSelector(state => state.userAuth)
   const displayedProtos = useSelector(state => state.displayedProtos)
   const dispatch = useDispatch()
-
   // Setting current active proto list.Used in ProtoTabs.
   useEffect(() => {
     const getActive = async () => {
@@ -27,22 +26,18 @@ export default function ProtoTabs() {
     }
     getActive()
   }, [])
-
   const handleClick = (event, proto) => {
     event.target.style.color = 'red'
-    const found = displayedProtos.find(item => item.id === proto.id)
+    const found = displayedProtos.find(item => item._id === proto._id)
     if (!found) {
-      dispatch(addProto(proto))
+      dispatch(displayedAddOne(proto))
     }
     else {
-      dispatch(removeOneProto(proto))
+      dispatch(displayedRemoveOne(proto))
       event.target.style.color = ''
     }
   }
-
   const tabCount = protoList ? protoList.activeProtos.map(proto => {
-    const colors = ['yellow', 'orange', 'darkblue', 'green']
-
     const styles = {
       // backgroundColor: colors[proto.timeOfDay],
       borderRadius: '5px',
@@ -50,7 +45,7 @@ export default function ProtoTabs() {
       marginRight: 10
     }
     return (
-      <Tab style={styles} key={proto.id} label={proto.title} onClick={() => handleClick(event, proto)}
+      <Tab style={styles} key={proto._id} label={proto.title} onClick={() => handleClick(event, proto)}
       />
     )
 
@@ -61,7 +56,7 @@ export default function ProtoTabs() {
   //Display selected protos
   const displayed = displayedProtos ? displayedProtos.map(proto => {
     return (
-      <Grid item key={proto.id} sx={{ padding: '0 10px', }}>
+      <Grid item key={proto._id} sx={{ padding: '0 10px', }}>
         <Zoom in={true}>
           <Box>
             <ActiveProto proto={proto} />

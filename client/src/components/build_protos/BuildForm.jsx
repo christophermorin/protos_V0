@@ -5,8 +5,8 @@ import CreateJobForm from "./CreateJobForm"
 import DisplayNewJob from './DisplayNewJob'
 import protoServices from '../../services/protoServices'
 import activeProtoServices from '../../services/activeProtoServices'
-import { addOne } from '../../reducers/activeProtosReducer'
-import { addOneFromBuild } from '../../reducers/userProtosReducer'
+import { activeProtoAddOne } from '../../reducers/activeProtosReducer'
+import { userProtosAddOne } from '../../reducers/userProtosReducer'
 
 import { Button, Grid, Stack, Switch, FormControlLabel, FormGroup, Dialog } from "@mui/material"
 import { EditorState, convertToRaw } from 'draft-js'
@@ -66,20 +66,19 @@ export default function BuildForm({ open, handleCloseBuild }) {
       jobs: newProtoJobs
     }
     try {
-
       const result = await protoServices.createNewProto(newProto, user.token)
-      dispatch(addOneFromBuild(result))
+      dispatch(userProtosAddOne(result))
       setProtoTitle('')
       setProtoDescription('')
       setProtoTimeOfDay('')
       setNewProtoJobs([])
       setEditorState(() => EditorState.createEmpty())
       if (result && checked) {
-        const addOneProto = await activeProtoServices.addOneToActive(activeProtos._id, result)
-        dispatch(addOne(result)) // Adding to activeList
+        await activeProtoServices.addOneToActive(activeProtos._id, result)
+        dispatch(activeProtoAddOne(result)) // Adding to activeList
       }
     } catch (error) {
-      console.log(error, 'broken')
+      console.log(error, 'Proto already exists')
     }
   }
   return (

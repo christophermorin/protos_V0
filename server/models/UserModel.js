@@ -4,15 +4,9 @@ const userSchema = new mongoose.Schema({
   username: String,
   email: String,
   passwordHash: String,
-  protos: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Protos'
-    }
-  ],
+  protos: Array,
   activeList: {
     type: mongoose.Schema.Types.ObjectId,
-
     ref: 'ActiveProtos',
     id: mongoose.Schema.Types.ObjectId,
   }
