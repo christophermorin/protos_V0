@@ -19,6 +19,7 @@ protosRouter.get('/:id', async (req, res, next) => {
   } catch (error) {
     next(error);
   }
+  return null;
 });
 
 protosRouter.post('/', async (req, res, next) => {
@@ -49,6 +50,7 @@ protosRouter.post('/', async (req, res, next) => {
   } catch (error) {
     next(error);
   }
+  return null;
 });
 
 module.exports = protosRouter;

@@ -15,6 +15,7 @@ activeProtosRouter.get('/:id', async (req, res, next) => {
     logger.error(error);
     next(error);
   }
+  return null;
 });
 // Creating a new active protos list
 activeProtosRouter.post('/', async (req, res, next) => {
@@ -36,6 +37,7 @@ activeProtosRouter.post('/', async (req, res, next) => {
     logger.error('In creating new active protos list', error);
     next(error);
   }
+  return null;
 });
 // Add one proto to active protos list
 activeProtosRouter.put('/add-one/:id', async (req, res) => {
@@ -48,6 +50,7 @@ activeProtosRouter.put('/add-one/:id', async (req, res) => {
   } catch (error) {
     console.log(error);
   }
+  return null;
 });
 // Add many protos to active list
 activeProtosRouter.put('/add-many/:id', async (req, res, next) => {
@@ -64,6 +67,7 @@ activeProtosRouter.put('/add-many/:id', async (req, res, next) => {
     console.log(error);
     next(error);
   }
+  return null;
 });
 
 // Delete one proto from active list
@@ -85,6 +89,7 @@ activeProtosRouter.post('/delete-one/:id', async (req, res, next) => {
     console.log('In delete one from list', error);
     next(error);
   }
+  return null;
 });
 // Delete/Clear active protos list
 activeProtosRouter.delete('/delete-many/:id', async (req, res, next) => {
@@ -97,6 +102,7 @@ activeProtosRouter.delete('/delete-many/:id', async (req, res, next) => {
     console.log('In delete many from list');
     next(error);
   }
+  return null;
 });
 
 // Mark one proto complete
@@ -117,6 +123,7 @@ activeProtosRouter.put('/complete/:id', async (req, res, next) => {
   } catch (error) {
     next(error);
   }
+  return null;
 });
 
 // *********************************************************************
@@ -141,6 +148,7 @@ activeProtosRouter.put('/job/complete/:id', async (req, res, next) => {
   } catch (error) {
     next(error);
   }
+  return null;
 });
 // Delete one job
 activeProtosRouter.put('/job/delete/:id', async (req, res, next) => {
@@ -159,6 +167,7 @@ activeProtosRouter.put('/job/delete/:id', async (req, res, next) => {
   } catch (error) {
     next(error);
   }
+  return null;
 });
 
 module.exports = activeProtosRouter;

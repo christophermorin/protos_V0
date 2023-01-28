@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   Dialog, DialogContent, Box, Autocomplete, TextField,
@@ -7,7 +8,7 @@ import StylishButton from '../StylishButton';
 import activeProtoServices from '../../services/activeProtoServices';
 import { clearDisplayProtoList } from '../../reducers/displayedProtosReducer';
 
-export default function HomeDialog({ open, handleClose }) {
+function HomeDialog({ open, handleClose }) {
   const [selectedProtos, setSelectedProtos] = useState([]);
   const userProtos = useSelector((state) => state.userProtos);
   const dispatch = useDispatch();
@@ -61,3 +62,10 @@ export default function HomeDialog({ open, handleClose }) {
     </Dialog>
   );
 }
+
+HomeDialog.propTypes = {
+  open: PropTypes.bool.isRequired,
+  handleClose: PropTypes.func.isRequired,
+};
+
+export default HomeDialog;

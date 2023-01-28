@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import PropTypes from 'prop-types';
 import {
   Dialog, DialogContent, Box, Button, Typography,
 } from '@mui/material';
@@ -6,7 +6,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import activeProtoServices from '../../services/activeProtoServices';
 import { setActiveProtos } from '../../reducers/activeProtosReducer';
 
-export default function SpeedDialClear({ open, handleClose }) {
+function SpeedDialClear({ open, handleClose }) {
   // const [selectedProtos, setSelectedProtos] = useState([]);
   // const userProtos = useSelector((state) => state.userProtos);
   const activeProtos = useSelector((state) => state.activeProtos);
@@ -35,3 +35,10 @@ export default function SpeedDialClear({ open, handleClose }) {
     </Dialog>
   );
 }
+
+SpeedDialClear.propTypes = {
+  open: PropTypes.bool.isRequired,
+  handleClose: PropTypes.func.isRequired,
+};
+
+export default SpeedDialClear;

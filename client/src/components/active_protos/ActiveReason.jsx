@@ -1,9 +1,10 @@
 import { useState } from 'react';
+import PropTypes from 'prop-types';
 import Popover from '@mui/material/Popover';
 import HelpIcon from '@mui/icons-material/Help';
 import { Editor, convertFromRaw, EditorState } from 'draft-js';
 
-export default function ActiveReason({ protoDescription }) {
+function ActiveReason({ protoDescription }) {
   const [anchorEl, setAnchorEl] = useState(null);
 
   const handleClick = (event) => {
@@ -66,3 +67,13 @@ export default function ActiveReason({ protoDescription }) {
     </div>
   );
 }
+
+ActiveReason.defaultProps = {
+  protoDescription: null,
+};
+
+ActiveReason.propTypes = {
+  protoDescription: PropTypes.string,
+};
+
+export default ActiveReason;

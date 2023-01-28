@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import HelpIcon from '@mui/icons-material/Help';
 import {
   Box, Typography, Tooltip, Paper, Grid,
@@ -5,9 +6,7 @@ import {
 import PlayCircleIcon from '@mui/icons-material/PlayCircle';
 import ActiveTimer from '../active_protos/ActiveTimer';
 
-// Replace sx styling
-
-export default function DisplayNewJob({ job, deleteJob }) {
+function DisplayNewJob({ job, deleteJob }) {
   const colorChoice = `rgba(${job.cardColor.r}, ${job.cardColor.g}, ${job.cardColor.b}, ${job.cardColor.a})`;
   return (
 
@@ -69,3 +68,18 @@ export default function DisplayNewJob({ job, deleteJob }) {
     </Paper>
   );
 }
+
+DisplayNewJob.propTypes = {
+  job: PropTypes.shape({
+    _id: PropTypes.string,
+    title: PropTypes.string,
+    description: PropTypes.string,
+    isComplete: PropTypes.bool,
+    isHidden: PropTypes.bool,
+    timer: PropTypes.number,
+    // cardColor: PropTypes.objectOf(PropTypes.string)
+  }).isRequired,
+  deleteJob: PropTypes.func.isRequired,
+};
+
+export default DisplayNewJob;

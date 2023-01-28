@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import {
   Accordion, AccordionSummary, AccordionDetails, Grid, Typography, Stack,
 } from '@mui/material';
@@ -6,12 +7,11 @@ import { useSelector } from 'react-redux';
 import JobCard from './JobCard';
 import ActiveProtoHeader from './ActiveProtoHeader';
 
-export default function ActiveProto({ proto }) {
+function ActiveProto({ proto }) {
   const activeList = useSelector((state) => state.activeProtos);
   const jobslist = proto.jobs.map((job) => (
     <JobCard key={job._id} job={job} listId={activeList._id} protoId={proto._id} />
   ));
-
   return (
     <Grid container spacing={0.5} key={proto._id} sx={{ maxWidth: { xs: 'unset', md: '360px' }, minWidth: '360px' }}>
       <Grid item xs={12}>
@@ -55,3 +55,17 @@ export default function ActiveProto({ proto }) {
     </Grid>
   );
 }
+
+ActiveProto.propTypes = {
+  proto: PropTypes.shape({
+    _id: PropTypes.string.isRequired,
+    user: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    description: PropTypes.string,
+    timeOfDay: PropTypes.string,
+    isComplete: PropTypes.bool.isRequired,
+    jobs: PropTypes.oneOfType([PropTypes.array]),
+  }).isRequired,
+};
+
+export default ActiveProto;

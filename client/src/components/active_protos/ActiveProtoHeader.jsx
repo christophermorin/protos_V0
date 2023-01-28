@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import PropTypes from 'prop-types';
 import {
   Paper, Typography, Box, IconButton, Menu, MenuItem,
 } from '@mui/material';
@@ -9,7 +10,7 @@ import activeProtoServices from '../../services/activeProtoServices';
 import { setActiveProtos } from '../../reducers/activeProtosReducer';
 import { protoWasDeleted, displayedUpdateList } from '../../reducers/displayedProtosReducer';
 
-export default function ActiveProtoHeader({
+function ActiveProtoHeader({
   protoTitle, protoDescription, protoId, isComplete,
 }) {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -112,3 +113,16 @@ export default function ActiveProtoHeader({
     </Paper>
   );
 }
+
+ActiveProtoHeader.defaultProps = {
+  protoDescription: null,
+};
+
+ActiveProtoHeader.propTypes = {
+  protoTitle: PropTypes.string.isRequired,
+  protoDescription: PropTypes.string,
+  protoId: PropTypes.string.isRequired,
+  isComplete: PropTypes.bool.isRequired,
+};
+
+export default ActiveProtoHeader;

@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import {
   Box, TextField, Paper, ToggleButton, ToggleButtonGroup, Tooltip,
 } from '@mui/material';
@@ -7,11 +8,9 @@ import NightlightIcon from '@mui/icons-material/Nightlight';
 import ReplayCircleFilledIcon from '@mui/icons-material/ReplayCircleFilled';
 import ProtoDescriptionForm from './ProtoDescriptionForm';
 
-export default function CreateProtoForm({
+function CreateProtoForm({
   setProtoTitle, protoTitle, handleTimeOfDay, protoTimeOfDay, editorState, setEditorState,
 }) {
-  // factory ?
-  // Break down
   return (
     <Paper sx={{
       textAlign: 'center',
@@ -62,3 +61,18 @@ export default function CreateProtoForm({
     </Paper>
   );
 }
+
+CreateProtoForm.defaultProps = {
+  protoTimeOfDay: '',
+};
+
+CreateProtoForm.propTypes = {
+  setProtoTitle: PropTypes.func.isRequired,
+  protoTitle: PropTypes.string.isRequired,
+  handleTimeOfDay: PropTypes.func.isRequired,
+  protoTimeOfDay: PropTypes.string,
+  // editorState:
+  setEditorState: PropTypes.func.isRequired,
+};
+
+export default CreateProtoForm;

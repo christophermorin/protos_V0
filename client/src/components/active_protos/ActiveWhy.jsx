@@ -1,7 +1,7 @@
+import PropTypes from 'prop-types';
 import { Editor, convertFromRaw, EditorState } from 'draft-js';
-// import 'draft-js/dist/Draft.css';
 
-export default function ActiveWhy({ protoDescription }) {
+function ActiveWhy({ protoDescription }) {
   const text = EditorState.createWithContent(convertFromRaw(JSON.parse(protoDescription)));
 
   function getBlockStyle(block) {
@@ -32,3 +32,9 @@ export default function ActiveWhy({ protoDescription }) {
     </div>
   );
 }
+
+ActiveWhy.propTypes = {
+  protoDescription: PropTypes.string.isRequired,
+};
+
+export default ActiveWhy;

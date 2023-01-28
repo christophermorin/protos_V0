@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import PropTypes from 'prop-types';
 import {
   Dialog, DialogContent, Box, Autocomplete, TextField, Button,
 } from '@mui/material';
@@ -6,7 +7,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import activeProtoServices from '../../services/activeProtoServices';
 import { setActiveProtos } from '../../reducers/activeProtosReducer';
 
-export default function SpeedDialAdd({ open, handleClose }) {
+function SpeedDialAdd({ open, handleClose }) {
   const [selectedProtos, setSelectedProtos] = useState([]);
   const userProtos = useSelector((state) => state.userProtos);
   const activeProtos = useSelector((state) => state.activeProtos);
@@ -23,6 +24,7 @@ export default function SpeedDialAdd({ open, handleClose }) {
     } catch (error) {
       console.log('In add many to list', error);
     }
+    return null;
   };
 
   return (
@@ -48,3 +50,10 @@ export default function SpeedDialAdd({ open, handleClose }) {
     </Dialog>
   );
 }
+
+SpeedDialAdd.propTypes = {
+  open: PropTypes.bool.isRequired,
+  handleClose: PropTypes.func.isRequired,
+};
+
+export default SpeedDialAdd;

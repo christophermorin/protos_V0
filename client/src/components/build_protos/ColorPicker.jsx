@@ -1,7 +1,8 @@
+import PropTypes from 'prop-types';
 import { GithubPicker } from 'react-color';
 import reactCSS from 'reactcss';
 
-export default function ColorPicker({ displayColorPicker, changeColor, color }) {
+function ColorPicker({ displayColorPicker, changeColor, color }) {
   const styles = reactCSS({
     default: {
       popover: {
@@ -28,3 +29,11 @@ export default function ColorPicker({ displayColorPicker, changeColor, color }) 
     </div>
   );
 }
+
+ColorPicker.propTypes = {
+  displayColorPicker: PropTypes.bool.isRequired,
+  changeColor: PropTypes.func.isRequired,
+  // color:
+};
+
+export default ColorPicker;

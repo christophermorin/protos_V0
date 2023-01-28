@@ -1,10 +1,11 @@
 import { useState } from 'react';
+import PropTypes from 'prop-types';
 import { Dialog, TextField, Button } from '@mui/material';
 import userServices from '../../services/userServices';
 
 // Switch to form group?
 
-export default function SignUpDialog({ open, closeSignUp, setOpen }) {
+function SignUpDialog({ open, closeSignUp, setOpen }) {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -65,3 +66,11 @@ export default function SignUpDialog({ open, closeSignUp, setOpen }) {
     </Dialog>
   );
 }
+
+SignUpDialog.propTypes = {
+  open: PropTypes.bool.isRequired,
+  closeSignUp: PropTypes.func.isRequired,
+  setOpen: PropTypes.func.isRequired,
+};
+
+export default SignUpDialog;

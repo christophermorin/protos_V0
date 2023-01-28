@@ -1,8 +1,9 @@
-import { Editor, EditorState, RichUtils } from 'draft-js';
-import 'draft-js/dist/Draft.css';
 import { useRef } from 'react';
+import PropTypes from 'prop-types';
+import { Editor, RichUtils } from 'draft-js';
+import 'draft-js/dist/Draft.css';
 
-export default function ProtoDescriptionForm({ editorState, setEditorState }) {
+function ProtoDescriptionForm({ editorState, setEditorState }) {
   const toggleBlockType = (blockType) => {
     setEditorState(RichUtils.toggleBlockType(editorState, blockType));
   };
@@ -10,7 +11,6 @@ export default function ProtoDescriptionForm({ editorState, setEditorState }) {
   const toggleInlineStyle = (inlineStyle) => {
     setEditorState(RichUtils.toggleInlineStyle(editorState, inlineStyle));
   };
-
   const editor = useRef(null);
   function focusEditor() {
     editor.current.focus();
@@ -142,3 +142,5 @@ function InlineStyleControls(props) {
     </div>
   );
 }
+
+export default ProtoDescriptionForm;

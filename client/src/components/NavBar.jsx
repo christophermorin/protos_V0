@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import InboxIcon from '@mui/icons-material/Inbox';
 import {
@@ -21,7 +22,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import { setUserAuth } from '../reducers/userAuthReducer';
 
-export default function NavBar({ handleOpenBuild }) {
+function NavBar({ handleOpenBuild }) {
   const [sideBar, setSideBar] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
 
@@ -51,7 +52,6 @@ export default function NavBar({ handleOpenBuild }) {
     display: 'flex',
     justifyContent: 'space-between',
   };
-
 
   const sideBarOptions = ['Home', 'Dashboard', 'Library'].map((option) => (
     <ListItem disablePadding key={option}>
@@ -142,7 +142,8 @@ export default function NavBar({ handleOpenBuild }) {
         open
         variant="permanent"
         // onClose={toggleDrawer}
-        sx={{ display: { xs: 'none', lg: 'block' }, '& .MuiDrawer-paper': { boxSizing: 'border-box', width: '200px', backgroundColor: '#1976d2' }, }}>
+        sx={{ display: { xs: 'none', lg: 'block' }, '& .MuiDrawer-paper': { boxSizing: 'border-box', width: '200px', backgroundColor: '#1976d2' } }}
+      >
         <List sx={{
           display: 'flex', flexDirection: 'column', justifyContent: 'space-between', height: '100%', paddingTop: 5,
         }}
@@ -163,3 +164,9 @@ export default function NavBar({ handleOpenBuild }) {
     </Box>
   );
 }
+
+NavBar.propTypes = {
+  handleOpenBuild: PropTypes.func.isRequired,
+};
+
+export default NavBar;

@@ -9,7 +9,7 @@ import activeProtoServices from '../../services/activeProtoServices';
 import { setActiveProtos } from '../../reducers/activeProtosReducer';
 import { displayedAddOne, displayedRemoveOne } from '../../reducers/displayedProtosReducer';
 
-export default function ProtoTabs() {
+function ProtoTabs() {
   const protoList = useSelector((state) => state.activeProtos);
   const user = useSelector((state) => state.userAuth);
   const displayedProtos = useSelector((state) => state.displayedProtos);
@@ -116,4 +116,4 @@ export default function ProtoTabs() {
   );
 }
 
-// sx={{ height: '88vh' }}
+export default ProtoTabs;

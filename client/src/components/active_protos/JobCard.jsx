@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import PropTypes from 'prop-types';
 import {
   Box, Typography, Tooltip, Paper,
 } from '@mui/material';
@@ -11,12 +12,11 @@ import activeProtoServices from '../../services/activeProtoServices';
 import { displayedUpdateList } from '../../reducers/displayedProtosReducer';
 import { setActiveProtos } from '../../reducers/activeProtosReducer';
 
-export default function JobCard({ job, listId, protoId }) {
+function JobCard({ job, listId, protoId }) {
   const [timer, setTimer] = useState(false);
   const [complete, setComplete] = useState(job.isComplete);
   const [hidden, setHidden] = useState(job.isHidden); // intial state should be job.isHidden
   const dispatch = useDispatch();
-
   const handleTimer = () => {
     setTimer(!timer);
   };
@@ -33,7 +33,6 @@ export default function JobCard({ job, listId, protoId }) {
       );
       const updatedProto = result.activeProtos.find((proto) => proto._id === protoId);
       dispatch(displayedUpdateList(updatedProto));
-      // dispatch(updateJobFromDisplayedList(result.activeProtos))
       dispatch(setActiveProtos(result));
     } catch (error) {
       console.log('In toggleJobComplete', error);
@@ -42,7 +41,6 @@ export default function JobCard({ job, listId, protoId }) {
 
   const deleteJob = async () => {
     try {
-      // setHidden(true)
       const result = await activeProtoServices.deleteJob(
         listId,
         {
@@ -52,7 +50,6 @@ export default function JobCard({ job, listId, protoId }) {
       );
       const updatedProto = result.activeProtos.find((proto) => proto._id === protoId);
       dispatch(displayedUpdateList(updatedProto));
-      // dispatch(updateJobFromDisplayedList(result.activeProtos))
       dispatch(setActiveProtos(result));
     } catch (error) {
       console.log('In deleteJob', error);
@@ -140,11 +137,6 @@ export default function JobCard({ job, listId, protoId }) {
         }}
         >
           <Tooltip title={job.description} placement="top-end">
-            {/* {!timer ?
-              <PlayCircleIcon fontSize='large' onClick={handleTimer} />
-              :
-              <StopCircleIcon fontSize='large' onClick={handleTimer} sx={{ color: 'red' }} />} */}
-
             <HelpIcon />
           </Tooltip>
           <ActiveTimer jobTimer={job.timer} timerState={timer} />
@@ -153,3 +145,19 @@ export default function JobCard({ job, listId, protoId }) {
     </div>
   );
 }
+
+JobCard.propTypes = {
+  job: PropTypes.shape({
+    _id: PropTypes.string,
+    title: PropTypes.string,
+    description: PropTypes.string,
+    isComplete: PropTypes.bool,
+    isHidden: PropTypes.bool,
+    timer: PropTypes.number,
+    // cardColor: PropTypes.objectOf(PropTypes.string)
+  }).isRequired,
+  listId: PropTypes.string.isRequired,
+  protoId: PropTypes.string.isRequired,
+};
+
+export default JobCard;

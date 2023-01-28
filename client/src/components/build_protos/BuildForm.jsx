@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
 import {
   Button, Grid, Stack, Switch, FormControlLabel, FormGroup, Dialog,
@@ -12,11 +13,11 @@ import activeProtoServices from '../../services/activeProtoServices';
 import { activeProtoAddOne } from '../../reducers/activeProtosReducer';
 import { userProtosAddOne } from '../../reducers/userProtosReducer';
 
-export default function BuildForm({ open, handleCloseBuild }) {
-  const [protoTitle, setProtoTitle] = useState(''); // This state can stay here
-  const [protoDescription, setProtoDescription] = useState(''); // This state can stay here
-  const [protoTimeOfDay, setProtoTimeOfDay] = useState(''); // This state can stau here
-  const [newProtoJobs, setNewProtoJobs] = useState([]); // These are jobs being added to a created proto
+function BuildForm({ open, handleCloseBuild }) {
+  const [protoTitle, setProtoTitle] = useState('');
+  const [protoDescription, setProtoDescription] = useState('');
+  const [protoTimeOfDay, setProtoTimeOfDay] = useState('');
+  const [newProtoJobs, setNewProtoJobs] = useState([]);
   const [checked, setChecked] = useState(false);
 
   const dispatch = useDispatch();
@@ -106,9 +107,9 @@ export default function BuildForm({ open, handleCloseBuild }) {
           />
           {activeProtos
             && (
-            <FormGroup sx={{ marginTop: 2 }}>
-              <FormControlLabel control={<Switch checked={checked} onClick={handleChecked} />} label="Add Proto to active list" />
-            </FormGroup>
+              <FormGroup sx={{ marginTop: 2 }}>
+                <FormControlLabel control={<Switch checked={checked} onClick={handleChecked} />} label="Add Proto to active list" />
+              </FormGroup>
             )}
           <Button
             sx={{
@@ -125,3 +126,14 @@ export default function BuildForm({ open, handleCloseBuild }) {
     </Dialog>
   );
 }
+
+BuildForm.defaultProps = {
+  open: undefined,
+};
+
+BuildForm.propTypes = {
+  open: PropTypes.bool,
+  handleCloseBuild: PropTypes.func.isRequired,
+};
+
+export default BuildForm;

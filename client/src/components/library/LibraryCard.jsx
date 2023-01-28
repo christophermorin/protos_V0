@@ -1,6 +1,7 @@
+import PropTypes from 'prop-types';
 import { Box } from '@mui/material';
 
-export default function LibraryCard({ title }) {
+function LibraryCard({ title }) {
   const styles = {
     border: '1px solid black',
     width: '360px',
@@ -13,3 +14,9 @@ export default function LibraryCard({ title }) {
     </Box>
   );
 }
+
+LibraryCard.propTypes = {
+  title: PropTypes.string.isRequired,
+};
+
+export default LibraryCard;

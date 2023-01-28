@@ -32,6 +32,7 @@ usersRouter.post('/', async (req, res, next) => {
   } catch (error) {
     next(error);
   }
+  return null;
 });
 
 // This was once just a simple find({}), using the users id?

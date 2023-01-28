@@ -1,19 +1,19 @@
 import { useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { useTimer } from 'react-timer-hook';
 
 function MyTimer({ expiryTimestamp, timerState }) {
   const {
     seconds,
     minutes,
-    hours,
-    days,
-    isRunning,
-    start,
+    // hours,
+    // days,
+    // isRunning,
+    // start,
     pause,
     resume,
-    restart,
+    // restart,
   } = useTimer({ expiryTimestamp, onExpire: () => console.warn('onExpire called'), autoStart: false });
-
   useEffect(() => {
     if (timerState) {
       resume();
@@ -45,7 +45,7 @@ function MyTimer({ expiryTimestamp, timerState }) {
   );
 }
 
-export default function ActiveTimer({ timerState, jobTimer }) {
+function ActiveTimer({ timerState, jobTimer }) {
   const time = new Date();
   time.setSeconds(time.getSeconds() + jobTimer * 60);
   return (
@@ -54,3 +54,26 @@ export default function ActiveTimer({ timerState, jobTimer }) {
     </div>
   );
 }
+
+MyTimer.defaultProps = {
+  timerState: undefined,
+};
+
+MyTimer.propTypes = {
+  expiryTimestamp: PropTypes.objectOf(
+    PropTypes.string,
+  ).isRequired,
+  timerState: PropTypes.bool,
+};
+
+ActiveTimer.defaultProps = {
+  timerState: undefined,
+  jobTimer: 0,
+};
+
+ActiveTimer.propTypes = {
+  timerState: PropTypes.bool,
+  jobTimer: PropTypes.number,
+};
+
+export default ActiveTimer;

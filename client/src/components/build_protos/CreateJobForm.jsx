@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import ColorizeOutlinedIcon from '@mui/icons-material/ColorizeOutlined';
 import {
   Box, Paper, TextField, Grid,
@@ -6,11 +7,10 @@ import { useState } from 'react';
 import StylishButton from '../StylishButton';
 import ColorPicker from './ColorPicker';
 
-export default function AddNewJob({ setNewProtoJobs, cardColor, setColor }) {
+function CreateJobForm({ setNewProtoJobs, cardColor, setColor }) {
   const [jobTitle, setJobTitle] = useState('');
   const [jobDesc, setJobDesc] = useState('');
-  const [jobTimer, setJobTimer] = useState('');
-
+  const [jobTimer, setJobTimer] = useState(0);
   const [displayColorPicker, setDisplayColorPicker] = useState(false);
 
   const toggleColorPicker = () => {
@@ -120,3 +120,16 @@ export default function AddNewJob({ setNewProtoJobs, cardColor, setColor }) {
     </Paper>
   );
 }
+
+CreateJobForm.propTypes = {
+  setNewProtoJobs: PropTypes.func.isRequired,
+  // cardColor: PropTypes.shape({
+  //   r: PropTypes.number,
+  //   g: PropTypes.number,
+  //   b: PropTypes.number,
+  //   a: PropTypes.number,
+  // }).isRequired,
+  setColor: PropTypes.func.isRequired,
+};
+
+export default CreateJobForm;

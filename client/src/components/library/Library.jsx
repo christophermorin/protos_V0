@@ -8,7 +8,7 @@ import userServices from '../../services/userServices';
 
 import LibraryCard from './LibraryCard';
 
-export default function Library() {
+function Library() {
   const [value, setValue] = useState(0);
   const [timeFilter, setTImeFilter] = useState(null);
   const [userProtos, setUserProtos] = useState();
@@ -35,7 +35,6 @@ export default function Library() {
       );
     }
   })
-
     : null;
 
   return (
@@ -63,15 +62,19 @@ export default function Library() {
   );
 }
 
-const styles = {
-  border: '1px solid black',
-  width: '360px',
-  height: '100px',
-};
+export default Library;
+
+// const styles = {
+//   border: '1px solid black',
+//   width: '360px',
+//   height: '100px',
+// };
 
 // Two columnds in desktop
 // Left side menu tabs of 'timeOfDay', ie/ morning, evening etc
 // Right side will display all protos of that time of day in the second column
 // Second column will wrap, display small cards for the proto
-// Cards will just be proto title, job count, time count (maybe) and two buttons 'view/edit, and delete'
-// Clicking view will bring that proto fully displayed up in a dialog that I can resuse for each proto view.
+// Cards will just be proto title, job count,
+//    time count (maybe) and two buttons 'view/edit, and delete'
+// Clicking view will bring that proto fully
+//    displayed up in a dialog that I can resuse for each proto view.

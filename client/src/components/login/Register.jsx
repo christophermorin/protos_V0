@@ -7,7 +7,7 @@ import { setUserAuth } from '../../reducers/userAuthReducer';
 
 // Switch to form group?
 
-export default function Register() {
+function Register() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
@@ -75,3 +75,5 @@ export default function Register() {
     </div>
   );
 }
+
+export default Register;

@@ -25,6 +25,7 @@ const errorHandler = (error, req, res, next) => {
   }
 
   next(error);
+  return null;
 };
 
 module.exports = {

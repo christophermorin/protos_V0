@@ -1,6 +1,7 @@
 import { Button } from '@mui/material';
+import PropTypes from 'prop-types';
 
-export default function StylishButton({ title, action, color }) {
+function StylishButton({ title, action, color }) {
   return (
     <Button
       variant="contained"
@@ -11,3 +12,9 @@ export default function StylishButton({ title, action, color }) {
     </Button>
   );
 }
+
+StylishButton.propTypes = {
+  title: PropTypes.string.isRequired,
+};
+
+export default StylishButton;
