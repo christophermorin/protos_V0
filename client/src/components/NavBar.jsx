@@ -1,8 +1,7 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { Link } from "react-router-dom"
+import { Link } from 'react-router-dom';
 import InboxIcon from '@mui/icons-material/Inbox';
-import { setUserAuth } from '../reducers/userAuthReducer';
 import {
   AppBar,
   Toolbar,
@@ -16,16 +15,17 @@ import {
   ListItemIcon,
   ListItemText,
   Menu,
-  MenuItem
-} from '@mui/material'
+  MenuItem,
+} from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import AccountCircle from '@mui/icons-material/AccountCircle';
+import { setUserAuth } from '../reducers/userAuthReducer';
 
 export default function NavBar({ handleOpenBuild }) {
-  const [sideBar, setSideBar] = useState(false)
+  const [sideBar, setSideBar] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -37,28 +37,32 @@ export default function NavBar({ handleOpenBuild }) {
   };
 
   const logoutUser = () => {
-    window.localStorage.clear()
+    window.localStorage.clear();
     setAnchorEl(null);
-    dispatch(setUserAuth(null))
+    dispatch(setUserAuth(null));
     // Clear all states
-  }
+  };
 
   const toggleDrawer = () => {
-    setSideBar(!sideBar)
-  }
+    setSideBar(!sideBar);
+  };
 
-  const sideBarOptions = ['Home', 'Dashboard', 'Library'].map(option => {
-    return (
-      <ListItem disablePadding key={option}>
-        <ListItemButton component={Link} to={`/${option}`}>
-          <ListItemIcon>
-            <InboxIcon />
-          </ListItemIcon>
-          <ListItemText primary={option} />
-        </ListItemButton>
-      </ListItem>
-    )
-  })
+  const styles = {
+    display: 'flex',
+    justifyContent: 'space-between',
+  };
+
+
+  const sideBarOptions = ['Home', 'Dashboard', 'Library'].map((option) => (
+    <ListItem disablePadding key={option}>
+      <ListItemButton component={Link} to={`/${option}`}>
+        <ListItemIcon>
+          <InboxIcon />
+        </ListItemIcon>
+        <ListItemText primary={option} />
+      </ListItemButton>
+    </ListItem>
+  ));
 
   return (
     <Box height={56}>
@@ -106,7 +110,7 @@ export default function NavBar({ handleOpenBuild }) {
         </Toolbar>
       </AppBar>
       <Drawer
-        anchor='left'
+        anchor="left"
         open={sideBar}
         variant="temporary"
         onClose={toggleDrawer}
@@ -115,7 +119,10 @@ export default function NavBar({ handleOpenBuild }) {
           '& .MuiDrawer-paper': { boxSizing: 'border-box', width: '200px' },
         }}
       >
-        <List sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', height: '100%', paddingTop: 5 }}>
+        <List sx={{
+          display: 'flex', flexDirection: 'column', justifyContent: 'space-between', height: '100%', paddingTop: 5,
+        }}
+        >
           <div>
             {sideBarOptions}
           </div>
@@ -124,24 +131,22 @@ export default function NavBar({ handleOpenBuild }) {
               <ListItemIcon>
                 <InboxIcon />
               </ListItemIcon>
-              <ListItemText primary='Settings' />
+              <ListItemText primary="Settings" />
             </ListItemButton>
           </ListItem>
         </List>
       </Drawer>
 
       <Drawer
-        anchor='left'
+        anchor="left"
         open
         variant="permanent"
-
         // onClose={toggleDrawer}
-        sx={{
-          display: { xs: 'none', lg: 'block' },
-          '& .MuiDrawer-paper': { boxSizing: 'border-box', width: '200px', backgroundColor: '#1976d2' },
+        sx={{ display: { xs: 'none', lg: 'block' }, '& .MuiDrawer-paper': { boxSizing: 'border-box', width: '200px', backgroundColor: '#1976d2' }, }}>
+        <List sx={{
+          display: 'flex', flexDirection: 'column', justifyContent: 'space-between', height: '100%', paddingTop: 5,
         }}
-      >
-        <List sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', height: '100%', paddingTop: 5 }}>
+        >
           <div>
             {sideBarOptions}
           </div>
@@ -150,17 +155,11 @@ export default function NavBar({ handleOpenBuild }) {
               <ListItemIcon>
                 <InboxIcon />
               </ListItemIcon>
-              <ListItemText primary='Settings' />
+              <ListItemText primary="Settings" />
             </ListItemButton>
           </ListItem>
         </List>
       </Drawer>
-
     </Box>
   );
-}
-
-const styles = {
-  display: "flex",
-  justifyContent: "space-between",
 }

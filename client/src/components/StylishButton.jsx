@@ -1,4 +1,5 @@
-import { Button } from '@mui/material'
+import { Button } from '@mui/material';
+
 export default function StylishButton({ title, action, color }) {
   return (
     <Button
@@ -8,5 +9,5 @@ export default function StylishButton({ title, action, color }) {
     >
       {title}
     </Button>
-  )
+  );
 }

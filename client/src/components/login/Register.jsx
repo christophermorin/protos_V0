@@ -1,41 +1,54 @@
-import { useState } from "react"
-import { useDispatch } from "react-redux"
-import SignUpDialog from './SignUpDialog'
-import loginServices from "../../services/loginServices"
-import { setUserAuth } from "../../reducers/userAuthReducer"
-import { TextField, Box, Button } from "@mui/material"
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { TextField, Box, Button } from '@mui/material';
+import SignUpDialog from './SignUpDialog';
+import loginServices from '../../services/loginServices';
+import { setUserAuth } from '../../reducers/userAuthReducer';
 
 // Switch to form group?
 
 export default function Register() {
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   // Signup Dialog state
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(false);
   const openSignUp = () => {
-    setOpen(true)
-  }
+    setOpen(true);
+  };
   const closeSignUp = () => {
-    setOpen(false)
-  }
+    setOpen(false);
+  };
 
   const handleLogin = async () => {
     const user = {
-      username: username,
-      password: password
-    }
+      username,
+      password,
+    };
     try {
-      const userAuth = await loginServices.loginUser(user)
-      window.localStorage.setItem('user', JSON.stringify(userAuth))
-      dispatch(setUserAuth(userAuth))
+      const userAuth = await loginServices.loginUser(user);
+      window.localStorage.setItem('user', JSON.stringify(userAuth));
+      dispatch(setUserAuth(userAuth));
     } catch (error) {
-      //Needs error notification
-      console.log(error.response.data.error)
+      // Needs error notification
+      console.log(error.response.data.error);
     }
-  }
+  };
+
+  const styles = {
+    container: {
+      position: 'relative',
+      top: '40%',
+      width: '200px',
+      margin: '0 auto',
+    },
+    box: {
+      border: '1px solid black',
+      padding: 10,
+    },
+  };
 
   return (
     <div style={styles.container}>
@@ -49,7 +62,7 @@ export default function Register() {
           />
           <TextField
             value={password}
-            type='password'
+            type="password"
             label="Password"
             variant="standard"
             onChange={(e) => setPassword(e.target.value)}
@@ -60,17 +73,5 @@ export default function Register() {
       </Box>
       <SignUpDialog open={open} setOpen={setOpen} closeSignUp={closeSignUp} />
     </div>
-  )
-}
-const styles = {
-  container: {
-    position: 'relative',
-    top: '40%',
-    width: '200px',
-    margin: '0 auto',
-  },
-  box: {
-    border: '1px solid black',
-    padding: 10,
-  }
+  );
 }

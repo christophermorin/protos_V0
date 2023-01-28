@@ -1,4 +1,4 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
 
 const protosSchema = new mongoose.Schema({
   title: String,
@@ -6,7 +6,7 @@ const protosSchema = new mongoose.Schema({
   timeOfDay: String,
   isComplete: {
     type: Boolean,
-    default: false
+    default: false,
   },
   jobs: [
     {
@@ -17,19 +17,19 @@ const protosSchema = new mongoose.Schema({
       notification: Boolean,
       isComplete: Boolean,
       isHidden: Boolean,
-    }
+    },
   ],
 
   user: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'User'
-  }
-})
+    ref: 'User',
+  },
+});
 
 protosSchema.set('toJSON', {
   transform: (document, returnedObject) => {
-    delete returnedObject.__v
-  }
-})
+    delete returnedObject.__v;
+  },
+});
 
-module.exports = mongoose.model('Protos', protosSchema)
+module.exports = mongoose.model('Protos', protosSchema);

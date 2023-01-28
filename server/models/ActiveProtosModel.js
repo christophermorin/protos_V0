@@ -1,4 +1,4 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
 
 const activeProtosSchema = new mongoose.Schema({
   activeProtos: [
@@ -6,8 +6,8 @@ const activeProtosSchema = new mongoose.Schema({
   ],
   user: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'User'
-  }
-})
+    ref: 'User',
+  },
+});
 
-module.exports = mongoose.model('ActiveProtos', activeProtosSchema)
+module.exports = mongoose.model('ActiveProtos', activeProtosSchema);

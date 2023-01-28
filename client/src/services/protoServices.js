@@ -1,5 +1,6 @@
-import axios from 'axios'
-const baseUrl = '/api/protos'
+import axios from 'axios';
+
+const baseUrl = '/api/protos';
 
 // let token = null
 
@@ -8,17 +9,17 @@ const baseUrl = '/api/protos'
 // }
 
 const getAllUserProtos = async (userId) => {
-  const results = await axios.get(`${baseUrl}/${userId}`)
-  return results.data
-}
+  const results = await axios.get(`${baseUrl}/${userId}`);
+  return results.data;
+};
 
 const createNewProto = async (newProto, token) => {
   const config = {
     headers: { Authorization: `bearer ${token}` },
-  }
-  const results = await axios.post(`${baseUrl}`, newProto, config)
-  console.log(results)
-  return results.data
-}
+  };
+  const results = await axios.post(`${baseUrl}`, newProto, config);
+  console.log(results);
+  return results.data;
+};
 
-export default { getAllUserProtos, createNewProto, }
+export default { getAllUserProtos, createNewProto };

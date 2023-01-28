@@ -19,6 +19,23 @@ export default function ActiveReason({ protoDescription }) {
 
   const text = EditorState.createWithContent(convertFromRaw(JSON.parse(protoDescription)));
 
+  function getBlockStyle(block) {
+    switch (block.getType()) {
+      case 'blockquote': return 'RichEditor-blockquote';
+      case 'code-block': return 'RichEditor-codeblock';
+      default: return null;
+    }
+  }
+
+  const styleMap = {
+    CODE: {
+      backgroundColor: 'rgba(0, 0, 0, 0.05)',
+      fontFamily: '"Inconsolata", "Menlo", "Consolas", monospace',
+      fontSize: 16,
+      padding: 2,
+    },
+  };
+
   return (
     <div>
       <HelpIcon aria-describedby={id} onClick={handleClick} />
@@ -32,33 +49,20 @@ export default function ActiveReason({ protoDescription }) {
           horizontal: 'left',
         }}
         PaperProps={{
-          sx: { width: { xs: '325px', md: '600px' } }
+          sx: { width: { xs: '325px', md: '600px' } },
         }}
-        scroll='paper'
+        scroll="paper"
 
       >
         <div style={{ background: 'white', padding: '10px' }}>
-          <Editor editorState={text} readOnly={true} blockStyleFn={getBlockStyle}
-            customStyleMap={styleMap} />
+          <Editor
+            editorState={text}
+            readOnly
+            blockStyleFn={getBlockStyle}
+            customStyleMap={styleMap}
+          />
         </div>
       </Popover>
     </div>
   );
 }
-
-function getBlockStyle(block) {
-  switch (block.getType()) {
-    case 'blockquote': return 'RichEditor-blockquote';
-    case 'code-block': return 'RichEditor-codeblock';
-    default: return null;
-  }
-}
-
-const styleMap = {
-  CODE: {
-    backgroundColor: 'rgba(0, 0, 0, 0.05)',
-    fontFamily: '"Inconsolata", "Menlo", "Consolas", monospace',
-    fontSize: 16,
-    padding: 2,
-  },
-};

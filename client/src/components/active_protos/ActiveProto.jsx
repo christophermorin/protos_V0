@@ -1,25 +1,31 @@
-import ActiveProtoHeader from "./ActiveProtoHeader"
-import JobCard from "./JobCard"
-import { Accordion, AccordionSummary, AccordionDetails, Grid, Typography, Stack } from "@mui/material"
+import {
+  Accordion, AccordionSummary, AccordionDetails, Grid, Typography, Stack,
+} from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import { useSelector } from "react-redux";
+import { useSelector } from 'react-redux';
+import JobCard from './JobCard';
+import ActiveProtoHeader from './ActiveProtoHeader';
 
 export default function ActiveProto({ proto }) {
-  const activeList = useSelector(state => state.activeProtos)
-  const jobslist = proto.jobs.map(job => {
-    return (
-      <JobCard key={job._id} job={job} listId={activeList._id} protoId={proto._id} />
-    )
-  })
+  const activeList = useSelector((state) => state.activeProtos);
+  const jobslist = proto.jobs.map((job) => (
+    <JobCard key={job._id} job={job} listId={activeList._id} protoId={proto._id} />
+  ));
 
   return (
     <Grid container spacing={0.5} key={proto._id} sx={{ maxWidth: { xs: 'unset', md: '360px' }, minWidth: '360px' }}>
       <Grid item xs={12}>
-        <ActiveProtoHeader protoTitle={proto.title} protoDescription={proto.description} protoId={proto._id} listId={activeList._id} isComplete={proto.isComplete} />
+        <ActiveProtoHeader
+          protoTitle={proto.title}
+          protoDescription={proto.description}
+          protoId={proto._id}
+          listId={activeList._id}
+          isComplete={proto.isComplete}
+        />
       </Grid>
-      <Grid item xs={12} >
+      <Grid item xs={12}>
         <Accordion
-          disableGutters={true}
+          disableGutters
           defaultExpanded
         >
           <AccordionSummary
@@ -40,12 +46,12 @@ export default function ActiveProto({ proto }) {
             </Typography> */}
           </AccordionSummary>
           <AccordionDetails sx={{ background: '#eeeeee' }}>
-            <Stack spacing={1} sx={{ maxHeight: '55vh', overflowY: 'scroll', paddingBottom: 1, }}>
+            <Stack spacing={1} sx={{ maxHeight: '55vh', overflowY: 'scroll', paddingBottom: 1 }}>
               {jobslist}
             </Stack>
           </AccordionDetails>
         </Accordion>
       </Grid>
     </Grid>
-  )
+  );
 }

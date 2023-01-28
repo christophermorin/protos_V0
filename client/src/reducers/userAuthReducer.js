@@ -1,21 +1,19 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit';
 
 const UserAuth = createSlice({
   name: 'userAuth',
   initialState: null,
   reducers: {
     setAuth(state, action) {
-      return action.payload
+      return action.payload;
     },
-  }
-})
+  },
+});
 
-export const { setAuth } = UserAuth.actions
+export const { setAuth } = UserAuth.actions;
 
-export const setUserAuth = (token) => {
-  return (dispatch) => {
-    dispatch(setAuth(token))
-  }
-}
+export const setUserAuth = (token) => (dispatch) => {
+  dispatch(setAuth(token));
+};
 
-export default UserAuth.reducer
+export default UserAuth.reducer;

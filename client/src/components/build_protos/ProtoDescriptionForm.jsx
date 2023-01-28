@@ -4,21 +4,21 @@ import { useRef } from 'react';
 
 export default function ProtoDescriptionForm({ editorState, setEditorState }) {
   const toggleBlockType = (blockType) => {
-    setEditorState(RichUtils.toggleBlockType(editorState, blockType))
-  }
+    setEditorState(RichUtils.toggleBlockType(editorState, blockType));
+  };
 
   const toggleInlineStyle = (inlineStyle) => {
-    setEditorState(RichUtils.toggleInlineStyle(editorState, inlineStyle))
-  }
+    setEditorState(RichUtils.toggleInlineStyle(editorState, inlineStyle));
+  };
 
   const editor = useRef(null);
   function focusEditor() {
     editor.current.focus();
   }
 
-  let className = 'RichEditor-editor';
+  const className = 'RichEditor-editor';
   return (
-    <div className='RichEditor-root' style={{ marginTop: '20px', }}>
+    <div className="RichEditor-root" style={{ marginTop: '20px' }}>
       <div style={{ borderBottom: '1px solid #999', marginBottom: '5px' }}>
         <BlockStyleControls
           editorState={editorState}
@@ -30,21 +30,24 @@ export default function ProtoDescriptionForm({ editorState, setEditorState }) {
         />
       </div>
       {/* wordBreak: "break-all" */}
-      <div onClick={focusEditor} style={{
-        padding: '0 10px', minHeight: '100px', cursor: 'text'
-      }}>
+      <div
+        onClick={focusEditor}
+        style={{
+          padding: '0 10px', minHeight: '100px', cursor: 'text',
+        }}
+      >
         <Editor
           ref={editor}
           className={className}
           editorState={editorState}
           onChange={setEditorState}
-          placeholder='Proto Description...'
+          placeholder="Proto Description..."
           blockStyleFn={getBlockStyle}
           customStyleMap={styleMap}
         />
       </div>
     </div>
-  )
+  );
 }
 
 function getBlockStyle(block) {
@@ -77,7 +80,7 @@ const BLOCK_TYPES = [
   // { label: 'Code', style: 'code-block' },
 ];
 
-const BlockStyleControls = (props) => {
+function BlockStyleControls(props) {
   const { editorState } = props;
   const selection = editorState.getSelection();
   const blockType = editorState
@@ -87,7 +90,7 @@ const BlockStyleControls = (props) => {
 
   return (
     <div className="RichEditor-controls">
-      {BLOCK_TYPES.map((type) =>
+      {BLOCK_TYPES.map((type) => (
         <StyleButton
           key={type.label}
           active={type.style === blockType}
@@ -95,16 +98,16 @@ const BlockStyleControls = (props) => {
           onToggle={props.onToggle}
           style={type.style}
         />
-      )}
+      ))}
     </div>
   );
-};
+}
 
-const StyleButton = (props) => {
+function StyleButton(props) {
   const onToggle = (e) => {
-    e.preventDefault()
-    props.onToggle(props.style)
-  }
+    e.preventDefault();
+    props.onToggle(props.style);
+  };
   let className = 'RichEditor-styleButton';
   if (props.active) {
     className += ' RichEditor-activeButton';
@@ -113,7 +116,7 @@ const StyleButton = (props) => {
     <span className={className} onMouseDown={onToggle}>
       {props.label}
     </span>
-  )
+  );
 }
 
 const INLINE_STYLES = [
@@ -123,11 +126,11 @@ const INLINE_STYLES = [
   { label: 'Monospace', style: 'CODE' },
 ];
 
-const InlineStyleControls = (props) => {
+function InlineStyleControls(props) {
   const currentStyle = props.editorState.getCurrentInlineStyle();
   return (
     <div className="RichEditor-controls" style={{ marginBottom: 10 }}>
-      {INLINE_STYLES.map(type =>
+      {INLINE_STYLES.map((type) => (
         <StyleButton
           key={type.label}
           active={currentStyle.has(type.style)}
@@ -135,7 +138,7 @@ const InlineStyleControls = (props) => {
           onToggle={props.onToggle}
           style={type.style}
         />
-      )}
+      ))}
     </div>
   );
-};
+}

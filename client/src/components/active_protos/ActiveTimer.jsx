@@ -12,25 +12,34 @@ function MyTimer({ expiryTimestamp, timerState }) {
     pause,
     resume,
     restart,
-  } = useTimer({ expiryTimestamp, onExpire: () => console.warn('onExpire called'), autoStart: false, });
+  } = useTimer({ expiryTimestamp, onExpire: () => console.warn('onExpire called'), autoStart: false });
 
   useEffect(() => {
     if (timerState) {
-      resume()
+      resume();
+    } else if (!timerState) {
+      pause();
     }
-    else if (!timerState) {
-      pause()
-    }
-  }, [timerState])
+  }, [timerState]);
 
   return (
     <div style={{ textAlign: 'center' }}>
       <div style={{ background: 'lightgrey', padding: '0 10px', fontWeight: '500' }}>
         {/* <span>{hours}</span>
         : */}
-        {minutes < 10 ? <span>0{minutes}</span> : <span>{minutes}</span>}
+        {minutes < 10 ? (
+          <span>
+            0
+            {minutes}
+          </span>
+        ) : <span>{minutes}</span>}
         :
-        {seconds < 10 ? <span>0{seconds}</span> : <span>{seconds}</span>}
+        {seconds < 10 ? (
+          <span>
+            0
+            {seconds}
+          </span>
+        ) : <span>{seconds}</span>}
       </div>
     </div>
   );
