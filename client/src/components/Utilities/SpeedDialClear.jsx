@@ -5,6 +5,7 @@ import {
 import { useSelector, useDispatch } from 'react-redux';
 import activeProtoServices from '../../services/activeProtoServices';
 import { setActiveProtos } from '../../reducers/activeProtosReducer';
+import { clearDisplayProtoList } from '../../reducers/displayedProtosReducer';
 
 function SpeedDialClear({ open, handleClose }) {
   // const [selectedProtos, setSelectedProtos] = useState([]);
@@ -16,6 +17,7 @@ function SpeedDialClear({ open, handleClose }) {
     try {
       const result = await activeProtoServices
         .deleteActiveList(activeProtos._id, activeProtos.user);
+      dispatch(clearDisplayProtoList());
       dispatch(setActiveProtos(result));
     } catch (error) {
       console.log('In delete/clear list', error);

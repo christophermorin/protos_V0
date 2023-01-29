@@ -39,7 +39,7 @@ function Library() {
 
   return (
     <Grid container>
-      <Grid item xs={12} md="auto" marginTop={{ xs: 0, md: 10 }} marginLeft={{ xs: 0, md: 25 }} marginRight={{ xs: 0, md: 2 }}>
+      <Grid item xs={12} md="auto" marginTop={{ xs: 0, md: 10 }} marginLeft={{ xs: 0, md: 25 }} marginRight={{ xs: 0, md: 2 }} marginBottom={2}>
         <Tabs
           orientation={mediumViewport ? 'vertical' : 'horizontal'}
           variant="scrollable"

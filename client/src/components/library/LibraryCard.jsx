@@ -1,17 +1,65 @@
 import PropTypes from 'prop-types';
-import { Box } from '@mui/material';
+import { Paper, Grid, Typography } from '@mui/material';
+import AssignmentIcon from '@mui/icons-material/Assignment';
+import AccessTimeFilledIcon from '@mui/icons-material/AccessTimeFilled';
 
 function LibraryCard({ title }) {
   const styles = {
-    border: '1px solid black',
     width: '360px',
     height: '100px',
+    background: '#eeeeee',
   };
 
   return (
-    <Box style={styles}>
-      {title}
-    </Box>
+    <Paper style={styles}>
+      <Grid container height="100%" justifyContent="space-between">
+        <Grid item xs={12} alignSelf="center" marginLeft={2}>
+          <Typography
+            variant="h5"
+            fontWeight={700}
+          >
+            {title}
+          </Typography>
+        </Grid>
+        <Grid
+          container
+          item
+          xs={12}
+          alignSelf="center"
+          justifyContent="space-between"
+          marginLeft={2}
+          marginRight={2}
+        >
+          <Grid item>
+            <AssignmentIcon sx={{ marginRight: '16px' }} />
+            <AccessTimeFilledIcon />
+          </Grid>
+          <Grid item>
+            <Typography
+              variant="caption"
+              fontWeight={500}
+              sx={{
+                '&:hover': { color: 'red' },
+                cursor: 'pointer',
+              }}
+            >
+              View
+            </Typography>
+            <Typography
+              variant="caption"
+              fontWeight={500}
+              sx={{
+                '&:hover': { color: 'red' },
+                cursor: 'pointer',
+                marginLeft: 5,
+              }}
+            >
+              Delete
+            </Typography>
+          </Grid>
+        </Grid>
+      </Grid>
+    </Paper>
   );
 }
 

@@ -60,7 +60,10 @@ function ActiveProtoHeader({
       sx={{ padding: '16px 16px 0 16px', background: '#eeeeee' }}
     >
       <Box display="flex" justifyContent="space-between">
-        <Typography variant="h5" fontWeight={700}>
+        <Typography
+          variant="h5"
+          fontWeight={700}
+        >
           {protoTitle}
         </Typography>
         <IconButton

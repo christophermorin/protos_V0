@@ -47,10 +47,4 @@ export const displayedUpdateList = (newProto) => (dispatch) => {
   dispatch(updateList(newProto));
 };
 
-// export const updateJobFromDisplayedList = (protos) => {
-//   return (dispatch) => {
-//     dispatch(updateOneJob(protos))
-//   }
-// }
-
 export default DisplayedProtos.reducer;
