@@ -11,7 +11,8 @@ import Home from './components/home/Home';
 import ProtoTabs from './components/active_protos/ProtoTabs';
 import BuildForm from './components/build_protos/BuildForm';
 import Library from './components/library/Library';
-import userServices from './services/userServices';
+// import userServices from './services/userServices';
+import userProtoServices from './services/userProtoServices';
 import { setUserProtosList } from './reducers/userProtosReducer';
 import { setUserAuth } from './reducers/userAuthReducer';
 import './Draft.css';
@@ -34,7 +35,7 @@ function App() {
     const getUserProtos = async () => {
       try {
         if (user) {
-          const protos = await userServices.getUserProtos(user.id);
+          const protos = await userProtoServices.getUserProtos(user.id);
           dispatch(setUserProtosList(protos));
         }
       } catch (error) {

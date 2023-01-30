@@ -21,11 +21,8 @@ export const setActiveProtos = (protos) => (dispatch) => {
   dispatch(setNewActiveProtos(protos));
 };
 
-export const activeProtoAddOne = (proto) => {
-  console.log(proto);
-  return (dispatch) => {
-    dispatch(addOne(proto));
-  };
+export const activeProtoAddOne = (proto) => (dispatch) => {
+  dispatch(addOne(proto));
 };
 
 export default ActiveProtos.reducer;

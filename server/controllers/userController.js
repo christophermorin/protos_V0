@@ -35,14 +35,4 @@ usersRouter.post('/', async (req, res, next) => {
   return null;
 });
 
-// This was once just a simple find({}), using the users id?
-usersRouter.get('/protos/:id', async (req, res, next) => {
-  const user = await Users.findById(req.params.id);
-  try {
-    res.status(200).json(user.protos);
-  } catch (error) {
-    next(error);
-  }
-});
-
 module.exports = usersRouter;

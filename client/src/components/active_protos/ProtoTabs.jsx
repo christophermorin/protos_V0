@@ -35,7 +35,7 @@ function ProtoTabs() {
     if (!found) {
       dispatch(displayedAddOne(proto));
     } else {
-      dispatch(displayedRemoveOne(proto));
+      dispatch(displayedRemoveOne(proto._id));
       event.target.style.color = '';
     }
   };
@@ -43,7 +43,8 @@ function ProtoTabs() {
     const styles = {
       // backgroundColor: colors[proto.timeOfDay],
       borderRadius: '5px',
-      border: '1px solid black',
+      borderRight: '1px solid black',
+      borderLeft: '1px solid black',
       marginRight: 10,
     };
     return (

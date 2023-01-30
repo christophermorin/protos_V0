@@ -4,39 +4,32 @@ const DisplayedProtos = createSlice({
   name: 'displayedProtos',
   initialState: [],
   reducers: {
-    buildList(state, action) { // Using the tabs click
+    buildList(state, action) {
       return [...state, action.payload];
     },
     clearList(state, action) {
       return [];
     },
-    removeOneProto(state, action) { // Using the tabs click
-      return state.filter((proto) => proto._id !== action.payload._id);
+    removeOneProto(state, action) {
+      return state.filter((proto) => proto._id !== action.payload);
     },
     updateList(state, action) {
       const newProto = action.payload;
       return state.map((proto) => (proto._id === newProto._id ? newProto : proto));
     },
-    protoWasDeleted(state, action) {
-      return state.filter((proto) => proto._id !== action.payload);
-    },
   },
 });
 
 export const {
-  buildList, removeOneProto, protoWasDeleted, clearList, updateList,
+  buildList, removeOneProto, clearList, updateList,
 } = DisplayedProtos.actions;
 
 export const displayedAddOne = (proto) => (dispatch) => {
   dispatch(buildList(proto));
 };
 
-export const displayedRemoveOne = (proto) => (dispatch) => {
-  dispatch(removeOneProto(proto));
-};
-
-export const protoDeleted = (protoId) => (dispatch) => {
-  dispatch(protoWasDeleted(protoId));
+export const displayedRemoveOne = (protoId) => (dispatch) => {
+  dispatch(removeOneProto(protoId));
 };
 
 export const clearDisplayProtoList = () => (dispatch) => {

@@ -1,37 +1,50 @@
 import { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   Grid, Tabs, Tab,
 } from '@mui/material';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import userServices from '../../services/userServices';
+import userProtoServices from '../../services/userProtoServices';
+import { userProtosRemoveOne } from '../../reducers/userProtosReducer';
 
 import LibraryCard from './LibraryCard';
 
 function Library() {
   const [value, setValue] = useState(0);
   const [timeFilter, setTImeFilter] = useState(null);
-  const [userProtos, setUserProtos] = useState();
-  // const userProtos = useSelector(state => state.userProtos)
+  // const [userProtos, setUserProtos] = useState();
+  const userProtos = useSelector((state) => state.userProtos);
   const mediumViewport = useMediaQuery('(min-width:568px)');
 
   const user = useSelector((state) => state.userAuth);
+  const dispatch = useDispatch()
 
-  useEffect(() => {
-    const allUserProtos = async () => {
-      const protos = await userServices.getUserProtos(user.id);
-      setUserProtos(protos);
-    };
-    allUserProtos();
-  });
+  // useEffect(() => {
+  //   const allUserProtos = async () => {
+  //     const protos = await userProtoServices.getUserProtos(user.id);
+  //     setUserProtos(protos);
+  //   };
+  //   allUserProtos();
+  // }, []);
+
+  const deleteProto = async (protoTitle, protoId) => {
+    try {
+      await userProtoServices.deleteUserProto({ user: user.id, proto: protoTitle });
+      dispatch(userProtosRemoveOne(protoId));
+      console.log('In library', protoId);
+    } catch (error) {
+      console.log('In library delete', error);
+    }
+  };
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+
   const protos = userProtos ? userProtos.map((proto) => {
     if (+proto.timeOfDay === timeFilter) {
       return (
-        <LibraryCard key={proto._id} title={proto.title} />
+        <LibraryCard key={proto._id} proto={proto} deleteProto={deleteProto} />
       );
     }
   })

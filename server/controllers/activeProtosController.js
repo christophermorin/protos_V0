@@ -3,6 +3,7 @@ const ActiveProtos = require('../models/ActiveProtosModel');
 const Users = require('../models/UserModel');
 const logger = require('../utils/logger');
 
+// Getting active list if one exists
 activeProtosRouter.get('/:id', async (req, res, next) => {
   const userId = req.params.id;
   // const protos = await ActiveProtos.find({ user: userId }).sort({ _id: -1 }).limit(1)
@@ -17,6 +18,7 @@ activeProtosRouter.get('/:id', async (req, res, next) => {
   }
   return null;
 });
+
 // Creating a new active protos list
 activeProtosRouter.post('/', async (req, res, next) => {
   const userId = req.body.user;
@@ -39,7 +41,8 @@ activeProtosRouter.post('/', async (req, res, next) => {
   }
   return null;
 });
-// Add one proto to active protos list
+
+// Add one proto to active list
 activeProtosRouter.put('/add-one/:id', async (req, res) => {
   const activeProtosId = req.params.id;
   const newProto = req.body;
@@ -52,6 +55,7 @@ activeProtosRouter.put('/add-one/:id', async (req, res) => {
   }
   return null;
 });
+
 // Add many protos to active list
 activeProtosRouter.put('/add-many/:id', async (req, res, next) => {
   const activeProtoId = req.params.id;
@@ -82,7 +86,6 @@ activeProtosRouter.post('/delete-one/:id', async (req, res, next) => {
       await Users.findByIdAndUpdate(userId, { activeList: null });
       return res.status(201).json(null);
     }
-
     await activeList.save();
     return res.status(201).json(activeList);
   } catch (error) {
@@ -91,6 +94,7 @@ activeProtosRouter.post('/delete-one/:id', async (req, res, next) => {
   }
   return null;
 });
+
 // Delete/Clear active protos list
 activeProtosRouter.delete('/delete-many/:id', async (req, res, next) => {
   const activeListId = req.params.id;
@@ -109,6 +113,7 @@ activeProtosRouter.delete('/delete-many/:id', async (req, res, next) => {
 activeProtosRouter.put('/complete/:id', async (req, res, next) => {
   const activeListId = req.params.id;
   const { protoId, isComplete } = req.body;
+  console.log(req.body)
   try {
     const result = await ActiveProtos.findByIdAndUpdate(
       activeListId,
@@ -150,6 +155,7 @@ activeProtosRouter.put('/job/complete/:id', async (req, res, next) => {
   }
   return null;
 });
+
 // Delete one job
 activeProtosRouter.put('/job/delete/:id', async (req, res, next) => {
   const activeListId = req.params.id;

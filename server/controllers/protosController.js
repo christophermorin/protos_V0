@@ -1,9 +1,10 @@
 const jwt = require('jsonwebtoken');
+const { default: mongoose, mongo } = require('mongoose');
 const protosRouter = require('express').Router();
 const Protos = require('../models/ProtosModel');
 const Users = require('../models/UserModel');
-// const logger = require("../utils/logger")
 
+// Getting token from request
 const getTokenFrom = (req) => {
   const authorization = req.get('authorization');
   if (authorization && authorization.toLowerCase().startsWith('bearer ')) {
@@ -12,16 +13,17 @@ const getTokenFrom = (req) => {
   return null;
 };
 
+// Getting all users protos
 protosRouter.get('/:id', async (req, res, next) => {
-  const protos = await Protos.find({ user: req.params.id }).populate('user', { username: 1 });
+  const user = await Users.findById(req.params.id);
   try {
-    return res.status(200).json(protos);
+    res.status(200).json(user.protos);
   } catch (error) {
     next(error);
   }
-  return null;
 });
 
+// Creating one new proto
 protosRouter.post('/', async (req, res, next) => {
   const token = await getTokenFrom(req);
   try {
@@ -47,6 +49,22 @@ protosRouter.post('/', async (req, res, next) => {
     user.protos.push(newProto);
     await user.save();
     return res.status(201).json(newProto);
+  } catch (error) {
+    next(error);
+  }
+  return null;
+});
+
+// Delete one proto
+protosRouter.put('/:id', async (req, res, next) => {
+  const user = req.params.id;
+  const { proto } = req.body;
+  try {
+    const result = await Users.findByIdAndUpdate(
+      user,
+      { $pull: { protos: { title: proto } } },
+    );
+    return res.status(201).json(result);
   } catch (error) {
     next(error);
   }

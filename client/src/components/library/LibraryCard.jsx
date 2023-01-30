@@ -3,7 +3,7 @@ import { Paper, Grid, Typography } from '@mui/material';
 import AssignmentIcon from '@mui/icons-material/Assignment';
 import AccessTimeFilledIcon from '@mui/icons-material/AccessTimeFilled';
 
-function LibraryCard({ title }) {
+function LibraryCard({ proto, deleteProto }) {
   const styles = {
     width: '360px',
     height: '100px',
@@ -18,7 +18,7 @@ function LibraryCard({ title }) {
             variant="h5"
             fontWeight={700}
           >
-            {title}
+            {proto.title}
           </Typography>
         </Grid>
         <Grid
@@ -48,6 +48,7 @@ function LibraryCard({ title }) {
             <Typography
               variant="caption"
               fontWeight={500}
+              onClick={() => deleteProto(proto.title, proto._id)}
               sx={{
                 '&:hover': { color: 'red' },
                 cursor: 'pointer',

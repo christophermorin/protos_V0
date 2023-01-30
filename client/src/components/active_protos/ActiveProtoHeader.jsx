@@ -8,7 +8,7 @@ import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import ActiveReason from './ActiveReason';
 import activeProtoServices from '../../services/activeProtoServices';
 import { setActiveProtos } from '../../reducers/activeProtosReducer';
-import { protoWasDeleted, displayedUpdateList } from '../../reducers/displayedProtosReducer';
+import { displayedRemoveOne, displayedUpdateList } from '../../reducers/displayedProtosReducer';
 
 function ActiveProtoHeader({
   protoTitle, protoDescription, protoId, isComplete,
@@ -36,7 +36,7 @@ function ActiveProtoHeader({
       },
     );
     dispatch(setActiveProtos(result));
-    dispatch(protoWasDeleted(protoId));
+    dispatch(displayedRemoveOne(protoId));
   };
   // Needs error handling.
   const handleComplete = async () => {

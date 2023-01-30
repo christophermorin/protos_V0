@@ -8,7 +8,7 @@ import { EditorState, convertToRaw } from 'draft-js';
 import CreateProtoForm from './CreateProtoForm';
 import CreateJobForm from './CreateJobForm';
 import DisplayNewJob from './DisplayNewJob';
-import protoServices from '../../services/protoServices';
+import userProtoServices from '../../services/userProtoServices';
 import activeProtoServices from '../../services/activeProtoServices';
 import { activeProtoAddOne } from '../../reducers/activeProtosReducer';
 import { userProtosAddOne } from '../../reducers/userProtosReducer';
@@ -65,7 +65,7 @@ function BuildForm({ open, handleCloseBuild }) {
       jobs: newProtoJobs,
     };
     try {
-      const result = await protoServices.createNewProto(newProto, user.token);
+      const result = await userProtoServices.createNewProto(newProto, user.token);
       dispatch(userProtosAddOne(result));
       setProtoTitle('');
       setProtoDescription('');

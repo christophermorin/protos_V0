@@ -7,9 +7,4 @@ const userSignUp = async (user) => {
   return result;
 };
 
-const getUserProtos = async (userId) => {
-  const result = await axios.get(`${baseUrl}/protos/${userId}`);
-  return result.data;
-};
-
-export default { userSignUp, getUserProtos };
+export default { userSignUp };
