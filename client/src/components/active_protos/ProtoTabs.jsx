@@ -60,7 +60,7 @@ function ProtoTabs() {
 
   // Display selected protos
   const displayed = displayedProtos ? displayedProtos.map((proto) => (
-    <Grid item key={proto._id} >
+    <Grid item key={proto._id}>
       {/* <Zoom in> */}
       {/* <Box> */}
       <ActiveProto proto={proto} />
@@ -93,7 +93,7 @@ function ProtoTabs() {
         </Tabs>
       </Grid>
       <Grid
-        container
+        // container
         item
         xs={12}
         height="calc(100% - 64px)"

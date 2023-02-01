@@ -3,17 +3,20 @@ import {
   Accordion, AccordionSummary, AccordionDetails, Grid, Typography, Stack,
 } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import useMediaQuery from '@mui/material/useMediaQuery';
 import { useSelector } from 'react-redux';
 import JobCard from './JobCard';
 import ActiveProtoHeader from './ActiveProtoHeader';
 
 function ActiveProto({ proto }) {
   const activeList = useSelector((state) => state.activeProtos);
+
+
   const jobslist = proto.jobs.map((job) => (
     <JobCard key={job._id} job={job} listId={activeList._id} protoId={proto._id} />
   ));
   return (
-    <Grid container spacing={0.5} key={proto._id} sx={{ maxWidth: { xs: 'unset', md: '360px' }, minWidth: '360px' }}>
+    <Grid container spacing={0.5} key={proto._id} sx={{ width: { xs: 'calc(100vw - 16px)', md: '360px' } }}>
       <Grid item xs={12}>
         <ActiveProtoHeader
           protoTitle={proto.title}
