@@ -60,12 +60,12 @@ function ProtoTabs() {
 
   // Display selected protos
   const displayed = displayedProtos ? displayedProtos.map((proto) => (
-    <Grid item key={proto._id} sx={{ padding: '0 10px' }}>
-      <Zoom in>
-        <Box>
-          <ActiveProto proto={proto} />
-        </Box>
-      </Zoom>
+    <Grid item key={proto._id} >
+      {/* <Zoom in> */}
+      {/* <Box> */}
+      <ActiveProto proto={proto} />
+      {/* </Box> */}
+      {/* </Zoom> */}
     </Grid>
   ))
     : null;
@@ -75,7 +75,7 @@ function ProtoTabs() {
       container
       direction="row"
       height="100%"
-      alignContent="flex-start"
+    // alignContent="flex-start"
     >
       <Grid
         item
@@ -93,6 +93,7 @@ function ProtoTabs() {
         </Tabs>
       </Grid>
       <Grid
+        container
         item
         xs={12}
         height="calc(100% - 64px)"
@@ -105,7 +106,8 @@ function ProtoTabs() {
               container
               direction="row"
               wrap="nowrap"
-              alignContent="flex-start"
+              alignContent="flex-end"
+              spacing={1}
             >
               {displayed}
             </Grid>
