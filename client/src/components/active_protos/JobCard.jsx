@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import {
-  Box, Typography, Tooltip, Paper,
+  Box, Typography, Tooltip, Paper, Grid,
 } from '@mui/material';
 import PlayCircleIcon from '@mui/icons-material/PlayCircle';
 import StopCircleIcon from '@mui/icons-material/StopCircle';
@@ -63,47 +63,31 @@ function JobCard({ job, listId, protoId }) {
   //   ${job.cardColor.a})`
 
   return (
-    <div style={{
-      display: hidden ? 'none' : null,
+    <Paper sx={{
+      padding: 1,
       textDecoration: complete ? 'line-through' : null,
       opacity: complete ? 0.4 : null,
-
+      // background: `linear-gradient(135deg, ${tempColorCard} 10%, #fff 80%)` || null
+      // boxShadow: `2px 2px 0  rgba(0,0,0,0.4)`,
     }}
     >
-      <Paper sx={{
-        display: 'flex',
-        gap: 2,
-        padding: 1,
-        // background: `linear-gradient(135deg, ${tempColorCard} 10%, #fff 80%)` || null
-        // boxShadow: `2px 2px 0  rgba(0,0,0,0.4)`,
-      }}
-      >
-        <Box sx={{
-          display: 'flex',
-          alignItems: 'center',
-        }}
-        >
+      <Grid container height="100%" alignItems="center">
+        <Grid container item xs={2}>
           {!timer ? <PlayCircleIcon fontSize="large" onClick={handleTimer} /> : <StopCircleIcon fontSize="large" onClick={handleTimer} sx={{ color: 'red' }} />}
-        </Box>
-        <Box sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'space-between',
-          flexGrow: 1,
-          gap: 2,
-
-        }}
-        >
-          <Box>
-            <Typography sx={{
-              fontWeight: 'bold',
-
-            }}
-            >
+        </Grid>
+        <Grid conatiner item xs={8}>
+          <Grid item>
+            <Typography fontWeight={700}>
               {job.title}
             </Typography>
-          </Box>
-          <Box display="flex" gap={2}>
+          </Grid>
+          <Grid
+            container
+            item
+            direction="row"
+            maxWidth="90%"
+            justifyContent="space-between"
+            marginTop={1}>
             <Typography
               variant="caption"
               fontWeight={500}
@@ -127,22 +111,21 @@ function JobCard({ job, listId, protoId }) {
             >
               Complete
             </Typography>
-          </Box>
-        </Box>
-        <Box sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-        }}
-        >
+          </Grid>
+        </Grid>
+        <Grid
+          container
+          item
+          justifyContent="flex-end"
+          xs={2}
+          gap={1}>
           <Tooltip title={job.description} placement="top-end">
             <HelpIcon />
           </Tooltip>
           <ActiveTimer jobTimer={job.timer} timerState={timer} />
-        </Box>
-      </Paper>
-    </div>
+        </Grid>
+      </Grid>
+    </Paper>
   );
 }
 

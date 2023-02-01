@@ -11,7 +11,6 @@ import ActiveProtoHeader from './ActiveProtoHeader';
 function ActiveProto({ proto }) {
   const activeList = useSelector((state) => state.activeProtos);
 
-
   const jobslist = proto.jobs.map((job) => (
     <JobCard key={job._id} job={job} listId={activeList._id} protoId={proto._id} />
   ));
@@ -48,8 +47,8 @@ function ActiveProto({ proto }) {
               The How
             </Typography> */}
           </AccordionSummary>
-          <AccordionDetails sx={{ background: '#eeeeee' }}>
-            <Stack spacing={1} sx={{ maxHeight: '55vh', overflowY: 'scroll', paddingBottom: 1 }}>
+          <AccordionDetails sx={{ background: '#eeeeee', overflowY: 'auto', scrollbarWidth: 'thin' }}>
+            <Stack spacing={1} sx={{ maxHeight: '55vh' }}>
               {jobslist}
             </Stack>
           </AccordionDetails>

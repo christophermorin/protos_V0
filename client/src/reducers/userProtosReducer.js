@@ -11,7 +11,7 @@ const UserProtos = createSlice({
       return [...state, action.payload];
     },
     deleteUserProto(state, action) {
-      console.log(action.payload)
+      console.log(action.payload);
       const deletedProto = action.payload;
       return state.filter((proto) => proto._id !== deletedProto);
     },
@@ -31,7 +31,7 @@ export const userProtosAddOne = (proto) => (dispatch) => {
 
 // Delete proto from library
 export const userProtosRemoveOne = (proto) => (dispatch) => {
-  console.log(proto)
+  console.log(proto);
   dispatch(deleteUserProto(proto));
 };
 

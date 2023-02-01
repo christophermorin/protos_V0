@@ -75,7 +75,6 @@ function ProtoTabs() {
       container
       direction="row"
       height="100%"
-    // alignContent="flex-start"
     >
       <Grid
         item
@@ -93,12 +92,11 @@ function ProtoTabs() {
         </Tabs>
       </Grid>
       <Grid
-        // container
         item
         xs={12}
         height="calc(100% - 64px)"
         marginLeft={{ xs: 'none', md: '200px' }}
-        sx={{ overflowX: 'scroll' }}
+        sx={{ overflowX: 'auto' }}
       >
         {displayedProtos.length > 0
           ? (

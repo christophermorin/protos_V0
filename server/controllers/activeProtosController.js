@@ -113,7 +113,7 @@ activeProtosRouter.delete('/delete-many/:id', async (req, res, next) => {
 activeProtosRouter.put('/complete/:id', async (req, res, next) => {
   const activeListId = req.params.id;
   const { protoId, isComplete } = req.body;
-  console.log(req.body)
+  console.log(req.body);
   try {
     const result = await ActiveProtos.findByIdAndUpdate(
       activeListId,

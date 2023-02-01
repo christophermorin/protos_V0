@@ -17,7 +17,7 @@ function Library() {
   const mediumViewport = useMediaQuery('(min-width:568px)');
 
   const user = useSelector((state) => state.userAuth);
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   // useEffect(() => {
   //   const allUserProtos = async () => {
