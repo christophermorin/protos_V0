@@ -32,7 +32,7 @@ mongoose.connect(mongoUrl, {
 // Middleware
 app.use(
   cors({
-    origin: 'http://localhost:3000',
+    origin: 'https://dark-pear-parrot-cap.cyclic.app/',
     credentials: true,
   }),
 );
