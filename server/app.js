@@ -31,10 +31,7 @@ mongoose.connect(mongoUrl, {
 
 // Middleware
 app.use(
-  cors({
-    origin: 'https://dark-pear-parrot-cap.cyclic.app/',
-    credentials: true,
-  }),
+  cors()
 );
 app.use(express.static('dist'));
 app.use(express.json());
