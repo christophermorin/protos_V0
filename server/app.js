@@ -12,6 +12,7 @@ const activeProtosRouter = require('./controllers/activeProtosController');
 const userRouter = require('./controllers/userController');
 const loginRouter = require('./controllers/loginController');
 
+const server = http.createServer(app);
 // ---------------------- IMPORTS END --------------------------------------
 const mongoUrl = config.DB_URI;
 mongoose.connect(mongoUrl, {
@@ -19,6 +20,9 @@ mongoose.connect(mongoUrl, {
   useUnifiedTopology: true,
 })
   .then((res) => {
+    server.listen(config.PORT, () => {
+      logger.info(`Server is running on port ${config.PORT}`);
+    });
     logger.info('Connected to DB');
   })
   .catch((error) => logger.error(error));
