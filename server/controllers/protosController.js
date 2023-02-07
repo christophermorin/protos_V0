@@ -1,5 +1,4 @@
 const jwt = require('jsonwebtoken');
-const { default: mongoose, mongo } = require('mongoose');
 const protosRouter = require('express').Router();
 const Protos = require('../models/ProtosModel');
 const Users = require('../models/UserModel');

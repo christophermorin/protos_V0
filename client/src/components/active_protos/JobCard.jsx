@@ -87,7 +87,8 @@ function JobCard({ job, listId, protoId }) {
             direction="row"
             maxWidth="90%"
             justifyContent="space-between"
-            marginTop={1}>
+            marginTop={1}
+          >
             <Typography
               variant="caption"
               fontWeight={500}
@@ -118,7 +119,8 @@ function JobCard({ job, listId, protoId }) {
           item
           justifyContent="flex-end"
           xs={2}
-          gap={1}>
+          gap={1}
+        >
           <Tooltip title={job.description} placement="top-end">
             <HelpIcon />
           </Tooltip>

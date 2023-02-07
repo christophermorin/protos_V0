@@ -1,4 +1,3 @@
-
 const http = require('http');
 const mongoose = require('mongoose');
 const express = require('express');
@@ -44,18 +43,18 @@ app.use(express.json());
 app.get('/active', (req, res) => {
   res.sendFile(path.join(__dirname, '/dist/index.html'), (err) => {
     if (err) {
-      res.status(500).send(err)
+      res.status(500).send(err);
     }
-  })
-})
+  });
+});
 
 app.get('/library', (req, res) => {
   res.sendFile(path.join(__dirname, '/dist/index.html'), (err) => {
     if (err) {
-      res.status(500).send(err)
+      res.status(500).send(err);
     }
-  })
-})
+  });
+});
 
 app.use('/api/users', userRouter);
 app.use('/api/login', loginRouter);
