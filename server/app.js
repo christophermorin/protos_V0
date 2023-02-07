@@ -3,6 +3,7 @@ const http = require('http');
 const mongoose = require('mongoose');
 const express = require('express');
 const cors = require('cors');
+const path = require('path');
 const config = require('./utils/config');
 const logger = require('./utils/logger');
 
@@ -40,6 +41,13 @@ app.use(express.static('dist'));
 app.use(express.json());
 
 // Routes
+app.get('/active', (req, res) => {
+  res.sendFile(path.join(__dirname, '../client/index.html'), (err) => {
+    if (err) {
+      res.status(500).send(err)
+    }
+  })
+})
 
 app.use('/api/users', userRouter);
 app.use('/api/login', loginRouter);
