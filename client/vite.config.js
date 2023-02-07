@@ -11,9 +11,6 @@ function renderChunks(deps) {
   return chunks;
 }
 
-
-
-
 // https://vitejs.dev/config/
 export default defineConfig({
   build: {
@@ -30,7 +27,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'http://localhost:3000',
+        target: 'https://dark-pear-parrot-cap.cyclic.app/',
       },
     },
   },

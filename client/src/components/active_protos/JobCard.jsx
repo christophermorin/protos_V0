@@ -75,7 +75,7 @@ function JobCard({ job, listId, protoId }) {
         <Grid container item xs={2}>
           {!timer ? <PlayCircleIcon fontSize="large" onClick={handleTimer} /> : <StopCircleIcon fontSize="large" onClick={handleTimer} sx={{ color: 'red' }} />}
         </Grid>
-        <Grid conatiner item xs={8}>
+        <Grid item xs={8}>
           <Grid item>
             <Typography fontWeight={700}>
               {job.title}
