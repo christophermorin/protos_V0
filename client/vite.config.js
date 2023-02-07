@@ -27,7 +27,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'https://dark-pear-parrot-cap.cyclic.app/',
+        target: 'http://localhost:3000',
       },
     },
   },
