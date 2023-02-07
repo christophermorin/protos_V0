@@ -42,7 +42,7 @@ app.use(express.json());
 
 // Routes
 app.get('/active', (req, res) => {
-  res.sendFile(path.join(__dirname, '../client/index.html'), (err) => {
+  res.sendFile(path.join(__dirname, './../client/index.html'), (err) => {
     if (err) {
       res.status(500).send(err)
     }
