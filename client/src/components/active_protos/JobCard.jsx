@@ -75,7 +75,7 @@ function JobCard({ job, listId, protoId }) {
         <Grid container item xs={2}>
           {!timer ? <PlayCircleIcon fontSize="large" onClick={handleTimer} /> : <StopCircleIcon fontSize="large" onClick={handleTimer} sx={{ color: 'red' }} />}
         </Grid>
-        <Grid conatiner item xs={8}>
+        <Grid item xs={8}>
           <Grid item>
             <Typography fontWeight={700}>
               {job.title}
@@ -87,7 +87,8 @@ function JobCard({ job, listId, protoId }) {
             direction="row"
             maxWidth="90%"
             justifyContent="space-between"
-            marginTop={1}>
+            marginTop={1}
+          >
             <Typography
               variant="caption"
               fontWeight={500}
@@ -118,7 +119,8 @@ function JobCard({ job, listId, protoId }) {
           item
           justifyContent="flex-end"
           xs={2}
-          gap={1}>
+          gap={1}
+        >
           <Tooltip title={job.description} placement="top-end">
             <HelpIcon />
           </Tooltip>
