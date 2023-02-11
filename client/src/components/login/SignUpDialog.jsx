@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import { Dialog, TextField, Button } from '@mui/material';
 import userServices from '../../services/userServices';
 
-// Switch to form group?
-
 function SignUpDialog({ open, closeSignUp, setOpen }) {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
@@ -29,7 +27,7 @@ function SignUpDialog({ open, closeSignUp, setOpen }) {
       setConfirmPassword('');
       setOpen(false);
     } catch (error) {
-      console.log(error.response.data.error); // prints error msg
+      console.log(error.response.data.error);
     }
   };
 

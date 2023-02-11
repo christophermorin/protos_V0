@@ -6,7 +6,7 @@ import {
 } from '@mui/material';
 import StylishButton from '../StylishButton';
 import activeProtoServices from '../../services/activeProtoServices';
-import { clearDisplayProtoList } from '../../reducers/displayedProtosReducer';
+import { clearDisplayedProtoList } from '../../reducers/displayedProtosReducer';
 
 function HomeDialog({ open, handleClose }) {
   const [selectedProtos, setSelectedProtos] = useState([]);
@@ -28,7 +28,7 @@ function HomeDialog({ open, handleClose }) {
         user: user.id,
       };
       await activeProtoServices.createActiveList(newActiveProtos);
-      dispatch(clearDisplayProtoList());
+      dispatch(clearDisplayedProtoList());
     } catch (error) {
       console.log(error);
     }

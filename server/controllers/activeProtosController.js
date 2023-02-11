@@ -6,11 +6,9 @@ const logger = require('../utils/logger');
 // Getting active list if one exists
 activeProtosRouter.get('/:id', async (req, res, next) => {
   const userId = req.params.id;
-  // const protos = await ActiveProtos.find({ user: userId }).sort({ _id: -1 }).limit(1)
   const { activeList } = await Users.findById(userId).populate('activeList');
   try {
     const returnList = activeList;
-    // console.log(activeList)
     return res.status(200).json(returnList);
   } catch (error) {
     logger.error(error);
@@ -48,7 +46,11 @@ activeProtosRouter.put('/add-one/:id', async (req, res) => {
   const newProto = req.body;
   try {
     const activeList = await ActiveProtos
-      .findOneAndUpdate({ _id: activeProtosId }, { $push: { activeProtos: newProto } });
+      .findOneAndUpdate(
+        { _id: activeProtosId },
+        { $push: { activeProtos: newProto } },
+        { new: true },
+      );
     return res.status(201).json(activeList);
   } catch (error) {
     console.log(error);

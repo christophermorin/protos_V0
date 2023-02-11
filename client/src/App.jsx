@@ -20,8 +20,7 @@ import './Draft.css';
 function App() {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.userAuth);
-
-  // Build dialog*********************************
+  // Build dialog
   const [openBuild, setOpenBuild] = useState();
 
   const handleOpenBuild = () => {

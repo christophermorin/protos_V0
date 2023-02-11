@@ -32,7 +32,7 @@ export const displayedRemoveOne = (protoId) => (dispatch) => {
   dispatch(removeOneProto(protoId));
 };
 
-export const clearDisplayProtoList = () => (dispatch) => {
+export const clearDisplayedProtoList = () => (dispatch) => {
   dispatch(clearList());
 };
 

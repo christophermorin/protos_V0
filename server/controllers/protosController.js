@@ -31,7 +31,6 @@ protosRouter.post('/', async (req, res, next) => {
       return res.status(401).json({ error: 'token missing or invalid' });
     }
     const user = await Users.findById(decodedToken.id);
-    // const userProtos = await Protos.find({ user: user.id })
     const protoExisting = user.protos.find((proto) => proto.title === req.body.title);
     if (protoExisting) {
       return res.status(400).json({
@@ -44,7 +43,6 @@ protosRouter.post('/', async (req, res, next) => {
         user: user.id,
       },
     );
-    console.log(newProto);
     user.protos.push(newProto);
     await user.save();
     return res.status(201).json(newProto);

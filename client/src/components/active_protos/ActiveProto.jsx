@@ -3,7 +3,6 @@ import {
   Accordion, AccordionSummary, AccordionDetails, Grid, Typography, Stack,
 } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import useMediaQuery from '@mui/material/useMediaQuery';
 import { useSelector } from 'react-redux';
 import JobCard from './JobCard';
 import ActiveProtoHeader from './ActiveProtoHeader';

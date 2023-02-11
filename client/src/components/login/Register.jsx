@@ -5,8 +5,6 @@ import SignUpDialog from './SignUpDialog';
 import loginServices from '../../services/loginServices';
 import { setUserAuth } from '../../reducers/userAuthReducer';
 
-// Switch to form group?
-
 function Register() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -32,7 +30,6 @@ function Register() {
       window.localStorage.setItem('user', JSON.stringify(userAuth));
       dispatch(setUserAuth(userAuth));
     } catch (error) {
-      // Needs error notification
       console.log(error.response.data.error);
     }
   };

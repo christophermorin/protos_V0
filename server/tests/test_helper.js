@@ -36,6 +36,7 @@ const createOneProto = async (token, proto) => {
     .send(proto)
     .expect(201)
     .expect('Content-Type', /application\/json/);
+
   return result;
 };
 
@@ -45,11 +46,14 @@ const usersInDb = async () => {
   return users.map((user) => user.toJSON());
 };
 
-// Getting initial state of Protos DB
-const protosInDb = async () => {
-  const protos = await Protos.find({});
-  return protos.map((proto) => proto.toJSON());
-};
+//
+const userProtosInDb = async (userId) => {
+  const result = await api
+    .get(`/api/protos/${userId}`)
+    .expect(200)
+    .expect('Content-Type', /application\/json/);
+  return result.body
+}
 
 const activeProtoInDb = async () => {
   const activeProto = await ActiveProtos.find().sort({ _id: -1 }).limit(1);
@@ -133,8 +137,8 @@ module.exports = {
   initialProtos,
   usersInDb,
   createRootUsers,
-  protosInDb,
   logInUser,
   createOneProto,
+  userProtosInDb,
   activeProtoInDb,
 };

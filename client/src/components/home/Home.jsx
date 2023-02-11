@@ -8,8 +8,6 @@ import HomeDialog from './HomeDialog';
 export default function Home() {
   const [open, setOpen] = useState(false);
 
-  // Moved fetching all user protos to App
-
   const openDialog = () => {
     setOpen(true);
   };
