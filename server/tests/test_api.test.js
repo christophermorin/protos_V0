@@ -2,9 +2,7 @@ const mongoose = require('mongoose');
 const supertest = require('supertest');
 const app = require('../app');
 const helper = require('./test_helper');
-const Protos = require('../models/ProtosModel');
 const ActiveProtos = require('../models/ActiveProtosModel');
-const { create } = require('../models/ProtosModel');
 
 const api = supertest(app);
 
@@ -20,7 +18,6 @@ describe('Creating new users', () => {
       email: 'mail@mail.mail',
       password: 'rabbit',
     };
-
     await api
       .post('/api/users')
       .send(newUser)
@@ -44,7 +41,6 @@ describe('Creating new users', () => {
       .send(newUser)
       .expect(400)
       .expect('Content-Type', /application\/json/);
-
     expect(result.body.error).toContain('username must be unique');
 
     const usersAtEnd = await helper.usersInDb();
@@ -52,7 +48,6 @@ describe('Creating new users', () => {
   });
   test('Creation fails if any field is missing', async () => {
     const usersAtStart = await helper.usersInDb();
-
     const newUser = {
       username: 'duck',
       email: 'mail@mail.mail',
@@ -63,8 +58,8 @@ describe('Creating new users', () => {
       .send(newUser)
       .expect(400)
       .expect('Content-Type', /application\/json/);
-
     expect(result.body.error).toContain('all fields required');
+
     const usersAtEnd = await helper.usersInDb();
     expect(usersAtEnd).toEqual(usersAtStart);
   });
@@ -85,7 +80,6 @@ describe('Logging users in', () => {
       .send(user)
       .expect(200)
       .expect('Content-Type', /application\/json/);
-
     expect(result.body.token).toBeDefined();
     expect(result.body.username).toEqual('root');
   });
@@ -99,7 +93,6 @@ describe('Logging users in', () => {
       .send(user)
       .expect(401)
       .expect('Content-Type', /application\/json/);
-
     expect(result.body.error).toContain('invalid username or password');
     expect(result.body.token).toBeUndefined();
   });
@@ -117,8 +110,8 @@ describe('Creating and getting user protos', () => {
       user.body.token,
       helper.initialProtos[0],
     );
-    const userProtosAtEnd = await helper.userProtosInDb(user.body.id)
 
+    const userProtosAtEnd = await helper.userProtosInDb(user.body.id)
     expect(protoCreated.body.title).toContain('one test')
     expect(userProtosAtEnd).toHaveLength(userProtosAtStart.length + 1)
   });
@@ -146,8 +139,8 @@ describe('Creating and getting user protos', () => {
   // ******************************************************************************
 });
 describe('Creating and altering the active proto list', () => {
-  beforeEach(helper.createRootUsers)
-  test('Creating an active list', async () => {
+  beforeEach(async () => {
+    await helper.createRootUsers()
     await ActiveProtos.deleteMany({});
     const user = await helper.logInUser('root', 'squirrel');
     for (const proto of helper.initialProtos) {
@@ -156,6 +149,9 @@ describe('Creating and altering the active proto list', () => {
         proto,
       );
     }
+  })
+  test('Creating an active list', async () => {
+    const user = await helper.logInUser('root', 'squirrel');
     const userProtosAtStart = await helper.userProtosInDb(user.body.id)
     const createdActiveList = await api
       .post('/api/activeProtos')
@@ -168,9 +164,7 @@ describe('Creating and altering the active proto list', () => {
     expect(createdActiveList.body.activeProtos).toHaveLength(userProtosAtStart.length);
   });
   test('Adding to an active list', async () => {
-    await ActiveProtos.deleteMany({});
     const user = await helper.logInUser('root', 'squirrel');
-
     const createdActiveList = await api
       .post('/api/activeProtos')
       .send({
@@ -179,7 +173,6 @@ describe('Creating and altering the active proto list', () => {
       })
       .expect(201)
       .expect('Content-Type', /application\/json/);
-
     expect(createdActiveList.body.activeProtos).toHaveLength(1)
 
     const createdActiveListId = createdActiveList.body._id
@@ -188,7 +181,6 @@ describe('Creating and altering the active proto list', () => {
       .send(helper.initialProtos[1])
       .expect(201)
       .expect('Content-Type', /application\/json/);
-
     expect(addOneToActiveList.body.activeProtos).toHaveLength(2)
 
     const userId = createdActiveList.body.user
@@ -196,18 +188,30 @@ describe('Creating and altering the active proto list', () => {
       .get(`/api/activeProtos/${userId}`)
       .expect(200)
       .expect('Content-Type', /application\/json/);
-
     expect(getActiveListAtEnd.body.activeProtos).toHaveLength(2)
   });
-  test('Deleting one from active list', async () => {
-    await ActiveProtos.deleteMany({});
+  test('Add many to an active list', async () => {
     const user = await helper.logInUser('root', 'squirrel');
-    for (const proto of helper.initialProtos) {
-      await helper.createOneProto(
-        user.body.token,
-        proto,
-      );
-    }
+    const createdActiveList = await api
+      .post('/api/activeProtos')
+      .send({
+        user: user.body.id,
+        selectedProtos: helper.extraInitialProto,
+      })
+      .expect(201)
+      .expect('Content-Type', /application\/json/);
+    expect(createdActiveList.body.activeProtos).toHaveLength(1)
+
+    const createdActiveListId = createdActiveList.body._id
+    const addManyToActiveList = await api
+      .put(`/api/activeProtos/add-many/${createdActiveListId}`)
+      .send(helper.initialProtos)
+      .expect(201)
+      .expect('Content-Type', /application\/json/);
+    expect(addManyToActiveList.body.activeProtos).toHaveLength(3)
+  });
+  test('Deleting one from active list', async () => {
+    const user = await helper.logInUser('root', 'squirrel');
     const userProtosAtStart = await helper.userProtosInDb(user.body.id)
     const createdActiveList = await api
       .post('/api/activeProtos')
@@ -222,16 +226,40 @@ describe('Creating and altering the active proto list', () => {
     const createdActiveListId = createdActiveList.body._id
     const userId = createdActiveList.body.user
     const protoId = createdActiveList.body.activeProtos[0]._id
-
     const activeListAfterDelete = await api
       .post(`/api/activeProtos/delete-one/${createdActiveListId}`)
       .send({ protoId, userId })
       .expect(201)
       .expect('Content-Type', /application\/json/);
-
     expect(activeListAfterDelete.body.activeProtos).toHaveLength(userProtosAtStart.length - 1)
     expect(activeListAfterDelete.body.activeProtos[0].title).toContain('two test')
   });
+  test('Delete/Clear active proto list', async () => {
+    const user = await helper.logInUser('root', 'squirrel');
+    const userProtosAtStart = await helper.userProtosInDb(user.body.id)
+    const createdActiveList = await api
+      .post('/api/activeProtos')
+      .send({
+        user: user.body.id,
+        selectedProtos: userProtosAtStart,
+      })
+      .expect(201)
+      .expect('Content-Type', /application\/json/);
+    expect(createdActiveList.body.activeProtos).toHaveLength(2)
+
+    const createdActiveListId = createdActiveList.body._id
+    const deletedActiveList = await api
+      .delete(`/api/activeProtos/delete-many/${createdActiveListId}`)
+      .expect(201)
+      .expect('Content-Type', /application\/json/);
+    expect(deletedActiveList.body).toEqual(null)
+
+    const getUserActiveList = await api
+      .get(`/api/activeProtos/${user.body.id}`)
+      .expect(200)
+      .expect('Content-Type', /application\/json/);
+    expect(getUserActiveList.body).toEqual(null)
+  })
 });
 
 afterAll(() => {

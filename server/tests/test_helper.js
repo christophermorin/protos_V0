@@ -120,6 +120,42 @@ const initialProtos = [
   },
 ];
 
+const extraInitialProto = {
+  title: 'third test',
+  description: 'testing add many',
+  timeOfDay: 'morning',
+  jobs: [
+    {
+      title: 'job one',
+      description: 'testing protos three',
+      timer: 10,
+      cardColor: {
+        r: 125,
+        g: 0,
+        b: 10,
+        a: 1,
+      },
+      notification: false,
+      isComplete: false,
+      isHidden: false,
+    },
+    {
+      title: 'job two',
+      description: 'testing protos three',
+      timer: 10,
+      cardColor: {
+        r: 125,
+        g: 0,
+        b: 10,
+        a: 1,
+      },
+      notification: false,
+      isComplete: false,
+      isHidden: false,
+    },
+  ],
+}
+
 const initialUsers = [
   {
     username: 'root',
@@ -135,6 +171,7 @@ const initialUsers = [
 
 module.exports = {
   initialProtos,
+  extraInitialProto,
   usersInDb,
   createRootUsers,
   logInUser,

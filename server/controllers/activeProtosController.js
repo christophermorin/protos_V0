@@ -62,6 +62,7 @@ activeProtosRouter.put('/add-one/:id', async (req, res) => {
 activeProtosRouter.put('/add-many/:id', async (req, res, next) => {
   const activeProtoId = req.params.id;
   const newProtos = req.body;
+  console.log('Here')
   try {
     const activeList = await ActiveProtos.findOneAndUpdate(
       { _id: activeProtoId },
