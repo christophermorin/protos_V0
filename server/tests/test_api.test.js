@@ -3,6 +3,7 @@ const supertest = require('supertest');
 const app = require('../app');
 const helper = require('./test_helper');
 const ActiveProtos = require('../models/ActiveProtosModel');
+const { use } = require('../app');
 
 const api = supertest(app);
 
@@ -262,6 +263,73 @@ describe('Creating and altering the active proto list', () => {
   })
 });
 
+// ******************************************************************************
+// ****************************** Active Proto Jobs Tests************************
+// ******************************************************************************
+describe('Complete and delete active proto jobs', () => {
+  beforeEach(async () => {
+    await helper.createRootUsers()
+    await ActiveProtos.deleteMany({});
+    const user = await helper.logInUser('root', 'squirrel');
+    for (const proto of helper.initialProtos) {
+      await helper.createOneProto(
+        user.body.token,
+        proto,
+      );
+    }
+    const userProtosAtStart = await helper.userProtosInDb(user.body.id)
+    const createdActiveList = await api
+      .post('/api/activeProtos')
+      .send({
+        user: user.body.id,
+        selectedProtos: userProtosAtStart,
+      })
+      .expect(201)
+      .expect('Content-Type', /application\/json/);
+  }),
+    test('Mark one job complete in active proto', async () => {
+      const user = await helper.logInUser('root', 'squirrel');
+      const getUserActiveList = await api
+        .get(`/api/activeProtos/${user.body.id}`)
+        .expect(200)
+        .expect('Content-Type', /application\/json/);
+      expect(getUserActiveList.body.activeProtos).toHaveLength(2)
+
+      const intialJobState = helper.getJobCompleteVariables(getUserActiveList.body)
+      const jobMarkedComplete = await api
+        .put(`/api/activeProtos/job/complete/${intialJobState.userActiveListId}`)
+        .send({
+          protoId: intialJobState.targetProtoId,
+          jobId: intialJobState.targetJobId,
+          isComplete: intialJobState.isJobComplete
+        })
+        .expect(200)
+        .expect('Content-Type', /application\/json/);
+
+      const endJobState = helper.getJobCompleteVariables(jobMarkedComplete.body)
+      expect(endJobState.isJobComplete).toEqual(!intialJobState.isJobComplete)
+    })
+  test('Delete one job in active proto', async () => {
+    const user = await helper.logInUser('root', 'squirrel');
+    const getUserActiveList = await api
+      .get(`/api/activeProtos/${user.body.id}`)
+      .expect(200)
+      .expect('Content-Type', /application\/json/);
+    expect(getUserActiveList.body.activeProtos).toHaveLength(2)
+    const intialJobState = helper.getJobCompleteVariables(getUserActiveList.body)
+
+    const jobDeleted = await api
+      .put(`/api/activeProtos/job/delete/${intialJobState.userActiveListId}`)
+      .send({
+        protoId: intialJobState.targetProtoId,
+        jobId: intialJobState.targetJobId
+      })
+      .expect(201)
+      .expect('Content-Type', /application\/json/);
+    const endJobState = helper.getJobCompleteVariables(jobDeleted.body)
+    expect(endJobState.targetJobs).toHaveLength(intialJobState.targetJobs.length - 1)
+  })
+})
 afterAll(() => {
   mongoose.connection.close();
 });

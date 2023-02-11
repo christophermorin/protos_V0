@@ -46,7 +46,7 @@ const usersInDb = async () => {
   return users.map((user) => user.toJSON());
 };
 
-//
+//Getting all protos created by logged User
 const userProtosInDb = async (userId) => {
   const result = await api
     .get(`/api/protos/${userId}`)
@@ -55,10 +55,18 @@ const userProtosInDb = async (userId) => {
   return result.body
 }
 
-const activeProtoInDb = async () => {
-  const activeProto = await ActiveProtos.find().sort({ _id: -1 }).limit(1);
-  return activeProto;
-};
+//Extract variables for job complete test
+const getJobCompleteVariables = (userActiveList) => {
+  const userActiveListId = userActiveList._id
+  const targetProto = userActiveList.activeProtos[0]
+  const targetProtoId = targetProto._id
+  const targetJobs = targetProto.jobs
+  const targetJobId = targetProto.jobs[0]._id
+  const isJobComplete = targetProto.jobs[0].isComplete
+
+  return { userActiveListId, targetProtoId, targetJobs, targetJobId, isJobComplete }
+
+}
 
 // Used to create default protos
 const initialProtos = [
@@ -177,5 +185,5 @@ module.exports = {
   logInUser,
   createOneProto,
   userProtosInDb,
-  activeProtoInDb,
+  getJobCompleteVariables,
 };

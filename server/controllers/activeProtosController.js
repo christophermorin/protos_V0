@@ -62,7 +62,6 @@ activeProtosRouter.put('/add-one/:id', async (req, res) => {
 activeProtosRouter.put('/add-many/:id', async (req, res, next) => {
   const activeProtoId = req.params.id;
   const newProtos = req.body;
-  console.log('Here')
   try {
     const activeList = await ActiveProtos.findOneAndUpdate(
       { _id: activeProtoId },
@@ -116,7 +115,6 @@ activeProtosRouter.delete('/delete-many/:id', async (req, res, next) => {
 activeProtosRouter.put('/complete/:id', async (req, res, next) => {
   const activeListId = req.params.id;
   const { protoId, isComplete } = req.body;
-  console.log(req.body);
   try {
     const result = await ActiveProtos.findByIdAndUpdate(
       activeListId,
@@ -126,7 +124,6 @@ activeProtosRouter.put('/complete/:id', async (req, res, next) => {
         new: true,
       },
     );
-    console.log(result);
     return res.status(200).json(result.activeProtos);
   } catch (error) {
     next(error);
@@ -151,7 +148,6 @@ activeProtosRouter.put('/job/complete/:id', async (req, res, next) => {
         new: true,
       },
     );
-    console.log(result);
     return res.status(200).json(result);
   } catch (error) {
     next(error);
