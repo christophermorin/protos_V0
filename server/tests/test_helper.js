@@ -1,8 +1,6 @@
 const bcrypt = require('bcrypt');
 const supertest = require('supertest');
 const Users = require('../models/UserModel');
-const Protos = require('../models/ProtosModel');
-const ActiveProtos = require('../models/ActiveProtosModel');
 const app = require('../app');
 
 const api = supertest(app);

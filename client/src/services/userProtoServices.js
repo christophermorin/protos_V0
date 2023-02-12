@@ -16,8 +16,8 @@ const createNewProto = async (newProto, token) => {
 };
 
 const deleteUserProto = async ({ user, proto }) => {
-  const result = await axios.put(`${baseUrl}/${user}`, { proto });
-  // console.log('In userProServe', result);
+  const userProtos = await axios.put(`${baseUrl}/${user}`, { proto });
+  return userProtos
 };
 
 export default { getUserProtos, createNewProto, deleteUserProto };

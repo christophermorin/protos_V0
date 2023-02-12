@@ -134,11 +134,28 @@ describe('Creating and getting user protos', () => {
     expect(result.body.error).toContain('proto by that title already exists');
     expect(userProtosAtEnd).toHaveLength(userProtosAtStart.length);
   });
-
-  // ******************************************************************************
-  // ****************************** Active Proto Tests*****************************
-  // ******************************************************************************
+  test('Delete one proto from user library', async () => {
+    const user = await helper.logInUser('root', 'squirrel');
+    for (const proto of helper.initialProtos) {
+      await helper.createOneProto(
+        user.body.token,
+        proto,
+      );
+    }
+    const userProtosAtStart = await helper.userProtosInDb(user.body.id)
+    const userProtosAtEnd = await api
+      .put(`/api/protos/${user.body.id}`)
+      .send({ proto: userProtosAtStart[1].title })
+      .expect(201)
+      .expect('Content-Type', /application\/json/);
+    expect(userProtosAtEnd.body).toHaveLength(userProtosAtStart.length - 1)
+    expect(userProtosAtEnd.body[0].title).toContain('one test')
+  })
 });
+
+// ******************************************************************************
+// ****************************** Active Proto Tests*****************************
+// ******************************************************************************
 describe('Creating and altering the active proto list', () => {
   beforeEach(async () => {
     await helper.createRootUsers()

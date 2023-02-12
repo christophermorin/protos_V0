@@ -31,7 +31,6 @@ export const userProtosAddOne = (proto) => (dispatch) => {
 
 // Delete proto from library
 export const userProtosRemoveOne = (proto) => (dispatch) => {
-  console.log(proto);
   dispatch(deleteUserProto(proto));
 };
 

@@ -57,11 +57,12 @@ protosRouter.put('/:id', async (req, res, next) => {
   const user = req.params.id;
   const { proto } = req.body;
   try {
-    const result = await Users.findByIdAndUpdate(
+    const userData = await Users.findByIdAndUpdate(
       user,
       { $pull: { protos: { title: proto } } },
+      { new: true },
     );
-    return res.status(201).json(result);
+    return res.status(201).json(userData.protos);
   } catch (error) {
     next(error);
   }
