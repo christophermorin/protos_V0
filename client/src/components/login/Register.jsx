@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { TextField, Box, Button } from '@mui/material';
+import { Grid, TextField, Box, Button, Typography } from '@mui/material';
 import SignUpDialog from './SignUpDialog';
 import loginServices from '../../services/loginServices';
 import { setUserAuth } from '../../reducers/userAuthReducer';
@@ -8,11 +8,10 @@ import { setUserAuth } from '../../reducers/userAuthReducer';
 function Register() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [open, setOpen] = useState(false);
 
   const dispatch = useDispatch();
 
-  // Signup Dialog state
-  const [open, setOpen] = useState(false);
   const openSignUp = () => {
     setOpen(true);
   };
@@ -48,28 +47,48 @@ function Register() {
   };
 
   return (
-    <div style={styles.container}>
-      <Box>
-        <Box style={styles.box}>
-          <TextField
-            value={username}
-            label="Username"
-            variant="standard"
-            onChange={(e) => setUsername(e.target.value)}
-          />
-          <TextField
-            value={password}
-            type="password"
-            label="Password"
-            variant="standard"
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </Box>
-        <Button onClick={handleLogin}>Login</Button>
-        <Button onClick={openSignUp}>Signup</Button>
-      </Box>
+    <Grid container height="100%" justifyContent="center" alignItems="center" spacing={5} direction="column">
+      <Grid item>
+        <Typography
+          variant="h1"
+        >
+          Protos
+        </Typography>
+        <Typography
+          variant="h6"
+        >
+          All things through consistency!
+        </Typography>
+      </Grid>
+      <Grid container item direction="column" spacing={2} justifyContent="center" alignItems="center">
+        <TextField
+          value={username}
+          label="Username"
+          variant="standard"
+          onChange={(e) => setUsername(e.target.value)}
+        />
+        <TextField
+          value={password}
+          type="password"
+          label="Password"
+          variant="standard"
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <Grid item >
+          <Button
+            onClick={handleLogin}
+          >
+            Login
+          </Button>
+          <Button
+            onClick={openSignUp}
+          >
+            Signup
+          </Button>
+        </Grid>
+      </Grid>
       <SignUpDialog open={open} setOpen={setOpen} closeSignUp={closeSignUp} />
-    </div>
+    </Grid>
   );
 }
 

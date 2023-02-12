@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
-import { Dialog, TextField, Button } from '@mui/material';
+import { Dialog, Grid, TextField, Button, Typography } from '@mui/material';
 import userServices from '../../services/userServices';
 
 function SignUpDialog({ open, closeSignUp, setOpen }) {
@@ -9,7 +9,7 @@ function SignUpDialog({ open, closeSignUp, setOpen }) {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
 
-  const handleSignUp = async (event) => {
+  const handleSignUp = async () => {
     if (confirmPassword !== password) {
       console.log('Passwords must match');
       return;
@@ -36,31 +36,39 @@ function SignUpDialog({ open, closeSignUp, setOpen }) {
       open={open}
       onClose={closeSignUp}
     >
-      <TextField
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
-        label="Username"
-        variant="standard"
-      />
-      <TextField
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        label="Email"
-        variant="standard"
-      />
-      <TextField
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        label="Password"
-        variant="standard"
-      />
-      <TextField
-        value={confirmPassword}
-        onChange={(e) => setConfirmPassword(e.target.value)}
-        label="Confirm Password"
-        variant="standard"
-      />
-      <Button onClick={handleSignUp}>SignUp</Button>
+      <Grid container direction="column" padding={5} gap={2}>
+        <Typography
+          variant="h6"
+          fontWeight={700}
+        >
+          Build your perfect day!
+        </Typography>
+        <TextField
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+          label="Username"
+          variant="standard"
+        />
+        <TextField
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          label="Email"
+          variant="standard"
+        />
+        <TextField
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          label="Password"
+          variant="standard"
+        />
+        <TextField
+          value={confirmPassword}
+          onChange={(e) => setConfirmPassword(e.target.value)}
+          label="Confirm Password"
+          variant="standard"
+        />
+        <Button onClick={handleSignUp}>SignUp</Button>
+      </Grid>
     </Dialog>
   );
 }
