@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import InboxIcon from '@mui/icons-material/Inbox';
+import NavButton from './buttons/NavButton';
 import {
   AppBar,
   Toolbar,
@@ -18,6 +18,7 @@ import {
   Menu,
   MenuItem,
 } from '@mui/material';
+import InboxIcon from '@mui/icons-material/Inbox';
 import MenuIcon from '@mui/icons-material/Menu';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import { setUserAuth } from '../reducers/userAuthReducer';
@@ -41,16 +42,11 @@ function NavBar({ handleOpenBuild }) {
     window.localStorage.clear();
     setAnchorEl(null);
     dispatch(setUserAuth(null));
-    // Clear all states
+    // TODO: Clear all states
   };
 
   const toggleDrawer = () => {
     setSideBar(!sideBar);
-  };
-
-  const styles = {
-    display: 'flex',
-    justifyContent: 'space-between',
   };
 
   const sideBarOptions = ['Home', 'Dashboard', 'Library'].map((option) => (
@@ -67,7 +63,7 @@ function NavBar({ handleOpenBuild }) {
   return (
     <Box height={56}>
       <AppBar position="relative" sx={{ height: 'inherit', justifyContent: 'center' }}>
-        <Toolbar style={styles}>
+        <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
           <Box>
             <IconButton
               size="large"
@@ -81,9 +77,12 @@ function NavBar({ handleOpenBuild }) {
             </IconButton>
           </Box>
           <Box>
-            <Button color="inherit" component={Link} to="/">Home</Button>
+            <NavButton title="Home" nav="/" />
+            <NavButton title="Active" nav="/active" />
+            <NavButton title="Build" action={handleOpenBuild} />
+            {/* <Button color="inherit" component={Link} to="/">Home</Button>
             <Button color="inherit" component={Link} to="/active">Active</Button>
-            <Button color="inherit" onClick={handleOpenBuild}>Build</Button>
+            <Button color="inherit" onClick={handleOpenBuild}>Build</Button> */}
           </Box>
           <Box>
             <IconButton
