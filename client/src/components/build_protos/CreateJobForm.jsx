@@ -4,6 +4,7 @@ import {
   Box, Paper, TextField, Grid,
 } from '@mui/material';
 import { useState } from 'react';
+import ActionButton from '../buttons/ActionButton';
 import StylishButton from '../StylishButton';
 import ColorPicker from './ColorPicker';
 
@@ -91,14 +92,8 @@ function CreateJobForm({ setNewProtoJobs, cardColor, setColor }) {
         </Grid>
         <Grid item xs={10}>
           <Box display="flex" gap={2}>
-            <StylishButton
-              action={createJob}
-              title="Create"
-            />
-            <StylishButton
-              action={cancelAllFields}
-              title="Cancel"
-            />
+            <ActionButton title="Create Job" action={createJob} />
+            <ActionButton title="Clear" action={cancelAllFields} buttonType="secondary" />
           </Box>
         </Grid>
         <Grid item xs={2}>

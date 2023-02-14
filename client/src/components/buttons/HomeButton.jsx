@@ -1,4 +1,3 @@
-import { Button } from '@mui/material';
 import PropTypes from 'prop-types';
 import styles from './Buttons.module.css'
 
@@ -9,7 +8,5 @@ function HomeButton({ title }) {
     </div>
   );
 }
-
-
 
 export default HomeButton;
