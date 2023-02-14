@@ -53,7 +53,7 @@ function HomeDialog({ open, handleClose }) {
             options={userProtos}
             // groupBy={(option) => option.timeOfDay}
             getOptionLabel={(option) => option.title}
-            renderInput={(params) => <TextField {...params} label="Protos" sx={{ '& .MuiInputBase-root.Mui-focused .MuiOutlinedInput-notchedOutline': { borderColor: 'red' } }} />}
+            renderInput={(params) => <TextField {...params} label="Protos" />}
           />
           <Box display="flex" flexDirection="row" justifyContent="space-between" gap={10}>
             <ActionButton title="Create" action={createActiveList} />

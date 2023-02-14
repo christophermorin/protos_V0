@@ -63,7 +63,7 @@ function CreateJobForm({ setNewProtoJobs, cardColor, setColor }) {
           <TextField
             id="standard-basic"
             label="Job Title"
-            variant="filled"
+            // variant="filled"
             value={jobTitle}
             fullWidth
             onChange={(e) => setJobTitle(e.target.value)}
@@ -73,7 +73,7 @@ function CreateJobForm({ setNewProtoJobs, cardColor, setColor }) {
             label="Job Description"
             multiline
             fullWidth
-            variant="filled"
+            // variant="filled"
             value={jobDesc}
             onChange={(e) => setJobDesc(e.target.value)}
             sx={{ marginTop: 2 }}
@@ -92,7 +92,7 @@ function CreateJobForm({ setNewProtoJobs, cardColor, setColor }) {
         </Grid>
         <Grid item xs={10}>
           <Box display="flex" gap={2}>
-            <ActionButton title="Create Job" action={createJob} />
+            <ActionButton title="Add" action={createJob} />
             <ActionButton title="Clear" action={cancelAllFields} buttonType="secondary" />
           </Box>
         </Grid>
