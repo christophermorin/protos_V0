@@ -1,10 +1,11 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {
-  Tabs, Tab, Grid,
+  Tabs, Grid,
 } from '@mui/material';
 import ActiveProto from './ActiveProto';
 import SpeedDialMenu from '../Utilities/SpeedDIalMenu';
+import ActiveProtosButton from '../buttons/ActiveProtosButton';
 import activeProtoServices from '../../services/activeProtoServices';
 import { setActiveProtos } from '../../reducers/activeProtosReducer';
 import { displayedAddOne, displayedRemoveOne } from '../../reducers/displayedProtosReducer';
@@ -30,32 +31,21 @@ function ProtoTabs() {
   }, []);
 
   const handleClick = (event, proto) => {
-    event.target.style.color = 'red';
     const found = displayedProtos.find((item) => item._id === proto._id);
     if (!found) {
       dispatch(displayedAddOne(proto));
     } else {
       dispatch(displayedRemoveOne(proto._id));
-      event.target.style.color = '';
     }
   };
-  const tabCount = protoList ? protoList.activeProtos.map((proto) => {
-    const styles = {
-      // backgroundColor: colors[proto.timeOfDay],
-      borderRadius: '5px',
-      borderRight: '1px solid black',
-      borderLeft: '1px solid black',
-      marginRight: 10,
-    };
-    return (
-      <Tab
-        style={styles}
-        key={proto._id}
-        label={proto.title}
-        onClick={() => handleClick(event, proto)}
-      />
-    );
-  })
+  const tabCount = protoList ? protoList.activeProtos.map((proto) => (
+    // <Tab
+    //   key={proto._id}
+    //   label={proto.title}
+    //   onClick={() => handleClick(event, proto)}
+    // />
+    <ActiveProtosButton key={proto._id} title={proto.title} action={() => handleClick(event, proto)} />
+  ))
     : null;
 
   // Display selected protos
@@ -89,8 +79,7 @@ function ProtoTabs() {
         </Tabs>
       </Grid>
       {displayedProtos.length > 0
-        ?
-        (
+        ? (
           <Grid
             item
             xs={12}
@@ -111,7 +100,7 @@ function ProtoTabs() {
 
           </Grid>
         )
-        : <div style={{ justifySelf: 'flex-start' }}>Waiting...</div>}
+        : <div style={{ justifySelf: 'flex-start' }}>Where will you start?</div>}
       <SpeedDialMenu />
     </Grid>
   );

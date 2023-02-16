@@ -1,7 +1,10 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { Grid, TextField, Box, Button, Typography } from '@mui/material';
+import {
+  Grid, TextField, Button, Typography,
+} from '@mui/material';
 import SignUpDialog from './SignUpDialog';
+import HomeButton from '../buttons/HomeButton'
 import loginServices from '../../services/loginServices';
 import { setUserAuth } from '../../reducers/userAuthReducer';
 
@@ -33,19 +36,6 @@ function Register() {
     }
   };
 
-  const styles = {
-    container: {
-      position: 'relative',
-      top: '40%',
-      width: '200px',
-      margin: '0 auto',
-    },
-    box: {
-      border: '1px solid black',
-      padding: 10,
-    },
-  };
-
   return (
     <Grid container height="100%" justifyContent="center" alignItems="center" spacing={5} direction="column">
       <Grid item>
@@ -74,7 +64,7 @@ function Register() {
           variant="standard"
           onChange={(e) => setPassword(e.target.value)}
         />
-        <Grid item >
+        <Grid item>
           <Button
             onClick={handleLogin}
           >

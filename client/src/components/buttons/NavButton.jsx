@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import styles from './Buttons.module.css'
+import styles from './Buttons.module.css';
 
 function NavButton({ title, nav, action }) {
   return (
@@ -10,5 +10,5 @@ function NavButton({ title, nav, action }) {
       </Link>
     </div>
   );
-};
+}
 export default NavButton;

@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
-import { Dialog, Grid, TextField, Button, Typography } from '@mui/material';
+import {
+  Dialog, Grid, TextField, Button, Typography,
+} from '@mui/material';
 import userServices from '../../services/userServices';
 
 function SignUpDialog({ open, closeSignUp, setOpen }) {

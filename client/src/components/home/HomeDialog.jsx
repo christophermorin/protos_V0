@@ -4,8 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
   Dialog, DialogContent, Box, Autocomplete, TextField,
 } from '@mui/material';
-import StylishButton from '../StylishButton';
 import ActionButton from '../buttons/ActionButton';
+import LibraryCard from '../library/LibraryCard';
 import activeProtoServices from '../../services/activeProtoServices';
 import { clearDisplayedProtoList } from '../../reducers/displayedProtosReducer';
 
@@ -34,10 +34,11 @@ function HomeDialog({ open, handleClose }) {
       console.log(error);
     }
   };
+
   return (
     <Dialog open={open} onClose={handleClose}>
       <DialogContent sx={{ border: '2px solid black' }}>
-        <Box display="flex" flexDirection="column" justifyContent="center" alignItems="center" gap={5} >
+        <Box display="flex" flexDirection="column" justifyContent="center" alignItems="center" gap={5}>
           <Box display="flex" flexDirection="row" flexWrap gap={1}>
             {/* <StylishButton title="Use Template" /> */}
             <ActionButton title="Use Template" />
@@ -58,8 +59,6 @@ function HomeDialog({ open, handleClose }) {
           <Box display="flex" flexDirection="row" justifyContent="space-between" gap={10}>
             <ActionButton title="Create" action={createActiveList} />
             <ActionButton title="Cancel" action={handleClose} buttonType="secondary" />
-            {/* <StylishButton action={createActiveList} title="Create" /> */}
-            {/* <StylishButton action={handleClose} title="Cancel" color="secondary" /> */}
           </Box>
         </Box>
       </DialogContent>

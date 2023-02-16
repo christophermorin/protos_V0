@@ -27,6 +27,14 @@ const theme = createTheme({
         },
       },
     },
+    MuiTabScrollButton: {
+      styleOverrides: {
+        root: {
+          width: '10px',
+          alignItems: 'center',
+        },
+      },
+    },
   },
 });
 
