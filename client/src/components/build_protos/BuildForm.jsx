@@ -2,12 +2,13 @@ import { useState } from 'react';
 import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
 import {
-  Button, Grid, Stack, Switch, FormControlLabel, FormGroup, Dialog,
+  Box, Grid, Stack, Switch, FormControlLabel, FormGroup, Dialog,
 } from '@mui/material';
 import { EditorState, convertToRaw } from 'draft-js';
 import CreateProtoForm from './CreateProtoForm';
 import CreateJobForm from './CreateJobForm';
 import DisplayNewJob from './DisplayNewJob';
+import ActionButton from '../buttons/ActionButton';
 import userProtoServices from '../../services/userProtoServices';
 import activeProtoServices from '../../services/activeProtoServices';
 import { activeProtoAddOne } from '../../reducers/activeProtosReducer';
@@ -111,7 +112,10 @@ function BuildForm({ open, handleCloseBuild }) {
                 <FormControlLabel control={<Switch checked={checked} onClick={handleChecked} />} label="Add Proto to active list" />
               </FormGroup>
             )}
-          <Button
+          <Box display="flex" justifyContent="center" marginTop={2}>
+            <ActionButton title="Create Proto" action={createProto} />
+          </Box>
+          {/* <Button
             sx={{
               margin: '0 auto', marginTop: 2, marginBottom: 5, display: 'flex', justifyContent: 'center',
             }}
@@ -119,7 +123,7 @@ function BuildForm({ open, handleCloseBuild }) {
             variant="contained"
           >
             Create Proto
-          </Button>
+          </Button> */}
 
         </Grid>
       </Grid>

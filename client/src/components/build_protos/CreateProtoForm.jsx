@@ -21,7 +21,7 @@ function CreateProtoForm({
         <TextField
           id="proto-title"
           label="Proto Title..."
-          variant="filled"
+          // variant="filled"
           value={protoTitle}
           onChange={(e) => setProtoTitle(e.target.value)}
           fullWidth

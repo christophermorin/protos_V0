@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {
-  Tabs, Tab, Grid, Box, Zoom,
+  Tabs, Tab, Grid,
 } from '@mui/material';
 import ActiveProto from './ActiveProto';
 import SpeedDialMenu from '../Utilities/SpeedDIalMenu';
@@ -61,11 +61,7 @@ function ProtoTabs() {
   // Display selected protos
   const displayed = displayedProtos ? displayedProtos.map((proto) => (
     <Grid item key={proto._id}>
-      {/* <Zoom in> */}
-      {/* <Box> */}
       <ActiveProto proto={proto} />
-      {/* </Box> */}
-      {/* </Zoom> */}
     </Grid>
   ))
     : null;
@@ -75,6 +71,7 @@ function ProtoTabs() {
       container
       direction="row"
       height="100%"
+      justifyContent="center"
     >
       <Grid
         item
@@ -91,15 +88,17 @@ function ProtoTabs() {
           {tabCount}
         </Tabs>
       </Grid>
-      <Grid
-        item
-        xs={12}
-        height="calc(100% - 64px)"
-        marginLeft={{ xs: 'none', md: '200px' }}
-        sx={{ overflowX: 'auto' }}
-      >
-        {displayedProtos.length > 0
-          ? (
+      {displayedProtos.length > 0
+        ?
+        (
+          <Grid
+            item
+            xs={12}
+            height="calc(100% - 64px)"
+            marginLeft={{ xs: 'none', md: '200px' }}
+            sx={{ overflowX: 'auto' }}
+          >
+
             <Grid
               container
               direction="row"
@@ -109,10 +108,11 @@ function ProtoTabs() {
             >
               {displayed}
             </Grid>
-          )
-          : <div style={{ display: 'flex', justifyContent: 'center' }}>No active Protos...</div>}
-        <SpeedDialMenu />
-      </Grid>
+
+          </Grid>
+        )
+        : <div style={{ justifySelf: 'flex-start' }}>Waiting...</div>}
+      <SpeedDialMenu />
     </Grid>
   );
 }

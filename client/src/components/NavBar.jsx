@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import NavButton from './buttons/NavButton';
 import {
   AppBar,
   Toolbar,
@@ -17,10 +16,12 @@ import {
   ListItemText,
   Menu,
   MenuItem,
+  Grid,
 } from '@mui/material';
 import InboxIcon from '@mui/icons-material/Inbox';
 import MenuIcon from '@mui/icons-material/Menu';
 import AccountCircle from '@mui/icons-material/AccountCircle';
+import NavButton from './buttons/NavButton';
 import { setUserAuth } from '../reducers/userAuthReducer';
 
 function NavBar({ handleOpenBuild }) {
@@ -62,50 +63,52 @@ function NavBar({ handleOpenBuild }) {
 
   return (
     <Box height={56}>
-      <AppBar position="relative" sx={{ height: 'inherit', justifyContent: 'center' }}>
-        <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
-          <Box>
-            <IconButton
-              size="large"
-              edge="start"
-              color="inherit"
-              aria-label="menu"
-              sx={{ mr: 2 }}
-              onClick={toggleDrawer}
-            >
-              <MenuIcon />
-            </IconButton>
-          </Box>
-          <Box>
-            <NavButton title="Home" nav="/" />
-            <NavButton title="Active" nav="/active" />
-            <NavButton title="Build" action={handleOpenBuild} />
-            {/* <Button color="inherit" component={Link} to="/">Home</Button>
+      <AppBar position="relative" sx={{ height: 'inherit', justifyContent: 'center', backgroundColor: '#fff' }}>
+        <Toolbar>
+          <Grid container alignItems="center" justifyContent="space-between">
+            <Grid item xs={1}>
+              <IconButton
+                size="large"
+                edge="start"
+                color="black"
+                aria-label="menu"
+                onClick={toggleDrawer}
+              >
+                <MenuIcon />
+              </IconButton>
+            </Grid>
+            <Grid item>
+              <NavButton title="Home" nav="/" />
+              <NavButton title="Active" nav="/active" />
+              <NavButton title="Build" action={handleOpenBuild} />
+              {/* <Button color="inherit" component={Link} to="/">Home</Button>
             <Button color="inherit" component={Link} to="/active">Active</Button>
             <Button color="inherit" onClick={handleOpenBuild}>Build</Button> */}
-          </Box>
-          <Box>
-            <IconButton
-              size="large"
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              color="inherit"
-              onClick={handleClick}
-            >
-              <AccountCircle />
-            </IconButton>
-            <Menu
-              id="user-menu"
-              anchorEl={anchorEl}
-              open={open}
-              onClose={handleClose}
-            >
-              <MenuItem onClick={handleClose}>Profile</MenuItem>
-              <MenuItem onClick={handleClose}>My account</MenuItem>
-              <MenuItem onClick={logoutUser}>Logout</MenuItem>
-            </Menu>
-          </Box>
+            </Grid>
+
+            <Grid container item xs={1} justifyContent="flex-end">
+              <IconButton
+                size="medium"
+                aria-label="account of current user"
+                aria-controls="menu-appbar"
+                aria-haspopup="true"
+                color="black"
+                onClick={handleClick}
+              >
+                <AccountCircle />
+              </IconButton>
+              <Menu
+                id="user-menu"
+                anchorEl={anchorEl}
+                open={open}
+                onClose={handleClose}
+              >
+                <MenuItem onClick={handleClose}>Profile</MenuItem>
+                <MenuItem onClick={handleClose}>My account</MenuItem>
+                <MenuItem onClick={logoutUser}>Logout</MenuItem>
+              </Menu>
+            </Grid>
+          </Grid>
         </Toolbar>
       </AppBar>
       <Drawer
@@ -141,7 +144,7 @@ function NavBar({ handleOpenBuild }) {
         open
         variant="permanent"
         // onClose={toggleDrawer}
-        sx={{ display: { xs: 'none', lg: 'block' }, '& .MuiDrawer-paper': { boxSizing: 'border-box', width: '200px', backgroundColor: '#1976d2' } }}
+        sx={{ display: { xs: 'none', lg: 'block' }, '& .MuiDrawer-paper': { boxSizing: 'border-box', width: '200px' } }}
       >
         <List sx={{
           display: 'flex', flexDirection: 'column', justifyContent: 'space-between', height: '100%', paddingTop: 5,
