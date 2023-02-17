@@ -11,6 +11,7 @@ import { clearDisplayedProtoList } from '../../reducers/displayedProtosReducer';
 
 function HomeDialog({ open, handleClose }) {
   const [selectedProtos, setSelectedProtos] = useState([]);
+  const [openTemplates, setOpenTemplates] = useState(false);
   const userProtos = useSelector((state) => state.userProtos);
   const dispatch = useDispatch();
 
@@ -37,32 +38,46 @@ function HomeDialog({ open, handleClose }) {
 
   return (
     <Dialog open={open} onClose={handleClose}>
-      <DialogContent sx={{ border: '2px solid black' }}>
-        <Box display="flex" flexDirection="column" justifyContent="center" alignItems="center" gap={5}>
-          <Box display="flex" flexDirection="row" flexWrap gap={1}>
-            {/* <StylishButton title="Use Template" /> */}
-            <ActionButton title="Use Template" />
-          </Box>
-          <Autocomplete
-            id="grouped-demo"
-            sx={{ minWidth: { xs: 300, md: 500 }, padding: 5 }}
-            value={selectedProtos}
-            onChange={(event, newValue) => {
-              setSelectedProtos(newValue);
-            }}
-            multiple
-            options={userProtos}
-            // groupBy={(option) => option.timeOfDay}
-            getOptionLabel={(option) => option.title}
-            renderInput={(params) => <TextField {...params} label="Protos" />}
-          />
-          <Box display="flex" flexDirection="row" justifyContent="space-between" gap={10}>
-            <ActionButton title="Create" action={createActiveList} />
-            <ActionButton title="Cancel" action={handleClose} buttonType="secondary" />
-          </Box>
-        </Box>
-      </DialogContent>
+      {openTemplates
+        ?
+        (
+          <DialogContent>
+            <Box>
+              Testing
+            </Box>
+          </DialogContent>
+        )
+        :
+        (
+          <DialogContent sx={{ border: '2px solid black' }}>
+            <Box display="flex" flexDirection="column" justifyContent="center" alignItems="center" gap={5}>
+              <Box display="flex" flexDirection="row" flexWrap gap={1}>
+                {/* <StylishButton title="Use Template" /> */}
+                <ActionButton title="Use Template" />
+              </Box>
+              <Autocomplete
+                id="grouped-demo"
+                sx={{ minWidth: { xs: 300, md: 500 }, padding: 5 }}
+                value={selectedProtos}
+                onChange={(event, newValue) => {
+                  setSelectedProtos(newValue);
+                }}
+                multiple
+                options={userProtos}
+                // groupBy={(option) => option.timeOfDay}
+                getOptionLabel={(option) => option.title}
+                renderInput={(params) => <TextField {...params} label="Protos" />}
+              />
+              <Box display="flex" flexDirection="row" justifyContent="space-between" gap={10}>
+                <ActionButton title="Create" action={createActiveList} />
+                <ActionButton title="Cancel" action={handleClose} buttonType="secondary" />
+              </Box>
+            </Box>
+          </DialogContent>
+        )
+      }
     </Dialog>
+
   );
 }
 

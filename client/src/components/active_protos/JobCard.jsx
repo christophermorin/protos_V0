@@ -69,6 +69,7 @@ function JobCard({ job, listId, protoId }) {
       opacity: complete ? 0.4 : null,
       // background: `linear-gradient(135deg, ${tempColorCard} 10%, #fff 80%)` || null
       // boxShadow: `2px 2px 0  rgba(0,0,0,0.4)`,
+      border: '1px solid black'
     }}
     >
       <Grid container height="100%" alignItems="center">
