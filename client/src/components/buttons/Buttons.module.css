@@ -94,20 +94,52 @@
 }
 
 .activeProtoButton {
+  border: 2px solid #010100;
+  border-radius: 5px;
   padding: 5px;
-  border-top: 2px solid black;
-  border-bottom: 2px solid black;
+  color: #000;
   text-transform: uppercase;
   letter-spacing: 2px;
   position: relative;
   display: inline-block;
   cursor: pointer;
   font-size: 0.9rem;
-  margin-right: 6px;
-  transition: all 0.5s ease-in-out;
+  margin-right: 5px;
+}
+
+.activeProtoButton::before {
+  content: '';
+  position: absolute;
+  top: 5px;
+  left: -2px;
+  width: calc(100% + 6px);
+  height: calc(100% - 10px);
+  color: #000;
+  background-color: #fff;
+  transition: all 0.2s ease-in-out;
+  transform: scaleY(1);
 }
 
 .activeProtoButton:hover {
-  border-top: 2px solid red;
-  border-bottom: 2px solid red;
+  background-color: #000000;
+  color: #ffffff;
+}
+
+.activeProtoButton:hover::before {
+  transform: scaleY(0);
+}
+
+.activeProtoButtonSelected {
+  border: 2px solid #000000;
+  background-color: #000000;
+  border-radius: 5px;
+  padding: 5px;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  font-size: 0.9rem;
+  margin-right: 5px;
 }
