@@ -1,20 +1,23 @@
+import { useState } from 'react';
 import PropTypes from 'prop-types';
 import {
   Accordion, AccordionSummary, AccordionDetails, Grid, Typography, Stack,
 } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { useSelector } from 'react-redux';
-import JobCard from './JobCard';
 import ActiveProtoHeader from './ActiveProtoHeader';
+import JobStepper from './JobStepper';
+import JobCard from './JobCard';
 
 function ActiveProto({ proto }) {
   const activeList = useSelector((state) => state.activeProtos);
-  const totalJobs = proto.jobs.length;
+  const totalJobCount = proto.jobs.length;
   const totalJobsComplete = proto.jobs.filter((job) => job.isComplete);
 
   const jobslist = proto.jobs.map((job) => (
     <JobCard key={job._id} job={job} listId={activeList._id} protoId={proto._id} />
   ));
+
   return (
     <Grid container spacing={0.5} key={proto._id} sx={{ width: { xs: 'calc(100vw - 16px)', md: '360px' } }}>
       <Grid item xs={12}>
@@ -29,7 +32,6 @@ function ActiveProto({ proto }) {
       <Grid item xs={12}>
         <Accordion
           disableGutters
-          defaultExpanded
           sx={{ border: '2px solid black' }}
         >
           <AccordionSummary
@@ -39,9 +41,19 @@ function ActiveProto({ proto }) {
             sx={{ background: '#eeeeee' }}
 
           >
-            <Typography variant="caption" fontWeight={500}>{totalJobsComplete.length}</Typography>
-            /
-            <Typography variant="caption" fontWeight={500}>{totalJobs}</Typography>
+            <Typography
+              margin="auto"
+              variant="caption"
+              fontWeight={700}
+            >
+              {totalJobsComplete.length}
+              /
+              {totalJobCount}
+            </Typography>
+            <JobStepper
+              totalJobCount={totalJobCount}
+              totalJobsComplete={totalJobsComplete.length}
+            />
           </AccordionSummary>
           <AccordionDetails sx={{ background: '#eeeeee', overflowY: 'auto', scrollbarWidth: 'thin' }}>
             <Stack spacing={1} sx={{ maxHeight: '55vh' }}>

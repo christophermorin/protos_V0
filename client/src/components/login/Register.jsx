@@ -4,7 +4,7 @@ import {
   Grid, TextField, Button, Typography,
 } from '@mui/material';
 import SignUpDialog from './SignUpDialog';
-import HomeButton from '../buttons/HomeButton'
+import HomeButton from '../buttons/HomeButton';
 import loginServices from '../../services/loginServices';
 import { setUserAuth } from '../../reducers/userAuthReducer';
 
