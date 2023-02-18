@@ -39,7 +39,7 @@ function ActiveReason({ protoDescription }) {
 
   return (
     <div>
-      <HelpIcon aria-describedby={id} onClick={handleClick} />
+      <HelpIcon aria-describedby={id} onClick={handleClick} sx={{ '&:hover': { background: 'rgba(255,0,0,0.3)' }, borderRadius: '50%' }} />
       <Popover
         id={id}
         open={open}
@@ -64,7 +64,7 @@ function ActiveReason({ protoDescription }) {
           />
         </div>
       </Popover>
-    </div>
+    </div >
   );
 }
 

@@ -15,7 +15,6 @@ function ProtoTabs() {
   const user = useSelector((state) => state.userAuth);
   const displayedProtos = useSelector((state) => state.displayedProtos);
   const dispatch = useDispatch();
-  // Setting current active proto list.Used in ProtoTabs.
   useEffect(() => {
     const getActive = async () => {
       try {
@@ -29,7 +28,6 @@ function ProtoTabs() {
     };
     getActive();
   }, []);
-
   const handleClick = (event, proto) => {
     const found = displayedProtos.find((item) => item._id === proto._id);
     if (!found) {
@@ -39,12 +37,10 @@ function ProtoTabs() {
     }
   };
   const tabCount = protoList ? protoList.activeProtos.map((proto) => (
-    // <Tab
-    //   key={proto._id}
-    //   label={proto.title}
-    //   onClick={() => handleClick(event, proto)}
-    // />
-    <ActiveProtosButton key={proto._id} title={proto.title} action={() => handleClick(event, proto)} />
+    <ActiveProtosButton
+      key={proto._id}
+      title={proto.title}
+      action={() => handleClick(event, proto)} />
   ))
     : null;
 

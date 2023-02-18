@@ -44,11 +44,11 @@ const theme = createTheme({
             height: '15px',
           },
           '.MuiLinearProgress-bar': {
-            background: 'rgba(255,0,0,1)',
+            background: 'rgba(0, 155, 100, 0.5)',
             transition: 'transform 0.3s linear',
           },
           '.MuiLinearProgress-colorPrimary': {
-            background: 'rgba(0,0,0,0.5)',
+            background: 'rgba(0,0,0,0.2)',
           },
         },
       },

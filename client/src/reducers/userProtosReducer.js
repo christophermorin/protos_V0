@@ -11,7 +11,6 @@ const UserProtos = createSlice({
       return [...state, action.payload];
     },
     deleteUserProto(state, action) {
-      console.log(action.payload);
       const deletedProto = action.payload;
       return state.filter((proto) => proto._id !== deletedProto);
     },

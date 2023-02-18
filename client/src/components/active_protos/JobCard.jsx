@@ -8,6 +8,7 @@ import PlayCircleIcon from '@mui/icons-material/PlayCircle';
 import StopCircleIcon from '@mui/icons-material/StopCircle';
 import HelpIcon from '@mui/icons-material/Help';
 import ActiveTimer from './ActiveTimer';
+import ProtoButton from '../buttons/ProtoButton';
 import activeProtoServices from '../../services/activeProtoServices';
 import { displayedUpdateList } from '../../reducers/displayedProtosReducer';
 import { setActiveProtos } from '../../reducers/activeProtosReducer';
@@ -90,29 +91,9 @@ function JobCard({ job, listId, protoId }) {
             justifyContent="space-between"
             marginTop={1}
           >
-            <Typography
-              variant="caption"
-              fontWeight={500}
-              sx={{ '&:hover': { color: 'red' }, cursor: 'pointer' }}
-              onClick={deleteJob}
-            >
-              Delete
-            </Typography>
-            <Typography
-              variant="caption"
-              fontWeight={500}
-              sx={{ '&:hover': { color: 'red' }, cursor: 'pointer' }}
-            >
-              Reset
-            </Typography>
-            <Typography
-              variant="caption"
-              fontWeight={500}
-              sx={{ '&:hover': { color: 'green' }, cursor: 'pointer' }}
-              onClick={toggleJobComplete}
-            >
-              Complete
-            </Typography>
+            <ProtoButton title="Delete" action={deleteJob} />
+            <ProtoButton title="Reset" />
+            <ProtoButton title="Complete" action={toggleJobComplete} />
           </Grid>
         </Grid>
         <Grid

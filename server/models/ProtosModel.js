@@ -8,6 +8,10 @@ const protosSchema = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
+  isDisplayed: {
+    type: Boolean,
+    default: false,
+  },
   jobs: [
     {
       title: String,

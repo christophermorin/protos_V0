@@ -3,7 +3,6 @@ import StarIcon from '@mui/icons-material/Star';
 import StarBorder from '@mui/icons-material/StarBorder';
 
 function JobStepper({ totalJobCount, totalJobsComplete }) {
-  console.log('stepper');
   return (
     <>
       <MobileStepper
@@ -14,7 +13,7 @@ function JobStepper({ totalJobCount, totalJobsComplete }) {
         sx={{ width: '100%', flexGrow: 1 }}
       />
       {totalJobsComplete === totalJobCount && totalJobCount !== 0
-        ? <StarIcon fontSize="large" sx={{ color: 'red' }} />
+        ? <StarIcon fontSize="large" sx={{ color: 'rgba(0, 155, 100, 0.5)' }} />
         : <StarBorder fontSize="large" />}
     </>
   );
