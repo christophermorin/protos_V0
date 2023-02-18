@@ -22,6 +22,7 @@ import InboxIcon from '@mui/icons-material/Inbox';
 import MenuIcon from '@mui/icons-material/Menu';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import NavButton from './buttons/NavButton';
+import ActionButton from './buttons/ActionButton';
 import { setUserAuth } from '../reducers/userAuthReducer';
 
 function NavBar({ handleOpenBuild }) {
@@ -103,9 +104,12 @@ function NavBar({ handleOpenBuild }) {
                 open={open}
                 onClose={handleClose}
               >
+
                 <MenuItem onClick={handleClose}>Profile</MenuItem>
+
                 <MenuItem onClick={handleClose}>My account</MenuItem>
                 <MenuItem onClick={logoutUser}>Logout</MenuItem>
+
               </Menu>
             </Grid>
           </Grid>

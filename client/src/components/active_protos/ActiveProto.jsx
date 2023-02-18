@@ -9,6 +9,8 @@ import ActiveProtoHeader from './ActiveProtoHeader';
 
 function ActiveProto({ proto }) {
   const activeList = useSelector((state) => state.activeProtos);
+  const totalJobs = proto.jobs.length;
+  const totalJobsComplete = proto.jobs.filter((job) => job.isComplete);
 
   const jobslist = proto.jobs.map((job) => (
     <JobCard key={job._id} job={job} listId={activeList._id} protoId={proto._id} />
@@ -28,6 +30,7 @@ function ActiveProto({ proto }) {
         <Accordion
           disableGutters
           defaultExpanded
+          sx={{ border: '2px solid black' }}
         >
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
@@ -36,15 +39,9 @@ function ActiveProto({ proto }) {
             sx={{ background: '#eeeeee' }}
 
           >
-            <Typography variant="caption" fontWeight={500}>Job Count</Typography>
-            <Typography variant="caption" fontWeight={500}>Total TIme</Typography>
-            {/* <Typography
-              variant="subtitle2"
-              fontSize={15}
-              fontWeight={'bold'}
-            >
-              The How
-            </Typography> */}
+            <Typography variant="caption" fontWeight={500}>{totalJobsComplete.length}</Typography>
+            /
+            <Typography variant="caption" fontWeight={500}>{totalJobs}</Typography>
           </AccordionSummary>
           <AccordionDetails sx={{ background: '#eeeeee', overflowY: 'auto', scrollbarWidth: 'thin' }}>
             <Stack spacing={1} sx={{ maxHeight: '55vh' }}>

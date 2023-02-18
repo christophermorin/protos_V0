@@ -57,7 +57,7 @@ function ActiveProtoHeader({
 
   return (
     <Paper
-      sx={{ padding: '16px 16px 0 16px', background: '#eeeeee' }}
+      sx={{ padding: '16px 16px 0 16px', background: '#eeeeee', border: '2px solid black' }}
     >
       <Box display="flex" justifyContent="space-between">
         <Typography

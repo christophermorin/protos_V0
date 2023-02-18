@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import styles from './Buttons.module.css'
+import styles from './Buttons.module.css';
 
 function ActionButton({ title, action, buttonType }) {
   return (
@@ -7,12 +7,16 @@ function ActionButton({ title, action, buttonType }) {
       className={styles.actionButton}
       onClick={action}
       style={buttonType === 'secondary' ? {
-        boxShadow: '0 0 2px 2px rgba(255,0,0,0.6)'
-      } : null}
-    >
+        borderTop: '2px solid red',
+        borderBottom: '2px solid red',
 
+      } : {
+        borderTop: '2px solid #000',
+        borderBottom: '2px solid #000',
+      }}
+    >
       <span style={{ position: 'relative', zIndex: 3 }}>{title}</span>
-    </div >
+    </div>
   );
 }
 

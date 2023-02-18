@@ -4,13 +4,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
   Dialog, DialogContent, Box, Autocomplete, TextField,
 } from '@mui/material';
-import StylishButton from '../StylishButton';
 import ActionButton from '../buttons/ActionButton';
+import LibraryCard from '../library/LibraryCard';
 import activeProtoServices from '../../services/activeProtoServices';
 import { clearDisplayedProtoList } from '../../reducers/displayedProtosReducer';
 
 function HomeDialog({ open, handleClose }) {
   const [selectedProtos, setSelectedProtos] = useState([]);
+  const [openTemplates, setOpenTemplates] = useState(false);
   const userProtos = useSelector((state) => state.userProtos);
   const dispatch = useDispatch();
 
@@ -34,36 +35,49 @@ function HomeDialog({ open, handleClose }) {
       console.log(error);
     }
   };
+
   return (
     <Dialog open={open} onClose={handleClose}>
-      <DialogContent sx={{ border: '2px solid black' }}>
-        <Box display="flex" flexDirection="column" justifyContent="center" alignItems="center" gap={5} >
-          <Box display="flex" flexDirection="row" flexWrap gap={1}>
-            {/* <StylishButton title="Use Template" /> */}
-            <ActionButton title="Use Template" />
-          </Box>
-          <Autocomplete
-            id="grouped-demo"
-            sx={{ minWidth: { xs: 300, md: 500 }, padding: 5 }}
-            value={selectedProtos}
-            onChange={(event, newValue) => {
-              setSelectedProtos(newValue);
-            }}
-            multiple
-            options={userProtos}
-            // groupBy={(option) => option.timeOfDay}
-            getOptionLabel={(option) => option.title}
-            renderInput={(params) => <TextField {...params} label="Protos" />}
-          />
-          <Box display="flex" flexDirection="row" justifyContent="space-between" gap={10}>
-            <ActionButton title="Create" action={createActiveList} />
-            <ActionButton title="Cancel" action={handleClose} buttonType="secondary" />
-            {/* <StylishButton action={createActiveList} title="Create" /> */}
-            {/* <StylishButton action={handleClose} title="Cancel" color="secondary" /> */}
-          </Box>
-        </Box>
-      </DialogContent>
+      {openTemplates
+        ?
+        (
+          <DialogContent>
+            <Box>
+              Testing
+            </Box>
+          </DialogContent>
+        )
+        :
+        (
+          <DialogContent sx={{ border: '2px solid black' }}>
+            <Box display="flex" flexDirection="column" justifyContent="center" alignItems="center" gap={5}>
+              <Box display="flex" flexDirection="row" flexWrap gap={1}>
+                {/* <StylishButton title="Use Template" /> */}
+                <ActionButton title="Use Template" />
+              </Box>
+              <Autocomplete
+                id="grouped-demo"
+                sx={{ minWidth: { xs: 300, md: 500 }, padding: 5 }}
+                value={selectedProtos}
+                onChange={(event, newValue) => {
+                  setSelectedProtos(newValue);
+                }}
+                multiple
+                options={userProtos}
+                // groupBy={(option) => option.timeOfDay}
+                getOptionLabel={(option) => option.title}
+                renderInput={(params) => <TextField {...params} label="Protos" />}
+              />
+              <Box display="flex" flexDirection="row" justifyContent="space-between" gap={10}>
+                <ActionButton title="Create" action={createActiveList} />
+                <ActionButton title="Cancel" action={handleClose} buttonType="secondary" />
+              </Box>
+            </Box>
+          </DialogContent>
+        )
+      }
     </Dialog>
+
   );
 }
 

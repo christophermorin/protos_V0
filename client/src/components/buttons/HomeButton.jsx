@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import styles from './Buttons.module.css'
+import styles from './Buttons.module.css';
 
 function HomeButton({ title }) {
   return (

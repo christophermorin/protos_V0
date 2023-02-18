@@ -63,15 +63,14 @@
 }
 
 .actionButton {
-  padding: 10px;
-  color: #fff;
+  padding: 5px;
+  color: #000;
   text-transform: uppercase;
   letter-spacing: 2px;
   position: relative;
   display: inline-block;
   cursor: pointer;
   font-size: 0.9rem;
-  /* box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.5); */
   transition: all 0.5s ease-in-out;
 }
 
@@ -79,18 +78,68 @@
   content: '';
   position: absolute;
   left: 0px;
-  top: 0px;
+  bottom: 0px;
   width: 100%;
-  height: 100%;
+  height: 0%;
   background-color: #000;
   transition: all 0.5s ease-in-out;
 }
 
 .actionButton:hover::before {
-  width: 0%;
+  height: 100%;
 }
 
 .actionButton:hover {
+  color: #fff;
+}
+
+.activeProtoButton {
+  border: 2px solid #010100;
+  border-radius: 5px;
+  padding: 5px;
   color: #000;
-  box-shadow: 0 0 2px 1px rgba(0, 0, 0, 1);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  font-size: 0.9rem;
+  margin-right: 5px;
+}
+
+.activeProtoButton::before {
+  content: '';
+  position: absolute;
+  top: 5px;
+  left: -2px;
+  width: calc(100% + 6px);
+  height: calc(100% - 10px);
+  color: #000;
+  background-color: #fff;
+  transition: all 0.2s ease-in-out;
+  transform: scaleY(1);
+}
+
+.activeProtoButton:hover {
+  background-color: #000000;
+  color: #ffffff;
+}
+
+.activeProtoButton:hover::before {
+  transform: scaleY(0);
+}
+
+.activeProtoButtonSelected {
+  border: 2px solid #000000;
+  background-color: #000000;
+  border-radius: 5px;
+  padding: 5px;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  font-size: 0.9rem;
+  margin-right: 5px;
 }
