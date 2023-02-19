@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {
-  Tabs, Grid,
+  Tabs, Grid, Slide, Typography
 } from '@mui/material';
 import ActiveProto from './ActiveProto';
 import SpeedDialMenu from '../Utilities/SpeedDIalMenu';
@@ -40,15 +40,18 @@ function ProtoTabs() {
     <ActiveProtosButton
       key={proto._id}
       title={proto.title}
-      action={() => handleClick(event, proto)} />
+      action={() => handleClick(event, proto)}
+    />
   ))
     : null;
 
   // Display selected protos
   const displayed = displayedProtos ? displayedProtos.map((proto) => (
-    <Grid item key={proto._id}>
-      <ActiveProto proto={proto} />
-    </Grid>
+    <Slide key={proto._id} direction="down" in mountOnEnter unmountOnExit>
+      <Grid item>
+        <ActiveProto proto={proto} />
+      </Grid>
+    </Slide>
   ))
     : null;
 
@@ -93,10 +96,16 @@ function ProtoTabs() {
             >
               {displayed}
             </Grid>
-
           </Grid>
         )
-        : <div style={{ justifySelf: 'flex-start' }}>Where will you start?</div>}
+        : (
+          <Typography
+            variant='h6'
+          >
+            {`Hello ${user.username}, let's get to work.`}
+          </Typography>
+        )
+      }
       <SpeedDialMenu />
     </Grid>
   );
