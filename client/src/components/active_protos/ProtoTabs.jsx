@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {
-  Tabs, Grid,
+  Tabs, Grid, Slide, Typography
 } from '@mui/material';
 import ActiveProto from './ActiveProto';
 import SpeedDialMenu from '../Utilities/SpeedDIalMenu';
@@ -15,7 +15,6 @@ function ProtoTabs() {
   const user = useSelector((state) => state.userAuth);
   const displayedProtos = useSelector((state) => state.displayedProtos);
   const dispatch = useDispatch();
-  // Setting current active proto list.Used in ProtoTabs.
   useEffect(() => {
     const getActive = async () => {
       try {
@@ -29,7 +28,6 @@ function ProtoTabs() {
     };
     getActive();
   }, []);
-
   const handleClick = (event, proto) => {
     const found = displayedProtos.find((item) => item._id === proto._id);
     if (!found) {
@@ -39,20 +37,21 @@ function ProtoTabs() {
     }
   };
   const tabCount = protoList ? protoList.activeProtos.map((proto) => (
-    // <Tab
-    //   key={proto._id}
-    //   label={proto.title}
-    //   onClick={() => handleClick(event, proto)}
-    // />
-    <ActiveProtosButton key={proto._id} title={proto.title} action={() => handleClick(event, proto)} />
+    <ActiveProtosButton
+      key={proto._id}
+      title={proto.title}
+      action={() => handleClick(event, proto)}
+    />
   ))
     : null;
 
   // Display selected protos
   const displayed = displayedProtos ? displayedProtos.map((proto) => (
-    <Grid item key={proto._id}>
-      <ActiveProto proto={proto} />
-    </Grid>
+    <Slide key={proto._id} direction="down" in mountOnEnter unmountOnExit>
+      <Grid item>
+        <ActiveProto proto={proto} />
+      </Grid>
+    </Slide>
   ))
     : null;
 
@@ -97,10 +96,16 @@ function ProtoTabs() {
             >
               {displayed}
             </Grid>
-
           </Grid>
         )
-        : <div style={{ justifySelf: 'flex-start' }}>Where will you start?</div>}
+        : (
+          <Typography
+            variant='h6'
+          >
+            {`Hello ${user.username}, let's get to work.`}
+          </Typography>
+        )
+      }
       <SpeedDialMenu />
     </Grid>
   );

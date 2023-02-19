@@ -39,16 +39,14 @@ function HomeDialog({ open, handleClose }) {
   return (
     <Dialog open={open} onClose={handleClose}>
       {openTemplates
-        ?
-        (
+        ? (
           <DialogContent>
             <Box>
               Testing
             </Box>
           </DialogContent>
         )
-        :
-        (
+        : (
           <DialogContent sx={{ border: '2px solid black' }}>
             <Box display="flex" flexDirection="column" justifyContent="center" alignItems="center" gap={5}>
               <Box display="flex" flexDirection="row" flexWrap gap={1}>
@@ -74,8 +72,7 @@ function HomeDialog({ open, handleClose }) {
               </Box>
             </Box>
           </DialogContent>
-        )
-      }
+        )}
     </Dialog>
 
   );

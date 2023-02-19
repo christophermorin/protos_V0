@@ -35,6 +35,24 @@ const theme = createTheme({
         },
       },
     },
+    MuiMobileStepper: {
+      styleOverrides: {
+        root: {
+          background: 'inherit',
+          '.MuiMobileStepper-progress': {
+            width: '100%',
+            height: '15px',
+          },
+          '.MuiLinearProgress-bar': {
+            background: 'rgba(0, 155, 100, 0.5)',
+            transition: 'transform 0.3s linear',
+          },
+          '.MuiLinearProgress-colorPrimary': {
+            background: 'rgba(0,0,0,0.2)',
+          },
+        },
+      },
+    },
   },
 });
 

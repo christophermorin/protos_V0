@@ -9,6 +9,7 @@ import ActiveReason from './ActiveReason';
 import activeProtoServices from '../../services/activeProtoServices';
 import { setActiveProtos } from '../../reducers/activeProtosReducer';
 import { displayedRemoveOne, displayedUpdateList } from '../../reducers/displayedProtosReducer';
+import ProtoButton from '../buttons/ProtoButton';
 
 function ActiveProtoHeader({
   protoTitle, protoDescription, protoId, isComplete,
@@ -101,17 +102,7 @@ function ActiveProtoHeader({
       }}
       >
         <ActiveReason protoDescription={protoDescription} />
-        <Typography
-          variant="caption"
-          fontWeight={500}
-          sx={{
-            '&:hover': { color: 'red' },
-            cursor: 'pointer',
-          }}
-          onClick={handleComplete}
-        >
-          Complete
-        </Typography>
+        <ProtoButton title="Complete" action={handleComplete} />
       </Box>
     </Paper>
   );
