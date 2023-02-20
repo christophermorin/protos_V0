@@ -13,9 +13,10 @@ function ActiveProto({ proto }) {
   const activeList = useSelector((state) => state.activeProtos);
   const totalJobCount = proto.jobs.length;
   const totalJobsComplete = proto.jobs.filter((job) => job.isComplete);
+  const user = useSelector((state) => state.userAuth)
 
   const jobslist = proto.jobs.map((job) => (
-    <JobCard key={job._id} job={job} listId={activeList._id} protoId={proto._id} />
+    <JobCard key={job._id} job={job} listId={activeList._id} protoId={proto._id} userId={user.id} />
   ));
 
   return (

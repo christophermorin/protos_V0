@@ -10,13 +10,13 @@ import HelpIcon from '@mui/icons-material/Help';
 import ActiveTimer from './ActiveTimer';
 import ProtoButton from '../buttons/ProtoButton';
 import activeProtoServices from '../../services/activeProtoServices';
+import userStatsServices from '../../services/userStatsServices';
 import { displayedUpdateList } from '../../reducers/displayedProtosReducer';
 import { setActiveProtos } from '../../reducers/activeProtosReducer';
 
-function JobCard({ job, listId, protoId }) {
+function JobCard({ job, listId, protoId, userId }) {
   const [timer, setTimer] = useState(false);
   const [complete, setComplete] = useState(job.isComplete);
-  const [hidden, setHidden] = useState(job.isHidden); // intial state should be job.isHidden
   const dispatch = useDispatch();
   const handleTimer = () => {
     setTimer(!timer);
@@ -35,6 +35,10 @@ function JobCard({ job, listId, protoId }) {
       const updatedProto = result.activeProtos.find((proto) => proto._id === protoId);
       dispatch(displayedUpdateList(updatedProto));
       dispatch(setActiveProtos(result));
+      const updateStatsJobs = await userStatsServices.updateStatsJobsCompleted(userId, {
+        jobTitle: job.title,
+        isComplete: complete,
+      })
     } catch (error) {
       console.log('In toggleJobComplete', error);
     }

@@ -10,5 +10,11 @@ const createInitialStats = async ({ userId, username }) => {
 const checkUserStreak = async (userId) => {
   const result = await axios.put(`${baseUrl}/check-streak/${userId}`);
   return result;
-}
-export default { createInitialStats, checkUserStreak };
+};
+
+const updateStatsJobsCompleted = async (userId, { jobTitle, isComplete }) => {
+  console.log(userId)
+  const result = await axios.put(`${baseUrl}/update-jobs/${userId}`, { jobTitle, isComplete })
+  return result;
+};
+export default { createInitialStats, checkUserStreak, updateStatsJobsCompleted };

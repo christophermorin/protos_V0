@@ -11,7 +11,7 @@ userStatsRouter.post('/initialize-stats/:id', async (req, res, next) => {
       userId: req.params.id,
       username: req.body.username,
       totalProtosCompleted: 0,
-      totalJobsCompleted: 0,
+      totalJobsCompleted: [],
       dayStreak: {
         date: new Date(),
         streak: 0,
@@ -60,6 +60,62 @@ userStatsRouter.put('/check-streak/:id', async (req, res, next) => {
     }
     else {
       res.status(201).json(currentUserStats);
+    }
+  } catch (error) {
+    next(error);
+  }
+});
+
+// Complete is coming in as the opposite of its click
+// (click 'complete' on the job and it comes in as false)
+
+userStatsRouter.put('/update-jobs/:id', async (req, res, next) => {
+  const currentUserStats = await UserStats.findOne({ userId: req.params.id });
+  const { jobTitle, isComplete } = req.body;
+  console.log('Job stats', isComplete)
+  let jobExists = false;
+  currentUserStats.totalJobsCompleted.forEach((job) => {
+    if (job.jobTitle === jobTitle) {
+      jobExists = true;
+    }
+  })
+  try {
+    if (!isComplete && jobExists) {
+      console.log('first if')
+      const incJobCompleteCount = await UserStats.findOneAndUpdate(
+        { userId: req.params.id },
+        { $inc: { 'totalJobsCompleted.$[outer].timesCompleted': 1 } },
+        {
+          arrayFilters: [{ 'outer.jobTitle': jobTitle }],
+        },
+      );
+      await incJobCompleteCount.save();
+      res.status(201).json(incJobCompleteCount);
+    }
+    else if (isComplete && jobExists) {
+      console.log('first else if')
+      const decJobCompleteCount = await UserStats.findOneAndUpdate(
+        { userId: req.params.id },
+        { $inc: { 'totalJobsCompleted.$[outer].timesCompleted': -1 } },
+        {
+          arrayFilters: [{ 'outer.jobTitle': jobTitle }],
+        },
+      );
+      await decJobCompleteCount.save();
+      res.status(201).json(decJobCompleteCount);
+    }
+    else if (!jobExists && !isComplete) {
+      console.log('last else if', jobExists)
+      const addingJob = {
+        jobTitle,
+        timesCompleted: 1,
+      };
+      const firstTimeJobCompleted = await UserStats.findOneAndUpdate(
+        { userId: req.params.id },
+        { $push: { totalJobsCompleted: addingJob } },
+      );
+      await firstTimeJobCompleted.save();
+      res.status(201).json(firstTimeJobCompleted);
     }
   } catch (error) {
     next(error);

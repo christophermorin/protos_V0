@@ -4,7 +4,12 @@ const userStatsSchema = new mongoose.Schema({
   userId: String,
   username: String,
   totalProtosCompleted: Number,
-  totalJobsCompleted: Object,
+  totalJobsCompleted: [
+    {
+      jobTitle: String,
+      timesCompleted: Number,
+    },
+  ],
   dayStreak: {
     date: Date,
     streak: Number,
