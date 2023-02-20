@@ -11,8 +11,8 @@ import Home from './components/home/Home';
 import ProtoTabs from './components/active_protos/ProtoTabs';
 import BuildForm from './components/build_protos/BuildForm';
 import Library from './components/library/Library';
-// import userServices from './services/userServices';
 import userProtoServices from './services/userProtoServices';
+import userStatsServices from './services/userStatsServices';
 import { setUserProtosList } from './reducers/userProtosReducer';
 import { setUserAuth } from './reducers/userAuthReducer';
 import './Draft.css';
@@ -20,7 +20,6 @@ import './Draft.css';
 function App() {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.userAuth);
-  // Build dialog
   const [openBuild, setOpenBuild] = useState();
 
   const handleOpenBuild = () => {
@@ -29,12 +28,12 @@ function App() {
   const handleCloseBuild = () => {
     setOpenBuild(false);
   };
-  // Fetching all user created protos and populating dropdown lists in home and speeddial add.
   useEffect(() => {
     const getUserProtos = async () => {
       try {
         if (user) {
           const protos = await userProtoServices.getUserProtos(user.id);
+          await userStatsServices.checkUserStreak(user.id);
           dispatch(setUserProtosList(protos));
         }
       } catch (error) {

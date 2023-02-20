@@ -64,7 +64,7 @@ function ActiveReason({ protoDescription }) {
           />
         </div>
       </Popover>
-    </div >
+    </div>
   );
 }
 

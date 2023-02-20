@@ -8,7 +8,7 @@ function ProtoButton({ title, action, buttonType }) {
       onClick={action}
     >
       <span>{title}</span>
-    </div >
+    </div>
   );
 }
 

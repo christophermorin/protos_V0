@@ -4,9 +4,9 @@ import {
   Grid, TextField, Button, Typography,
 } from '@mui/material';
 import SignUpDialog from './SignUpDialog';
-import HomeButton from '../buttons/HomeButton';
 import loginServices from '../../services/loginServices';
 import { setUserAuth } from '../../reducers/userAuthReducer';
+import userStatsServices from '../../services/userStatsServices';
 
 function Register() {
   const [username, setUsername] = useState('');
@@ -29,6 +29,7 @@ function Register() {
     };
     try {
       const userAuth = await loginServices.loginUser(user);
+      await userStatsServices.checkUserStreak(userAuth.id);
       window.localStorage.setItem('user', JSON.stringify(userAuth));
       dispatch(setUserAuth(userAuth));
     } catch (error) {
