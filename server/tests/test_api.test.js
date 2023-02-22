@@ -1,9 +1,8 @@
 const mongoose = require('mongoose');
 const supertest = require('supertest');
-const app = require('../app');
+const app = require('../index');
 const helper = require('./test_helper');
 const ActiveProtos = require('../models/ActiveProtosModel');
-const { use } = require('../app');
 
 const api = supertest(app);
 
@@ -318,7 +317,7 @@ describe('Complete and delete active proto jobs', () => {
         .send({
           protoId: intialJobState.targetProtoId,
           jobId: intialJobState.targetJobId,
-          isComplete: intialJobState.isJobComplete
+          isComplete: !intialJobState.isJobComplete
         })
         .expect(200)
         .expect('Content-Type', /application\/json/);
