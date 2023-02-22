@@ -13,7 +13,7 @@ function ActiveProtosButton({ title, action }) {
 
       onClick={() => {
         action();
-        handleStyle()
+        handleStyle();
       }}
     >
       <span style={{ position: 'relative', zIndex: 3 }}>

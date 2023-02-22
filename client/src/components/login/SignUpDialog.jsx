@@ -4,6 +4,7 @@ import {
   Dialog, Grid, TextField, Button, Typography,
 } from '@mui/material';
 import userServices from '../../services/userServices';
+import userStatsServices from '../../services/userStatsServices'
 
 function SignUpDialog({ open, closeSignUp, setOpen }) {
   const [username, setUsername] = useState('');
@@ -22,7 +23,11 @@ function SignUpDialog({ open, closeSignUp, setOpen }) {
       password,
     };
     try {
-      await userServices.userSignUp(newUser);
+      const userCreated = await userServices.userSignUp(newUser);
+      await userStatsServices.createInitialStats({
+        userId: userCreated.data.id,
+        username: userCreated.data.username,
+      });
       setUsername('');
       setEmail('');
       setPassword('');

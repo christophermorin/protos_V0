@@ -118,7 +118,7 @@ activeProtosRouter.put('/complete/:id', async (req, res, next) => {
   try {
     const result = await ActiveProtos.findByIdAndUpdate(
       activeListId,
-      { $set: { 'activeProtos.$[outer].isComplete': !isComplete } },
+      { $set: { 'activeProtos.$[outer].isComplete': isComplete } },
       {
         arrayFilters: [{ 'outer._id': protoId }],
         new: true,
@@ -142,7 +142,7 @@ activeProtosRouter.put('/job/complete/:id', async (req, res, next) => {
   try {
     const result = await ActiveProtos.findByIdAndUpdate(
       activeListId,
-      { $set: { 'activeProtos.$[outer].jobs.$[inner].isComplete': !isComplete } },
+      { $set: { 'activeProtos.$[outer].jobs.$[inner].isComplete': isComplete } },
       {
         arrayFilters: [{ 'outer._id': protoId }, { 'inner._id': jobId }],
         new: true,

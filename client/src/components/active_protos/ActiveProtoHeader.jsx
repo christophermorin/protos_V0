@@ -7,9 +7,11 @@ import {
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import ActiveReason from './ActiveReason';
 import activeProtoServices from '../../services/activeProtoServices';
+import userStatsServices from '../../services/userStatsServices';
 import { setActiveProtos } from '../../reducers/activeProtosReducer';
 import { displayedRemoveOne, displayedUpdateList } from '../../reducers/displayedProtosReducer';
 import ProtoButton from '../buttons/ProtoButton';
+
 
 function ActiveProtoHeader({
   protoTitle, protoDescription, protoId, isComplete,
@@ -39,7 +41,7 @@ function ActiveProtoHeader({
     dispatch(setActiveProtos(result));
     dispatch(displayedRemoveOne(protoId));
   };
-  // Needs error handling.
+
   const handleComplete = async () => {
     try {
       const result = await activeProtoServices.completeProto(
@@ -51,6 +53,10 @@ function ActiveProtoHeader({
       );
       const updatedProto = result.find((proto) => proto._id === protoId);
       dispatch(displayedUpdateList(updatedProto));
+      const updateStatsProtos = await userStatsServices.updateStatsProtoCompleted(user.id, {
+        protoTitle,
+        isComplete,
+      });
     } catch (error) {
       console.log('In complete proto', error);
     }
@@ -102,7 +108,7 @@ function ActiveProtoHeader({
       }}
       >
         <ActiveReason protoDescription={protoDescription} />
-        <ProtoButton title="Complete" action={handleComplete} />
+        {isComplete && <ProtoButton title="Complete" action={handleComplete} />}
       </Box>
     </Paper>
   );

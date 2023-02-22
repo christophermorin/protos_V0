@@ -12,6 +12,7 @@ const middleware = require('./utils/middleware');
 const protosRouter = require('./controllers/protosController');
 const activeProtosRouter = require('./controllers/activeProtosController');
 const userRouter = require('./controllers/userController');
+const userStatsRouter = require('./controllers/userStatsController');
 const loginRouter = require('./controllers/loginController');
 
 const server = http.createServer(app);
@@ -57,6 +58,7 @@ app.get('/library', (req, res) => {
 });
 app.use('/api/users', userRouter);
 app.use('/api/login', loginRouter);
+app.use('/api/userStats', userStatsRouter);
 app.use('/api/protos', protosRouter);
 app.use('/api/activeProtos', activeProtosRouter);
 

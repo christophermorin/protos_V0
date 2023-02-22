@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import {
   Accordion, AccordionSummary, AccordionDetails, Grid, Typography, Stack,
@@ -13,9 +13,17 @@ function ActiveProto({ proto }) {
   const activeList = useSelector((state) => state.activeProtos);
   const totalJobCount = proto.jobs.length;
   const totalJobsComplete = proto.jobs.filter((job) => job.isComplete);
+  const [protoIsComplete, setProtoIsComplete] = useState(
+    totalJobsComplete.length === totalJobCount,
+  );
+  const user = useSelector((state) => state.userAuth);
+
+  useEffect(() => {
+    setProtoIsComplete(totalJobsComplete.length === totalJobCount);
+  }, [totalJobsComplete.length]);
 
   const jobslist = proto.jobs.map((job) => (
-    <JobCard key={job._id} job={job} listId={activeList._id} protoId={proto._id} />
+    <JobCard key={job._id} job={job} listId={activeList._id} protoId={proto._id} userId={user.id} />
   ));
 
   return (
@@ -26,7 +34,7 @@ function ActiveProto({ proto }) {
           protoDescription={proto.description}
           protoId={proto._id}
           listId={activeList._id}
-          isComplete={proto.isComplete}
+          isComplete={protoIsComplete}
         />
       </Grid>
       <Grid item xs={12}>
