@@ -24,21 +24,21 @@ function JobCard({ job, listId, protoId, userId }) {
   const toggleJobComplete = async () => {
     try {
       setComplete(!complete);
-      const result = await activeProtoServices.toggleJobComplete(
+      const updatedActiveList = await activeProtoServices.toggleJobComplete(
         listId,
         {
           protoId,
           jobId: job._id,
-          isComplete: complete,
+          isComplete: !complete,
         },
       );
-      const updatedProto = result.activeProtos.find((proto) => proto._id === protoId);
+      const updatedProto = updatedActiveList.activeProtos.find((proto) => proto._id === protoId);
       dispatch(displayedUpdateList(updatedProto));
-      dispatch(setActiveProtos(result));
+      dispatch(setActiveProtos(updatedActiveList));
       const updateStatsJobs = await userStatsServices.updateStatsJobsCompleted(userId, {
         jobTitle: job.title,
-        isComplete: complete,
-      })
+        isComplete: !complete,
+      });
     } catch (error) {
       console.log('In toggleJobComplete', error);
     }

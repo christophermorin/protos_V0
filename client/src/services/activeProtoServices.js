@@ -42,8 +42,8 @@ const completeProto = async (listId, { protoId, isComplete }) => {
 
 // ActiveProto Jobs
 const toggleJobComplete = async (listId, { protoId, jobId, isComplete }) => {
-  const completedStatus = await axios.put(`${baseUrl}/job/complete/${listId}`, { protoId, jobId, isComplete });
-  return completedStatus.data;
+  const updatedActiveList = await axios.put(`${baseUrl}/job/complete/${listId}`, { protoId, jobId, isComplete });
+  return updatedActiveList.data;
 };
 
 const deleteJob = async (listId, { protoId, jobId }) => {

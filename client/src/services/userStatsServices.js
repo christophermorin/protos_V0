@@ -13,8 +13,18 @@ const checkUserStreak = async (userId) => {
 };
 
 const updateStatsJobsCompleted = async (userId, { jobTitle, isComplete }) => {
-  console.log(userId)
-  const result = await axios.put(`${baseUrl}/update-jobs/${userId}`, { jobTitle, isComplete })
+  const result = await axios.put(`${baseUrl}/update-jobs/${userId}`, { jobTitle, isComplete });
   return result;
 };
-export default { createInitialStats, checkUserStreak, updateStatsJobsCompleted };
+
+const updateStatsProtoCompleted = async (userId, { protoTitle, isComplete }) => {
+  const result = await axios.put(`${baseUrl}/update-protos/${userId}`, { protoTitle, isComplete });
+  return result;
+};
+
+export default {
+  createInitialStats,
+  checkUserStreak,
+  updateStatsJobsCompleted,
+  updateStatsProtoCompleted
+};

@@ -10,14 +10,15 @@ userStatsRouter.post('/initialize-stats/:id', async (req, res, next) => {
     const userStatsCreated = new UserStats({
       userId: req.params.id,
       username: req.body.username,
-      totalProtosCompleted: 0,
+      totalProtosCompleted: [],
       totalJobsCompleted: [],
+      daysWorked: 1,
       dayStreak: {
         date: new Date(),
-        streak: 0,
+        streak: 1,
       },
     });
-    const userStats = await userStatsCreated.save()
+    const userStats = await userStatsCreated.save();
     logger.info(`User stats for ${userStats.userId} created`);
     res.status(201).json(userStats);
   } catch (error) {
@@ -34,31 +35,33 @@ userStatsRouter.put('/check-streak/:id', async (req, res, next) => {
       const isOnSteak = await UserStats.findOneAndUpdate(
         { userId: req.params.id },
         {
+          daysWorked: currentUserStats.daysWorked += 1,
           dayStreak:
           {
             date: dateOfCurrentLogIn,
-            streak: currentUserStats.dayStreak.streak + 1,
+            $inc: { streak: 1 },
+            // streak: currentUserStats.dayStreak.streak += 1,
           },
         },
       );
       await isOnSteak.save();
       res.status(201).json(isOnSteak);
-    }
-    else if (dateOfCurrentLogIn.getDay() === dateOfPreviousLogIn + 2) {
+    } else if (dateOfCurrentLogIn.getDay() === dateOfPreviousLogIn + 2) {
       const hasBrokenStreak = await UserStats.findOneAndUpdate(
         { userId: req.params.id },
         {
+          daysWorked: currentUserStats.daysWorked += 1,
           dayStreak:
           {
             date: dateOfCurrentLogIn,
-            streak: 0,
+            $inc: { streak: -1 },
+            // streak: 1,
           },
         },
       );
       await hasBrokenStreak.save();
       res.status(201).json(hasBrokenStreak);
-    }
-    else {
+    } else {
       res.status(201).json(currentUserStats);
     }
   } catch (error) {
@@ -66,22 +69,17 @@ userStatsRouter.put('/check-streak/:id', async (req, res, next) => {
   }
 });
 
-// Complete is coming in as the opposite of its click
-// (click 'complete' on the job and it comes in as false)
-
 userStatsRouter.put('/update-jobs/:id', async (req, res, next) => {
   const currentUserStats = await UserStats.findOne({ userId: req.params.id });
   const { jobTitle, isComplete } = req.body;
-  console.log('Job stats', isComplete)
   let jobExists = false;
   currentUserStats.totalJobsCompleted.forEach((job) => {
     if (job.jobTitle === jobTitle) {
       jobExists = true;
     }
-  })
+  });
   try {
-    if (!isComplete && jobExists) {
-      console.log('first if')
+    if (isComplete && jobExists) {
       const incJobCompleteCount = await UserStats.findOneAndUpdate(
         { userId: req.params.id },
         { $inc: { 'totalJobsCompleted.$[outer].timesCompleted': 1 } },
@@ -91,9 +89,7 @@ userStatsRouter.put('/update-jobs/:id', async (req, res, next) => {
       );
       await incJobCompleteCount.save();
       res.status(201).json(incJobCompleteCount);
-    }
-    else if (isComplete && jobExists) {
-      console.log('first else if')
+    } else if (!isComplete && jobExists) {
       const decJobCompleteCount = await UserStats.findOneAndUpdate(
         { userId: req.params.id },
         { $inc: { 'totalJobsCompleted.$[outer].timesCompleted': -1 } },
@@ -103,9 +99,7 @@ userStatsRouter.put('/update-jobs/:id', async (req, res, next) => {
       );
       await decJobCompleteCount.save();
       res.status(201).json(decJobCompleteCount);
-    }
-    else if (!jobExists && !isComplete) {
-      console.log('last else if', jobExists)
+    } else if (!jobExists && isComplete) {
       const addingJob = {
         jobTitle,
         timesCompleted: 1,
@@ -116,6 +110,43 @@ userStatsRouter.put('/update-jobs/:id', async (req, res, next) => {
       );
       await firstTimeJobCompleted.save();
       res.status(201).json(firstTimeJobCompleted);
+    }
+  } catch (error) {
+    next(error);
+  }
+});
+
+userStatsRouter.put('/update-protos/:id', async (req, res, next) => {
+  const currentUserStats = await UserStats.findOne({ userId: req.params.id });
+  const { protoTitle, isComplete } = req.body;
+  let protoExists = false;
+  currentUserStats.totalProtosCompleted.forEach((proto) => {
+    if (proto.protoTitle === protoTitle) {
+      protoExists = true;
+    }
+  });
+  try {
+    if (isComplete && protoExists) {
+      const incProtoCompleteCount = await UserStats.findOneAndUpdate(
+        { userId: req.params.id },
+        { $inc: { 'totalProtosCompleted.$[outer].timesCompleted': 1 } },
+        {
+          arrayFilters: [{ 'outer.protoTitle': protoTitle }],
+        },
+      );
+      await incProtoCompleteCount.save();
+      res.status(201).json(incProtoCompleteCount);
+    } else if (!protoExists && isComplete) {
+      const addingProto = {
+        protoTitle,
+        timesCompleted: 1,
+      };
+      const firstTimeProtoCompleted = await UserStats.findOneAndUpdate(
+        { userId: req.params.id },
+        { $push: { totalProtosCompleted: addingProto } },
+      );
+      await firstTimeProtoCompleted.save();
+      res.status(201).json(firstTimeProtoCompleted);
     }
   } catch (error) {
     next(error);
