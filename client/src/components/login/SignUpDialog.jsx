@@ -4,7 +4,11 @@ import {
   Dialog, Grid, TextField, Button, Typography,
 } from '@mui/material';
 import userServices from '../../services/userServices';
+<<<<<<< HEAD
 import userStatsServices from '../../services/userStatsServices'
+=======
+import userStatsServices from '../../services/userStatsServices';
+>>>>>>> user-stats-begin
 
 function SignUpDialog({ open, closeSignUp, setOpen }) {
   const [username, setUsername] = useState('');

@@ -21,9 +21,9 @@ import {
 import InboxIcon from '@mui/icons-material/Inbox';
 import MenuIcon from '@mui/icons-material/Menu';
 import AccountCircle from '@mui/icons-material/AccountCircle';
-import NavButton from './buttons/NavButton';
-import ActionButton from './buttons/ActionButton';
-import { setUserAuth } from '../reducers/userAuthReducer';
+import NavButton from '../buttons/NavButton';
+import ActionButton from '../buttons/ActionButton';
+import { setUserAuth } from '../../reducers/userAuthReducer';
 
 function NavBar({ handleOpenBuild }) {
   const [sideBar, setSideBar] = useState(false);
@@ -51,9 +51,9 @@ function NavBar({ handleOpenBuild }) {
     setSideBar(!sideBar);
   };
 
-  const sideBarOptions = ['Home', 'Dashboard', 'Library'].map((option) => (
+  const sideBarOptions = ['Dashboard', 'Library'].map((option) => (
     <ListItem disablePadding key={option}>
-      <ListItemButton component={Link} to={`/${option}`}>
+      <ListItemButton component={Link} to={`/${option.toLowerCase()}`}>
         <ListItemIcon>
           <InboxIcon />
         </ListItemIcon>

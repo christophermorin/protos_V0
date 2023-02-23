@@ -5,7 +5,6 @@ import {
 } from '@mui/material';
 import { useState } from 'react';
 import ActionButton from '../buttons/ActionButton';
-import StylishButton from '../StylishButton';
 import ColorPicker from './ColorPicker';
 
 function CreateJobForm({ setNewProtoJobs, cardColor, setColor }) {

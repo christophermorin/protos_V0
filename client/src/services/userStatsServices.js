@@ -26,5 +26,9 @@ export default {
   createInitialStats,
   checkUserStreak,
   updateStatsJobsCompleted,
+<<<<<<< HEAD
   updateStatsProtoCompleted
+=======
+  updateStatsProtoCompleted,
+>>>>>>> user-stats-begin
 };

@@ -6,7 +6,8 @@ import {
 } from 'react-router-dom';
 import { Container, CssBaseline } from '@mui/material';
 import Register from './components/login/Register';
-import NavBar from './components/NavBar';
+import NavBar from './components/navbar/NavBar';
+import Dashboard from './components/dashboard/Dashboard';
 import Home from './components/home/Home';
 import ProtoTabs from './components/active_protos/ProtoTabs';
 import BuildForm from './components/build_protos/BuildForm';
@@ -60,6 +61,7 @@ function App() {
               <Routes>
                 <Route path="/" element={<Home user={user} />} />
                 <Route path="/active" element={<ProtoTabs />} />
+                <Route path="/Dashboard" element={<Dashboard />} />
                 <Route path="/Library" element={<Library />} />
               </Routes>
             </Container>
