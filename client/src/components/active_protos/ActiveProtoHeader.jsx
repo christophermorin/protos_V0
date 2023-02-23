@@ -12,7 +12,6 @@ import { setActiveProtos } from '../../reducers/activeProtosReducer';
 import { displayedRemoveOne, displayedUpdateList } from '../../reducers/displayedProtosReducer';
 import ProtoButton from '../buttons/ProtoButton';
 
-
 function ActiveProtoHeader({
   protoTitle, protoDescription, protoId, isComplete,
 }) {

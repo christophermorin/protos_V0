@@ -346,6 +346,38 @@ describe('Complete and delete active proto jobs', () => {
     expect(endJobState.targetJobs).toHaveLength(intialJobState.targetJobs.length - 1)
   })
 })
+
+// ******************************************************************************
+// ****************************** User Stats Tests*******************************
+// ******************************************************************************
+
+describe('User stats', () => {
+  beforeEach(async () => {
+    await helper.clearUserStats();
+    await helper.createRootUsers();
+  })
+  test('Initial user stats are created on signup', async () => {
+    // await helper.createRootUsers()
+    const users = await helper.usersInDb()
+    const dateOfTest = new Date().getDay()
+    const rootUserInitalStats = await api
+      .post(`/api/userStats/initialize-stats/${users[0].id}`)
+      .send({ username: users[0].username })
+      .expect(201)
+      .expect('Content-Type', /application\/json/);
+
+    const dateOfStatsInit = new Date(rootUserInitalStats.body.dayStreak.date).getDay()
+
+    expect(rootUserInitalStats.body.userId).toEqual(users[0].id)
+    expect(rootUserInitalStats.body.username).toEqual(users[0].username)
+    expect(rootUserInitalStats.body.totalProtosCompleted).toBeDefined()
+    expect(rootUserInitalStats.body.totalJobsCompleted).toBeDefined()
+    expect(rootUserInitalStats.body.daysWorked).toEqual(1)
+    expect(dateOfStatsInit).toEqual(dateOfTest)
+    expect(rootUserInitalStats.body.dayStreak.streak).toEqual(1)
+  })
+})
+
 afterAll(() => {
   mongoose.connection.close();
 });

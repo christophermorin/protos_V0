@@ -14,7 +14,9 @@ import userStatsServices from '../../services/userStatsServices';
 import { displayedUpdateList } from '../../reducers/displayedProtosReducer';
 import { setActiveProtos } from '../../reducers/activeProtosReducer';
 
-function JobCard({ job, listId, protoId, userId }) {
+function JobCard({
+  job, listId, protoId, userId,
+}) {
   const [timer, setTimer] = useState(false);
   const [complete, setComplete] = useState(job.isComplete);
   const dispatch = useDispatch();

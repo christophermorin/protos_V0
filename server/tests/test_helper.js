@@ -1,6 +1,7 @@
 const bcrypt = require('bcrypt');
 const supertest = require('supertest');
 const Users = require('../models/UserModel');
+const UserStats = require('../models/UserStats')
 const app = require('../index');
 
 const api = supertest(app);
@@ -25,6 +26,10 @@ const logInUser = async (username, password) => {
     .expect('Content-Type', /application\/json/);
   return user;
 };
+
+const clearUserStats = async () => {
+  await UserStats.deleteMany({})
+}
 
 // Create one Protos as logged uer
 const createOneProto = async (token, proto) => {
@@ -179,6 +184,7 @@ module.exports = {
   initialProtos,
   extraInitialProto,
   usersInDb,
+  clearUserStats,
   createRootUsers,
   logInUser,
   createOneProto,

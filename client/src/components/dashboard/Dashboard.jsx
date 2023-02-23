@@ -1,4 +1,4 @@
-import { Grid, Typography } from "@mui/material"
+import { Grid, Typography } from '@mui/material';
 
 function Dashboard() {
   return (
@@ -9,7 +9,7 @@ function Dashboard() {
         </Typography>
       </Grid>
     </Grid>
-  )
+  );
 }
 
-export default Dashboard
+export default Dashboard;
