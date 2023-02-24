@@ -5,13 +5,13 @@ const userStatsSchema = new mongoose.Schema({
   username: String,
   totalProtosCompleted: [
     {
-      protoTitle: String,
+      title: String,
       timesCompleted: Number,
     },
   ],
   totalJobsCompleted: [
     {
-      jobTitle: String,
+      title: String,
       timesCompleted: Number,
     },
   ],

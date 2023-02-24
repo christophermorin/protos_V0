@@ -12,7 +12,6 @@ import { setActiveProtos } from '../../reducers/activeProtosReducer';
 import { displayedRemoveOne, displayedUpdateList } from '../../reducers/displayedProtosReducer';
 import ProtoButton from '../buttons/ProtoButton';
 
-
 function ActiveProtoHeader({
   protoTitle, protoDescription, protoId, isComplete,
 }) {
@@ -54,7 +53,7 @@ function ActiveProtoHeader({
       const updatedProto = result.find((proto) => proto._id === protoId);
       dispatch(displayedUpdateList(updatedProto));
       const updateStatsProtos = await userStatsServices.updateStatsProtoCompleted(user.id, {
-        protoTitle,
+        title: protoTitle,
         isComplete,
       });
     } catch (error) {

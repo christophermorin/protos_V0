@@ -1,0 +1,53 @@
+.streakCard {
+  padding: 50px 40px;
+  background-color: #121212;
+  overflow: hidden;
+  position: relative;
+}
+
+.streakCard::before {
+  content: '';
+  background: red;
+  position: absolute;
+  top: 0;
+  left: -2px;
+  width: calc(100% + 6px);
+  height: calc(100%);
+  transition: all 0.8s ease;
+  transform: scaleY(0);
+}
+
+.streakCard:hover::before {
+  transform: scaleY(1);
+}
+
+.streakCard:hover {
+  box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.5)
+}
+
+.statsCard {
+  padding: 30px 20px;
+  background-color: #121212;
+  overflow: hidden;
+  position: relative;
+}
+
+.statsCardBackground {
+  height: 128px;
+  width: 128px;
+  background-color: #f9b234;
+  z-index: 1;
+  position: absolute;
+  top: -75px;
+  right: -75px;
+  border-radius: 50%;
+  transition: all 0.8s ease;
+}
+
+.statsCard:hover .statsCardBackground {
+  transform: scale(10);
+}
+
+.statsCard:hover {
+  box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.5)
+}

@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 import {
   AppBar,
   Toolbar,
-  Button,
   Box,
   Drawer,
   IconButton,
@@ -22,7 +21,6 @@ import InboxIcon from '@mui/icons-material/Inbox';
 import MenuIcon from '@mui/icons-material/Menu';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import NavButton from '../buttons/NavButton';
-import ActionButton from '../buttons/ActionButton';
 import { setUserAuth } from '../../reducers/userAuthReducer';
 
 function NavBar({ handleOpenBuild }) {
@@ -82,11 +80,7 @@ function NavBar({ handleOpenBuild }) {
               <NavButton title="Home" nav="/" />
               <NavButton title="Active" nav="/active" />
               <NavButton title="Build" action={handleOpenBuild} />
-              {/* <Button color="inherit" component={Link} to="/">Home</Button>
-            <Button color="inherit" component={Link} to="/active">Active</Button>
-            <Button color="inherit" onClick={handleOpenBuild}>Build</Button> */}
             </Grid>
-
             <Grid container item xs={1} justifyContent="flex-end">
               <IconButton
                 size="medium"
@@ -104,12 +98,9 @@ function NavBar({ handleOpenBuild }) {
                 open={open}
                 onClose={handleClose}
               >
-
                 <MenuItem onClick={handleClose}>Profile</MenuItem>
-
                 <MenuItem onClick={handleClose}>My account</MenuItem>
                 <MenuItem onClick={logoutUser}>Logout</MenuItem>
-
               </Menu>
             </Grid>
           </Grid>

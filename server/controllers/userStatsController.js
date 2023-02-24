@@ -5,6 +5,15 @@ const Users = require('../models/UserModel');
 const UserStats = require('../models/UserStats');
 const logger = require('../utils/logger');
 
+userStatsRouter.get('/:id', async (req, res, next) => {
+  try {
+    const userStats = await UserStats.findOne({ userId: req.params.id });
+    res.status(200).json(userStats);
+  } catch (error) {
+    next(error);
+  }
+});
+
 userStatsRouter.post('/initialize-stats/:id', async (req, res, next) => {
   try {
     const userStatsCreated = new UserStats({
@@ -32,6 +41,7 @@ userStatsRouter.put('/check-streak/:id', async (req, res, next) => {
   try {
     const dateOfPreviousLogIn = currentUserStats.dayStreak.date.getDay();
     if (dateOfCurrentLogIn.getDay() === dateOfPreviousLogIn + 1) {
+      console.log('Is on streak');
       const isOnSteak = await UserStats.findOneAndUpdate(
         { userId: req.params.id },
         {
@@ -39,14 +49,14 @@ userStatsRouter.put('/check-streak/:id', async (req, res, next) => {
           dayStreak:
           {
             date: dateOfCurrentLogIn,
-            $inc: { streak: 1 },
-            // streak: currentUserStats.dayStreak.streak += 1,
+            streak: currentUserStats.dayStreak.streak += 1,
           },
         },
       );
       await isOnSteak.save();
       res.status(201).json(isOnSteak);
     } else if (dateOfCurrentLogIn.getDay() === dateOfPreviousLogIn + 2) {
+      console.log('Has broken streak');
       const hasBrokenStreak = await UserStats.findOneAndUpdate(
         { userId: req.params.id },
         {
@@ -54,14 +64,14 @@ userStatsRouter.put('/check-streak/:id', async (req, res, next) => {
           dayStreak:
           {
             date: dateOfCurrentLogIn,
-            $inc: { streak: -1 },
-            // streak: 1,
+            streak: 1,
           },
         },
       );
       await hasBrokenStreak.save();
       res.status(201).json(hasBrokenStreak);
     } else {
+      console.log('No change to streak');
       res.status(201).json(currentUserStats);
     }
   } catch (error) {
@@ -71,10 +81,10 @@ userStatsRouter.put('/check-streak/:id', async (req, res, next) => {
 
 userStatsRouter.put('/update-jobs/:id', async (req, res, next) => {
   const currentUserStats = await UserStats.findOne({ userId: req.params.id });
-  const { jobTitle, isComplete } = req.body;
+  const { title, isComplete } = req.body;
   let jobExists = false;
   currentUserStats.totalJobsCompleted.forEach((job) => {
-    if (job.jobTitle === jobTitle) {
+    if (job.title === title) {
       jobExists = true;
     }
   });
@@ -84,7 +94,7 @@ userStatsRouter.put('/update-jobs/:id', async (req, res, next) => {
         { userId: req.params.id },
         { $inc: { 'totalJobsCompleted.$[outer].timesCompleted': 1 } },
         {
-          arrayFilters: [{ 'outer.jobTitle': jobTitle }],
+          arrayFilters: [{ 'outer.title': title }],
         },
       );
       await incJobCompleteCount.save();
@@ -94,14 +104,14 @@ userStatsRouter.put('/update-jobs/:id', async (req, res, next) => {
         { userId: req.params.id },
         { $inc: { 'totalJobsCompleted.$[outer].timesCompleted': -1 } },
         {
-          arrayFilters: [{ 'outer.jobTitle': jobTitle }],
+          arrayFilters: [{ 'outer.title': title }],
         },
       );
       await decJobCompleteCount.save();
       res.status(201).json(decJobCompleteCount);
     } else if (!jobExists && isComplete) {
       const addingJob = {
-        jobTitle,
+        title,
         timesCompleted: 1,
       };
       const firstTimeJobCompleted = await UserStats.findOneAndUpdate(
@@ -118,10 +128,10 @@ userStatsRouter.put('/update-jobs/:id', async (req, res, next) => {
 
 userStatsRouter.put('/update-protos/:id', async (req, res, next) => {
   const currentUserStats = await UserStats.findOne({ userId: req.params.id });
-  const { protoTitle, isComplete } = req.body;
+  const { title, isComplete } = req.body;
   let protoExists = false;
   currentUserStats.totalProtosCompleted.forEach((proto) => {
-    if (proto.protoTitle === protoTitle) {
+    if (proto.title === title) {
       protoExists = true;
     }
   });
@@ -131,14 +141,14 @@ userStatsRouter.put('/update-protos/:id', async (req, res, next) => {
         { userId: req.params.id },
         { $inc: { 'totalProtosCompleted.$[outer].timesCompleted': 1 } },
         {
-          arrayFilters: [{ 'outer.protoTitle': protoTitle }],
+          arrayFilters: [{ 'outer.title': title }],
         },
       );
       await incProtoCompleteCount.save();
       res.status(201).json(incProtoCompleteCount);
     } else if (!protoExists && isComplete) {
       const addingProto = {
-        protoTitle,
+        title,
         timesCompleted: 1,
       };
       const firstTimeProtoCompleted = await UserStats.findOneAndUpdate(
