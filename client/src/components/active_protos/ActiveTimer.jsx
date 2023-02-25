@@ -49,7 +49,7 @@ function ActiveTimer({ timerState, jobTimer }) {
   const time = new Date();
   time.setSeconds(time.getSeconds() + jobTimer * 60);
   return (
-    <div>
+    <div style={{ zIndex: 2 }}>
       <MyTimer expiryTimestamp={time} timerState={timerState} />
     </div>
   );

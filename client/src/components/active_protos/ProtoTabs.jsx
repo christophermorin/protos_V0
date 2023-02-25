@@ -101,6 +101,7 @@ function ProtoTabs() {
         : (
           <Typography
             variant="h6"
+            marginLeft={{ xs: 0, md: 25 }}
           >
             {`Hello ${user.username}, let's get to work.`}
           </Typography>

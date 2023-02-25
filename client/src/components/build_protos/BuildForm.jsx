@@ -82,7 +82,7 @@ function BuildForm({ open, handleCloseBuild }) {
     }
   };
   return (
-    <Dialog open={open || false} onClose={handleCloseBuild}>
+    <Dialog open={open || false} onClose={handleCloseBuild} sx={{ marginLeft: { xs: 0, md: 25 } }}>
       <Grid container sx={{ padding: 2 }}>
         <Grid item xs={12}>
           <CreateProtoForm
@@ -115,16 +115,6 @@ function BuildForm({ open, handleCloseBuild }) {
           <Box display="flex" justifyContent="center" marginTop={2}>
             <ActionButton title="Create Proto" action={createProto} />
           </Box>
-          {/* <Button
-            sx={{
-              margin: '0 auto', marginTop: 2, marginBottom: 5, display: 'flex', justifyContent: 'center',
-            }}
-            onClick={createProto}
-            variant="contained"
-          >
-            Create Proto
-          </Button> */}
-
         </Grid>
       </Grid>
     </Dialog>

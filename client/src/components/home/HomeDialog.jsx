@@ -36,7 +36,7 @@ function HomeDialog({ open, handleClose }) {
   };
 
   return (
-    <Dialog open={open} onClose={handleClose}>
+    <Dialog open={open} onClose={handleClose} sx={{ marginLeft: { xs: 0, md: 25 } }}>
       {openTemplates
         ? (
           <DialogContent>
