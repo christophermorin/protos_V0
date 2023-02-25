@@ -22,20 +22,23 @@ function BarChart({ dataSet, title, color }) {
     Legend,
     Colors,
   );
-  // ChartJS.defaults.elements.bar.borderWidth = ;
+  // ChartJS.defaults.borderColor = '#000';
+  ChartJS.defaults.color = '#fff';
   const options = {
     indexAxis: 'x',
     responsive: true,
     maintainAspectRatio: false,
     scales: {
-      xAxes: {
+      x: {
         grid: {
-          color: 'rgba(255,0,0,1)',
+          color: 'rgba(255,255,255,0.2)',
+          lineWidth: 1,
         },
       },
-      yAxes: {
+      y: {
         grid: {
-          color: 'rgba(0,255,0,1)',
+          color: 'rgba(255,255,255,0.2)',
+          lineWidth: 1,
         },
       },
     },
@@ -51,9 +54,6 @@ function BarChart({ dataSet, title, color }) {
       title: {
         display: true,
         text: title,
-      },
-      colors: {
-        enabled: true,
       },
     },
   };
@@ -72,7 +72,7 @@ function BarChart({ dataSet, title, color }) {
   };
 
   return (
-    <Bar options={options} data={data} width={200} height={500} />
+    <Bar options={options} data={data} width={200} height={500} style={{ background: '#121212' }} />
   );
 }
 

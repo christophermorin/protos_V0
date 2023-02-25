@@ -34,7 +34,6 @@ function Totals({ userStats }) {
         <StreakCard
           stat={userStats && userStats.dayStreak.streak}
         />
-        {/* <StatsCard stat={userStats && userStats.dayStreak.streak} /> */}
       </Grid>
       <Grid container direction="column" item xs={12} md={3} gap={5}>
         <StatsCard
@@ -43,7 +42,7 @@ function Totals({ userStats }) {
           title="Days Working"
         />
         <StatsCard
-          stat="20:24h"
+          stat="?"
           background="#952aff"
           title="Time On Task"
         />
