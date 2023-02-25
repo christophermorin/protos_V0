@@ -76,7 +76,7 @@ function NavBar({ handleOpenBuild }) {
                 <MenuIcon />
               </IconButton>
             </Grid>
-            <Grid item>
+            <Grid item marginLeft={{ xs: 0, md: 25 }}>
               <NavButton title="Home" nav="/" />
               <NavButton title="Active" nav="/active" />
               <NavButton title="Build" action={handleOpenBuild} />

@@ -6,15 +6,17 @@ import {
 import PlayCircleIcon from '@mui/icons-material/PlayCircle';
 import ActiveTimer from '../active_protos/ActiveTimer';
 
+
 function DisplayNewJob({ job, deleteJob }) {
   const colorChoice = `rgba(${job.cardColor.r}, ${job.cardColor.g}, ${job.cardColor.b}, ${job.cardColor.a})`;
   return (
 
-    <Paper sx={{
-      padding: 1,
-      background: `linear-gradient(135deg, ${colorChoice}, rgba(255,255,255) 20%)`,
-      border: '1px solid black',
-    }}
+    <Paper
+      sx={{
+        padding: 1,
+        background: `linear-gradient(135deg, ${colorChoice}, rgba(255,255,255) 20%)`,
+        border: '1px solid black',
+      }}
     >
       <Grid container>
         <Grid item xs={2} sm={1} display="flex" alignItems="center">
