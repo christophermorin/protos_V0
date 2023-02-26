@@ -5,7 +5,55 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import App from './App';
 import store from './store/store';
 
-const theme = createTheme({
+//e5e5e5
+
+const getDesignTokens = (mode) => ({
+  palette: {
+    mode,
+    primary: {
+      ...(mode === 'light' ? {
+        main: 'rgba(0,0,0,1)'
+      } :
+        {
+          main: 'rgba(0,0,0,1)'
+        })
+    },
+    background: {
+      ...(mode === 'light' ? {
+        default: 'rgba(255,255,255,1)',
+        paper: '#f8f8f8',
+      }
+        :
+        {
+          default: 'rgba(0,255,255,1)',
+          paper: '#e5e5e5'
+        })
+    },
+  },
+  typography: {
+    caption: {
+      color: mode === 'light' ? '#000' : '#fff',
+      position: 'relative',
+      display: 'inline-block',
+      cursor: 'pointer',
+      fontSize: '0.8rem',
+      fontWeight: '700',
+      transition: 'all 0.5s ease-in-out',
+      '&::before': {
+        content: '""',
+        position: 'absolute',
+        left: '0px',
+        bottom: '0px',
+        width: '0%',
+        height: '5%',
+        borderBottom: '2px solid #000',
+        transition: 'all 0.3s ease-in-out',
+      },
+      '&:hover::before': {
+        width: '100%',
+      },
+    },
+  },
   components: {
     MuiTextField: {
       styleOverrides: {
@@ -54,7 +102,9 @@ const theme = createTheme({
       },
     },
   },
-});
+})
+
+const theme = createTheme(getDesignTokens('light'))
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>

@@ -40,13 +40,13 @@ function ActiveProto({ proto }) {
       <Grid item xs={12}>
         <Accordion
           disableGutters
-          sx={{ border: '2px solid black' }}
+        // sx={{ border: '2px solid black' }}
         >
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
             aria-controls="The How"
             id="proto-how"
-            sx={{ background: '#eeeeee' }}
+          // sx={{ background: '#eeeeee' }}
 
           >
             <Typography
@@ -63,7 +63,7 @@ function ActiveProto({ proto }) {
               totalJobsComplete={totalJobsComplete.length}
             />
           </AccordionSummary>
-          <AccordionDetails sx={{ background: '#eeeeee', overflowY: 'auto', scrollbarWidth: 'thin' }}>
+          <AccordionDetails sx={{ overflowY: 'auto', scrollbarWidth: 'thin' }}>
             <Stack spacing={1} sx={{ maxHeight: '55vh' }}>
               {jobslist}
             </Stack>

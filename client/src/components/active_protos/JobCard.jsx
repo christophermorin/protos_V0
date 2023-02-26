@@ -7,8 +7,8 @@ import {
 import PlayCircleIcon from '@mui/icons-material/PlayCircle';
 import StopCircleIcon from '@mui/icons-material/StopCircle';
 import HelpIcon from '@mui/icons-material/Help';
+import { useTheme } from '@mui/material/styles';
 import ActiveTimer from './ActiveTimer';
-import ProtoButton from '../buttons/ProtoButton';
 import activeProtoServices from '../../services/activeProtoServices';
 import userStatsServices from '../../services/userStatsServices';
 import { displayedUpdateList } from '../../reducers/displayedProtosReducer';
@@ -19,6 +19,7 @@ function JobCard({
 }) {
   const [timer, setTimer] = useState(false);
   const [complete, setComplete] = useState(job.isComplete);
+  const theme = useTheme()
   const dispatch = useDispatch();
   const handleTimer = () => {
     setTimer(!timer);
@@ -76,7 +77,7 @@ function JobCard({
       opacity: complete ? 0.4 : null,
       // background: `linear-gradient(135deg, ${tempColorCard} 10%, #fff 80%)` || null
       // boxShadow: `2px 2px 0  rgba(0,0,0,0.4)`,
-      border: '1px solid black',
+      // border: '1px solid black',
     }}
     >
       <Grid container height="100%" alignItems="center">
@@ -97,9 +98,9 @@ function JobCard({
             justifyContent="space-between"
             marginTop={1}
           >
-            <ProtoButton title="Delete" action={deleteJob} />
-            <ProtoButton title="Reset" />
-            <ProtoButton title="Complete" action={toggleJobComplete} />
+            <Typography variant='caption' sx={{ '&:hover': { color: 'red' } }} onClick={deleteJob}>Delete</Typography>
+            <Typography variant='caption'>Reset</Typography>
+            <Typography variant='caption' onClick={toggleJobComplete}>Complete</Typography>
           </Grid>
         </Grid>
         <Grid
@@ -115,7 +116,7 @@ function JobCard({
           <ActiveTimer jobTimer={job.timer} timerState={timer} />
         </Grid>
       </Grid>
-    </Paper>
+    </Paper >
   );
 }
 

@@ -1,14 +1,36 @@
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import styles from './Buttons.module.css';
+import { Button } from '@mui/material';
 
 function NavButton({ title, nav, action }) {
   return (
-    <div className={styles.navButton} onClick={action}>
-      <Link to={nav}>
-        <span style={{ position: 'relative', zIndex: 3 }}>{title}</span>
-      </Link>
-    </div>
+    <Button
+      onClick={action}
+      component={Link}
+      to={nav}
+      variant="contained"
+      color="primary"
+      sx={{
+        cursor: 'pointer',
+        transition: 'all 0.5s ease-in-out',
+        padding: '0 10px',
+        '&::before': {
+          content: '""',
+          position: 'absolute',
+          left: '0px',
+          bottom: '0px',
+          width: '0%',
+          height: '5%',
+          borderBottom: '2px solid #fff',
+          transition: 'all 0.3s ease-in-out',
+        },
+        '&:hover::before': {
+          width: '100%',
+        },
+      }}
+    >
+      {title}
+    </Button>
   );
 }
 export default NavButton;

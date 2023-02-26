@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 import {
   AppBar,
   Toolbar,
-  Box,
   Drawer,
   IconButton,
   List,
@@ -61,17 +60,17 @@ function NavBar({ handleOpenBuild }) {
   ));
 
   return (
-    <Box height={56}>
-      <AppBar position="relative" sx={{ height: 'inherit', justifyContent: 'center', backgroundColor: '#fff' }}>
+    <>
+      <AppBar position="relative" enableColorOnDark sx={{ height: '56px', justifyContent: 'center' }}>
         <Toolbar>
           <Grid container alignItems="center" justifyContent="space-between">
             <Grid item xs={1}>
               <IconButton
                 size="large"
                 edge="start"
-                color="black"
                 aria-label="menu"
                 onClick={toggleDrawer}
+                sx={{ display: { md: 'none' } }}
               >
                 <MenuIcon />
               </IconButton>
@@ -87,7 +86,7 @@ function NavBar({ handleOpenBuild }) {
                 aria-label="account of current user"
                 aria-controls="menu-appbar"
                 aria-haspopup="true"
-                color="black"
+                color="secondary"
                 onClick={handleClick}
               >
                 <AccountCircle />
@@ -139,7 +138,7 @@ function NavBar({ handleOpenBuild }) {
         open
         variant="permanent"
         // onClose={toggleDrawer}
-        sx={{ display: { xs: 'none', lg: 'block' }, '& .MuiDrawer-paper': { boxSizing: 'border-box', width: '200px' } }}
+        sx={{ display: { xs: 'none', lg: 'block' }, '& .MuiDrawer-paper': { boxSizing: 'border-box', width: '200px', marginTop: '58px' } }}
       >
         <List sx={{
           display: 'flex', flexDirection: 'column', justifyContent: 'space-between', height: '100%', paddingTop: 5,
@@ -158,7 +157,7 @@ function NavBar({ handleOpenBuild }) {
           </ListItem>
         </List>
       </Drawer>
-    </Box>
+    </>
   );
 }
 
