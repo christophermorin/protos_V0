@@ -15,7 +15,7 @@ const getDesignTokens = (mode) => ({
         main: 'rgba(0,0,0,1)'
       } :
         {
-          main: 'rgba(0,0,0,1)'
+          main: 'rgba(20,20,28,1)'
         })
     },
     background: {
@@ -25,14 +25,15 @@ const getDesignTokens = (mode) => ({
       }
         :
         {
-          default: 'rgba(0,255,255,1)',
-          paper: '#e5e5e5'
+          default: 'rgba(0,0,0,1)',
+          paper: 'rgba(20,20,28,1)'
         })
     },
   },
   typography: {
     caption: {
-      color: mode === 'light' ? '#000' : '#fff',
+      // color: mode === 'light' ? '#000' : '#fff',
+      color: 'rgba(145,145,135,1)',
       position: 'relative',
       display: 'inline-block',
       cursor: 'pointer',
@@ -97,6 +98,26 @@ const getDesignTokens = (mode) => ({
           },
           '.MuiLinearProgress-colorPrimary': {
             background: 'rgba(0,0,0,0.2)',
+          },
+        },
+      },
+    },
+    MuiListItemButton: {
+      styleOverrides: {
+        root: {
+          transition: 'all 0.5s ease-in-out',
+          '&::before': {
+            content: '""',
+            position: 'absolute',
+            left: '0px',
+            bottom: '0px',
+            width: '100%',
+            height: '0%',
+            borderRight: mode === 'light' ? '5px solid #000' : '5px solid #fff',
+            transition: 'all 0.3s ease-in-out',
+          },
+          '&:hover::before': {
+            height: '100%',
           },
         },
       },

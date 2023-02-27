@@ -17,7 +17,7 @@ function HomeButton({ title }) {
         display: 'inline-block',
         cursor: 'pointer',
         fontSize: '0.9rem',
-        transition: 'box-shadow 0.5s ease-in',
+        transition: 'box-shadow 0.3s ease-in',
         '&::before': {
           content: '""',
           position: 'absolute',
@@ -34,7 +34,7 @@ function HomeButton({ title }) {
         },
         '&:hover': {
           color: '#000000',
-          boxShadow: '0 10px 1px 2px black',
+          boxShadow: '0 10px 1px 1px black',
         },
       }}
     >

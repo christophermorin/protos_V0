@@ -16,7 +16,7 @@ import {
   MenuItem,
   Grid,
 } from '@mui/material';
-import InboxIcon from '@mui/icons-material/Inbox';
+import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import MenuIcon from '@mui/icons-material/Menu';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import NavButton from '../buttons/NavButton';
@@ -52,7 +52,7 @@ function NavBar({ handleOpenBuild }) {
     <ListItem disablePadding key={option}>
       <ListItemButton component={Link} to={`/${option.toLowerCase()}`}>
         <ListItemIcon>
-          <InboxIcon />
+          <ArrowRightIcon />
         </ListItemIcon>
         <ListItemText primary={option} />
       </ListItemButton>
@@ -61,12 +61,13 @@ function NavBar({ handleOpenBuild }) {
 
   return (
     <>
-      <AppBar position="relative" enableColorOnDark sx={{ height: '56px', justifyContent: 'center' }}>
+      <AppBar position="relative" color="primary" enableColorOnDark sx={{ height: '56px', justifyContent: 'center', backgroundImage: 'unset' }}>
         <Toolbar>
           <Grid container alignItems="center" justifyContent="space-between">
             <Grid item xs={1}>
               <IconButton
                 size="large"
+                color="secondary"
                 edge="start"
                 aria-label="menu"
                 onClick={toggleDrawer}
@@ -115,47 +116,20 @@ function NavBar({ handleOpenBuild }) {
           '& .MuiDrawer-paper': { boxSizing: 'border-box', width: '200px' },
         }}
       >
-        <List sx={{
-          display: 'flex', flexDirection: 'column', justifyContent: 'space-between', height: '100%', paddingTop: 5,
-        }}
-        >
-          <div>
-            {sideBarOptions}
-          </div>
-          <ListItem disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                <InboxIcon />
-              </ListItemIcon>
-              <ListItemText primary="Settings" />
-            </ListItemButton>
-          </ListItem>
-        </List>
+        <div>
+          {sideBarOptions}
+        </div>
       </Drawer>
 
       <Drawer
         anchor="left"
         open
         variant="permanent"
-        // onClose={toggleDrawer}
         sx={{ display: { xs: 'none', lg: 'block' }, '& .MuiDrawer-paper': { boxSizing: 'border-box', width: '200px', marginTop: '58px' } }}
       >
-        <List sx={{
-          display: 'flex', flexDirection: 'column', justifyContent: 'space-between', height: '100%', paddingTop: 5,
-        }}
-        >
-          <div>
-            {sideBarOptions}
-          </div>
-          <ListItem disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                <InboxIcon />
-              </ListItemIcon>
-              <ListItemText primary="Settings" />
-            </ListItemButton>
-          </ListItem>
-        </List>
+        <div>
+          {sideBarOptions}
+        </div>
       </Drawer>
     </>
   );

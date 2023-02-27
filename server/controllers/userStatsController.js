@@ -40,7 +40,10 @@ userStatsRouter.put('/check-streak/:id', async (req, res, next) => {
   const dateOfCurrentLogIn = new Date();
   try {
     const dateOfPreviousLogIn = currentUserStats.dayStreak.date.getDay();
-    if (dateOfCurrentLogIn.getDay() === dateOfPreviousLogIn + 1) {
+    if (dateOfCurrentLogIn.getDay() === dateOfPreviousLogIn) {
+      console.log('No change to streak');
+      res.status(201).json(currentUserStats);
+    } else if (dateOfCurrentLogIn.getDay() === dateOfPreviousLogIn + 1) {
       console.log('Is on streak');
       const isOnSteak = await UserStats.findOneAndUpdate(
         { userId: req.params.id },
@@ -55,7 +58,7 @@ userStatsRouter.put('/check-streak/:id', async (req, res, next) => {
       );
       await isOnSteak.save();
       res.status(201).json(isOnSteak);
-    } else if (dateOfCurrentLogIn.getDay() === dateOfPreviousLogIn + 2) {
+    } else if (dateOfCurrentLogIn.getDay() !== dateOfPreviousLogIn + 1) {
       console.log('Has broken streak');
       const hasBrokenStreak = await UserStats.findOneAndUpdate(
         { userId: req.params.id },
@@ -70,9 +73,6 @@ userStatsRouter.put('/check-streak/:id', async (req, res, next) => {
       );
       await hasBrokenStreak.save();
       res.status(201).json(hasBrokenStreak);
-    } else {
-      console.log('No change to streak');
-      res.status(201).json(currentUserStats);
     }
   } catch (error) {
     next(error);
