@@ -15,18 +15,18 @@ const getDesignTokens = (mode) => ({
         main: 'rgba(0,0,0,1)'
       } :
         {
-          main: 'rgba(20,20,28,1)'
+          main: 'rgba(8,9,11,1)'
         })
     },
     background: {
       ...(mode === 'light' ? {
         default: 'rgba(255,255,255,1)',
-        paper: '#f8f8f8',
+        paper: 'rgba(240,240,240,1)',
       }
         :
         {
-          default: 'rgba(0,0,0,1)',
-          paper: 'rgba(20,20,28,1)'
+          default: 'rgba(31,32,34,1)',
+          paper: 'rgba(8,9,11,1)'
         })
     },
   },

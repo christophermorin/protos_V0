@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import {
-  Accordion, AccordionSummary, AccordionDetails, Grid, Typography, Stack,
+  Accordion, AccordionSummary, AccordionDetails, Grid, Typography, Stack, Box
 } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { useSelector } from 'react-redux';
@@ -27,7 +27,14 @@ function ActiveProto({ proto }) {
   ));
 
   return (
-    <Grid container spacing={0.5} key={proto._id} sx={{ width: { xs: 'calc(100vw - 16px)', md: '360px' } }}>
+    <Grid
+      container
+      spacing={0.5}
+      key={proto._id}
+      sx={{
+        width: { xs: 'calc(100vw - 16px)', md: '360px' },
+      }}
+    >
       <Grid item xs={12}>
         <ActiveProtoHeader
           protoTitle={proto.title}
@@ -40,14 +47,11 @@ function ActiveProto({ proto }) {
       <Grid item xs={12}>
         <Accordion
           disableGutters
-        // sx={{ border: '2px solid black' }}
         >
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
             aria-controls="The How"
             id="proto-how"
-          // sx={{ background: '#eeeeee' }}
-
           >
             <Typography
               margin="auto"
