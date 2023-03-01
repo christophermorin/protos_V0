@@ -58,7 +58,7 @@ function App() {
             <>
               <NavBar handleOpenBuild={handleOpenBuild} />
               <BuildForm open={openBuild} handleCloseBuild={handleCloseBuild} />
-              <Container maxWidth="false" sx={{ height: '100vh', overflowX: 'hidden', padding: '56px 10px 0 10px' }}>
+              <Container maxWidth="false" sx={{ height: '100vh', overflowX: 'hidden' }}>
                 <Routes>
                   <Route path="/" element={<Home user={user} />} />
                   <Route path="/active" element={<ProtoTabs />} />

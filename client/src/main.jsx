@@ -55,6 +55,16 @@ const getDesignTokens = (mode) => ({
     },
   },
   components: {
+    MuiContainer: {
+      styleOverrides: {
+        root: {
+          padding: '56px 8px 0 8px',
+          '@media (min-width: 600px)': {
+            padding: '56px 10px 0 10px',
+          }
+        }
+      }
+    },
     MuiTextField: {
       styleOverrides: {
         root: {

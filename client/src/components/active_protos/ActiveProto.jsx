@@ -27,12 +27,13 @@ function ActiveProto({ proto }) {
   ));
 
   return (
-    <Grid
-      container
-      spacing={0.5}
+    <Box
+      display="flex"
+      flexDirection="column"
+      gap={0.5}
       key={proto._id}
       sx={{
-        width: { xs: 'calc(100vw - 16px)', md: '360px' },
+        width: { xs: 'calc(100vw - 32px)', md: '360px', boxShadow: '-1px 1px 10px 1px rgba(0,0,0,1)' },
       }}
     >
       <Grid item xs={12}>
@@ -74,7 +75,7 @@ function ActiveProto({ proto }) {
           </AccordionDetails>
         </Accordion>
       </Grid>
-    </Grid>
+    </Box>
   );
 }
 

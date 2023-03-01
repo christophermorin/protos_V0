@@ -86,16 +86,19 @@ function ProtoTabs() {
             sx={{ overflowX: 'auto' }}
           >
 
-            <Grid
+            <Box
+              display="flex"
               container
               direction="row"
               wrap="nowrap"
               height={'100%'}
               sx={{ overflowX: 'scroll' }}
               spacing={1}
+              gap={2}
+              padding={1}
             >
               {displayed}
-            </Grid>
+            </Box>
           </Grid>
         )
         : (
