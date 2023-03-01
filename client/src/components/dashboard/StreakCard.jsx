@@ -1,6 +1,5 @@
-import { Paper, Typography } from "@mui/material";
+import { Paper, Typography } from '@mui/material';
 import styles from './Dashboard.module.css';
-
 
 function StreakCard({ stat, background, title }) {
   return (
@@ -12,8 +11,8 @@ function StreakCard({ stat, background, title }) {
       <Typography
         variant="h1"
         fontWeight={700}
-        color={'#fff'}
-        position='relative'
+        color="#fff"
+        position="relative"
         zIndex={2}
         textAlign="center"
 
@@ -22,8 +21,8 @@ function StreakCard({ stat, background, title }) {
       </Typography>
       <Typography
         variant="h5"
-        color={'#fff'}
-        position='relative'
+        color="#fff"
+        position="relative"
         zIndex={2}
         textAlign="center"
 
@@ -31,7 +30,7 @@ function StreakCard({ stat, background, title }) {
         Day Streak!
       </Typography>
     </Paper>
-  )
+  );
 }
 
-export default StreakCard
+export default StreakCard;

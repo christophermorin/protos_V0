@@ -10,7 +10,6 @@ import activeProtoServices from '../../services/activeProtoServices';
 import userStatsServices from '../../services/userStatsServices';
 import { setActiveProtos } from '../../reducers/activeProtosReducer';
 import { displayedRemoveOne, displayedUpdateList } from '../../reducers/displayedProtosReducer';
-import ProtoButton from '../buttons/ProtoButton';
 
 function ActiveProtoHeader({
   protoTitle, protoDescription, protoId, isComplete,
@@ -63,7 +62,7 @@ function ActiveProtoHeader({
 
   return (
     <Paper
-      sx={{ padding: '16px 16px 0 16px', background: '#eeeeee', border: '2px solid black' }}
+      sx={{ padding: '16px 16px 0 16px' }}
     >
       <Box display="flex" justifyContent="space-between">
         <Typography
@@ -107,7 +106,7 @@ function ActiveProtoHeader({
       }}
       >
         <ActiveReason protoDescription={protoDescription} />
-        {isComplete && <ProtoButton title="Complete" action={handleComplete} />}
+        {isComplete && <Typography variant="caption" onClick={handleComplete} />}
       </Box>
     </Paper>
   );

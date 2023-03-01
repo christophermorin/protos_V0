@@ -13,7 +13,7 @@ function Library() {
   const [value, setValue] = useState(0);
   const [timeFilter, setTImeFilter] = useState(null);
   const userProtos = useSelector((state) => state.userProtos);
-  const mediumViewport = useMediaQuery('(min-width:568px)');
+  const mediumViewport = useMediaQuery('(min-width:568px)'); //find what the MUI md default sizing is and set to that
 
   const user = useSelector((state) => state.userAuth);
   const dispatch = useDispatch();
@@ -41,8 +41,8 @@ function Library() {
     : null;
 
   return (
-    <Grid container>
-      <Grid item xs={12} md="auto" marginTop={{ xs: 0, md: 10 }} marginLeft={{ xs: 0, md: 25 }} marginRight={{ xs: 0, md: 2 }} marginBottom={2}>
+    <Grid container marginTop={2}>
+      <Grid item xs={12} md="auto" marginRight={{ xs: 0, md: 2 }} marginBottom={2}>
         <Tabs
           orientation={mediumViewport ? 'vertical' : 'horizontal'}
           variant="scrollable"
@@ -57,7 +57,7 @@ function Library() {
           <Tab label="All day" onClick={() => setTImeFilter(3)} />
         </Tabs>
       </Grid>
-      <Grid container md item gap={2} alignContent="flex-start" justifyContent={{ xs: 'center', md: 'flex-start' }} marginTop={{ xs: 5, md: 10 }}>
+      <Grid container md item gap={2} alignContent="flex-start" justifyContent={{ xs: 'center', md: 'flex-start' }}>
         {protos}
 
       </Grid>

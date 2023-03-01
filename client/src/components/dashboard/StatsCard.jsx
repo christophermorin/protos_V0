@@ -1,6 +1,5 @@
-import { Paper, Typography } from "@mui/material";
+import { Paper, Typography } from '@mui/material';
 import styles from './Dashboard.module.css';
-
 
 function StatsCard({ stat, background, title }) {
   return (
@@ -8,12 +7,12 @@ function StatsCard({ stat, background, title }) {
       className={`${styles.statsCard}`}
       sx={{ background: '#121212' }}
     >
-      <div className={styles.statsCardBackground} style={{ background: background }}></div>
+      <div className={styles.statsCardBackground} style={{ background }} />
       <Typography
         variant="h1"
         fontWeight={700}
-        color={'#fff'}
-        position='relative'
+        color="#fff"
+        position="relative"
         zIndex={2}
         textAlign="center"
 
@@ -22,8 +21,8 @@ function StatsCard({ stat, background, title }) {
       </Typography>
       <Typography
         variant="h5"
-        color={'#fff'}
-        position='relative'
+        color="#fff"
+        position="relative"
         zIndex={2}
         textAlign="center"
 
@@ -31,7 +30,7 @@ function StatsCard({ stat, background, title }) {
         {title}
       </Typography>
     </Paper>
-  )
+  );
 }
 
-export default StatsCard
+export default StatsCard;

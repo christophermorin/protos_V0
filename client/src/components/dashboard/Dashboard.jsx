@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
-import { Grid, Typography, Paper, Divider } from '@mui/material';
+import {
+  Grid, Typography, Paper, Divider,
+} from '@mui/material';
 import { useSelector } from 'react-redux';
 import userStatsServices from '../../services/userStatsServices';
 import BarChart from './BarChart';
@@ -16,8 +18,8 @@ function Dashboard() {
     };
     getUserStats();
   }, []);
-  const totalProtosCompleted = userStats && userStats.totalProtosCompleted.reduce((a, b) => a + b.timesCompleted, 0)
-  const totalJobsCompleted = userStats && userStats.totalJobsCompleted.reduce((a, b) => a + b.timesCompleted, 0)
+  const totalProtosCompleted = userStats && userStats.totalProtosCompleted.reduce((a, b) => a + b.timesCompleted, 0);
+  const totalJobsCompleted = userStats && userStats.totalJobsCompleted.reduce((a, b) => a + b.timesCompleted, 0);
 
   return (
     <Grid
@@ -26,9 +28,8 @@ function Dashboard() {
       md="auto"
       direction="column"
       justifyContent="space-between"
-      marginTop={{ xs: 2, md: 0 }}
-      marginLeft={{ xs: 0, md: 25 }}
-      height={{ xs: 'unset', md: '100%' }}
+      marginTop={2}
+      height={{ xs: 'unset', md: 'inherit' }}
     >
       <Totals userStats={userStats} />
       <Charts userStats={userStats} />

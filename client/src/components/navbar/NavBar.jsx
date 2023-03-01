@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 import {
   AppBar,
   Toolbar,
-  Box,
   Drawer,
   IconButton,
   List,
@@ -16,8 +15,9 @@ import {
   Menu,
   MenuItem,
   Grid,
+  Box,
 } from '@mui/material';
-import InboxIcon from '@mui/icons-material/Inbox';
+import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import MenuIcon from '@mui/icons-material/Menu';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import NavButton from '../buttons/NavButton';
@@ -53,30 +53,43 @@ function NavBar({ handleOpenBuild }) {
     <ListItem disablePadding key={option}>
       <ListItemButton component={Link} to={`/${option.toLowerCase()}`}>
         <ListItemIcon>
-          <InboxIcon />
+          <ArrowRightIcon />
         </ListItemIcon>
         <ListItemText primary={option} />
       </ListItemButton>
     </ListItem>
   ));
 
+  const drawerWidth = 200;
+
   return (
-    <Box height={56}>
-      <AppBar position="relative" sx={{ height: 'inherit', justifyContent: 'center', backgroundColor: '#fff' }}>
+    <>
+      <AppBar
+        position="fixed"
+        color="primary"
+        enableColorOnDark
+        sx={{
+          height: '56px',
+          backgroundImage: 'unset',
+          // width: { sm: `calc(100% - ${drawerWidth}px)` },
+          // ml: { sm: `${drawerWidth}px` },
+        }}
+      >
         <Toolbar>
           <Grid container alignItems="center" justifyContent="space-between">
             <Grid item xs={1}>
               <IconButton
                 size="large"
+                color="secondary"
                 edge="start"
-                color="black"
                 aria-label="menu"
                 onClick={toggleDrawer}
+                sx={{ visibility: { md: 'hidden' } }}
               >
                 <MenuIcon />
               </IconButton>
             </Grid>
-            <Grid item marginLeft={{ xs: 0, md: 25 }}>
+            <Grid item marginLeft={{ xs: 0, md: '200px' }}>
               <NavButton title="Home" nav="/" />
               <NavButton title="Active" nav="/active" />
               <NavButton title="Build" action={handleOpenBuild} />
@@ -87,7 +100,7 @@ function NavBar({ handleOpenBuild }) {
                 aria-label="account of current user"
                 aria-controls="menu-appbar"
                 aria-haspopup="true"
-                color="black"
+                color="secondary"
                 onClick={handleClick}
               >
                 <AccountCircle />
@@ -106,59 +119,36 @@ function NavBar({ handleOpenBuild }) {
           </Grid>
         </Toolbar>
       </AppBar>
-      <Drawer
-        anchor="left"
-        open={sideBar}
-        variant="temporary"
-        onClose={toggleDrawer}
-        sx={{
-          display: { md: 'block', lg: 'none' },
-          '& .MuiDrawer-paper': { boxSizing: 'border-box', width: '200px' },
-        }}
+      <Box
+        sx={{ width: { md: drawerWidth, }, flexShrink: { sm: 0 } }}
       >
-        <List sx={{
-          display: 'flex', flexDirection: 'column', justifyContent: 'space-between', height: '100%', paddingTop: 5,
-        }}
+        <Drawer
+          anchor="left"
+          open={sideBar}
+          variant="temporary"
+          onClose={toggleDrawer}
+          sx={{
+            display: { md: 'block', lg: 'none' },
+            '& .MuiDrawer-paper': { boxSizing: 'border-box', width: '200px' },
+          }}
         >
           <div>
             {sideBarOptions}
           </div>
-          <ListItem disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                <InboxIcon />
-              </ListItemIcon>
-              <ListItemText primary="Settings" />
-            </ListItemButton>
-          </ListItem>
-        </List>
-      </Drawer>
+        </Drawer>
 
-      <Drawer
-        anchor="left"
-        open
-        variant="permanent"
-        // onClose={toggleDrawer}
-        sx={{ display: { xs: 'none', lg: 'block' }, '& .MuiDrawer-paper': { boxSizing: 'border-box', width: '200px' } }}
-      >
-        <List sx={{
-          display: 'flex', flexDirection: 'column', justifyContent: 'space-between', height: '100%', paddingTop: 5,
-        }}
+        <Drawer
+          anchor="left"
+          open
+          variant="permanent"
+          sx={{ display: { xs: 'none', md: 'block' }, '& .MuiDrawer-paper': { boxSizing: 'border-box', width: '200px', marginTop: '58px' } }}
         >
           <div>
             {sideBarOptions}
           </div>
-          <ListItem disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                <InboxIcon />
-              </ListItemIcon>
-              <ListItemText primary="Settings" />
-            </ListItemButton>
-          </ListItem>
-        </List>
-      </Drawer>
-    </Box>
+        </Drawer>
+      </Box>
+    </>
   );
 }
 

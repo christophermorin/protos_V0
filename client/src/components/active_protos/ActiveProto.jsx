@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import {
-  Accordion, AccordionSummary, AccordionDetails, Grid, Typography, Stack,
+  Accordion, AccordionSummary, AccordionDetails, Grid, Typography, Stack, Box,
 } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { useSelector } from 'react-redux';
@@ -27,50 +27,51 @@ function ActiveProto({ proto }) {
   ));
 
   return (
-    <Grid container spacing={0.5} key={proto._id} sx={{ width: { xs: 'calc(100vw - 16px)', md: '360px' } }}>
-      <Grid item xs={12}>
-        <ActiveProtoHeader
-          protoTitle={proto.title}
-          protoDescription={proto.description}
-          protoId={proto._id}
-          listId={activeList._id}
-          isComplete={protoIsComplete}
-        />
-      </Grid>
-      <Grid item xs={12}>
-        <Accordion
-          disableGutters
-          sx={{ border: '2px solid black' }}
+    <Box
+      display="flex"
+      flexDirection="column"
+      gap={0.5}
+      key={proto._id}
+      sx={{
+        width: { xs: 'calc(100vw - 32px)', sm: '360px', boxShadow: '1px 1px 5px 1px rgba(0,0,0,1)' },
+      }}
+    >
+      <ActiveProtoHeader
+        protoTitle={proto.title}
+        protoDescription={proto.description}
+        protoId={proto._id}
+        listId={activeList._id}
+        isComplete={protoIsComplete}
+      />
+      <Accordion
+        disableGutters
+      >
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="The How"
+          id="proto-how"
         >
-          <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
-            aria-controls="The How"
-            id="proto-how"
-            sx={{ background: '#eeeeee' }}
-
+          <Typography
+            margin="auto"
+            variant="caption"
+            fontWeight={700}
           >
-            <Typography
-              margin="auto"
-              variant="caption"
-              fontWeight={700}
-            >
-              {totalJobsComplete.length}
-              /
-              {totalJobCount}
-            </Typography>
-            <JobStepper
-              totalJobCount={totalJobCount}
-              totalJobsComplete={totalJobsComplete.length}
-            />
-          </AccordionSummary>
-          <AccordionDetails sx={{ background: '#eeeeee', overflowY: 'auto', scrollbarWidth: 'thin' }}>
-            <Stack spacing={1} sx={{ maxHeight: '55vh' }}>
-              {jobslist}
-            </Stack>
-          </AccordionDetails>
-        </Accordion>
-      </Grid>
-    </Grid>
+            {totalJobsComplete.length}
+            /
+            {totalJobCount}
+          </Typography>
+          <JobStepper
+            totalJobCount={totalJobCount}
+            totalJobsComplete={totalJobsComplete.length}
+          />
+        </AccordionSummary>
+        <AccordionDetails sx={{ overflowY: 'auto', scrollbarWidth: 'thin' }}>
+          <Stack spacing={1} sx={{ maxHeight: '55vh' }}>
+            {jobslist}
+          </Stack>
+        </AccordionDetails>
+      </Accordion>
+    </Box>
   );
 }
 

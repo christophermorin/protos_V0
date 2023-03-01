@@ -1,6 +1,6 @@
-import { Grid } from "@mui/material";
-import StatsCard from "./StatsCard";
-import StreakCard from "./StreakCard";
+import { Grid } from '@mui/material';
+import StatsCard from './StatsCard';
+import StreakCard from './StreakCard';
 
 function Totals({ userStats }) {
   const totalProtosCompleted = userStats && userStats.totalProtosCompleted
@@ -12,7 +12,6 @@ function Totals({ userStats }) {
     <Grid
       container
       spacing={5}
-      marginTop={2}
       alignItems="center"
       item
       xs={12}
@@ -21,12 +20,12 @@ function Totals({ userStats }) {
       <Grid container direction="column" item xs={12} md={3} gap={5}>
         <StatsCard
           stat={totalProtosCompleted}
-          background='rgba(255, 99, 132, 1)'
+          background="rgba(255, 99, 132, 1)"
           title="Protos Completed"
         />
         <StatsCard
           stat={totalJobsCompleted}
-          background='rgba(53, 162, 235, 1)'
+          background="rgba(53, 162, 235, 1)"
           title="Jobs Completed"
         />
       </Grid>
@@ -38,7 +37,7 @@ function Totals({ userStats }) {
       <Grid container direction="column" item xs={12} md={3} gap={5}>
         <StatsCard
           stat={userStats && userStats.daysWorked}
-          background='#4c49ea'
+          background="#4c49ea"
           title="Days Working"
         />
         <StatsCard
@@ -47,8 +46,8 @@ function Totals({ userStats }) {
           title="Time On Task"
         />
       </Grid>
-    </Grid >
-  )
+    </Grid>
+  );
 }
 
 export default Totals;

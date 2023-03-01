@@ -7,8 +7,8 @@ import {
 import PlayCircleIcon from '@mui/icons-material/PlayCircle';
 import StopCircleIcon from '@mui/icons-material/StopCircle';
 import HelpIcon from '@mui/icons-material/Help';
+import { useTheme } from '@mui/material/styles';
 import ActiveTimer from './ActiveTimer';
-import ProtoButton from '../buttons/ProtoButton';
 import activeProtoServices from '../../services/activeProtoServices';
 import userStatsServices from '../../services/userStatsServices';
 import { displayedUpdateList } from '../../reducers/displayedProtosReducer';
@@ -19,6 +19,7 @@ function JobCard({
 }) {
   const [timer, setTimer] = useState(false);
   const [complete, setComplete] = useState(job.isComplete);
+  const theme = useTheme();
   const dispatch = useDispatch();
   const handleTimer = () => {
     setTimer(!timer);
@@ -63,27 +64,47 @@ function JobCard({
     }
   };
 
-  // const tempColorCard = `
-  //   rgba(${job.cardColor.r},
-  //   ${job.cardColor.g},
-  //   ${job.cardColor.b},
-  //   ${job.cardColor.a})`
+  const tempColorCard = `
+    rgba(${job.cardColor.r},
+    ${job.cardColor.g},
+    ${job.cardColor.b},
+    ${job.cardColor.a})`;
 
   return (
-    <Paper sx={{
-      padding: 1,
-      textDecoration: complete ? 'line-through' : null,
-      opacity: complete ? 0.4 : null,
-      // background: `linear-gradient(135deg, ${tempColorCard} 10%, #fff 80%)` || null
-      // boxShadow: `2px 2px 0  rgba(0,0,0,0.4)`,
-      border: '1px solid black',
-    }}
+    <Paper
+      sx={{
+        padding: 1,
+        cursor: 'pointer',
+        textDecoration: complete ? 'line-through' : null,
+        opacity: complete ? 0.4 : null,
+        position: 'relative',
+        overflow: 'hidden',
+        '&:hover': {
+          '& .jobBackGround': {
+            transform: 'scale(10)',
+          },
+        },
+      }}
     >
+      <div
+        style={{
+          height: '128px',
+          width: '128px',
+          background: tempColorCard,
+          zIndex: '1',
+          position: 'absolute',
+          top: '-75px',
+          left: '-75px',
+          borderRadius: '50%',
+          transition: 'all 0.8s ease',
+        }}
+        className="jobBackGround"
+      />
       <Grid container height="100%" alignItems="center">
-        <Grid container item xs={2}>
+        <Grid container item xs={2} zIndex={1}>
           {!timer ? <PlayCircleIcon fontSize="large" onClick={handleTimer} /> : <StopCircleIcon fontSize="large" onClick={handleTimer} sx={{ color: 'red' }} />}
         </Grid>
-        <Grid item xs={8}>
+        <Grid item xs={8} zIndex={1}>
           <Grid item>
             <Typography fontWeight={700}>
               {job.title}
@@ -97,9 +118,9 @@ function JobCard({
             justifyContent="space-between"
             marginTop={1}
           >
-            <ProtoButton title="Delete" action={deleteJob} />
-            <ProtoButton title="Reset" />
-            <ProtoButton title="Complete" action={toggleJobComplete} />
+            <Typography variant="caption" sx={{ '&:hover': { color: 'red' } }} onClick={deleteJob}>Delete</Typography>
+            <Typography variant="caption">Reset</Typography>
+            <Typography variant="caption" onClick={toggleJobComplete}>Complete</Typography>
           </Grid>
         </Grid>
         <Grid
@@ -108,6 +129,7 @@ function JobCard({
           justifyContent="flex-end"
           xs={2}
           gap={1}
+          zIndex={1}
         >
           <Tooltip title={job.description} placement="top-end">
             <HelpIcon />
