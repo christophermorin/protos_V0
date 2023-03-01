@@ -33,48 +33,44 @@ function ActiveProto({ proto }) {
       gap={0.5}
       key={proto._id}
       sx={{
-        width: { xs: 'calc(100vw - 32px)', md: '360px', boxShadow: '-1px 1px 10px 1px rgba(0,0,0,1)' },
+        width: { xs: 'calc(100vw - 32px)', sm: '360px', boxShadow: '1px 1px 5px 1px rgba(0,0,0,1)' },
       }}
     >
-      <Grid item xs={12}>
-        <ActiveProtoHeader
-          protoTitle={proto.title}
-          protoDescription={proto.description}
-          protoId={proto._id}
-          listId={activeList._id}
-          isComplete={protoIsComplete}
-        />
-      </Grid>
-      <Grid item xs={12}>
-        <Accordion
-          disableGutters
+      <ActiveProtoHeader
+        protoTitle={proto.title}
+        protoDescription={proto.description}
+        protoId={proto._id}
+        listId={activeList._id}
+        isComplete={protoIsComplete}
+      />
+      <Accordion
+        disableGutters
+      >
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="The How"
+          id="proto-how"
         >
-          <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
-            aria-controls="The How"
-            id="proto-how"
+          <Typography
+            margin="auto"
+            variant="caption"
+            fontWeight={700}
           >
-            <Typography
-              margin="auto"
-              variant="caption"
-              fontWeight={700}
-            >
-              {totalJobsComplete.length}
-              /
-              {totalJobCount}
-            </Typography>
-            <JobStepper
-              totalJobCount={totalJobCount}
-              totalJobsComplete={totalJobsComplete.length}
-            />
-          </AccordionSummary>
-          <AccordionDetails sx={{ overflowY: 'auto', scrollbarWidth: 'thin' }}>
-            <Stack spacing={1} sx={{ maxHeight: '55vh' }}>
-              {jobslist}
-            </Stack>
-          </AccordionDetails>
-        </Accordion>
-      </Grid>
+            {totalJobsComplete.length}
+            /
+            {totalJobCount}
+          </Typography>
+          <JobStepper
+            totalJobCount={totalJobCount}
+            totalJobsComplete={totalJobsComplete.length}
+          />
+        </AccordionSummary>
+        <AccordionDetails sx={{ overflowY: 'auto', scrollbarWidth: 'thin' }}>
+          <Stack spacing={1} sx={{ maxHeight: '55vh' }}>
+            {jobslist}
+          </Stack>
+        </AccordionDetails>
+      </Accordion>
     </Box>
   );
 }
