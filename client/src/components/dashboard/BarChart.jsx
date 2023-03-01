@@ -10,9 +10,7 @@ import {
 } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
 
-
 function BarChart({ dataSet, title, color }) {
-
   ChartJS.register(
     CategoryScale,
     LinearScale,

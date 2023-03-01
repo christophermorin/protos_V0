@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {
-  Tabs, Grid, Slide, Typography, Box
+  Tabs, Grid, Slide, Typography, Box,
 } from '@mui/material';
 import ActiveProto from './ActiveProto';
 import SpeedDialMenu from '../Utilities/SpeedDIalMenu';
@@ -59,13 +59,13 @@ function ProtoTabs() {
     <Grid
       container
       direction="row"
-      height="100%"
+      height="calc(100% - 32px)"
       justifyContent="center"
+    // marginTop="56px"
     >
       <Grid
         item
         xs={12}
-        marginLeft={{ xs: 'none', md: '200px' }}
       >
         <Tabs
           value={false}
@@ -82,8 +82,7 @@ function ProtoTabs() {
           <Grid
             item
             xs={12}
-            height="calc(100% - 64px)"
-            marginLeft={{ xs: 'none', md: '200px' }}
+            height="inherit"
             sx={{ overflowX: 'auto' }}
           >
 
@@ -91,7 +90,8 @@ function ProtoTabs() {
               container
               direction="row"
               wrap="nowrap"
-              alignContent="flex-end"
+              height={'100%'}
+              sx={{ overflowX: 'scroll' }}
               spacing={1}
             >
               {displayed}
@@ -101,13 +101,13 @@ function ProtoTabs() {
         : (
           <Typography
             variant="h6"
-            marginLeft={{ xs: 0, md: 25 }}
           >
             {`Hello ${user.username}, let's get to work.`}
           </Typography>
-        )}
+        )
+      }
       <SpeedDialMenu />
-    </Grid>
+    </Grid >
   );
 }
 

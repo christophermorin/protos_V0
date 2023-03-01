@@ -5,29 +5,28 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import App from './App';
 import store from './store/store';
 
-//e5e5e5
+// e5e5e5
 
 const getDesignTokens = (mode) => ({
   palette: {
     mode,
     primary: {
       ...(mode === 'light' ? {
-        main: 'rgba(0,0,0,1)'
-      } :
-        {
-          main: 'rgba(8,9,11,1)'
-        })
+        main: 'rgba(0,0,0,1)',
+      }
+        : {
+          main: 'rgba(8,9,11,1)',
+        }),
     },
     background: {
       ...(mode === 'light' ? {
         default: 'rgba(255,255,255,1)',
         paper: 'rgba(240,240,240,1)',
       }
-        :
-        {
+        : {
           default: 'rgba(31,32,34,1)',
-          paper: 'rgba(8,9,11,1)'
-        })
+          paper: 'rgba(8,9,11,1)',
+        }),
     },
   },
   typography: {
@@ -123,9 +122,9 @@ const getDesignTokens = (mode) => ({
       },
     },
   },
-})
+});
 
-const theme = createTheme(getDesignTokens('light'))
+const theme = createTheme(getDesignTokens('light'));
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>

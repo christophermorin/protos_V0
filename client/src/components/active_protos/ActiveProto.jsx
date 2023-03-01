@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import {
-  Accordion, AccordionSummary, AccordionDetails, Grid, Typography, Stack, Box
+  Accordion, AccordionSummary, AccordionDetails, Grid, Typography, Stack, Box,
 } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { useSelector } from 'react-redux';

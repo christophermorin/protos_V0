@@ -15,6 +15,7 @@ import {
   Menu,
   MenuItem,
   Grid,
+  Box,
 } from '@mui/material';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import MenuIcon from '@mui/icons-material/Menu';
@@ -59,9 +60,21 @@ function NavBar({ handleOpenBuild }) {
     </ListItem>
   ));
 
+  const drawerWidth = 200;
+
   return (
     <>
-      <AppBar position="relative" color="primary" enableColorOnDark sx={{ height: '56px', justifyContent: 'center', backgroundImage: 'unset' }}>
+      <AppBar
+        position="fixed"
+        color="primary"
+        enableColorOnDark
+        sx={{
+          height: '56px',
+          backgroundImage: 'unset',
+          // width: { sm: `calc(100% - ${drawerWidth}px)` },
+          // ml: { sm: `${drawerWidth}px` },
+        }}
+      >
         <Toolbar>
           <Grid container alignItems="center" justifyContent="space-between">
             <Grid item xs={1}>
@@ -71,12 +84,12 @@ function NavBar({ handleOpenBuild }) {
                 edge="start"
                 aria-label="menu"
                 onClick={toggleDrawer}
-                sx={{ display: { md: 'none' } }}
+                sx={{ visibility: { md: 'hidden' } }}
               >
                 <MenuIcon />
               </IconButton>
             </Grid>
-            <Grid item marginLeft={{ xs: 0, md: 25 }}>
+            <Grid item marginLeft={{ xs: 0, md: '200px' }}>
               <NavButton title="Home" nav="/" />
               <NavButton title="Active" nav="/active" />
               <NavButton title="Build" action={handleOpenBuild} />
@@ -106,31 +119,35 @@ function NavBar({ handleOpenBuild }) {
           </Grid>
         </Toolbar>
       </AppBar>
-      <Drawer
-        anchor="left"
-        open={sideBar}
-        variant="temporary"
-        onClose={toggleDrawer}
-        sx={{
-          display: { md: 'block', lg: 'none' },
-          '& .MuiDrawer-paper': { boxSizing: 'border-box', width: '200px' },
-        }}
+      <Box
+        sx={{ width: { md: drawerWidth, }, flexShrink: { sm: 0 } }}
       >
-        <div>
-          {sideBarOptions}
-        </div>
-      </Drawer>
+        <Drawer
+          anchor="left"
+          open={sideBar}
+          variant="temporary"
+          onClose={toggleDrawer}
+          sx={{
+            display: { md: 'block', lg: 'none' },
+            '& .MuiDrawer-paper': { boxSizing: 'border-box', width: '200px' },
+          }}
+        >
+          <div>
+            {sideBarOptions}
+          </div>
+        </Drawer>
 
-      <Drawer
-        anchor="left"
-        open
-        variant="permanent"
-        sx={{ display: { xs: 'none', lg: 'block' }, '& .MuiDrawer-paper': { boxSizing: 'border-box', width: '200px', marginTop: '58px' } }}
-      >
-        <div>
-          {sideBarOptions}
-        </div>
-      </Drawer>
+        <Drawer
+          anchor="left"
+          open
+          variant="permanent"
+          sx={{ display: { xs: 'none', md: 'block' }, '& .MuiDrawer-paper': { boxSizing: 'border-box', width: '200px', marginTop: '58px' } }}
+        >
+          <div>
+            {sideBarOptions}
+          </div>
+        </Drawer>
+      </Box>
     </>
   );
 }

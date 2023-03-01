@@ -106,7 +106,7 @@ function ActiveProtoHeader({
       }}
       >
         <ActiveReason protoDescription={protoDescription} />
-        {isComplete && <Typography variant='caption' onClick={handleComplete} />}
+        {isComplete && <Typography variant="caption" onClick={handleComplete} />}
       </Box>
     </Paper>
   );

@@ -19,7 +19,7 @@ function JobCard({
 }) {
   const [timer, setTimer] = useState(false);
   const [complete, setComplete] = useState(job.isComplete);
-  const theme = useTheme()
+  const theme = useTheme();
   const dispatch = useDispatch();
   const handleTimer = () => {
     setTimer(!timer);
@@ -64,12 +64,11 @@ function JobCard({
     }
   };
 
-
   const tempColorCard = `
     rgba(${job.cardColor.r},
     ${job.cardColor.g},
     ${job.cardColor.b},
-    ${job.cardColor.a})`
+    ${job.cardColor.a})`;
 
   return (
     <Paper
@@ -119,9 +118,9 @@ function JobCard({
             justifyContent="space-between"
             marginTop={1}
           >
-            <Typography variant='caption' sx={{ '&:hover': { color: 'red' } }} onClick={deleteJob}>Delete</Typography>
-            <Typography variant='caption'>Reset</Typography>
-            <Typography variant='caption' onClick={toggleJobComplete}>Complete</Typography>
+            <Typography variant="caption" sx={{ '&:hover': { color: 'red' } }} onClick={deleteJob}>Delete</Typography>
+            <Typography variant="caption">Reset</Typography>
+            <Typography variant="caption" onClick={toggleJobComplete}>Complete</Typography>
           </Grid>
         </Grid>
         <Grid
@@ -138,7 +137,7 @@ function JobCard({
           <ActiveTimer jobTimer={job.timer} timerState={timer} />
         </Grid>
       </Grid>
-    </Paper >
+    </Paper>
   );
 }
 
