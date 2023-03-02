@@ -32,7 +32,7 @@ const getDesignTokens = (mode) => ({
   typography: {
     caption: {
       // color: mode === 'light' ? '#000' : '#fff',
-      color: 'rgba(145,145,135,1)',
+      // color: 'rgba(145,145,135,1)',
       position: 'relative',
       display: 'inline-block',
       cursor: 'pointer',
@@ -102,11 +102,11 @@ const getDesignTokens = (mode) => ({
             height: '15px',
           },
           '.MuiLinearProgress-bar': {
-            background: 'rgba(0, 155, 100, 0.5)',
+            background: 'rgba(0,0,0,1)',
             transition: 'transform 0.3s linear',
           },
           '.MuiLinearProgress-colorPrimary': {
-            background: 'rgba(0,0,0,0.2)',
+            background: 'rgba(255,255,255, 1)',
           },
         },
       },

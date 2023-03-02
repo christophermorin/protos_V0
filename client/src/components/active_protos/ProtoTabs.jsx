@@ -88,7 +88,6 @@ function ProtoTabs() {
 
             <Box
               display="flex"
-              container
               direction="row"
               wrap="nowrap"
               height={'100%'}

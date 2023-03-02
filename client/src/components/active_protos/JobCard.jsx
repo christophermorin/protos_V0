@@ -72,72 +72,81 @@ function JobCard({
 
   return (
     <Paper
-      sx={{
-        padding: 1,
-        cursor: 'pointer',
-        textDecoration: complete ? 'line-through' : null,
-        opacity: complete ? 0.4 : null,
-        position: 'relative',
-        overflow: 'hidden',
-        '&:hover': {
-          '& .jobBackGround': {
-            transform: 'scale(10)',
-          },
-        },
-      }}
+      sx={{ background: '#fff', borderRadius: '5px' }}
     >
-      <div
-        style={{
-          height: '128px',
-          width: '128px',
-          background: tempColorCard,
-          zIndex: '1',
-          position: 'absolute',
-          top: '-75px',
-          left: '-75px',
-          borderRadius: '50%',
-          transition: 'all 0.8s ease',
+      <Box
+        sx={{
+          padding: 1,
+          cursor: 'pointer',
+          opacity: complete ? 0.4 : null,
+          position: 'relative',
+          overflow: 'hidden',
+          '&:hover': {
+            '& .jobBackGround': {
+              transform: 'scale(10)',
+            },
+          },
         }}
-        className="jobBackGround"
-      />
-      <Grid container height="100%" alignItems="center">
-        <Grid container item xs={2} zIndex={1}>
-          {!timer ? <PlayCircleIcon fontSize="large" onClick={handleTimer} /> : <StopCircleIcon fontSize="large" onClick={handleTimer} sx={{ color: 'red' }} />}
-        </Grid>
-        <Grid item xs={8} zIndex={1}>
-          <Grid item>
-            <Typography fontWeight={700}>
-              {job.title}
-            </Typography>
+      >
+        <div
+          style={{
+            height: '118px',
+            width: '90px',
+            background: tempColorCard,
+            zIndex: '1',
+            position: 'absolute',
+            top: '-25px',
+            left: '-75px',
+            borderRadius: '75%',
+            transition: 'all 0.3s ease',
+          }}
+          className="jobBackGround"
+        />
+        <Grid container height="100%" alignItems="center">
+          <Grid container item xs={2} zIndex={1}>
+            {!timer ? <PlayCircleIcon fontSize="large" onClick={handleTimer} /> : <StopCircleIcon fontSize="large" onClick={handleTimer} sx={{ color: 'red' }} />}
+          </Grid>
+          <Grid item xs={8} zIndex={1}>
+            <Grid item>
+              <Typography fontWeight={700} sx={{ textDecoration: complete ? 'line-through 2px black' : null }}>
+                {job.title}
+              </Typography>
+            </Grid>
+            <Grid
+              container
+              item
+              direction="row"
+              maxWidth="90%"
+              justifyContent="space-between"
+              marginTop={1}
+            >
+              <Typography variant="caption" sx={{ '&:hover': { color: 'red' } }} onClick={deleteJob}>Delete</Typography>
+              <Typography variant="caption">Reset</Typography>
+              {complete ?
+                < Typography variant="caption" onClick={toggleJobComplete} sx={{ '&:hover': { color: 'red' } }}>Incomplete</Typography>
+                :
+                < Typography variant="caption" onClick={toggleJobComplete} sx={{ '&:hover': { color: 'green' } }}>Complete</Typography>
+
+              }
+              {/* <Typography variant="caption" onClick={toggleJobComplete}>Complete</Typography> */}
+            </Grid>
           </Grid>
           <Grid
             container
             item
-            direction="row"
-            maxWidth="90%"
-            justifyContent="space-between"
-            marginTop={1}
+            justifyContent="flex-end"
+            xs={2}
+            gap={1}
+            zIndex={1}
           >
-            <Typography variant="caption" sx={{ '&:hover': { color: 'red' } }} onClick={deleteJob}>Delete</Typography>
-            <Typography variant="caption">Reset</Typography>
-            <Typography variant="caption" onClick={toggleJobComplete}>Complete</Typography>
+            <Tooltip title={job.description} placement="top-end">
+              <HelpIcon />
+            </Tooltip>
+            <ActiveTimer jobTimer={job.timer} timerState={timer} />
           </Grid>
         </Grid>
-        <Grid
-          container
-          item
-          justifyContent="flex-end"
-          xs={2}
-          gap={1}
-          zIndex={1}
-        >
-          <Tooltip title={job.description} placement="top-end">
-            <HelpIcon />
-          </Tooltip>
-          <ActiveTimer jobTimer={job.timer} timerState={timer} />
-        </Grid>
-      </Grid>
-    </Paper>
+      </Box>
+    </Paper >
   );
 }
 

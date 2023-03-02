@@ -24,7 +24,7 @@ function MyTimer({ expiryTimestamp, timerState }) {
 
   return (
     <div style={{ textAlign: 'center' }}>
-      <div style={{ background: 'lightgrey', fontWeight: '500' }}>
+      <div style={{ fontWeight: '500' }}>
         {/* <span>{hours}</span>
         : */}
         {minutes < 10 ? (
