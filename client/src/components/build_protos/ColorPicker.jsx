@@ -33,7 +33,6 @@ function ColorPicker({ displayColorPicker, changeColor, color }) {
 ColorPicker.propTypes = {
   displayColorPicker: PropTypes.bool.isRequired,
   changeColor: PropTypes.func.isRequired,
-  // color:
 };
 
 export default ColorPicker;

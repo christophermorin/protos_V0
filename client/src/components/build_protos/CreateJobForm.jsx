@@ -52,7 +52,6 @@ function CreateJobForm({ setNewProtoJobs, cardColor, setColor }) {
         gap: 2,
         padding: 2,
         background: `linear-gradient(135deg, rgba(${cardColor.r}, ${cardColor.g}, ${cardColor.b}, ${cardColor.a}), rgba(255,255,255) 20%)`,
-        // border: `1px solid rgba(${cardColor.r}, ${cardColor.g}, ${cardColor.b}, ${cardColor.a})`,
         marginTop: 5,
         border: '1px solid black',
       }}
@@ -62,7 +61,6 @@ function CreateJobForm({ setNewProtoJobs, cardColor, setColor }) {
           <TextField
             id="standard-basic"
             label="Job Title"
-            // variant="filled"
             value={jobTitle}
             fullWidth
             onChange={(e) => setJobTitle(e.target.value)}
@@ -72,7 +70,6 @@ function CreateJobForm({ setNewProtoJobs, cardColor, setColor }) {
             label="Job Description"
             multiline
             fullWidth
-            // variant="filled"
             value={jobDesc}
             onChange={(e) => setJobDesc(e.target.value)}
             sx={{ marginTop: 2 }}

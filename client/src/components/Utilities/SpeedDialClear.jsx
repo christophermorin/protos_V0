@@ -1,6 +1,10 @@
 import PropTypes from 'prop-types';
 import {
-  Dialog, DialogContent, Box, Button, Typography,
+  Dialog,
+  DialogContent,
+  Box,
+  Button,
+  Typography,
 } from '@mui/material';
 import { useSelector, useDispatch } from 'react-redux';
 import activeProtoServices from '../../services/activeProtoServices';
@@ -8,8 +12,6 @@ import { setActiveProtos } from '../../reducers/activeProtosReducer';
 import { clearDisplayedProtoList } from '../../reducers/displayedProtosReducer';
 
 function SpeedDialClear({ open, handleClose }) {
-  // const [selectedProtos, setSelectedProtos] = useState([]);
-  // const userProtos = useSelector((state) => state.userProtos);
   const activeProtos = useSelector((state) => state.activeProtos);
   const dispatch = useDispatch();
 

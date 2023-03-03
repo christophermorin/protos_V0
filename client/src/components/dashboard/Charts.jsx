@@ -1,6 +1,5 @@
 import { Grid, Paper } from '@mui/material';
 import BarChart from './BarChart';
-import styles from './Dashboard.module.css';
 
 function Charts({ userStats }) {
   return (

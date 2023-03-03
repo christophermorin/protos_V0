@@ -27,7 +27,6 @@ export default function Home() {
       <Grid
         item
         onClick={openDialog}
-      // marginLeft={{ xs: 0, md: 25 }}
       >
         <HomeButton
           title="Create Today"

@@ -20,7 +20,6 @@ function BarChart({ dataSet, title, color }) {
     Legend,
     Colors,
   );
-  // ChartJS.defaults.borderColor = '#000';
   ChartJS.defaults.color = '#fff';
   const options = {
     indexAxis: 'x',

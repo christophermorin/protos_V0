@@ -44,7 +44,6 @@ function App() {
     getUserProtos();
   }, [user]);
 
-  // Confirm that user auth still valid. JWT will have an expiration time.
   useEffect(() => {
     dispatch(setUserAuth(JSON.parse(window.localStorage.getItem('user') || null)));
   }, []);

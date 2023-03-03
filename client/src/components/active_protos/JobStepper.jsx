@@ -1,4 +1,4 @@
-import { MobileStepper, Typography } from '@mui/material';
+import { MobileStepper } from '@mui/material';
 import StarIcon from '@mui/icons-material/Star';
 import StarBorder from '@mui/icons-material/StarBorder';
 

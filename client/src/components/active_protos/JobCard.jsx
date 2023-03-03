@@ -2,12 +2,13 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import {
-  Box, Typography, Tooltip, Paper, Grid,
+  Box,
+  Typography,
+  Paper,
+  Grid,
 } from '@mui/material';
 import PlayCircleIcon from '@mui/icons-material/PlayCircle';
 import StopCircleIcon from '@mui/icons-material/StopCircle';
-import HelpIcon from '@mui/icons-material/Help';
-import { useTheme } from '@mui/material/styles';
 import ActiveTimer from './ActiveTimer';
 import activeProtoServices from '../../services/activeProtoServices';
 import userStatsServices from '../../services/userStatsServices';
@@ -19,7 +20,6 @@ function JobCard({
 }) {
   const [timer, setTimer] = useState(false);
   const [complete, setComplete] = useState(job.isComplete);
-  const theme = useTheme();
   const dispatch = useDispatch();
   const handleTimer = () => {
     setTimer(!timer);
@@ -72,7 +72,14 @@ function JobCard({
 
   return (
     <Paper
-      sx={{ background: '#fff', borderRadius: '5px' }}
+      sx={{
+        borderRadius: '5px',
+        background: `rgba(
+          ${job.cardColor.r}, 
+          ${job.cardColor.g}, 
+          ${job.cardColor.b},
+          0.3)`,
+      }}
     >
       <Box
         sx={{
@@ -90,23 +97,20 @@ function JobCard({
       >
         <div
           style={{
-            height: '118px',
-            width: '90px',
-            background: tempColorCard,
+            height: '128px',
+            width: '128px',
+            background: tempColorCard || '#000',
             zIndex: '1',
             position: 'absolute',
-            top: '-25px',
+            top: '-75px',
             left: '-75px',
             borderRadius: '75%',
-            transition: 'all 0.3s ease',
+            transition: 'all 1s ease-in-out',
           }}
           className="jobBackGround"
         />
         <Grid container height="100%" alignItems="center">
-          <Grid container item xs={2} zIndex={1}>
-            {!timer ? <PlayCircleIcon fontSize="large" onClick={handleTimer} /> : <StopCircleIcon fontSize="large" onClick={handleTimer} sx={{ color: 'red' }} />}
-          </Grid>
-          <Grid item xs={8} zIndex={1}>
+          <Grid item xs={10} zIndex={1}>
             <Grid item>
               <Typography fontWeight={700} sx={{ textDecoration: complete ? 'line-through 2px black' : null }}>
                 {job.title}
@@ -117,18 +121,40 @@ function JobCard({
               item
               direction="row"
               maxWidth="90%"
-              justifyContent="space-between"
+              justifyContent="space-evenly"
               marginTop={1}
             >
-              <Typography variant="caption" sx={{ '&:hover': { color: 'red' } }} onClick={deleteJob}>Delete</Typography>
-              <Typography variant="caption">Reset</Typography>
-              {complete ?
-                < Typography variant="caption" onClick={toggleJobComplete} sx={{ '&:hover': { color: 'red' } }}>Incomplete</Typography>
-                :
-                < Typography variant="caption" onClick={toggleJobComplete} sx={{ '&:hover': { color: 'green' } }}>Complete</Typography>
-
-              }
-              {/* <Typography variant="caption" onClick={toggleJobComplete}>Complete</Typography> */}
+              <Typography
+                variant="caption"
+                sx={{ '&:hover': { color: 'red' } }}
+                onClick={deleteJob}
+              >
+                Delete
+              </Typography>
+              <Typography
+                variant="caption"
+              >
+                Reset
+              </Typography>
+              {complete
+                ? (
+                  <Typography
+                    variant="caption"
+                    onClick={toggleJobComplete}
+                    sx={{ '&:hover': { color: 'red' } }}
+                  >
+                    Incomplete
+                  </Typography>
+                )
+                : (
+                  <Typography
+                    variant="caption"
+                    onClick={toggleJobComplete}
+                    sx={{ '&:hover': { color: 'green' } }}
+                  >
+                    Complete
+                  </Typography>
+                )}
             </Grid>
           </Grid>
           <Grid
@@ -139,14 +165,15 @@ function JobCard({
             gap={1}
             zIndex={1}
           >
-            <Tooltip title={job.description} placement="top-end">
+            {!timer ? <PlayCircleIcon fontSize="medium" onClick={handleTimer} /> : <StopCircleIcon fontSize="medium" onClick={handleTimer} sx={{ color: 'red' }} />}
+            {/* <Tooltip title={job.description} placement="top-end">
               <HelpIcon />
-            </Tooltip>
+            </Tooltip> */}
             <ActiveTimer jobTimer={job.timer} timerState={timer} />
           </Grid>
         </Grid>
       </Box>
-    </Paper >
+    </Paper>
   );
 }
 

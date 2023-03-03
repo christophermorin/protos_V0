@@ -49,28 +49,3 @@ export default function SpeedDialMenu() {
     </>
   );
 }
-
-// <Dialog open={open} onClose={handleClose}>
-//   <DialogContent>
-//     <Box
-//        display = 'flex'
-//        flexDirection = 'column'
-//        justifyContent = 'center'
-//        alignItems = 'center'
-//        gap = { 5} >
-//       <Autocomplete
-//         id="grouped-demo"
-//         sx={{ minWidth: { xs: 300, md: 500 }, padding: 5 }}
-//         value={selectedProtos}
-//         onChange={(event, newValue) => {
-//           setSelectedProtos(newValue);
-//         }}
-//         multiple
-//         options={userProtos}
-//         // groupBy={(option) => option.timeOfDay}
-//         getOptionLabel={(option) => option.title}
-//         renderInput={(params) => <TextField {...params} label="Protos" />}
-//       />
-//     </Box>
-//   </DialogContent>
-// </Dialog >
