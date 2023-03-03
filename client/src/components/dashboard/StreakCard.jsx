@@ -1,13 +1,12 @@
 import { Paper, Typography } from '@mui/material';
 import styles from './Dashboard.module.css';
 
-function StreakCard({ stat, background, title }) {
+function StreakCard({ stat }) {
   return (
     <Paper
       className={`${styles.streakCard}`}
       sx={{ background: '#121212' }}
     >
-      {/* <div className={styles.statsCardBackground} style={{ background: background }}></div> */}
       <Typography
         variant="h1"
         fontWeight={700}
@@ -15,7 +14,6 @@ function StreakCard({ stat, background, title }) {
         position="relative"
         zIndex={2}
         textAlign="center"
-
       >
         {stat}
       </Typography>
@@ -25,7 +23,6 @@ function StreakCard({ stat, background, title }) {
         position="relative"
         zIndex={2}
         textAlign="center"
-
       >
         Day Streak!
       </Typography>

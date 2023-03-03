@@ -15,7 +15,6 @@ function StatsCard({ stat, background, title }) {
         position="relative"
         zIndex={2}
         textAlign="center"
-
       >
         {stat}
       </Typography>
@@ -25,7 +24,6 @@ function StatsCard({ stat, background, title }) {
         position="relative"
         zIndex={2}
         textAlign="center"
-
       >
         {title}
       </Typography>

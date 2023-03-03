@@ -3,10 +3,12 @@ import StatsCard from './StatsCard';
 import StreakCard from './StreakCard';
 
 function Totals({ userStats }) {
-  const totalProtosCompleted = userStats && userStats.totalProtosCompleted
-    .reduce((a, b) => a + b.timesCompleted, 0);
-  const totalJobsCompleted = userStats && userStats.totalJobsCompleted
-    .reduce((a, b) => a + b.timesCompleted, 0);
+  const totalProtosCompleted = userStats
+    && userStats.totalProtosCompleted
+      .reduce((a, b) => a + b.timesCompleted, 0);
+  const totalJobsCompleted = userStats
+    && userStats.totalJobsCompleted
+      .reduce((a, b) => a + b.timesCompleted, 0);
 
   return (
     <Grid

@@ -7,7 +7,6 @@ import {
   Toolbar,
   Drawer,
   IconButton,
-  List,
   ListItem,
   ListItemButton,
   ListItemIcon,
@@ -120,7 +119,7 @@ function NavBar({ handleOpenBuild }) {
         </Toolbar>
       </AppBar>
       <Box
-        sx={{ width: { md: drawerWidth, }, flexShrink: { sm: 0 } }}
+        sx={{ width: { md: drawerWidth }, flexShrink: { sm: 0 } }}
       >
         <Drawer
           anchor="left"
@@ -128,8 +127,14 @@ function NavBar({ handleOpenBuild }) {
           variant="temporary"
           onClose={toggleDrawer}
           sx={{
-            display: { md: 'block', lg: 'none' },
-            '& .MuiDrawer-paper': { boxSizing: 'border-box', width: '200px' },
+            display: {
+              md: 'block',
+              lg: 'none'
+            },
+            '& .MuiDrawer-paper': {
+              boxSizing: 'border-box',
+              width: '200px'
+            },
           }}
         >
           <div>
@@ -141,7 +146,17 @@ function NavBar({ handleOpenBuild }) {
           anchor="left"
           open
           variant="permanent"
-          sx={{ display: { xs: 'none', md: 'block' }, '& .MuiDrawer-paper': { boxSizing: 'border-box', width: '200px', marginTop: '58px' } }}
+          sx={{
+            display: {
+              xs: 'none',
+              md: 'block'
+            },
+            '& .MuiDrawer-paper': {
+              boxSizing: 'border-box',
+              width: '200px',
+              marginTop: '58px'
+            }
+          }}
         >
           <div>
             {sideBarOptions}

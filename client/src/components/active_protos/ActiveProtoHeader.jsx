@@ -2,7 +2,12 @@ import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import {
-  Paper, Typography, Box, IconButton, Menu, MenuItem,
+  Paper,
+  Typography,
+  Box,
+  IconButton,
+  Menu,
+  MenuItem,
 } from '@mui/material';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import ActiveReason from './ActiveReason';
@@ -27,7 +32,6 @@ function ActiveProtoHeader({
   const handleClose = () => {
     setAnchorEl(null);
   };
-  // Needs error handling.
   const handleDelete = async () => {
     const result = await activeProtoServices.deleteOneFromActive(
       activeList._id,

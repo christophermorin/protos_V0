@@ -1,7 +1,12 @@
 import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import {
-  Accordion, AccordionSummary, AccordionDetails, Grid, Typography, Stack, Box,
+  Accordion,
+  AccordionSummary,
+  AccordionDetails,
+  Typography,
+  Stack,
+  Box,
 } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { useSelector } from 'react-redux';
@@ -33,7 +38,7 @@ function ActiveProto({ proto }) {
       gap={0.5}
       key={proto._id}
       sx={{
-        width: { xs: 'calc(100vw - 32px)', sm: '360px', boxShadow: '1px 1px 5px 1px rgba(0,0,0,1)' },
+        width: { xs: 'calc(100vw - 32px)', sm: '360px' },
       }}
     >
       <ActiveProtoHeader

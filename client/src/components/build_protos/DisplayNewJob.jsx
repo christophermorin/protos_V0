@@ -1,13 +1,22 @@
 import PropTypes from 'prop-types';
 import HelpIcon from '@mui/icons-material/Help';
 import {
-  Box, Typography, Tooltip, Paper, Grid,
+  Box,
+  Typography,
+  Tooltip,
+  Paper,
+  Grid,
 } from '@mui/material';
 import PlayCircleIcon from '@mui/icons-material/PlayCircle';
 import ActiveTimer from '../active_protos/ActiveTimer';
 
 function DisplayNewJob({ job, deleteJob }) {
-  const colorChoice = `rgba(${job.cardColor.r}, ${job.cardColor.g}, ${job.cardColor.b}, ${job.cardColor.a})`;
+  const colorChoice = `rgba(
+    ${job.cardColor.r}, 
+    ${job.cardColor.g}, 
+    ${job.cardColor.b}, 
+    ${job.cardColor.a}
+    )`;
   return (
 
     <Paper

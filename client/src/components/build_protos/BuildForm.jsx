@@ -2,7 +2,13 @@ import { useState } from 'react';
 import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
 import {
-  Box, Grid, Stack, Switch, FormControlLabel, FormGroup, Dialog,
+  Box,
+  Grid,
+  Stack,
+  Switch,
+  FormControlLabel,
+  FormGroup,
+  Dialog,
 } from '@mui/material';
 import { EditorState, convertToRaw } from 'draft-js';
 import CreateProtoForm from './CreateProtoForm';
@@ -75,14 +81,17 @@ function BuildForm({ open, handleCloseBuild }) {
       setEditorState(() => EditorState.createEmpty());
       if (result && checked) {
         await activeProtoServices.addOneToActive(activeProtos._id, result);
-        dispatch(activeProtoAddOne(result)); // Adding to activeList
+        dispatch(activeProtoAddOne(result));
       }
     } catch (error) {
       console.log(error, 'Proto already exists');
     }
   };
   return (
-    <Dialog open={open || false} onClose={handleCloseBuild} sx={{ marginLeft: { xs: 0, md: 25 } }}>
+    <Dialog
+      open={open || false}
+      onClose={handleCloseBuild}
+      sx={{ marginLeft: { xs: 0, md: 25 } }}>
       <Grid container sx={{ padding: 2 }}>
         <Grid item xs={12}>
           <CreateProtoForm

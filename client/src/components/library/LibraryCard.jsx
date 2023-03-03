@@ -1,5 +1,9 @@
 import PropTypes from 'prop-types';
-import { Paper, Grid, Typography } from '@mui/material';
+import {
+  Paper,
+  Grid,
+  Typography
+} from '@mui/material';
 import AssignmentIcon from '@mui/icons-material/Assignment';
 import AccessTimeFilledIcon from '@mui/icons-material/AccessTimeFilled';
 

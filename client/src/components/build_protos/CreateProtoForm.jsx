@@ -1,6 +1,11 @@
 import PropTypes from 'prop-types';
 import {
-  Box, TextField, Paper, ToggleButton, ToggleButtonGroup, Tooltip,
+  Box,
+  TextField,
+  Paper,
+  ToggleButton,
+  ToggleButtonGroup,
+  Tooltip,
 } from '@mui/material';
 import WbTwilightIcon from '@mui/icons-material/WbTwilight';
 import WbSunnyIcon from '@mui/icons-material/WbSunny';
@@ -21,14 +26,12 @@ function CreateProtoForm({
         <TextField
           id="proto-title"
           label="Proto Title..."
-          // variant="filled"
           value={protoTitle}
           onChange={(e) => setProtoTitle(e.target.value)}
           fullWidth
         />
         <ProtoDescriptionForm editorState={editorState} setEditorState={setEditorState} />
       </Box>
-      {/* Seperate into new component */}
       <ToggleButtonGroup
         value={protoTimeOfDay}
         exclusive

@@ -29,7 +29,6 @@ function ProtoDescriptionForm({ editorState, setEditorState }) {
           onToggle={toggleInlineStyle}
         />
       </div>
-      {/* wordBreak: "break-all" */}
       <div
         onClick={focusEditor}
         style={{
