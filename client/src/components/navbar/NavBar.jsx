@@ -15,6 +15,7 @@ import {
   MenuItem,
   Grid,
   Box,
+  Typography,
 } from '@mui/material';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import MenuIcon from '@mui/icons-material/Menu';
@@ -70,7 +71,7 @@ function NavBar({ handleOpenBuild }) {
         sx={{
           height: '56px',
           backgroundImage: 'unset',
-          // width: { sm: `calc(100% - ${drawerWidth}px)` },
+          width: { md: `calc(100% - ${drawerWidth}px)` },
           // ml: { sm: `${drawerWidth}px` },
         }}
       >
@@ -88,7 +89,7 @@ function NavBar({ handleOpenBuild }) {
                 <MenuIcon />
               </IconButton>
             </Grid>
-            <Grid item marginLeft={{ xs: 0, md: '200px' }}>
+            <Grid item>
               <NavButton title="Home" nav="/" />
               <NavButton title="Active" nav="/active" />
               <NavButton title="Build" action={handleOpenBuild} />
@@ -133,7 +134,7 @@ function NavBar({ handleOpenBuild }) {
             },
             '& .MuiDrawer-paper': {
               boxSizing: 'border-box',
-              width: '200px'
+              width: drawerWidth,
             },
           }}
         >
@@ -153,8 +154,7 @@ function NavBar({ handleOpenBuild }) {
             },
             '& .MuiDrawer-paper': {
               boxSizing: 'border-box',
-              width: '200px',
-              marginTop: '58px'
+              width: drawerWidth,
             }
           }}
         >
