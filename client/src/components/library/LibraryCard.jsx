@@ -11,7 +11,7 @@ function LibraryCard({ proto, deleteProto }) {
   const styles = {
     width: '360px',
     height: '100px',
-    background: '#eeeeee',
+    background: 'rgba(0,0,0,0.5)'
   };
 
   return (

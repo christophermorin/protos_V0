@@ -22,14 +22,14 @@ function DisplayNewJob({ job, deleteJob }) {
     <Paper
       sx={{
         padding: 1,
-        background: `linear-gradient(135deg, ${colorChoice}, rgba(255,255,255) 20%)`,
-        border: '1px solid black',
+        background: `linear-gradient(135deg, ${colorChoice}, rgba(0,0,0,0.5) 20%)`,
+        border: `1px solid ${colorChoice}`,
       }}
     >
       <Grid container>
-        <Grid item xs={2} sm={1} display="flex" alignItems="center">
+        {/* <Grid item xs={2} sm={1} display="flex" alignItems="center">
           <PlayCircleIcon fontSize="large" />
-        </Grid>
+        </Grid> */}
         <Grid container item xs={8} sm={10} direction="column" gap={2}>
           <Box>
             <Typography
@@ -40,37 +40,22 @@ function DisplayNewJob({ job, deleteJob }) {
               {job.title}
             </Typography>
           </Box>
-          <Box display="flex" gap={2}>
+          <Box display="flex" gap={2} paddingLeft={2}>
             <Typography
               variant="caption"
               fontWeight={500}
               sx={{ color: 'red', cursor: 'pointer' }}
               onClick={() => deleteJob(job.title)}
             >
-              Delete
+              Remove
             </Typography>
-            <Typography
-              variant="caption"
-              fontWeight={500}
-              sx={{ cursor: 'not-allowed' }}
-            >
-              Reset
-            </Typography>
-            <Typography
-              variant="caption"
-              fontWeight={500}
-              sx={{ cursor: 'not-allowed' }}
-            >
-              Complete
-            </Typography>
-
           </Box>
         </Grid>
-        <Grid item xs={2} sm={1}>
-          <Box display="flex" flexDirection="column" gap={1} alignItems="flex-end">
-            <Tooltip title={job.description} placement="top-end">
+        <Grid item xs={4} sm={1} container justifyContent="flex-end" alignContent="flex-end">
+          <Box display="flex" flexDirection="column" gap={1} alignItems="flex-end" paddingRight={2}>
+            {/* <Tooltip title={job.description} placement="top-end">
               <HelpIcon />
-            </Tooltip>
+            </Tooltip> */}
             <ActiveTimer jobTimer={job.timer} />
           </Box>
         </Grid>

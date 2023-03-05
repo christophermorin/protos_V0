@@ -15,7 +15,7 @@ import {
   MenuItem,
   Grid,
   Box,
-  Typography,
+  Button
 } from '@mui/material';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import MenuIcon from '@mui/icons-material/Menu';
@@ -23,7 +23,7 @@ import AccountCircle from '@mui/icons-material/AccountCircle';
 import NavButton from '../buttons/NavButton';
 import { setUserAuth } from '../../reducers/userAuthReducer';
 
-function NavBar({ handleOpenBuild }) {
+function NavBar({ handleOpenBuild, resetBg }) {
   const [sideBar, setSideBar] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
 
@@ -66,7 +66,7 @@ function NavBar({ handleOpenBuild }) {
     <>
       <AppBar
         position="fixed"
-        color="primary"
+        // color="primary"
         enableColorOnDark
         sx={{
           height: '56px',
@@ -80,7 +80,7 @@ function NavBar({ handleOpenBuild }) {
             <Grid item xs={1}>
               <IconButton
                 size="large"
-                color="secondary"
+                color="primary"
                 edge="start"
                 aria-label="menu"
                 onClick={toggleDrawer}
@@ -89,7 +89,7 @@ function NavBar({ handleOpenBuild }) {
                 <MenuIcon />
               </IconButton>
             </Grid>
-            <Grid item>
+            <Grid item xs={10} container gap={1} justifyContent="center">
               <NavButton title="Home" nav="/" />
               <NavButton title="Active" nav="/active" />
               <NavButton title="Build" action={handleOpenBuild} />
@@ -100,7 +100,7 @@ function NavBar({ handleOpenBuild }) {
                 aria-label="account of current user"
                 aria-controls="menu-appbar"
                 aria-haspopup="true"
-                color="secondary"
+                color="primary"
                 onClick={handleClick}
               >
                 <AccountCircle />
@@ -112,7 +112,6 @@ function NavBar({ handleOpenBuild }) {
                 onClose={handleClose}
               >
                 <MenuItem onClick={handleClose}>Profile</MenuItem>
-                <MenuItem onClick={handleClose}>My account</MenuItem>
                 <MenuItem onClick={logoutUser}>Logout</MenuItem>
               </Menu>
             </Grid>
@@ -155,12 +154,13 @@ function NavBar({ handleOpenBuild }) {
             '& .MuiDrawer-paper': {
               boxSizing: 'border-box',
               width: drawerWidth,
+              background: 'rgba(0,0,0,0.5)'
             }
           }}
         >
-          <div>
+          <Box>
             {sideBarOptions}
-          </div>
+          </Box>
         </Drawer>
       </Box>
     </>

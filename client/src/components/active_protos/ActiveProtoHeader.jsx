@@ -8,6 +8,7 @@ import {
   IconButton,
   Menu,
   MenuItem,
+  Grid,
 } from '@mui/material';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import ActiveReason from './ActiveReason';
@@ -66,42 +67,48 @@ function ActiveProtoHeader({
 
   return (
     <Paper
-      sx={{ padding: '16px 16px 0 16px' }}
+      sx={{ padding: '16px' }}
     >
-      <Box display="flex" justifyContent="space-between">
-        <Typography
-          variant="h5"
-          fontWeight={700}
-        >
-          {protoTitle}
-        </Typography>
-        <IconButton
-          size="large"
-          aria-label="proto options"
-          aria-controls="options menu"
-          aria-haspopup="true"
-          color="inherit"
-          onClick={handleClick}
-        >
-          <MoreHorizIcon />
-        </IconButton>
-        <Menu
-          id="user-menu"
-          anchorEl={anchorEl}
-          open={open}
-          onClose={handleClose}
-          anchorOrigin={{
-            vertical: 'top',
-            horizontal: 'left',
-          }}
-          transformOrigin={{
-            vertical: 'top',
-            horizontal: 'left',
-          }}
-        >
-          <MenuItem onClick={handleDelete}>Delete</MenuItem>
-        </Menu>
-      </Box>
+      <Grid container>
+        <Grid item xs={10}>
+          <Typography
+            variant="h4"
+            fontWeight={700}
+          >
+            {protoTitle}
+          </Typography>
+        </Grid>
+        <Grid container item xs={2} direction="column" justifyContent="center">
+          <IconButton
+            size="medium"
+            aria-label="proto options"
+            aria-controls="options menu"
+            aria-haspopup="true"
+            color="inherit"
+            onClick={handleClick}
+            sx={{ padding: 0 }}
+          >
+            <MoreHorizIcon />
+          </IconButton>
+          <ActiveReason protoDescription={protoDescription} />
+          <Menu
+            id="user-menu"
+            anchorEl={anchorEl}
+            open={open}
+            onClose={handleClose}
+            anchorOrigin={{
+              vertical: 'top',
+              horizontal: 'left',
+            }}
+            transformOrigin={{
+              vertical: 'top',
+              horizontal: 'left',
+            }}
+          >
+            <MenuItem onClick={handleDelete}>Delete</MenuItem>
+          </Menu>
+        </Grid>
+      </Grid>
       <Box sx={{
         display: 'flex',
         alignItems: 'center',
@@ -109,10 +116,10 @@ function ActiveProtoHeader({
         gap: 2,
       }}
       >
-        <ActiveReason protoDescription={protoDescription} />
+        {/* <ActiveReason protoDescription={protoDescription} /> */}
         {isComplete && <Typography variant="caption" onClick={handleComplete} />}
       </Box>
-    </Paper>
+    </Paper >
   );
 }
 

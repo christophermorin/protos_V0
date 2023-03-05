@@ -25,12 +25,7 @@ function CreateJobForm({ setNewProtoJobs, cardColor, setColor }) {
     setJobDesc('');
     setJobTimer('');
     setDisplayColorPicker(false);
-    setColor({
-      r: '255',
-      g: '255',
-      b: '255',
-      a: '0',
-    });
+    setColor('transparent');
   };
 
   const createJob = () => {
@@ -51,7 +46,7 @@ function CreateJobForm({ setNewProtoJobs, cardColor, setColor }) {
         display: 'flex',
         gap: 2,
         padding: 2,
-        background: `linear-gradient(135deg, rgba(${cardColor.r}, ${cardColor.g}, ${cardColor.b}, ${cardColor.a}), rgba(255,255,255) 20%)`,
+        background: `linear-gradient(135deg, rgba(${cardColor.r}, ${cardColor.g}, ${cardColor.b}, ${cardColor.a}), transparent 80%)`,
         marginTop: 5,
         border: '1px solid black',
       }}
@@ -65,7 +60,7 @@ function CreateJobForm({ setNewProtoJobs, cardColor, setColor }) {
             fullWidth
             onChange={(e) => setJobTitle(e.target.value)}
           />
-          <TextField
+          {/* <TextField
             id="standard-basic"
             label="Job Description"
             multiline
@@ -73,17 +68,17 @@ function CreateJobForm({ setNewProtoJobs, cardColor, setColor }) {
             value={jobDesc}
             onChange={(e) => setJobDesc(e.target.value)}
             sx={{ marginTop: 2 }}
-          />
+          /> */}
         </Grid>
-        <Grid item xs={12} md={2} alignSelf="flex-end" justifyContent="flex-end">
+        <Grid item xs={12} md={2} alignSelf="flex-end">
           <TextField
             type="number"
             id="standard-basic"
-            label="Timer"
-            variant="standard"
+            label="Time"
+            // variant="standard"
             value={jobTimer}
             onChange={(e) => setJobTimer(+e.target.value)}
-            sx={{ maxWidth: 100 }}
+            sx={{ maxWidth: { xs: 80 } }}
           />
         </Grid>
         <Grid item xs={10}>
@@ -108,7 +103,7 @@ function CreateJobForm({ setNewProtoJobs, cardColor, setColor }) {
           </Box>
         </Grid>
       </Grid>
-    </Paper>
+    </Paper >
   );
 }
 

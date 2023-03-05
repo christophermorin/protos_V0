@@ -3,9 +3,11 @@ import PropTypes from 'prop-types';
 import Popover from '@mui/material/Popover';
 import HelpIcon from '@mui/icons-material/Help';
 import { Editor, convertFromRaw, EditorState } from 'draft-js';
+import { useTheme } from '@emotion/react';
 
 function ActiveReason({ protoDescription }) {
   const [anchorEl, setAnchorEl] = useState(null);
+  const theme = useTheme()
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -38,16 +40,20 @@ function ActiveReason({ protoDescription }) {
   };
 
   return (
-    <div>
-      <HelpIcon aria-describedby={id} onClick={handleClick} sx={{ '&:hover': { background: 'rgba(255,0,0,0.3)' }, borderRadius: '50%' }} />
+    <div style={{ display: 'flex', justifyContent: "center", }}>
+      <HelpIcon aria-describedby={id} onClick={handleClick} fontSize="small" />
       <Popover
         id={id}
         open={open}
         anchorEl={anchorEl}
         onClose={handleClose}
         anchorOrigin={{
-          vertical: 'bottom',
-          horizontal: 'left',
+          vertical: 'top',
+          horizontal: 'center',
+        }}
+        transformOrigin={{
+          horizontal: 'center',
+          vertical: 'bottom'
         }}
         PaperProps={{
           sx: { width: { xs: '325px', md: '600px' } },
@@ -55,7 +61,7 @@ function ActiveReason({ protoDescription }) {
         scroll="paper"
 
       >
-        <div style={{ background: 'white', padding: '10px' }}>
+        <div style={{ background: theme.palette.background.default, padding: '10px' }}>
           <Editor
             editorState={text}
             readOnly
@@ -64,7 +70,7 @@ function ActiveReason({ protoDescription }) {
           />
         </div>
       </Popover>
-    </div>
+    </div >
   );
 }
 

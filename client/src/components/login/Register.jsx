@@ -41,8 +41,8 @@ function Register() {
   };
 
   return (
-    <Grid container height="100%" justifyContent="center" alignItems="center" spacing={5} direction="column">
-      <Grid item>
+    <Grid container height="100vh" justifyContent="center" alignItems="center" direction="column">
+      <Grid item md={2}>
         <Typography
           variant="h1"
         >

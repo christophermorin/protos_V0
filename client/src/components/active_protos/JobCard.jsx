@@ -74,32 +74,29 @@ function JobCard({
     <Paper
       sx={{
         borderRadius: '5px',
-        background: `rgba(
-          ${job.cardColor.r}, 
-          ${job.cardColor.g}, 
-          ${job.cardColor.b},
-          0.3)`,
+        // background: `linear-gradient(135deg, ${tempColorCard}, transparent 20%)`,
       }}
     >
       <Box
         sx={{
           padding: 1,
+          borderRadius: '5px',
           cursor: 'pointer',
           opacity: complete ? 0.4 : null,
           position: 'relative',
           overflow: 'hidden',
           '&:hover': {
             '& .jobBackGround': {
-              transform: 'scale(10)',
+              transform: 'scale(3)',
             },
           },
         }}
       >
         <div
           style={{
-            height: '128px',
-            width: '128px',
-            background: tempColorCard || '#000',
+            height: '158px',
+            width: '158px',
+            background: `linear-gradient(135deg, ${tempColorCard}, transparent 90%)`,
             zIndex: '1',
             position: 'absolute',
             top: '-75px',

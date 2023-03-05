@@ -1,6 +1,6 @@
 .streakCard {
   padding: 50px 40px;
-  background-color: #121212;
+  background-color: rgba(0, 0, 0, 1);
   overflow: hidden;
   position: relative;
 }
@@ -27,7 +27,7 @@
 
 .statsCard {
   padding: 30px 20px;
-  background-color: #121212;
+  background-color: rgba(0, 0, 0, 0.5);
   overflow: hidden;
   position: relative;
 }
