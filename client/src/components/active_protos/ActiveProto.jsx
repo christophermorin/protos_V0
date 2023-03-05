@@ -71,7 +71,7 @@ function ActiveProto({ proto }) {
           />
         </AccordionSummary>
         <AccordionDetails sx={{ overflowY: 'auto', scrollbarWidth: 'thin' }}>
-          <Stack spacing={1} sx={{ maxHeight: '55vh' }}>
+          <Stack spacing={1} sx={{ maxHeight: '55vh', }}>
             {jobslist}
           </Stack>
         </AccordionDetails>

@@ -26,3 +26,4 @@ dist-ssr
 # Other
 protoDb.js
 extra.md
+.env

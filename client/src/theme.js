@@ -2,23 +2,26 @@ const getTheme = (mode) => ({
   palette: {
     mode,
     primary: {
-      ...(mode === 'light' ? {
-        main: 'rgba(0,0,0,1)',
-      }
-        : {
-          main: 'rgba(8,9,11,1)',
-        }),
+      // ...(mode === 'light' ? {
+      main: 'rgba(0,0,0,0.8)',
+      // }
+      //   : {
+      //     main: 'rgba(25,118,210,1)',
+      //   }),
     },
     background: {
       ...(mode === 'light' ? {
-        default: 'rgba(255,255,255,1)',
-        paper: 'rgba(240,240,240,1)',
+        default: 'rgb(0,0,0,1)',
+        paper: 'rgba(0,0,0,0.3)',
       }
         : {
-          default: 'rgba(31,32,34,1)',
-          paper: 'rgba(8,9,11,1)',
+          default: 'rgba(18,18,18,1)',
+          paper: 'rgba(255,255,255,0.1)',
         }),
     },
+    text: {
+      primary: 'rgba(255,255,255,1)'
+    }
   },
   typography: {
     caption: {
@@ -59,22 +62,31 @@ const getTheme = (mode) => ({
     MuiTextField: {
       styleOverrides: {
         root: {
+          background: 'rgba(0,0,0,0.7)',
+          color: '#fff',
           '& label.Mui-focused': {
-            color: 'rgba(0,100,0,0.5)',
+            color: 'rgba(255,255,255,0.8)',
           },
           '& .MuiOutlinedInput-root': {
             '& fieldset': {
               borderColor: 'rgba(0,0,0,0.5)',
             },
             '&:hover fieldset': {
-              borderColor: 'rgba(0,0,0,0.1)',
+              borderColor: 'rgba(255,255,255,0.5)',
             },
             '&.Mui-focused fieldset': {
-              borderColor: 'rgba(0,100,0,0.5)',
+              borderColor: 'rgba(255,255,255,1)',
             },
           },
         },
       },
+    },
+    MuiInputLabel: {
+      styleOverrides: {
+        root: {
+          color: 'rgba(255,255,255,0.5)'
+        }
+      }
     },
     MuiTabScrollButton: {
       styleOverrides: {
@@ -122,6 +134,28 @@ const getTheme = (mode) => ({
         },
       },
     },
+    MuiAppBar: {
+      styleOverrides: {
+        root: {
+          background: 'rgba(255,255,255,0.1)'
+        },
+      }
+    },
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          background: 'rgba(255,255,255,0.2)',
+          color: '#fff'
+        }
+      }
+    },
+    MuiPopper: {
+      styleOverrides: {
+        root: {
+          background: 'rgba(0,0,0,0.8)'
+        }
+      }
+    }
   },
 });
 

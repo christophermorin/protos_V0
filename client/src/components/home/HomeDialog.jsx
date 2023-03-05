@@ -11,6 +11,7 @@ import {
   Grid,
   Button,
 } from '@mui/material';
+import { useTheme } from '@emotion/react';
 import ActionButton from '../buttons/ActionButton';
 import activeProtoServices from '../../services/activeProtoServices';
 import { clearDisplayedProtoList } from '../../reducers/displayedProtosReducer';
@@ -22,6 +23,7 @@ function HomeDialog({ open, handleClose }) {
   const dispatch = useDispatch();
 
   const user = useSelector((state) => state.userAuth);
+  const theme = useTheme()
 
   const createActiveList = async () => {
     if (selectedProtos.length === 0) {
@@ -42,7 +44,7 @@ function HomeDialog({ open, handleClose }) {
 
   return (
     <Dialog open={open} onClose={handleClose} sx={{ marginLeft: { xs: 0, md: 25 } }}>
-      <DialogContent sx={{ border: '2px solid black' }}>
+      <DialogContent sx={{ border: '2px solid black', background: 'rgba(0,0,0,0.8)' }}>
         <Box display="flex" flexDirection="column" justifyContent="center" alignItems="center" gap={5}>
           <Typography
             variant="h2"

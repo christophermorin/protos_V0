@@ -5,7 +5,6 @@ function StatsCard({ stat, background, title }) {
   return (
     <Paper
       className={`${styles.statsCard}`}
-      sx={{ background: '#121212' }}
     >
       <div className={styles.statsCardBackground} style={{ background }} />
       <Typography

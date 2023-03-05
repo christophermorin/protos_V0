@@ -5,7 +5,9 @@ function StreakCard({ stat }) {
   return (
     <Paper
       className={`${styles.streakCard}`}
-      sx={{ background: '#121212' }}
+      sx={{
+        background: 'rgba(0,0,0,0.6)'
+      }}
     >
       <Typography
         variant="h1"

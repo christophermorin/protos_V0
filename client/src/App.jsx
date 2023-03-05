@@ -14,6 +14,7 @@ import BuildForm from './components/build_protos/BuildForm';
 import Library from './components/library/Library';
 import userProtoServices from './services/userProtoServices';
 import userStatsServices from './services/userStatsServices';
+import loginServices from './services/loginServices';
 import { setUserProtosList } from './reducers/userProtosReducer';
 import { setUserAuth } from './reducers/userAuthReducer';
 import './Draft.css';
@@ -22,6 +23,7 @@ function App() {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.userAuth);
   const [openBuild, setOpenBuild] = useState();
+  const [containerBg, setContainerBg] = useState(null)
 
   const handleOpenBuild = () => {
     setOpenBuild(!openBuild);
@@ -48,16 +50,35 @@ function App() {
     dispatch(setUserAuth(JSON.parse(window.localStorage.getItem('user') || null)));
   }, []);
 
+  useEffect(() => {
+    const getBg = async () => {
+      const bg = await loginServices.getUnSplashBackGround()
+      setContainerBg(`${bg}&dpr=2&w=1900`)
+    }
+    getBg()
+  }, [])
+
+  const resetContainerBg = async () => {
+    const bg = await loginServices.getUnSplashBackGround()
+    setContainerBg(`${bg}&dpr=2&w=1900`)
+  }
+
   return (
     <Router>
       {user
         ? (
-          <Box sx={{ display: 'flex' }}>
+          <Box sx={{ display: 'flex', background: `center center no-repeat fixed url(${containerBg})`, }}>
             <CssBaseline />
             <>
-              <NavBar handleOpenBuild={handleOpenBuild} />
+              <NavBar handleOpenBuild={handleOpenBuild} resetBg={resetContainerBg} />
               <BuildForm open={openBuild} handleCloseBuild={handleCloseBuild} />
-              <Container maxWidth="false" sx={{ height: '100vh', overflowX: 'hidden' }}>
+              <Container
+                maxWidth="false"
+                sx={{
+                  height: '100vh',
+                  overflowX: 'hidden',
+                }}
+              >
                 <Routes>
                   <Route path="/" element={<Home user={user} />} />
                   <Route path="/active" element={<ProtoTabs />} />
@@ -68,8 +89,14 @@ function App() {
             </>
           </Box>
         )
-        : <Register />}
-    </Router>
+        :
+        (
+          <CssBaseline>
+            <Register />
+          </CssBaseline>
+        )
+      }
+    </Router >
   );
 }
 

@@ -17,9 +17,9 @@ function CreateProtoForm({
   setProtoTitle, protoTitle, handleTimeOfDay, protoTimeOfDay, editorState, setEditorState,
 }) {
   return (
-    <Paper sx={{
+    <Box sx={{
       textAlign: 'center',
-      border: '1px solid black',
+      // border: '1px solid black',
     }}
     >
       <Box>
@@ -61,7 +61,7 @@ function CreateProtoForm({
           </Tooltip>
         </ToggleButton>
       </ToggleButtonGroup>
-    </Paper>
+    </Box>
   );
 }
 
