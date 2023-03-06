@@ -64,9 +64,11 @@ function App() {
   }, [])
 
   const resetContainerBg = async () => {
-    const bgData = await loginServices.getUnSplashBackGround()
-    const bgImg = bgData.urls.raw
-    setContainerBg(`${bgImg}&dpr=2&w=1900`)
+    const unSplashData = await loginServices.getUnSplashBackGround()
+    const unSplashImg = unSplashData.urls.raw
+    const unSplashImgSource = unSplashData.links.html
+    setContainerBg(`${unSplashImg}&dpr=2&w=1900`)
+    setUnsplashSource(unSplashImgSource)
   }
 
   return (
@@ -77,13 +79,13 @@ function App() {
           background: `center center no-repeat fixed url(${containerBg})`
         }}
       >
-        <PhotoCred unSplashSource={unSplashSource} />
+        <PhotoCred unSplashSource={unSplashSource} resetBackground={resetContainerBg} />
         {user
           ?
           (
             <>
               <CssBaseline />
-              <NavBar handleOpenBuild={handleOpenBuild} resetBg={resetContainerBg} />
+              <NavBar handleOpenBuild={handleOpenBuild} />
               <BuildForm open={openBuild} handleCloseBuild={handleCloseBuild} />
               <Container
                 maxWidth="false"
