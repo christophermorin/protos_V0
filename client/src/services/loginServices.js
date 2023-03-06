@@ -9,8 +9,8 @@ const loginUser = async (user) => {
 };
 
 const getUnSplashBackGround = async () => {
-  const background = await axios.get(`https://api.unsplash.com/photos/random/?client_id=${ID}&query=landscape`);
-  return background.data.urls.raw;
+  const unsplash = await axios.get(`https://api.unsplash.com/photos/random/?client_id=${ID}&query=landscape`);
+  return unsplash.data;
 }
 
 export default { loginUser, getUnSplashBackGround };

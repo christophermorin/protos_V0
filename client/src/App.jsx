@@ -12,6 +12,7 @@ import Home from './components/home/Home';
 import ProtoTabs from './components/active_protos/ProtoTabs';
 import BuildForm from './components/build_protos/BuildForm';
 import Library from './components/library/Library';
+import PhotoCred from './components/Utilities/PhotoCred';
 import userProtoServices from './services/userProtoServices';
 import userStatsServices from './services/userStatsServices';
 import loginServices from './services/loginServices';
@@ -24,6 +25,7 @@ function App() {
   const user = useSelector((state) => state.userAuth);
   const [openBuild, setOpenBuild] = useState();
   const [containerBg, setContainerBg] = useState(null)
+  const [unSplashSource, setUnsplashSource] = useState("")
 
   const handleOpenBuild = () => {
     setOpenBuild(!openBuild);
@@ -52,27 +54,35 @@ function App() {
 
   useEffect(() => {
     const getBg = async () => {
-      const bg = await loginServices.getUnSplashBackGround()
-      setContainerBg(`${bg}&dpr=2&w=1900`)
+      const unSplashData = await loginServices.getUnSplashBackGround()
+      const unSplashImg = unSplashData.urls.raw
+      const unSplashImgSource = unSplashData.links.html
+      setContainerBg(`${unSplashImg}&dpr=2&w=1900`)
+      setUnsplashSource(unSplashImgSource)
     }
     getBg()
   }, [])
 
   const resetContainerBg = async () => {
-    const bg = await loginServices.getUnSplashBackGround()
-    setContainerBg(`${bg}&dpr=2&w=1900`)
+    const bgData = await loginServices.getUnSplashBackGround()
+    const bgImg = bgData.urls.raw
+    setContainerBg(`${bgImg}&dpr=2&w=1900`)
   }
 
   return (
     <Router>
-      {user
-        ? (
-          <Box sx={{
-            display: 'flex',
-            background: `center center no-repeat fixed url(${containerBg})`
-          }}>
-            <CssBaseline />
+      <Box
+        sx={{
+          display: 'flex',
+          background: `center center no-repeat fixed url(${containerBg})`
+        }}
+      >
+        <PhotoCred unSplashSource={unSplashSource} />
+        {user
+          ?
+          (
             <>
+              <CssBaseline />
               <NavBar handleOpenBuild={handleOpenBuild} resetBg={resetContainerBg} />
               <BuildForm open={openBuild} handleCloseBuild={handleCloseBuild} />
               <Container
@@ -90,15 +100,17 @@ function App() {
                 </Routes>
               </Container>
             </>
-          </Box>
-        )
-        :
-        (
-          <CssBaseline>
-            <Register />
-          </CssBaseline>
-        )
-      }
+          )
+          :
+          (
+            <CssBaseline>
+              <Register />
+            </CssBaseline>
+          )
+        }
+      </Box>
+
+
     </Router >
   );
 }
