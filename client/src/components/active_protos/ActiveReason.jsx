@@ -56,12 +56,12 @@ function ActiveReason({ protoDescription }) {
           vertical: 'bottom'
         }}
         PaperProps={{
-          sx: { width: { xs: '325px', md: '600px' } },
+          sx: { width: { xs: '325px', md: '600px', background: '#1f2937' } },
         }}
         scroll="paper"
 
       >
-        <div style={{ background: theme.palette.background.default, padding: '10px' }}>
+        <div style={{ padding: '10px' }}>
           <Editor
             editorState={text}
             readOnly

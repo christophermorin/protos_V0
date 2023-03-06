@@ -12,7 +12,7 @@ const getTheme = (mode) => ({
     background: {
       ...(mode === 'light' ? {
         default: 'rgb(0,0,0,1)',
-        paper: 'rgba(0,0,0,0.3)',
+        paper: '#1f2937a1',
       }
         : {
           default: 'rgba(18,18,18,1)',
@@ -62,7 +62,7 @@ const getTheme = (mode) => ({
     MuiTextField: {
       styleOverrides: {
         root: {
-          background: 'rgba(0,0,0,0.7)',
+          background: 'rgba(76, 98, 126, 1)',
           color: '#fff',
           '& label.Mui-focused': {
             color: 'rgba(255,255,255,0.8)',
@@ -105,11 +105,11 @@ const getTheme = (mode) => ({
             height: '15px',
           },
           '.MuiLinearProgress-bar': {
-            background: 'rgba(0,0,0,1)',
+            background: 'rgba(0,0,255,1)',
             transition: 'transform 0.3s linear',
           },
           '.MuiLinearProgress-colorPrimary': {
-            background: 'rgba(255,255,255, 1)',
+            background: '#1f2937e2',
           },
         },
       },
@@ -137,22 +137,36 @@ const getTheme = (mode) => ({
     MuiAppBar: {
       styleOverrides: {
         root: {
-          background: 'rgba(255,255,255,0.1)'
+          background: '#1f29372e'
         },
       }
     },
     MuiButton: {
       styleOverrides: {
         root: {
-          background: 'rgba(255,255,255,0.2)',
-          color: '#fff'
+          background: '#1f2937',
+          color: '#fff',
+          '&:hover': {
+            background: 'blue'
+          }
         }
       }
     },
     MuiPopper: {
       styleOverrides: {
         root: {
-          background: 'rgba(0,0,0,0.8)'
+          background: 'transparent'
+        }
+      }
+    },
+    MuiFab: {
+      styleOverrides: {
+        root: {
+          background: '#fff',
+          color: '#000',
+          '&:hover': {
+            background: '#1f29372e'
+          }
         }
       }
     }

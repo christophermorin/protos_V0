@@ -37,10 +37,10 @@ function BuildForm({ open, handleCloseBuild }) {
   const editorJSON = JSON.stringify(convertToRaw(editorState.getCurrentContent()));
 
   const [color, setColor] = useState({
-    r: '0 ',
-    g: '0',
-    b: '0',
-    a: '0',
+    r: '76',
+    g: '98',
+    b: '126',
+    a: '1',
   });
 
   const handleTimeOfDay = (event, time) => {
@@ -92,7 +92,7 @@ function BuildForm({ open, handleCloseBuild }) {
       open={open || false}
       onClose={handleCloseBuild}
       sx={{ marginLeft: { xs: 0, md: 25 } }}>
-      <Grid container sx={{ padding: 2 }}>
+      <Grid container sx={{ padding: 2, background: 'linear-gradient(135deg, rgba(31,41,55,0.8),transparent 90%)' }}>
         <Grid item xs={12}>
           <CreateProtoForm
             setProtoTitle={setProtoTitle}

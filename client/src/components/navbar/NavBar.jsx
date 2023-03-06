@@ -80,13 +80,12 @@ function NavBar({ handleOpenBuild, resetBg }) {
             <Grid item xs={1}>
               <IconButton
                 size="large"
-                color="primary"
                 edge="start"
                 aria-label="menu"
                 onClick={toggleDrawer}
                 sx={{ visibility: { md: 'hidden' } }}
               >
-                <MenuIcon />
+                <MenuIcon sx={{ color: '#fff' }} />
               </IconButton>
             </Grid>
             <Grid item xs={10} container gap={1} justifyContent="center">
@@ -100,10 +99,9 @@ function NavBar({ handleOpenBuild, resetBg }) {
                 aria-label="account of current user"
                 aria-controls="menu-appbar"
                 aria-haspopup="true"
-                color="primary"
                 onClick={handleClick}
               >
-                <AccountCircle />
+                <AccountCircle sx={{ color: '#fff' }} />
               </IconButton>
               <Menu
                 id="user-menu"
@@ -134,6 +132,7 @@ function NavBar({ handleOpenBuild, resetBg }) {
             '& .MuiDrawer-paper': {
               boxSizing: 'border-box',
               width: drawerWidth,
+              paddingTop: '56px'
             },
           }}
         >
@@ -154,7 +153,8 @@ function NavBar({ handleOpenBuild, resetBg }) {
             '& .MuiDrawer-paper': {
               boxSizing: 'border-box',
               width: drawerWidth,
-              background: 'rgba(0,0,0,0.5)'
+              background: '#1f29372e',
+              paddingTop: '56px'
             }
           }}
         >

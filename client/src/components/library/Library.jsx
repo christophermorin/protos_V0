@@ -51,10 +51,10 @@ function Library() {
           aria-label="Proto Catagory Selection"
           sx={{ borderRight: 1, borderColor: 'divider' }}
         >
-          <Tab label="Morning" onClick={() => setTImeFilter(0)} />
-          <Tab label="Afternoon" onClick={() => setTImeFilter(1)} />
-          <Tab label="Evening" onClick={() => setTImeFilter(2)} />
-          <Tab label="All day" onClick={() => setTImeFilter(3)} />
+          <Tab label="Morning" onClick={() => setTImeFilter(0)} sx={{ color: '#fff' }} />
+          <Tab label="Afternoon" onClick={() => setTImeFilter(1)} sx={{ color: '#fff' }} />
+          <Tab label="Evening" onClick={() => setTImeFilter(2)} sx={{ color: '#fff' }} />
+          <Tab label="All day" onClick={() => setTImeFilter(3)} sx={{ color: '#fff' }} />
         </Tabs>
       </Grid>
       <Grid container md item gap={2} alignContent="flex-start" justifyContent={{ xs: 'center', md: 'flex-start' }}>

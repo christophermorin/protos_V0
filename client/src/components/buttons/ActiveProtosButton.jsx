@@ -12,17 +12,20 @@ function ActiveProtosButton({ title, action }) {
     <Box
       display="flex"
       justifyContent="center"
-      onClick={action}
+      onClick={() => {
+        action();
+        handleStyle();
+      }}
       sx={{
         marginLeft: 1,
         marginRight: 1,
         width: '100%',
-        background: 'rgba(0,0,0,0.2)',
+        background: !buttonActive ? '#1f2937a1' : '#1f2937',
         borderRadius: '5px',
         padding: '5px',
         '&:hover': {
-          background: 'rgba(0,0,0,0.5)'
-        }
+          background: '#1f2937'
+        },
       }}
     >
       <Typography
@@ -31,18 +34,6 @@ function ActiveProtosButton({ title, action }) {
         {title}
       </Typography>
     </Box>
-    // <div
-    //   className={` ${buttonActive ? styles.activeProtoButtonSelected : styles.activeProtoButton}`}
-
-    //   onClick={() => {
-    //     action();
-    //     handleStyle();
-    //   }}
-    // >
-    //   <span style={{ position: 'relative', zIndex: 3 }}>
-    //     {title}
-    //   </span>
-    // </div>
   );
 }
 

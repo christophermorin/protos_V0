@@ -44,12 +44,12 @@ function HomeDialog({ open, handleClose }) {
 
   return (
     <Dialog open={open} onClose={handleClose} sx={{ marginLeft: { xs: 0, md: 25 } }}>
-      <DialogContent sx={{ border: '2px solid black', background: 'rgba(0,0,0,0.8)' }}>
+      <DialogContent sx={{ border: '2px solid black', background: '#1f2937' }}>
         <Box display="flex" flexDirection="column" justifyContent="center" alignItems="center" gap={5}>
           <Typography
             variant="h2"
           >
-            Logo
+            Protos
           </Typography>
           <Grid container direction={{ xs: 'column', md: 'row' }}>
             <Grid item md={4}>

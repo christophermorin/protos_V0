@@ -11,10 +11,10 @@ function NavButton({ title, nav, action }) {
       color="primary"
       sx={{
         cursor: 'pointer',
-        background: 'rgba(0,0,0,0.5)',
-        '&:hover': {
-          background: 'rgba(0,0,0,0.2)'
-        }
+        // background: 'rgba(0,0,0,0.5)',
+        // '&:hover': {
+        //   background: 'rgba(0,0,0,0.2)'
+        // }
 
         // transition: 'all 0.5s ease-in-out',
         // padding: '0 10px',

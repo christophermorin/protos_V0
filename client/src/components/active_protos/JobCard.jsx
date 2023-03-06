@@ -93,18 +93,19 @@ function JobCard({
         }}
       >
         <div
+          className="jobBackGround"
           style={{
-            height: '158px',
-            width: '158px',
+            height: '258px',
+            width: '320px',
             background: `linear-gradient(135deg, ${tempColorCard}, transparent 90%)`,
             zIndex: '1',
             position: 'absolute',
             top: '-75px',
             left: '-75px',
-            borderRadius: '75%',
+            borderRadius: '0 0 75% 0',
             transition: 'all 1s ease-in-out',
+            // transform: 'scale(3)',
           }}
-          className="jobBackGround"
         />
         <Grid container height="100%" alignItems="center">
           <Grid item xs={10} zIndex={1}>
