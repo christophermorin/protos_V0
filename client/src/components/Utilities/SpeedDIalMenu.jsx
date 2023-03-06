@@ -24,15 +24,15 @@ export default function SpeedDialMenu() {
   };
 
   const actions = [
-    { icon: <DeleteIcon fontSize="large" />, name: 'Clear List', action: openClearDialog },
-    { icon: <PlusOneIcon fontSize="large" />, name: 'Add Proto', action: openAddDialog },
+    { icon: <DeleteIcon fontSize="large" sx={{ color: '#fff' }} />, name: 'Clear List', action: openClearDialog },
+    { icon: <PlusOneIcon fontSize="large" sx={{ color: '#fff' }} />, name: 'Add Proto', action: openAddDialog },
   ];
 
   return (
     <>
       <SpeedDial
         ariaLabel="SpeedDial basic example"
-        sx={{ position: 'absolute', bottom: 16, right: 16 }}
+        sx={{ position: 'absolute', bottom: 16, right: 16, }}
         icon={<SpeedDialIcon />}
       >
         {actions.map((action) => (

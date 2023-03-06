@@ -1,22 +1,19 @@
 import PropTypes from 'prop-types';
 import styles from './Buttons.module.css';
+import { Button } from '@mui/material';
 
 function ActionButton({ title, action, buttonType }) {
   return (
-    <div
-      className={styles.actionButton}
+    <Button
+      // className={styles.actionButton}
       onClick={action}
-      style={buttonType === 'secondary' ? {
-        borderTop: '2px solid red',
-        borderBottom: '2px solid red',
-
-      } : {
-        borderTop: '2px solid #000',
-        borderBottom: '2px solid #000',
+      style={{
+        // border: '1px solid blue',
+        background: 'blue'
       }}
     >
       <span style={{ position: 'relative', zIndex: 3 }}>{title}</span>
-    </div>
+    </Button>
   );
 }
 

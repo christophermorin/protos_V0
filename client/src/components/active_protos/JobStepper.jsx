@@ -13,7 +13,7 @@ function JobStepper({ totalJobCount, totalJobsComplete }) {
         sx={{ width: '100%', flexGrow: 1 }}
       />
       {totalJobsComplete === totalJobCount && totalJobCount !== 0
-        ? <StarIcon fontSize="large" sx={{ color: 'rgba(0, 155, 100, 0.5)' }} />
+        ? <StarIcon fontSize="large" sx={{ color: 'gold' }} />
         : <StarBorder fontSize="large" color="disabled" />}
     </>
   );

@@ -67,7 +67,10 @@ function App() {
     <Router>
       {user
         ? (
-          <Box sx={{ display: 'flex', background: `center center no-repeat fixed url(${containerBg})`, }}>
+          <Box sx={{
+            display: 'flex',
+            background: `center center no-repeat fixed url(${containerBg})`
+          }}>
             <CssBaseline />
             <>
               <NavBar handleOpenBuild={handleOpenBuild} resetBg={resetContainerBg} />
