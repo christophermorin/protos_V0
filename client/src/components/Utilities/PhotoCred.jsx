@@ -1,4 +1,4 @@
-import { Button, Box } from "@mui/material"
+import { Button, Box } from '@mui/material';
 
 function PhotoCred({ unSplashSource, resetBackground }) {
   return (
@@ -31,7 +31,7 @@ function PhotoCred({ unSplashSource, resetBackground }) {
         </a>
       </Button>
     </Box>
-  )
+  );
 }
 
-export default PhotoCred
+export default PhotoCred;

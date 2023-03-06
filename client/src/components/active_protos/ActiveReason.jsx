@@ -7,7 +7,7 @@ import { useTheme } from '@emotion/react';
 
 function ActiveReason({ protoDescription }) {
   const [anchorEl, setAnchorEl] = useState(null);
-  const theme = useTheme()
+  const theme = useTheme();
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -40,7 +40,7 @@ function ActiveReason({ protoDescription }) {
   };
 
   return (
-    <div style={{ display: 'flex', justifyContent: "center", }}>
+    <div style={{ display: 'flex', justifyContent: 'center' }}>
       <HelpIcon aria-describedby={id} onClick={handleClick} fontSize="small" />
       <Popover
         id={id}
@@ -53,7 +53,7 @@ function ActiveReason({ protoDescription }) {
         }}
         transformOrigin={{
           horizontal: 'center',
-          vertical: 'bottom'
+          vertical: 'bottom',
         }}
         PaperProps={{
           sx: { width: { xs: '325px', md: '600px', background: '#1f2937' } },
@@ -70,7 +70,7 @@ function ActiveReason({ protoDescription }) {
           />
         </div>
       </Popover>
-    </div >
+    </div>
   );
 }
 

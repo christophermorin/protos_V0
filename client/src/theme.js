@@ -20,8 +20,8 @@ const getTheme = (mode) => ({
         }),
     },
     text: {
-      primary: 'rgba(255,255,255,1)'
-    }
+      primary: 'rgba(255,255,255,1)',
+    },
   },
   typography: {
     caption: {
@@ -84,9 +84,9 @@ const getTheme = (mode) => ({
     MuiInputLabel: {
       styleOverrides: {
         root: {
-          color: 'rgba(255,255,255,0.5)'
-        }
-      }
+          color: 'rgba(255,255,255,0.5)',
+        },
+      },
     },
     MuiTabScrollButton: {
       styleOverrides: {
@@ -137,9 +137,9 @@ const getTheme = (mode) => ({
     MuiAppBar: {
       styleOverrides: {
         root: {
-          background: '#1f29372e'
+          background: '#1f29372e',
         },
-      }
+      },
     },
     MuiButton: {
       styleOverrides: {
@@ -147,17 +147,17 @@ const getTheme = (mode) => ({
           background: '#1f2937',
           color: '#fff',
           '&:hover': {
-            background: 'blue'
-          }
-        }
-      }
+            background: 'blue',
+          },
+        },
+      },
     },
     MuiPopper: {
       styleOverrides: {
         root: {
-          background: 'transparent'
-        }
-      }
+          background: 'transparent',
+        },
+      },
     },
     MuiFab: {
       styleOverrides: {
@@ -165,12 +165,12 @@ const getTheme = (mode) => ({
           background: '#fff',
           color: '#000',
           '&:hover': {
-            background: '#1f29372e'
-          }
-        }
-      }
-    }
+            background: '#1f29372e',
+          },
+        },
+      },
+    },
   },
 });
 
-export default getTheme
+export default getTheme;

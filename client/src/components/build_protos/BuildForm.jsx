@@ -91,7 +91,8 @@ function BuildForm({ open, handleCloseBuild }) {
     <Dialog
       open={open || false}
       onClose={handleCloseBuild}
-      sx={{ marginLeft: { xs: 0, md: 25 } }}>
+      sx={{ marginLeft: { xs: 0, md: 25 } }}
+    >
       <Grid container sx={{ padding: 2, background: 'linear-gradient(135deg, rgba(31,41,55,0.8),transparent 90%)' }}>
         <Grid item xs={12}>
           <CreateProtoForm

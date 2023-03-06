@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
+import { Box, Typography } from '@mui/material';
 import styles from './Buttons.module.css';
-import { Box, Typography, } from '@mui/material';
 
 function ActiveProtosButton({ title, action }) {
   const [buttonActive, setButtonActive] = useState(false);
@@ -24,7 +24,7 @@ function ActiveProtosButton({ title, action }) {
         borderRadius: '5px',
         padding: '5px',
         '&:hover': {
-          background: '#1f2937'
+          background: '#1f2937',
         },
       }}
     >

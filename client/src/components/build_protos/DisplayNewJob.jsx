@@ -71,8 +71,7 @@ function DisplayNewJob({ job, deleteJob }) {
                 {job.title}
               </Typography>
             </Box>
-            <Box display="flex" gap={2} paddingLeft={2}>
-            </Box>
+            <Box display="flex" gap={2} paddingLeft={2} />
           </Grid>
           <Grid item xs={4} sm={1} container justifyContent="flex-end" alignContent="flex-end">
             <Box display="flex" flexDirection="column" gap={1} alignItems="flex-end">

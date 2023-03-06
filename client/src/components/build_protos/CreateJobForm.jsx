@@ -103,7 +103,7 @@ function CreateJobForm({ setNewProtoJobs, cardColor, setColor }) {
           </Box>
         </Grid>
       </Grid>
-    </Paper >
+    </Paper>
   );
 }
 

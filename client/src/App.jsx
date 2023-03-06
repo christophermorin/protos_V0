@@ -24,8 +24,8 @@ function App() {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.userAuth);
   const [openBuild, setOpenBuild] = useState();
-  const [containerBg, setContainerBg] = useState(null)
-  const [unSplashSource, setUnsplashSource] = useState("")
+  const [containerBg, setContainerBg] = useState(null);
+  const [unSplashSource, setUnsplashSource] = useState('');
 
   const handleOpenBuild = () => {
     setOpenBuild(!openBuild);
@@ -54,35 +54,34 @@ function App() {
 
   useEffect(() => {
     const getBg = async () => {
-      const unSplashData = await loginServices.getUnSplashBackGround()
-      const unSplashImg = unSplashData.urls.raw
-      const unSplashImgSource = unSplashData.links.html
-      setContainerBg(`${unSplashImg}&dpr=2&w=1900`)
-      setUnsplashSource(unSplashImgSource)
-    }
-    getBg()
-  }, [])
+      const unSplashData = await loginServices.getUnSplashBackGround();
+      const unSplashImg = unSplashData.urls.raw;
+      const unSplashImgSource = unSplashData.links.html;
+      setContainerBg(`${unSplashImg}&dpr=2&w=1900`);
+      setUnsplashSource(unSplashImgSource);
+    };
+    getBg();
+  }, []);
 
   const resetContainerBg = async () => {
-    const unSplashData = await loginServices.getUnSplashBackGround()
-    const unSplashImg = unSplashData.urls.raw
-    const unSplashImgSource = unSplashData.links.html
-    setContainerBg(`${unSplashImg}&dpr=2&w=1900`)
-    setUnsplashSource(unSplashImgSource)
-  }
+    const unSplashData = await loginServices.getUnSplashBackGround();
+    const unSplashImg = unSplashData.urls.raw;
+    const unSplashImgSource = unSplashData.links.html;
+    setContainerBg(`${unSplashImg}&dpr=2&w=1900`);
+    setUnsplashSource(unSplashImgSource);
+  };
 
   return (
     <Router>
       <Box
         sx={{
           display: 'flex',
-          background: `center center no-repeat fixed url(${containerBg})`
+          background: `center center no-repeat fixed url(${containerBg})`,
         }}
       >
         <PhotoCred unSplashSource={unSplashSource} resetBackground={resetContainerBg} />
         {user
-          ?
-          (
+          ? (
             <>
               <CssBaseline />
               <NavBar handleOpenBuild={handleOpenBuild} />
@@ -103,17 +102,14 @@ function App() {
               </Container>
             </>
           )
-          :
-          (
+          : (
             <CssBaseline>
               <Register />
             </CssBaseline>
-          )
-        }
+          )}
       </Box>
 
-
-    </Router >
+    </Router>
   );
 }
 

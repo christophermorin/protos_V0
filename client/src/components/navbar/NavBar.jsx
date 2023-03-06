@@ -15,7 +15,7 @@ import {
   MenuItem,
   Grid,
   Box,
-  Button
+  Button,
 } from '@mui/material';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import MenuIcon from '@mui/icons-material/Menu';
@@ -127,12 +127,12 @@ function NavBar({ handleOpenBuild, resetBg }) {
           sx={{
             display: {
               md: 'block',
-              lg: 'none'
+              lg: 'none',
             },
             '& .MuiDrawer-paper': {
               boxSizing: 'border-box',
               width: drawerWidth,
-              paddingTop: '56px'
+              paddingTop: '56px',
             },
           }}
         >
@@ -148,14 +148,14 @@ function NavBar({ handleOpenBuild, resetBg }) {
           sx={{
             display: {
               xs: 'none',
-              md: 'block'
+              md: 'block',
             },
             '& .MuiDrawer-paper': {
               boxSizing: 'border-box',
               width: drawerWidth,
               background: '#1f29372e',
-              paddingTop: '56px'
-            }
+              paddingTop: '56px',
+            },
           }}
         >
           <Box>

@@ -23,7 +23,7 @@ function HomeDialog({ open, handleClose }) {
   const dispatch = useDispatch();
 
   const user = useSelector((state) => state.userAuth);
-  const theme = useTheme()
+  const theme = useTheme();
 
   const createActiveList = async () => {
     if (selectedProtos.length === 0) {

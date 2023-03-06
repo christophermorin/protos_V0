@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import {
   Paper,
   Grid,
-  Typography
+  Typography,
 } from '@mui/material';
 import AssignmentIcon from '@mui/icons-material/Assignment';
 import AccessTimeFilledIcon from '@mui/icons-material/AccessTimeFilled';
@@ -11,7 +11,7 @@ function LibraryCard({ proto, deleteProto }) {
   const styles = {
     width: '360px',
     height: '100px',
-    background: 'rgba(0,0,0,0.5)'
+    background: 'rgba(0,0,0,0.5)',
   };
 
   return (

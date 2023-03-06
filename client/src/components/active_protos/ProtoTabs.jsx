@@ -6,7 +6,7 @@ import {
   Slide,
   Typography,
   Box,
-  Button
+  Button,
 } from '@mui/material';
 import ActiveProto from './ActiveProto';
 import SpeedDialMenu from '../Utilities/SpeedDIalMenu';
