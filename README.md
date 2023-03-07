@@ -84,7 +84,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+[![Protos Screenshot][product-screenshot]](https://protos.cyclic.app)
 
 Protos is a fullstack productivity app built to improve your consistency towards completing daily goals, creating new habits and improving your every day life.
 
@@ -222,7 +222,7 @@ Project Link: [https://github.com/github_username/repo_name](https://github.com/
 [license-url]: https://github.com/github_username/repo_name/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/linkedin_username
-[product-screenshot]: images/screenshot.png
+[product-screenshot]: https://github.com/christophermorin/assets/blob/fa12adfcbfdedca65f76d8bc38109d7b403e3aa8/proto_demo.png
 [Node.js]: https://img.shields.io/badge/node.js-182446?style=for-the-badge&logo=nodedotjs&logoColor=green
 [Node-url]: https://nodejs.org/en/
 [MongoDb]: https://img.shields.io/badge/mongodb-023430?style=for-the-badge&logo=mongodb&logoColor=green
