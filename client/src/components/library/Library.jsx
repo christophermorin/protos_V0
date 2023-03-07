@@ -1,7 +1,9 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
-  Grid, Tabs, Tab,
+  Grid,
+  Tabs,
+  Tab,
 } from '@mui/material';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import userProtoServices from '../../services/userProtoServices';

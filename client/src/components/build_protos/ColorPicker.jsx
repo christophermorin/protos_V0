@@ -22,7 +22,12 @@ function ColorPicker({ displayColorPicker, changeColor, color }) {
         && (
           <div style={styles.box}>
             <div style={styles.popover}>
-              <GithubPicker width="220px" triangle="hide" color={color} onChangeComplete={changeColor} />
+              <GithubPicker
+                width="220px"
+                triangle="hide"
+                color={color}
+                onChangeComplete={changeColor}
+              />
             </div>
           </div>
         )}

@@ -12,7 +12,7 @@ import Home from './components/home/Home';
 import ProtoTabs from './components/active_protos/ProtoTabs';
 import BuildForm from './components/build_protos/BuildForm';
 import Library from './components/library/Library';
-import PhotoCred from './components/Utilities/PhotoCred';
+import PhotoCred from './components/utilities/PhotoCred';
 import userProtoServices from './services/userProtoServices';
 import userStatsServices from './services/userStatsServices';
 import loginServices from './services/loginServices';
@@ -24,8 +24,8 @@ function App() {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.userAuth);
   const [openBuild, setOpenBuild] = useState();
-  const [containerBg, setContainerBg] = useState(null);
-  const [unSplashSource, setUnsplashSource] = useState('');
+  const [containerBg, setContainerBg] = useState('https://images.unsplash.com/photo-1511497584788-876760111969?ixid=Mnw0MTg3ODB8MHwxfHJhbmRvbXx8fHx8fHx8fDE2NzgxOTc0NDQ&ixlib=rb-4.0.3&dpr=2&w=1900');
+  const [unSplashSource, setUnsplashSource] = useState('https://unsplash.com/photos/-heLWtuAN3c');
 
   const handleOpenBuild = () => {
     setOpenBuild(!openBuild);
@@ -62,7 +62,6 @@ function App() {
     };
     getBg();
   }, []);
-
   const resetContainerBg = async () => {
     const unSplashData = await loginServices.getUnSplashBackGround();
     const unSplashImg = unSplashData.urls.raw;
@@ -79,13 +78,19 @@ function App() {
           background: `center center no-repeat fixed url(${containerBg})`,
         }}
       >
-        <PhotoCred unSplashSource={unSplashSource} resetBackground={resetContainerBg} />
+        <PhotoCred
+          unSplashSource={unSplashSource}
+          resetBackground={resetContainerBg}
+        />
         {user
           ? (
             <>
               <CssBaseline />
               <NavBar handleOpenBuild={handleOpenBuild} />
-              <BuildForm open={openBuild} handleCloseBuild={handleCloseBuild} />
+              <BuildForm
+                open={openBuild}
+                handleCloseBuild={handleCloseBuild}
+              />
               <Container
                 maxWidth="false"
                 sx={{

@@ -15,7 +15,6 @@ import {
   MenuItem,
   Grid,
   Box,
-  Button,
 } from '@mui/material';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import MenuIcon from '@mui/icons-material/Menu';
@@ -23,7 +22,7 @@ import AccountCircle from '@mui/icons-material/AccountCircle';
 import NavButton from '../buttons/NavButton';
 import { setUserAuth } from '../../reducers/userAuthReducer';
 
-function NavBar({ handleOpenBuild, resetBg }) {
+function NavBar({ handleOpenBuild }) {
   const [sideBar, setSideBar] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
 
@@ -42,7 +41,7 @@ function NavBar({ handleOpenBuild, resetBg }) {
     window.localStorage.clear();
     setAnchorEl(null);
     dispatch(setUserAuth(null));
-    // TODO: Clear all states
+    //Clear all stores
   };
 
   const toggleDrawer = () => {
@@ -66,17 +65,19 @@ function NavBar({ handleOpenBuild, resetBg }) {
     <>
       <AppBar
         position="fixed"
-        // color="primary"
         enableColorOnDark
         sx={{
           height: '56px',
           backgroundImage: 'unset',
           width: { md: `calc(100% - ${drawerWidth}px)` },
-          // ml: { sm: `${drawerWidth}px` },
         }}
       >
         <Toolbar>
-          <Grid container alignItems="center" justifyContent="space-between">
+          <Grid
+            container
+            alignItems="center"
+            justifyContent="space-between"
+          >
             <Grid item xs={1}>
               <IconButton
                 size="large"
@@ -88,12 +89,23 @@ function NavBar({ handleOpenBuild, resetBg }) {
                 <MenuIcon sx={{ color: '#fff' }} />
               </IconButton>
             </Grid>
-            <Grid item xs={10} container gap={1} justifyContent="center">
+            <Grid
+              item
+              xs={10}
+              container
+              gap={1}
+              justifyContent="center"
+            >
               <NavButton title="Home" nav="/" />
               <NavButton title="Active" nav="/active" />
               <NavButton title="Build" action={handleOpenBuild} />
             </Grid>
-            <Grid container item xs={1} justifyContent="flex-end">
+            <Grid
+              container
+              item
+              xs={1}
+              justifyContent="flex-end"
+            >
               <IconButton
                 size="medium"
                 aria-label="account of current user"
@@ -109,7 +121,6 @@ function NavBar({ handleOpenBuild, resetBg }) {
                 open={open}
                 onClose={handleClose}
               >
-                <MenuItem onClick={handleClose}>Profile</MenuItem>
                 <MenuItem onClick={logoutUser}>Logout</MenuItem>
               </Menu>
             </Grid>
@@ -117,7 +128,10 @@ function NavBar({ handleOpenBuild, resetBg }) {
         </Toolbar>
       </AppBar>
       <Box
-        sx={{ width: { md: drawerWidth }, flexShrink: { sm: 0 } }}
+        sx={{
+          width: { md: drawerWidth },
+          flexShrink: { sm: 0 },
+        }}
       >
         <Drawer
           anchor="left"

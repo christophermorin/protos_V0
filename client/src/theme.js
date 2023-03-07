@@ -62,10 +62,10 @@ const getTheme = (mode) => ({
     MuiTextField: {
       styleOverrides: {
         root: {
-          background: 'rgba(76, 98, 126, 1)',
-          color: '#fff',
+          background: '#cad4e1a1',
+          color: '#e5f1f3',
           '& label.Mui-focused': {
-            color: 'rgba(255,255,255,0.8)',
+            color: '#e5f1f3',
           },
           '& .MuiOutlinedInput-root': {
             '& fieldset': {
@@ -84,7 +84,7 @@ const getTheme = (mode) => ({
     MuiInputLabel: {
       styleOverrides: {
         root: {
-          color: 'rgba(255,255,255,0.5)',
+          color: '#fff',
         },
       },
     },

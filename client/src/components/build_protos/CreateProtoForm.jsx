@@ -2,7 +2,6 @@ import PropTypes from 'prop-types';
 import {
   Box,
   TextField,
-  Paper,
   ToggleButton,
   ToggleButtonGroup,
   Tooltip,
@@ -14,12 +13,16 @@ import ReplayCircleFilledIcon from '@mui/icons-material/ReplayCircleFilled';
 import ProtoDescriptionForm from './ProtoDescriptionForm';
 
 function CreateProtoForm({
-  setProtoTitle, protoTitle, handleTimeOfDay, protoTimeOfDay, editorState, setEditorState,
+  setProtoTitle,
+  protoTitle,
+  handleTimeOfDay,
+  protoTimeOfDay,
+  editorState,
+  setEditorState,
 }) {
   return (
     <Box sx={{
       textAlign: 'center',
-      // border: '1px solid black',
     }}
     >
       <Box>

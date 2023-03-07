@@ -71,12 +71,7 @@ function JobCard({
     ${job.cardColor.a})`;
 
   return (
-    <Paper
-      sx={{
-        borderRadius: '5px',
-        // background: `linear-gradient(135deg, ${tempColorCard}, transparent 20%)`,
-      }}
-    >
+    <Paper sx={{ borderRadius: '5px' }}>
       <Box
         sx={{
           padding: 1,
@@ -104,7 +99,6 @@ function JobCard({
             left: '-75px',
             borderRadius: '0 0 75% 0',
             transition: 'all 1s ease-in-out',
-            // transform: 'scale(3)',
           }}
         />
         <Grid container height="100%" alignItems="center">
@@ -164,9 +158,6 @@ function JobCard({
             zIndex={1}
           >
             {!timer ? <PlayCircleIcon fontSize="medium" onClick={handleTimer} /> : <StopCircleIcon fontSize="medium" onClick={handleTimer} sx={{ color: 'red' }} />}
-            {/* <Tooltip title={job.description} placement="top-end">
-              <HelpIcon />
-            </Tooltip> */}
             <ActiveTimer jobTimer={job.timer} timerState={timer} />
           </Grid>
         </Grid>

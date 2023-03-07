@@ -52,7 +52,7 @@ function SignUpDialog({ open, closeSignUp, setOpen }) {
           variant="h6"
           fontWeight={700}
         >
-          Build your perfect day!
+          Sign up!
         </Typography>
         <TextField
           value={username}
@@ -68,12 +68,14 @@ function SignUpDialog({ open, closeSignUp, setOpen }) {
         />
         <TextField
           value={password}
+          type="password"
           onChange={(e) => setPassword(e.target.value)}
           label="Password"
           variant="standard"
         />
         <TextField
           value={confirmPassword}
+          type="password"
           onChange={(e) => setConfirmPassword(e.target.value)}
           label="Confirm Password"
           variant="standard"

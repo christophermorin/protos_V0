@@ -1,7 +1,10 @@
 import PropTypes from 'prop-types';
 import ColorizeOutlinedIcon from '@mui/icons-material/ColorizeOutlined';
 import {
-  Box, Paper, TextField, Grid,
+  Box,
+  Paper,
+  TextField,
+  Grid,
 } from '@mui/material';
 import { useState } from 'react';
 import ActionButton from '../buttons/ActionButton';
@@ -60,22 +63,12 @@ function CreateJobForm({ setNewProtoJobs, cardColor, setColor }) {
             fullWidth
             onChange={(e) => setJobTitle(e.target.value)}
           />
-          {/* <TextField
-            id="standard-basic"
-            label="Job Description"
-            multiline
-            fullWidth
-            value={jobDesc}
-            onChange={(e) => setJobDesc(e.target.value)}
-            sx={{ marginTop: 2 }}
-          /> */}
         </Grid>
         <Grid item xs={12} md={2} alignSelf="flex-end">
           <TextField
             type="number"
             id="standard-basic"
             label="Time"
-            // variant="standard"
             value={jobTimer}
             onChange={(e) => setJobTimer(+e.target.value)}
             sx={{ maxWidth: { xs: 80 } }}

@@ -3,11 +3,9 @@ import PropTypes from 'prop-types';
 import Popover from '@mui/material/Popover';
 import HelpIcon from '@mui/icons-material/Help';
 import { Editor, convertFromRaw, EditorState } from 'draft-js';
-import { useTheme } from '@emotion/react';
 
 function ActiveReason({ protoDescription }) {
   const [anchorEl, setAnchorEl] = useState(null);
-  const theme = useTheme();
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);

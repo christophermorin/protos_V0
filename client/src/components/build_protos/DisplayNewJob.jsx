@@ -1,13 +1,10 @@
 import PropTypes from 'prop-types';
-import HelpIcon from '@mui/icons-material/Help';
 import {
   Box,
   Typography,
-  Tooltip,
   Paper,
   Grid,
 } from '@mui/material';
-import PlayCircleIcon from '@mui/icons-material/PlayCircle';
 import ActiveTimer from '../active_protos/ActiveTimer';
 
 function DisplayNewJob({ job, deleteJob }) {
@@ -19,14 +16,7 @@ function DisplayNewJob({ job, deleteJob }) {
     )`;
   return (
 
-    <Paper
-      sx={{
-        // padding: 1,
-        // background: `linear-gradient(135deg, ${colorChoice}, transparent 90%)`,
-        // borderBottom: `0.2px solid ${colorChoice}`,
-        // borderLeft: `5px solid ${colorChoice}`
-      }}
-    >
+    <Paper>
       <Box
         sx={{
           background: 'rgba(76, 98, 126, 0.2)',
@@ -54,14 +44,17 @@ function DisplayNewJob({ job, deleteJob }) {
             left: '-75px',
             borderRadius: '0 0 75% 0',
             transition: 'all 1s ease-in-out',
-            // transform: 'scale(3)',
           }}
         />
         <Grid container>
-          {/* <Grid item xs={2} sm={1} display="flex" alignItems="center">
-          <PlayCircleIcon fontSize="large" />
-        </Grid> */}
-          <Grid container item xs={8} sm={10} direction="column" gap={2}>
+          <Grid
+            container
+            item
+            xs={8}
+            sm={10}
+            direction="column"
+            gap={2}
+          >
             <Box>
               <Typography
                 sx={{
@@ -73,11 +66,20 @@ function DisplayNewJob({ job, deleteJob }) {
             </Box>
             <Box display="flex" gap={2} paddingLeft={2} />
           </Grid>
-          <Grid item xs={4} sm={1} container justifyContent="flex-end" alignContent="flex-end">
-            <Box display="flex" flexDirection="column" gap={1} alignItems="flex-end">
-              {/* <Tooltip title={job.description} placement="top-end">
-              <HelpIcon />
-            </Tooltip> */}
+          <Grid
+            item
+            xs={4}
+            sm={1}
+            container
+            justifyContent="flex-end"
+            alignContent="flex-end"
+          >
+            <Box
+              display="flex"
+              flexDirection="column"
+              gap={1}
+              alignItems="flex-end"
+            >
               <Typography
                 variant="caption"
                 fontWeight={500}

@@ -41,7 +41,14 @@ function Register() {
   };
 
   return (
-    <Grid container height="100vh" justifyContent="center" alignItems="center" direction="column" gap={2}>
+    <Grid
+      container
+      height="100vh"
+      justifyContent="center"
+      alignItems="center"
+      direction="column"
+      gap={2}
+    >
       <Grid item>
         <Typography
           variant="h1"
@@ -54,13 +61,19 @@ function Register() {
           All things through consistency!
         </Typography>
       </Grid>
-      <Grid container item direction="column" gap={2} justifyContent="center" alignItems="center">
+      <Grid
+        container
+        item
+        direction="column"
+        gap={2}
+        justifyContent="center"
+        alignItems="center"
+      >
         <TextField
           value={username}
           label="Username"
           variant="standard"
           onChange={(e) => setUsername(e.target.value)}
-          sx={{ background: 'transparent' }}
         />
         <TextField
           value={password}
@@ -68,7 +81,6 @@ function Register() {
           label="Password"
           variant="standard"
           onChange={(e) => setPassword(e.target.value)}
-          sx={{ background: 'transparent' }}
         />
         <Grid container gap={2} item justifyContent="center">
           <Button
@@ -83,7 +95,11 @@ function Register() {
           </Button>
         </Grid>
       </Grid>
-      <SignUpDialog open={open} setOpen={setOpen} closeSignUp={closeSignUp} />
+      <SignUpDialog
+        open={open}
+        setOpen={setOpen}
+        closeSignUp={closeSignUp}
+      />
     </Grid>
   );
 }

@@ -119,10 +119,17 @@ function BuildForm({ open, handleCloseBuild }) {
           {activeProtos
             && (
               <FormGroup sx={{ marginTop: 2 }}>
-                <FormControlLabel control={<Switch checked={checked} onClick={handleChecked} />} label="Add Proto to active list" />
+                <FormControlLabel
+                  control={<Switch checked={checked} onClick={handleChecked} />}
+                  label="Add Proto to active list"
+                />
               </FormGroup>
             )}
-          <Box display="flex" justifyContent="center" marginTop={2}>
+          <Box
+            display="flex"
+            justifyContent="center"
+            marginTop={2}
+          >
             <ActionButton title="Create Proto" action={createProto} />
           </Box>
         </Grid>

@@ -11,19 +11,16 @@ import {
   Grid,
   Button,
 } from '@mui/material';
-import { useTheme } from '@emotion/react';
 import ActionButton from '../buttons/ActionButton';
 import activeProtoServices from '../../services/activeProtoServices';
 import { clearDisplayedProtoList } from '../../reducers/displayedProtosReducer';
 
 function HomeDialog({ open, handleClose }) {
   const [selectedProtos, setSelectedProtos] = useState([]);
-  const [openTemplates, setOpenTemplates] = useState(false);
   const userProtos = useSelector((state) => state.userProtos);
   const dispatch = useDispatch();
 
   const user = useSelector((state) => state.userAuth);
-  const theme = useTheme();
 
   const createActiveList = async () => {
     if (selectedProtos.length === 0) {
@@ -61,7 +58,11 @@ function HomeDialog({ open, handleClose }) {
               </Typography>
             </Grid>
             <Grid container item md={8} justifyContent="center">
-              <Button sx={{ width: '100%', border: '1px solid black' }}>Open Templates</Button>
+              <Button
+                sx={{ width: '100%', border: '1px solid black' }}
+              >
+                Open Templates
+              </Button>
             </Grid>
           </Grid>
           <Grid container direction={{ xs: 'column', md: 'row' }}>
@@ -76,14 +77,12 @@ function HomeDialog({ open, handleClose }) {
             <Grid item md={8}>
               <Autocomplete
                 id="grouped-demo"
-                // sx={{ minWidth: { xs: 300, md: 500 } }}
                 value={selectedProtos}
                 onChange={(event, newValue) => {
                   setSelectedProtos(newValue);
                 }}
                 multiple
                 options={userProtos}
-                // groupBy={(option) => option.timeOfDay}
                 getOptionLabel={(option) => option.title}
                 renderInput={(params) => <TextField {...params} label="Select Protos" />}
               />

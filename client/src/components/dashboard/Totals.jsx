@@ -43,7 +43,7 @@ function Totals({ userStats }) {
           title="Days Working"
         />
         <StatsCard
-          stat="?"
+          stat="0"
           background="#952aff"
           title="Time On Task"
         />

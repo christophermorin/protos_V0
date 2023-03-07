@@ -78,7 +78,13 @@ function ActiveProtoHeader({
             {protoTitle}
           </Typography>
         </Grid>
-        <Grid container item xs={2} direction="column" justifyContent="center">
+        <Grid
+          container
+          item
+          xs={2}
+          direction="column"
+          justifyContent="center"
+        >
           <IconButton
             size="medium"
             aria-label="proto options"
@@ -116,7 +122,6 @@ function ActiveProtoHeader({
         gap: 2,
       }}
       >
-        {/* <ActiveReason protoDescription={protoDescription} /> */}
         {isComplete && <Typography variant="caption" onClick={handleComplete} />}
       </Box>
     </Paper>
