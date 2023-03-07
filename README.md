@@ -110,13 +110,6 @@ Protos is a fullstack productivity app built to improve your consistency towards
 
 To get a local copy up and running follow these simple  steps.
 
-### Prerequisites
-
-* npm
-  ```sh
-  npm install npm@latest -g
-  ```
-
 ### Installation
 
 1. Clone the repo
@@ -127,9 +120,13 @@ To get a local copy up and running follow these simple  steps.
    ```sh
    npm install
    ```
-4. Enter your API in `config.js`
+4. Enter your own variables into `config.js`
    ```js
-   const API_KEY = 'ENTER YOUR API';
+   const DB_URI = 'ENTER YOUR DB URI';
+   ```
+5. Run Protos
+   ```sh
+   npm run dev
    ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
