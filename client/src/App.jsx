@@ -24,8 +24,8 @@ function App() {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.userAuth);
   const [openBuild, setOpenBuild] = useState();
-  const [containerBg, setContainerBg] = useState('https://images.unsplash.com/photo-1511497584788-876760111969?ixid=Mnw0MTg3ODB8MHwxfHJhbmRvbXx8fHx8fHx8fDE2NzgxOTc0NDQ&ixlib=rb-4.0.3&dpr=2&w=1900');
-  const [unSplashSource, setUnsplashSource] = useState('https://unsplash.com/photos/-heLWtuAN3c');
+  const [containerBg, setContainerBg] = useState('https://images.unsplash.com/photo-1501884428012-aa321a256730?ixid=Mnw0MTg3ODB8MHwxfHJhbmRvbXx8fHx8fHx8fDE2NzgyMDc2MDU&ixlib=rb-4.0.3&dpr=2&w=1900');
+  const [unSplashSource, setUnsplashSource] = useState('https://unsplash.com/photos/SXTj90G1f5c');
 
   const handleOpenBuild = () => {
     setOpenBuild(!openBuild);
@@ -52,16 +52,16 @@ function App() {
     dispatch(setUserAuth(JSON.parse(window.localStorage.getItem('user') || null)));
   }, []);
 
-  useEffect(() => {
-    const getBg = async () => {
-      const unSplashData = await loginServices.getUnSplashBackGround();
-      const unSplashImg = unSplashData.urls.raw;
-      const unSplashImgSource = unSplashData.links.html;
-      setContainerBg(`${unSplashImg}&dpr=2&w=1900`);
-      setUnsplashSource(unSplashImgSource);
-    };
-    getBg();
-  }, []);
+  // useEffect(() => {
+  //   const getBg = async () => {
+  //     const unSplashData = await loginServices.getUnSplashBackGround();
+  //     const unSplashImg = unSplashData.urls.raw;
+  //     const unSplashImgSource = unSplashData.links.html;
+  //     setContainerBg(`${unSplashImg}&dpr=2&w=1900`);
+  //     setUnsplashSource(unSplashImgSource);
+  //   };
+  //   getBg();
+  // }, []);
   const resetContainerBg = async () => {
     const unSplashData = await loginServices.getUnSplashBackGround();
     const unSplashImg = unSplashData.urls.raw;
