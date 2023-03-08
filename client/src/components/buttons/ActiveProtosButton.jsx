@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Box, Typography } from '@mui/material';
-import styles from './Buttons.module.css';
 
 function ActiveProtosButton({ title, action }) {
   const [buttonActive, setButtonActive] = useState(false);
@@ -29,7 +28,7 @@ function ActiveProtosButton({ title, action }) {
       }}
     >
       <Typography
-        variant="caption"
+        variant="overline"
       >
         {title}
       </Typography>

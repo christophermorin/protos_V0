@@ -8,29 +8,12 @@ function NavButton({ title, nav, action }) {
       onClick={action}
       component={Link}
       to={nav}
-      color="primary"
       sx={{
-        cursor: 'pointer',
-        // background: 'rgba(0,0,0,0.5)',
-        // '&:hover': {
-        //   background: 'rgba(0,0,0,0.2)'
-        // }
-
-        // transition: 'all 0.5s ease-in-out',
-        // padding: '0 10px',
-        // '&::before': {
-        //   content: '""',
-        //   position: 'absolute',
-        //   left: '0px',
-        //   bottom: '0px',
-        //   width: '0%',
-        //   height: '5%',
-        //   borderBottom: '2px solid #fff',
-        //   transition: 'all 0.3s ease-in-out',
-        // },
-        // '&:hover::before': {
-        //   width: '100%',
-        // },
+        background: '#1f29372e',
+        transition: 'background 0.5s ease-in-out',
+        '&:hover': {
+          background: '#1f2937',
+        },
       }}
     >
       {title}

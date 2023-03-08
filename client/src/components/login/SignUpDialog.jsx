@@ -7,6 +7,7 @@ import {
   Button,
   Typography,
 } from '@mui/material';
+import ActionButton from '../buttons/ActionButton';
 import userServices from '../../services/userServices';
 import userStatsServices from '../../services/userStatsServices';
 
@@ -47,7 +48,15 @@ function SignUpDialog({ open, closeSignUp, setOpen }) {
       open={open}
       onClose={closeSignUp}
     >
-      <Grid container direction="column" padding={5} gap={2}>
+      <Grid
+        container
+        direction="column"
+        padding={5}
+        gap={2}
+        sx={{
+          background: 'linear-gradient(135deg, rgba(31,41,55,0.8), rgba(11, 15, 20, 1) 90%)'
+        }}
+      >
         <Typography
           variant="h6"
           fontWeight={700}
@@ -80,7 +89,7 @@ function SignUpDialog({ open, closeSignUp, setOpen }) {
           label="Confirm Password"
           variant="standard"
         />
-        <Button onClick={handleSignUp}>SignUp</Button>
+        <ActionButton title={'SignUp'} action={handleSignUp} />
       </Grid>
     </Dialog>
   );

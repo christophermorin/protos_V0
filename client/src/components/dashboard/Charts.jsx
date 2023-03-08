@@ -3,12 +3,19 @@ import BarChart from './BarChart';
 
 function Charts({ userStats }) {
   return (
-    <Grid container item spacing={5} xs={12} md={4} marginTop={2} marginBottom={2}>
+    <Grid
+      container
+      item
+      spacing={5}
+      marginTop={2}
+      marginBottom={2}
+    >
       <Grid item xs={12} md={6}>
         <Paper sx={{
           padding: 2,
+          transition: 'background 0.5s ease-in-out',
           '&:hover': {
-            boxShadow: '0 0 2px 2px rgba(0,0,0,0.2)',
+            background: '#1f2937',
           },
         }}
         >
@@ -22,8 +29,9 @@ function Charts({ userStats }) {
       <Grid item xs={12} md={6}>
         <Paper sx={{
           padding: 2,
+          transition: 'background 0.5s ease-in-out',
           '&:hover': {
-            boxShadow: '0 0 2px 2px rgba(0,0,0,0.2)',
+            background: '#1f2937',
           },
         }}
         >

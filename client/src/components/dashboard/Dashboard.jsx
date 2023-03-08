@@ -24,13 +24,14 @@ function Dashboard() {
 
   return (
     <Grid
-      item
       container
-      md="auto"
       direction="column"
       justifyContent="space-between"
-      marginTop={2}
-      height={{ xs: 'unset', md: 'inherit' }}
+      spacing={8}
+      paddingTop={2}
+      paddingBottom={2}
+      height='100%'
+      wrap='nowrap'
     >
       <Totals userStats={userStats} />
       <Charts userStats={userStats} />

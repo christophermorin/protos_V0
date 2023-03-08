@@ -7,7 +7,9 @@ import {
   Autocomplete,
   TextField,
   Button,
+  Typography,
 } from '@mui/material';
+import ActionButton from '../buttons/ActionButton';
 import { useSelector, useDispatch } from 'react-redux';
 import activeProtoServices from '../../services/activeProtoServices';
 import { setActiveProtos } from '../../reducers/activeProtosReducer';
@@ -33,9 +35,22 @@ function SpeedDialAdd({ open, handleClose }) {
   };
 
   return (
-    <Dialog open={open} onClose={handleClose}>
-      <DialogContent>
-        <Box display="flex" flexDirection="column" justifyContent="center" alignItems="center" gap={5}>
+    <Dialog
+      open={open}
+      onClose={handleClose}
+      sx={{ marginLeft: { xs: 0, md: 25 } }}
+    >
+      <DialogContent sx={{ background: 'linear-gradient(135deg, rgba(31,41,55,0.8), rgba(11, 15, 20, 1) 90%)' }}>
+        <Box
+          display="flex"
+          flexDirection="column"
+          justifyContent="center"
+          alignItems="center"
+          gap={2}
+        >
+          <Typography>
+            Add a proto to the your active list
+          </Typography>
           <Autocomplete
             id="grouped-demo"
             sx={{ minWidth: { xs: 300, md: 500 }, padding: 5 }}
@@ -49,7 +64,8 @@ function SpeedDialAdd({ open, handleClose }) {
             getOptionLabel={(option) => option.title}
             renderInput={(params) => <TextField {...params} label="Protos" />}
           />
-          <Button onClick={addToList}>Add</Button>
+          <ActionButton title={'Add'} action={addToList} />
+          {/* <Button onClick={addToList}>Add</Button> */}
         </Box>
       </DialogContent>
     </Dialog>

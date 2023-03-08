@@ -1,4 +1,5 @@
 import { Button, Box } from '@mui/material';
+import ActionButton from '../buttons/ActionButton';
 
 function PhotoCred({ unSplashSource, resetBackground }) {
   return (
@@ -10,14 +11,8 @@ function PhotoCred({ unSplashSource, resetBackground }) {
         bottom: 16,
         right: 100,
       }}
-
-    // style={{ position: 'absolute', bottom: 16, right: 100 }}
     >
-      <Button
-        onClick={resetBackground}
-      >
-        New BG
-      </Button>
+      <ActionButton title='Reset BG' action={resetBackground} />
       <Button>
         <a
           href={`${unSplashSource}`}
