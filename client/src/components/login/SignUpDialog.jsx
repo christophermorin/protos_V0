@@ -18,12 +18,12 @@ function SignUpDialog({ open, closeSignUp, setOpen }) {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const handleSignUp = async () => {
     if (confirmPassword !== password) {
-      dispatch(setNotification({ title: 'Passwords must match', severity: 'error' }))
-      dispatch(resetNotification())
+      dispatch(setNotification({ title: 'Passwords must match', severity: 'error' }));
+      dispatch(resetNotification());
       return;
     }
     const newUser = {
@@ -42,11 +42,11 @@ function SignUpDialog({ open, closeSignUp, setOpen }) {
       setPassword('');
       setConfirmPassword('');
       setOpen(false);
-      dispatch(setNotification({ title: 'User Created', severity: 'success' }))
-      dispatch(resetNotification())
+      dispatch(setNotification({ title: 'User Created', severity: 'success' }));
+      dispatch(resetNotification());
     } catch (error) {
-      dispatch(setNotification({ title: error.response.data.error, severity: 'error' }))
-      dispatch(resetNotification())
+      dispatch(setNotification({ title: error.response.data.error, severity: 'error' }));
+      dispatch(resetNotification());
     }
   };
 
@@ -61,7 +61,7 @@ function SignUpDialog({ open, closeSignUp, setOpen }) {
         padding={5}
         gap={2}
         sx={{
-          background: 'linear-gradient(135deg, rgba(31,41,55,0.8), rgba(11, 15, 20, 1) 90%)'
+          background: 'linear-gradient(135deg, rgba(31,41,55,0.8), rgba(11, 15, 20, 1) 90%)',
         }}
       >
         <Typography
@@ -96,7 +96,7 @@ function SignUpDialog({ open, closeSignUp, setOpen }) {
           label="Confirm Password"
           variant="standard"
         />
-        <ActionButton title={'SignUp'} action={handleSignUp} />
+        <ActionButton title="SignUp" action={handleSignUp} />
       </Grid>
     </Dialog>
   );

@@ -12,7 +12,7 @@ function PhotoCred({ unSplashSource, resetBackground }) {
         right: 100,
       }}
     >
-      <ActionButton title='Reset BG' action={resetBackground} />
+      <ActionButton title="Reset BG" action={resetBackground} />
       <Button>
         <a
           href={`${unSplashSource}`}

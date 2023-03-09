@@ -1,4 +1,4 @@
-import { Alert, Zoom } from "@mui/material"
+import { Alert, Zoom } from '@mui/material';
 
 function Notification({ title, severity }) {
   return (
@@ -13,12 +13,12 @@ function Notification({ title, severity }) {
     >
       <Alert
         severity={severity}
-        variant='filled'
+        variant="filled"
       >
         {title}
       </Alert>
     </Zoom>
-  )
+  );
 }
 
 export default Notification;

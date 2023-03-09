@@ -12,7 +12,7 @@ function Totals({ userStats }) {
     <Grid
       item
       container
-      justifyContent='center'
+      justifyContent="center"
       gap={8}
     >
       <Grid
@@ -26,86 +26,84 @@ function Totals({ userStats }) {
           transition: 'background 0.5s ease-in-out',
           '&:hover': {
             background: '#1f29372e',
-          }
+          },
         }}
       >
         <Grid>
           <Typography
-            textAlign='center'
-            variant='h1'
+            textAlign="center"
+            variant="h1"
           >
             {userStats && userStats.dayStreak.streak}
           </Typography>
           <Typography
-            textAlign='center'
-            variant='body2'
+            textAlign="center"
+            variant="body2"
 
           >
             Day Streak
           </Typography>
         </Grid>
       </Grid>
-      <Grid item container justifyContent='center' gap={2} >
+      <Grid item container justifyContent="center" gap={2}>
         <StatsCard
           stat={totalProtosCompleted}
-          title={'Protos Complete'}
+          title="Protos Complete"
         />
         <StatsCard
           stat={totalJobsCompleted}
-          title={'Jobs Complete'}
+          title="Jobs Complete"
         />
         <StatsCard
           stat={userStats && userStats.daysWorked}
-          title={'Proto Days'}
+          title="Proto Days"
         />
         <StatsCard
-          stat={'0'}
-          title={'Proto Time'}
+          stat="0"
+          title="Proto Time"
         />
 
       </Grid>
-    </Grid >
+    </Grid>
 
-
-
-    // <Grid
-    //   container
-    //   spacing={5}
-    //   alignItems="center"
-    //   item
-    //   xs={12}
-    //   md={4}
-    // >
-    //   <Grid container direction="column" item xs={12} md={3} gap={5}>
-    //     <StatsCard
-    //       stat={totalProtosCompleted}
-    //       background="rgba(255, 99, 132, 1)"
-    //       title="Protos Completed"
-    //     />
-    //     <StatsCard
-    //       stat={totalJobsCompleted}
-    //       background="rgba(53, 162, 235, 1)"
-    //       title="Jobs Completed"
-    //     />
-    //   </Grid>
-    //   <Grid container item direction="column" xs={12} md={6}>
-    //     <StreakCard
-    //       stat={userStats && userStats.dayStreak.streak}
-    //     />
-    //   </Grid>
-    //   <Grid container direction="column" item xs={12} md={3} gap={5}>
-    //     <StatsCard
-    //       stat={userStats && userStats.daysWorked}
-    //       background="#4c49ea"
-    //       title="Days Working"
-    //     />
-    //     <StatsCard
-    //       stat="0"
-    //       background="#952aff"
-    //       title="Time On Task"
-    //     />
-    //   </Grid>
-    // </Grid>
+  // <Grid
+  //   container
+  //   spacing={5}
+  //   alignItems="center"
+  //   item
+  //   xs={12}
+  //   md={4}
+  // >
+  //   <Grid container direction="column" item xs={12} md={3} gap={5}>
+  //     <StatsCard
+  //       stat={totalProtosCompleted}
+  //       background="rgba(255, 99, 132, 1)"
+  //       title="Protos Completed"
+  //     />
+  //     <StatsCard
+  //       stat={totalJobsCompleted}
+  //       background="rgba(53, 162, 235, 1)"
+  //       title="Jobs Completed"
+  //     />
+  //   </Grid>
+  //   <Grid container item direction="column" xs={12} md={6}>
+  //     <StreakCard
+  //       stat={userStats && userStats.dayStreak.streak}
+  //     />
+  //   </Grid>
+  //   <Grid container direction="column" item xs={12} md={3} gap={5}>
+  //     <StatsCard
+  //       stat={userStats && userStats.daysWorked}
+  //       background="#4c49ea"
+  //       title="Days Working"
+  //     />
+  //     <StatsCard
+  //       stat="0"
+  //       background="#952aff"
+  //       title="Time On Task"
+  //     />
+  //   </Grid>
+  // </Grid>
   );
 }
 

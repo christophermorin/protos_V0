@@ -14,19 +14,19 @@ function StatsCard({ stat, title }) {
         transition: 'background 0.5s ease-in-out',
         '&:hover': {
           background: '#1f2937',
-        }
+        },
       }}
     >
       <Grid>
         <Typography
-          variant='h3'
-          textAlign='center'
+          variant="h3"
+          textAlign="center"
         >
           {stat}
         </Typography>
         <Typography
-          variant='body2'
-          textAlign='center'
+          variant="body2"
+          textAlign="center"
         >
           {title}
         </Typography>

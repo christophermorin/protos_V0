@@ -64,9 +64,9 @@ function BuildForm({ open, handleCloseBuild }) {
   const createProto = async () => {
     if (!protoTitle) {
       dispatch(setNotification({
-        title: 'Proto Title required', severity: 'error'
-      }))
-      dispatch(resetNotification())
+        title: 'Proto Title required', severity: 'error',
+      }));
+      dispatch(resetNotification());
       return;
     }
     const newProto = {
@@ -88,14 +88,14 @@ function BuildForm({ open, handleCloseBuild }) {
         dispatch(activeProtoAddOne(result));
       }
       dispatch(setNotification({
-        title: checked ? 'New Proto added to active list' : 'New Proto created', severity: 'success'
-      }))
-      dispatch(resetNotification())
+        title: checked ? 'New Proto added to active list' : 'New Proto created', severity: 'success',
+      }));
+      dispatch(resetNotification());
     } catch (error) {
       dispatch(setNotification({
-        title: 'Failed. Do you already have a Proto by this name?', severity: 'error'
-      }))
-      dispatch(resetNotification())
+        title: 'Failed. Do you already have a Proto by this name?', severity: 'error',
+      }));
+      dispatch(resetNotification());
     }
   };
   return (
@@ -108,7 +108,7 @@ function BuildForm({ open, handleCloseBuild }) {
         container
         sx={{
           padding: 2,
-          background: 'linear-gradient(135deg, rgba(31,41,55,0.8), rgba(11, 15, 20, 1) 90%)'
+          background: 'linear-gradient(135deg, rgba(31,41,55,0.8), rgba(11, 15, 20, 1) 90%)',
         }}
       >
         <Grid item xs={12}>

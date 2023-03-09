@@ -9,12 +9,11 @@ import {
   Button,
   Typography,
 } from '@mui/material';
-import ActionButton from '../buttons/ActionButton';
 import { useSelector, useDispatch } from 'react-redux';
+import ActionButton from '../buttons/ActionButton';
 import activeProtoServices from '../../services/activeProtoServices';
 import { setActiveProtos } from '../../reducers/activeProtosReducer';
 import { setNotification, resetNotification } from '../../reducers/notificationsReducer';
-
 
 function SpeedDialAdd({ open, handleClose }) {
   const [selectedProtos, setSelectedProtos] = useState([]);
@@ -25,18 +24,18 @@ function SpeedDialAdd({ open, handleClose }) {
   const addToList = async () => {
     if (!activeProtos) {
       dispatch(setNotification({
-        title: 'No list currently active, please create one', severity: 'error'
-      }))
-      dispatch(resetNotification())
-      return
+        title: 'No list currently active, please create one', severity: 'error',
+      }));
+      dispatch(resetNotification());
+      return;
     }
     try {
       const result = await activeProtoServices.addManyToActive(activeProtos._id, selectedProtos);
       dispatch(setActiveProtos(result));
       dispatch(setNotification({
-        title: 'Proto added to active list', severity: 'success'
-      }))
-      dispatch(resetNotification())
+        title: 'Proto added to active list', severity: 'success',
+      }));
+      dispatch(resetNotification());
     } catch (error) {
       console.log('In add many to list', error);
     }
@@ -72,7 +71,7 @@ function SpeedDialAdd({ open, handleClose }) {
             getOptionLabel={(option) => option.title}
             renderInput={(params) => <TextField {...params} label="Protos" />}
           />
-          <ActionButton title={'Add'} action={addToList} />
+          <ActionButton title="Add" action={addToList} />
           {/* <Button onClick={addToList}>Add</Button> */}
         </Box>
       </DialogContent>

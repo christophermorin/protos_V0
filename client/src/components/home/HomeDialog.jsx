@@ -23,14 +23,14 @@ function HomeDialog({ open, handleClose }) {
   const dispatch = useDispatch();
 
   const user = useSelector((state) => state.userAuth);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const createActiveList = async () => {
     if (selectedProtos.length === 0) {
       dispatch(setNotification({
-        title: 'Please select a Proto', severity: 'error'
-      }))
-      dispatch(resetNotification())
+        title: 'Please select a Proto', severity: 'error',
+      }));
+      dispatch(resetNotification());
       return;
     }
     try {
@@ -41,12 +41,11 @@ function HomeDialog({ open, handleClose }) {
       await activeProtoServices.createActiveList(newActiveProtos);
       dispatch(clearDisplayedProtoList());
       dispatch(setNotification({
-        title: 'New active list created', severity: 'success'
-      }))
-      dispatch(resetNotification())
-      handleClose()
-      navigate("/active")
-
+        title: 'New active list created', severity: 'success',
+      }));
+      dispatch(resetNotification());
+      handleClose();
+      navigate('/active');
     } catch (error) {
       //
     }
@@ -67,7 +66,7 @@ function HomeDialog({ open, handleClose }) {
           >
             Protos
           </Typography>
-          <Grid container direction='column' gap={2}>
+          <Grid container direction="column" gap={2}>
             <Grid item md={4}>
               <Typography
                 variant="body2"
@@ -84,7 +83,7 @@ function HomeDialog({ open, handleClose }) {
               </Button>
             </Grid>
           </Grid>
-          <Grid container direction='column' gap={2}>
+          <Grid container direction="column" gap={2}>
             <Grid item md={4}>
               <Typography
                 variant="body2"

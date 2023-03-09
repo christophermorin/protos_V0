@@ -24,7 +24,7 @@ import './Draft.css';
 function App() {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.userAuth);
-  const notifications = useSelector((state) => state.notifications)
+  const notifications = useSelector((state) => state.notifications);
   const [openBuild, setOpenBuild] = useState();
   const [containerBg, setContainerBg] = useState('https://images.unsplash.com/photo-1501884428012-aa321a256730?ixid=Mnw0MTg3ODB8MHwxfHJhbmRvbXx8fHx8fHx8fDE2NzgyMDc2MDU&ixlib=rb-4.0.3&dpr=2&w=1900');
   const [unSplashSource, setUnsplashSource] = useState('https://unsplash.com/photos/SXTj90G1f5c');
@@ -85,14 +85,12 @@ function App() {
           resetBackground={resetContainerBg}
         />
         {notifications
-          &&
-          (
+          && (
             <Notification
               title={notifications.title}
               severity={notifications.severity}
             />
-          )
-        }
+          )}
         {user
           ? (
             <>

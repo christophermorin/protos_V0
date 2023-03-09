@@ -37,13 +37,13 @@ function Register() {
       await userStatsServices.checkUserStreak(userAuth.id);
       window.localStorage.setItem('user', JSON.stringify(userAuth));
       dispatch(setUserAuth(userAuth));
-      dispatch(setNotification({ title: 'User Logged in', severity: 'success' }))
-      dispatch(resetNotification())
+      dispatch(setNotification({ title: 'User Logged in', severity: 'success' }));
+      dispatch(resetNotification());
     } catch (error) {
       dispatch(setNotification({
-        title: error.response.data.error, severity: 'error'
-      }))
-      dispatch(resetNotification())
+        title: error.response.data.error, severity: 'error',
+      }));
+      dispatch(resetNotification());
     }
   };
 
@@ -90,8 +90,8 @@ function Register() {
           onChange={(e) => setPassword(e.target.value)}
         />
         <Grid container gap={2} item justifyContent="center">
-          <ActionButton title={'Login'} action={handleLogin} />
-          <ActionButton title={'Signup'} action={openSignUp} />
+          <ActionButton title="Login" action={handleLogin} />
+          <ActionButton title="Signup" action={openSignUp} />
         </Grid>
       </Grid>
       <SignUpDialog
