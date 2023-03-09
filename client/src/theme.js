@@ -105,8 +105,8 @@ const getTheme = (mode) => ({
             height: '15px',
           },
           '.MuiLinearProgress-bar': {
-            background: 'rgba(39,110,26,1)',
-            transition: 'transform 0.3s linear',
+            background: 'rgba(121,207,233,1)',
+            transition: 'transform 0.3s ease-in-out',
           },
           '.MuiLinearProgress-colorPrimary': {
             background: '#1f2937e2',

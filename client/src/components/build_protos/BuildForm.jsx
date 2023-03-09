@@ -19,6 +19,7 @@ import userProtoServices from '../../services/userProtoServices';
 import activeProtoServices from '../../services/activeProtoServices';
 import { activeProtoAddOne } from '../../reducers/activeProtosReducer';
 import { userProtosAddOne } from '../../reducers/userProtosReducer';
+import { setNotification, resetNotification } from '../../reducers/notificationsReducer';
 
 function BuildForm({ open, handleCloseBuild }) {
   const [protoTitle, setProtoTitle] = useState('');
@@ -62,8 +63,11 @@ function BuildForm({ open, handleCloseBuild }) {
 
   const createProto = async () => {
     if (!protoTitle) {
-      console.log('Title required');
-      return -1;
+      dispatch(setNotification({
+        title: 'Proto Title required', severity: 'error'
+      }))
+      dispatch(resetNotification())
+      return;
     }
     const newProto = {
       title: protoTitle,
@@ -83,8 +87,15 @@ function BuildForm({ open, handleCloseBuild }) {
         await activeProtoServices.addOneToActive(activeProtos._id, result);
         dispatch(activeProtoAddOne(result));
       }
+      dispatch(setNotification({
+        title: checked ? 'New Proto added to active list' : 'New Proto created', severity: 'success'
+      }))
+      dispatch(resetNotification())
     } catch (error) {
-      console.log(error, 'Proto already exists');
+      dispatch(setNotification({
+        title: 'Failed. Do you already have a Proto by this name?', severity: 'error'
+      }))
+      dispatch(resetNotification())
     }
   };
   return (

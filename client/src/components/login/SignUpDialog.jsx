@@ -1,13 +1,14 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import {
   Dialog,
   Grid,
   TextField,
-  Button,
   Typography,
 } from '@mui/material';
 import ActionButton from '../buttons/ActionButton';
+import { setNotification, resetNotification } from '../../reducers/notificationsReducer';
 import userServices from '../../services/userServices';
 import userStatsServices from '../../services/userStatsServices';
 
@@ -17,9 +18,12 @@ function SignUpDialog({ open, closeSignUp, setOpen }) {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
 
+  const dispatch = useDispatch()
+
   const handleSignUp = async () => {
     if (confirmPassword !== password) {
-      console.log('Passwords must match');
+      dispatch(setNotification({ title: 'Passwords must match', severity: 'error' }))
+      dispatch(resetNotification())
       return;
     }
     const newUser = {
@@ -38,8 +42,11 @@ function SignUpDialog({ open, closeSignUp, setOpen }) {
       setPassword('');
       setConfirmPassword('');
       setOpen(false);
+      dispatch(setNotification({ title: 'User Created', severity: 'success' }))
+      dispatch(resetNotification())
     } catch (error) {
-      console.log(error.response.data.error);
+      dispatch(setNotification({ title: error.response.data.error, severity: 'error' }))
+      dispatch(resetNotification())
     }
   };
 

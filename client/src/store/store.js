@@ -3,8 +3,7 @@ import userProtosReducer from '../reducers/userProtosReducer';
 import activeProtosReducer from '../reducers/activeProtosReducer';
 import userAuthReducer from '../reducers/userAuthReducer';
 import displayedProtosReducer from '../reducers/displayedProtosReducer';
-
-// create a displayedProtosStore
+import notificationsReducer from '../reducers/notificationsReducer';
 
 const store = configureStore({
   reducer: {
@@ -12,6 +11,7 @@ const store = configureStore({
     activeProtos: activeProtosReducer,
     userAuth: userAuthReducer,
     displayedProtos: displayedProtosReducer,
+    notifications: notificationsReducer,
   },
 });
 

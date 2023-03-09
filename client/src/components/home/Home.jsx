@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Grid } from '@mui/material';
 import HomeDialog from './HomeDialog';
 import HomeButton from '../buttons/HomeButton';
+import Notification from '../notifications/Notification';
 
 export default function Home() {
   const [open, setOpen] = useState(false);

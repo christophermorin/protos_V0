@@ -16,6 +16,8 @@ import activeProtoServices from '../../services/activeProtoServices';
 import userStatsServices from '../../services/userStatsServices';
 import { setActiveProtos } from '../../reducers/activeProtosReducer';
 import { displayedRemoveOne, displayedUpdateList } from '../../reducers/displayedProtosReducer';
+import { setNotification, resetNotification } from '../../reducers/notificationsReducer';
+
 
 function ActiveProtoHeader({
   protoTitle, protoDescription, protoId, isComplete,
@@ -43,6 +45,8 @@ function ActiveProtoHeader({
     );
     dispatch(setActiveProtos(result));
     dispatch(displayedRemoveOne(protoId));
+    dispatch(setNotification({ title: 'Proto removed from active list', severity: 'success' }))
+    dispatch(resetNotification())
   };
 
   const handleComplete = async () => {

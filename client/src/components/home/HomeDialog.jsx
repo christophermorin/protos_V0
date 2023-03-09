@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
+import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   Dialog,
@@ -12,6 +13,7 @@ import {
   Button,
 } from '@mui/material';
 import ActionButton from '../buttons/ActionButton';
+import { setNotification, resetNotification } from '../../reducers/notificationsReducer';
 import activeProtoServices from '../../services/activeProtoServices';
 import { clearDisplayedProtoList } from '../../reducers/displayedProtosReducer';
 
@@ -21,10 +23,14 @@ function HomeDialog({ open, handleClose }) {
   const dispatch = useDispatch();
 
   const user = useSelector((state) => state.userAuth);
+  const navigate = useNavigate()
 
   const createActiveList = async () => {
     if (selectedProtos.length === 0) {
-      console.log('Error: Protos list empty');
+      dispatch(setNotification({
+        title: 'Please select a Proto', severity: 'error'
+      }))
+      dispatch(resetNotification())
       return;
     }
     try {
@@ -34,8 +40,15 @@ function HomeDialog({ open, handleClose }) {
       };
       await activeProtoServices.createActiveList(newActiveProtos);
       dispatch(clearDisplayedProtoList());
+      dispatch(setNotification({
+        title: 'New active list created', severity: 'success'
+      }))
+      dispatch(resetNotification())
+      handleClose()
+      navigate("/active")
+
     } catch (error) {
-      console.log(error);
+      //
     }
   };
 

@@ -13,6 +13,8 @@ import ActionButton from '../buttons/ActionButton';
 import { useSelector, useDispatch } from 'react-redux';
 import activeProtoServices from '../../services/activeProtoServices';
 import { setActiveProtos } from '../../reducers/activeProtosReducer';
+import { setNotification, resetNotification } from '../../reducers/notificationsReducer';
+
 
 function SpeedDialAdd({ open, handleClose }) {
   const [selectedProtos, setSelectedProtos] = useState([]);
@@ -22,16 +24,22 @@ function SpeedDialAdd({ open, handleClose }) {
 
   const addToList = async () => {
     if (!activeProtos) {
-      console.log('No list currently active, please create one');
-      return -1;
+      dispatch(setNotification({
+        title: 'No list currently active, please create one', severity: 'error'
+      }))
+      dispatch(resetNotification())
+      return
     }
     try {
       const result = await activeProtoServices.addManyToActive(activeProtos._id, selectedProtos);
       dispatch(setActiveProtos(result));
+      dispatch(setNotification({
+        title: 'Proto added to active list', severity: 'success'
+      }))
+      dispatch(resetNotification())
     } catch (error) {
       console.log('In add many to list', error);
     }
-    return null;
   };
 
   return (
