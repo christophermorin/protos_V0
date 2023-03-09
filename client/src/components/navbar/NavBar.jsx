@@ -21,6 +21,8 @@ import MenuIcon from '@mui/icons-material/Menu';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import NavButton from '../buttons/NavButton';
 import { setUserAuth } from '../../reducers/userAuthReducer';
+import { setNotification, resetNotification } from '../../reducers/notificationsReducer';
+
 
 function NavBar({ handleOpenBuild }) {
   const [sideBar, setSideBar] = useState(false);
@@ -41,6 +43,8 @@ function NavBar({ handleOpenBuild }) {
     window.localStorage.clear();
     setAnchorEl(null);
     dispatch(setUserAuth(null));
+    dispatch(setNotification({ title: 'User Logged out', severity: 'success' }))
+    dispatch(resetNotification())
     //Clear all stores
   };
 

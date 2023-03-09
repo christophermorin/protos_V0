@@ -8,13 +8,18 @@ import {
 } from '@mui/material';
 import ActionButton from '../buttons/ActionButton';
 import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import activeProtoServices from '../../services/activeProtoServices';
 import { setActiveProtos } from '../../reducers/activeProtosReducer';
 import { clearDisplayedProtoList } from '../../reducers/displayedProtosReducer';
+import { setNotification, resetNotification } from '../../reducers/notificationsReducer';
+
 
 function SpeedDialClear({ open, handleClose }) {
   const activeProtos = useSelector((state) => state.activeProtos);
+
   const dispatch = useDispatch();
+  const navigate = useNavigate()
 
   const clearList = async () => {
     try {
@@ -22,8 +27,16 @@ function SpeedDialClear({ open, handleClose }) {
         .deleteActiveList(activeProtos._id, activeProtos.user);
       dispatch(clearDisplayedProtoList());
       dispatch(setActiveProtos(result));
+      dispatch(setNotification({
+        title: 'Active list cleared', severity: 'success'
+      }))
+      dispatch(resetNotification())
+      navigate('/')
     } catch (error) {
-      console.log('In delete/clear list', error);
+      dispatch(setNotification({
+        title: 'Active list is already cleared', severity: 'error'
+      }))
+      dispatch(resetNotification())
     }
   };
   return (

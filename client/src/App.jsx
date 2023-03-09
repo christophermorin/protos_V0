@@ -13,6 +13,7 @@ import ProtoTabs from './components/active_protos/ProtoTabs';
 import BuildForm from './components/build_protos/BuildForm';
 import Library from './components/library/Library';
 import PhotoCred from './components/utilities/PhotoCred';
+import Notification from './components/notifications/Notification';
 import userProtoServices from './services/userProtoServices';
 import userStatsServices from './services/userStatsServices';
 import loginServices from './services/loginServices';
@@ -23,6 +24,7 @@ import './Draft.css';
 function App() {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.userAuth);
+  const notifications = useSelector((state) => state.notifications)
   const [openBuild, setOpenBuild] = useState();
   const [containerBg, setContainerBg] = useState('https://images.unsplash.com/photo-1501884428012-aa321a256730?ixid=Mnw0MTg3ODB8MHwxfHJhbmRvbXx8fHx8fHx8fDE2NzgyMDc2MDU&ixlib=rb-4.0.3&dpr=2&w=1900');
   const [unSplashSource, setUnsplashSource] = useState('https://unsplash.com/photos/SXTj90G1f5c');
@@ -82,6 +84,15 @@ function App() {
           unSplashSource={unSplashSource}
           resetBackground={resetContainerBg}
         />
+        {notifications
+          &&
+          (
+            <Notification
+              title={notifications.title}
+              severity={notifications.severity}
+            />
+          )
+        }
         {user
           ? (
             <>

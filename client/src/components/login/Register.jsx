@@ -8,8 +8,9 @@ import {
 } from '@mui/material';
 import ActionButton from '../buttons/ActionButton';
 import SignUpDialog from './SignUpDialog';
-import loginServices from '../../services/loginServices';
 import { setUserAuth } from '../../reducers/userAuthReducer';
+import { setNotification, resetNotification } from '../../reducers/notificationsReducer';
+import loginServices from '../../services/loginServices';
 import userStatsServices from '../../services/userStatsServices';
 
 function Register() {
@@ -36,8 +37,13 @@ function Register() {
       await userStatsServices.checkUserStreak(userAuth.id);
       window.localStorage.setItem('user', JSON.stringify(userAuth));
       dispatch(setUserAuth(userAuth));
+      dispatch(setNotification({ title: 'User Logged in', severity: 'success' }))
+      dispatch(resetNotification())
     } catch (error) {
-      console.log(error.response.data.error);
+      dispatch(setNotification({
+        title: error.response.data.error, severity: 'error'
+      }))
+      dispatch(resetNotification())
     }
   };
 

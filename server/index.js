@@ -56,6 +56,15 @@ app.get('/library', (req, res) => {
     }
   });
 });
+
+app.get('/dashboard', (req, res) => {
+  res.sendFile(path.join(__dirname, '/dist/index.html'), (err) => {
+    if (err) {
+      res.status(500).send(err);
+    }
+  });
+});
+
 app.use('/api/users', userRouter);
 app.use('/api/login', loginRouter);
 app.use('/api/userStats', userStatsRouter);
