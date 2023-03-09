@@ -93,7 +93,13 @@ function BuildForm({ open, handleCloseBuild }) {
       onClose={handleCloseBuild}
       sx={{ marginLeft: { xs: 0, md: 25 } }}
     >
-      <Grid container sx={{ padding: 2, background: 'linear-gradient(135deg, rgba(31,41,55,0.8),transparent 90%)' }}>
+      <Grid
+        container
+        sx={{
+          padding: 2,
+          background: 'linear-gradient(135deg, rgba(31,41,55,0.8), rgba(11, 15, 20, 1) 90%)'
+        }}
+      >
         <Grid item xs={12}>
           <CreateProtoForm
             setProtoTitle={setProtoTitle}

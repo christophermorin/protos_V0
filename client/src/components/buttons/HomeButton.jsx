@@ -17,28 +17,11 @@ function HomeButton({ title }) {
         display: 'inline-block',
         cursor: 'pointer',
         fontSize: '0.9rem',
-        // transition: 'box-shadow 0.3s ease-in',
         background: '#1f2937',
-        // '&::before': {
-        //   content: '""',
-        //   position: 'absolute',
-        //   top: '0',
-        //   left: '0',
-        //   width: 'calc(100%)',
-        //   height: 'calc(100%)',
-        //   background: 'transparent',
-        //   transition: 'transform 0.3s ease-in-out',
-        //   transform: 'scaleY(0)',
-        // },
-        // '&:hover::before': {
-        //   transform: 'scaleY(1)',
-        // },
         transition: 'background 0.5s ease-in-out',
         '&:hover': {
           color: '#fff',
           background: '#1f29372e',
-
-          // boxShadow: '0 10px 1px 1px #1f2937',
         },
       }}
     >

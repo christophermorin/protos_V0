@@ -69,7 +69,13 @@ function BarChart({ dataSet, title, color }) {
   };
 
   return (
-    <Bar options={options} data={data} width={200} height={500} style={{ background: '#121212' }} />
+    <Bar
+      options={options}
+      data={data}
+      width={200}
+      height={500}
+      style={{ background: '#1f29372e' }}
+    />
   );
 }
 

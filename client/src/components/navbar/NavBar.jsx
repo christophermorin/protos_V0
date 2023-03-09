@@ -52,7 +52,7 @@ function NavBar({ handleOpenBuild }) {
     <ListItem disablePadding key={option}>
       <ListItemButton component={Link} to={`/${option.toLowerCase()}`}>
         <ListItemIcon>
-          <ArrowRightIcon />
+          <ArrowRightIcon sx={{ color: '#fff' }} />
         </ListItemIcon>
         <ListItemText primary={option} />
       </ListItemButton>

@@ -6,6 +6,7 @@ import {
   Button,
   Typography,
 } from '@mui/material';
+import ActionButton from '../buttons/ActionButton';
 import SignUpDialog from './SignUpDialog';
 import loginServices from '../../services/loginServices';
 import { setUserAuth } from '../../reducers/userAuthReducer';
@@ -83,16 +84,8 @@ function Register() {
           onChange={(e) => setPassword(e.target.value)}
         />
         <Grid container gap={2} item justifyContent="center">
-          <Button
-            onClick={handleLogin}
-          >
-            Login
-          </Button>
-          <Button
-            onClick={openSignUp}
-          >
-            Signup
-          </Button>
+          <ActionButton title={'Login'} action={handleLogin} />
+          <ActionButton title={'Signup'} action={openSignUp} />
         </Grid>
       </Grid>
       <SignUpDialog

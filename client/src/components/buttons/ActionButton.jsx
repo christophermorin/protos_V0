@@ -1,15 +1,16 @@
 import PropTypes from 'prop-types';
 import { Button } from '@mui/material';
-import styles from './Buttons.module.css';
 
 function ActionButton({ title, action, buttonType }) {
   return (
     <Button
-      // className={styles.actionButton}
       onClick={action}
-      style={{
-        // border: '1px solid blue',
-        background: 'blue',
+      sx={{
+        background: '#1f2937',
+        transition: 'background 0.5s ease-in-out',
+        '&:hover': {
+          background: '#1f29372e',
+        },
       }}
     >
       <span style={{ position: 'relative', zIndex: 3 }}>{title}</span>

@@ -105,7 +105,7 @@ const getTheme = (mode) => ({
             height: '15px',
           },
           '.MuiLinearProgress-bar': {
-            background: 'rgba(0,0,255,1)',
+            background: 'rgba(39,110,26,1)',
             transition: 'transform 0.3s linear',
           },
           '.MuiLinearProgress-colorPrimary': {
@@ -117,6 +117,7 @@ const getTheme = (mode) => ({
     MuiListItemButton: {
       styleOverrides: {
         root: {
+          background: '#1f29372e',
           transition: 'all 0.5s ease-in-out',
           '&::before': {
             content: '""',
@@ -125,11 +126,14 @@ const getTheme = (mode) => ({
             bottom: '0px',
             width: '100%',
             height: '0%',
-            borderRight: mode === 'light' ? '5px solid #000' : '5px solid #fff',
+            borderRight: '5px solid #fff',
             transition: 'all 0.3s ease-in-out',
           },
           '&:hover::before': {
             height: '100%',
+          },
+          '&:hover': {
+            background: '#1f2937',
           },
         },
       },

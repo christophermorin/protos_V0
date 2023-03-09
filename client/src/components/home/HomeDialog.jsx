@@ -41,20 +41,26 @@ function HomeDialog({ open, handleClose }) {
 
   return (
     <Dialog open={open} onClose={handleClose} sx={{ marginLeft: { xs: 0, md: 25 } }}>
-      <DialogContent sx={{ border: '2px solid black', background: '#1f2937' }}>
-        <Box display="flex" flexDirection="column" justifyContent="center" alignItems="center" gap={5}>
+      <DialogContent sx={{ border: '2px solid black', background: 'linear-gradient(135deg, rgba(31,41,55,0.8), rgba(11, 15, 20, 1) 90%)' }}>
+        <Box
+          display="flex"
+          flexDirection="column"
+          justifyContent="center"
+          alignItems="center"
+          gap={5}
+        >
           <Typography
             variant="h2"
           >
             Protos
           </Typography>
-          <Grid container direction={{ xs: 'column', md: 'row' }}>
+          <Grid container direction='column' gap={2}>
             <Grid item md={4}>
               <Typography
-                variant="caption"
+                variant="body2"
                 fontWeight={700}
               >
-                Something about using templates, foggy brain.
+                Select a prebuilt template:
               </Typography>
             </Grid>
             <Grid container item md={8} justifyContent="center">
@@ -65,13 +71,13 @@ function HomeDialog({ open, handleClose }) {
               </Button>
             </Grid>
           </Grid>
-          <Grid container direction={{ xs: 'column', md: 'row' }}>
+          <Grid container direction='column' gap={2}>
             <Grid item md={4}>
               <Typography
-                variant="caption"
+                variant="body2"
                 fontWeight={700}
               >
-                Placement text here I can't think of what to say right now.
+                Create your day:
               </Typography>
             </Grid>
             <Grid item md={8}>
@@ -84,7 +90,7 @@ function HomeDialog({ open, handleClose }) {
                 multiple
                 options={userProtos}
                 getOptionLabel={(option) => option.title}
-                renderInput={(params) => <TextField {...params} label="Select Protos" />}
+                renderInput={(params) => <TextField {...params} label="Protos" />}
               />
             </Grid>
           </Grid>
