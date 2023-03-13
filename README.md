@@ -222,7 +222,7 @@ Project Link: [https://github.com/github_username/repo_name](https://github.com/
 [license-url]: https://github.com/github_username/repo_name/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/linkedin_username
-[product-screenshot]: https://github.com/christophermorin/assets/blob/fa12adfcbfdedca65f76d8bc38109d7b403e3aa8/proto_demo.png
+[product-screenshot]: https://github.com/christophermorin/assets/blob/de52817c8314cfe848df50d463b120858e8d7a12/protos_demo_v2.png
 [Node.js]: https://img.shields.io/badge/node.js-182446?style=for-the-badge&logo=nodedotjs&logoColor=green
 [Node-url]: https://nodejs.org/en/
 [MongoDb]: https://img.shields.io/badge/mongodb-023430?style=for-the-badge&logo=mongodb&logoColor=green
