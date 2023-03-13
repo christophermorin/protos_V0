@@ -72,7 +72,6 @@ function SpeedDialAdd({ open, handleClose }) {
             renderInput={(params) => <TextField {...params} label="Protos" />}
           />
           <ActionButton title="Add" action={addToList} />
-          {/* <Button onClick={addToList}>Add</Button> */}
         </Box>
       </DialogContent>
     </Dialog>

@@ -2,12 +2,7 @@ const getTheme = (mode) => ({
   palette: {
     mode,
     primary: {
-      // ...(mode === 'light' ? {
       main: 'rgba(0,0,0,0.8)',
-      // }
-      //   : {
-      //     main: 'rgba(25,118,210,1)',
-      //   }),
     },
     background: {
       ...(mode === 'light' ? {
@@ -25,13 +20,9 @@ const getTheme = (mode) => ({
   },
   typography: {
     caption: {
-      // color: mode === 'light' ? '#000' : '#fff',
-      // color: 'rgba(145,145,135,1)',
       position: 'relative',
       display: 'inline-block',
       cursor: 'pointer',
-      // fontSize: '0.8rem',
-      // fontWeight: '700',
       transition: 'all 0.5s ease-in-out',
       '&::before': {
         content: '""',

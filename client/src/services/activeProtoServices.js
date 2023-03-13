@@ -2,7 +2,6 @@ import axios from 'axios';
 
 const baseUrl = '/api/activeProtos';
 
-// Active Proto List
 const getActiveProtos = async (user) => {
   const results = await axios.get(`${baseUrl}/${user}`);
   return results.data;

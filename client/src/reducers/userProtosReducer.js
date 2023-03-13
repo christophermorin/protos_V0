@@ -23,12 +23,10 @@ export const setUserProtosList = (protos) => (dispatch) => {
   dispatch(setAllProtos(protos));
 };
 
-// Adds recently built proto to lists in dropdowns
 export const userProtosAddOne = (proto) => (dispatch) => {
   dispatch(addFromBuild(proto));
 };
 
-// Delete proto from library
 export const userProtosRemoveOne = (proto) => (dispatch) => {
   dispatch(deleteUserProto(proto));
 };
