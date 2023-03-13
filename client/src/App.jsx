@@ -54,16 +54,6 @@ function App() {
     dispatch(setUserAuth(JSON.parse(window.localStorage.getItem('user') || null)));
   }, []);
 
-  // useEffect(() => {
-  //   const getBg = async () => {
-  //     const unSplashData = await loginServices.getUnSplashBackGround();
-  //     const unSplashImg = unSplashData.urls.raw;
-  //     const unSplashImgSource = unSplashData.links.html;
-  //     setContainerBg(`${unSplashImg}&dpr=2&w=1900`);
-  //     setUnsplashSource(unSplashImgSource);
-  //   };
-  //   getBg();
-  // }, []);
   const resetContainerBg = async () => {
     const unSplashData = await loginServices.getUnSplashBackGround();
     const unSplashImg = unSplashData.urls.raw;

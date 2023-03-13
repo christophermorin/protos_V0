@@ -169,7 +169,7 @@ const getTheme = (mode) => ({
           background: '#fff',
           color: '#000',
           '&:hover': {
-            background: '#1f29372e',
+            background: 'rgba(255,255,255,0.5)',
           },
         },
       },
