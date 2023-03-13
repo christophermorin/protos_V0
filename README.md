@@ -28,17 +28,17 @@
 -->
 
 
-<!-- PROJECT LOGO -->
+<!-- PROJECT LOGO 
 <br />
 <div align="center">
   <a href="https://github.com/github_username/repo_name">
     <img src="images/logo.png" alt="Logo" width="80" height="80">
   </a>
-
+-->
 <h3 align="center">Protos</h3>
 
   <p align="center">
-    Build consistency in your life through daily protocols.
+    Build consistency
     <br />
     <a href="https://github.com/christophermorin/protos_V0"><strong>Explore the docs »</strong></a>
     <br />
@@ -86,7 +86,7 @@
 
 [![Protos Screenshot][product-screenshot]](https://protos.cyclic.app)
 
-Protos is a fullstack productivity app built to improve your consistency towards completing daily goals, creating new habits and improving your every day life.
+Protos is a fullstack productivity app built to improve consistency towards completing your projects, daily goals, creating new habits and improving every day life.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -136,9 +136,9 @@ To get a local copy up and running follow these simple  steps.
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
-
-_For more examples, please refer to the [Documentation](https://example.com)_
+Create daily protocols by breaking up your current projects, goals, and ambitions into actionable jobs. 
+Use these protocols to guide your progress toward maintaining consistent success. 
+Track that success through a personal dashboard showing your streak of consistent days worked, total protocols completed, the total time you've committed, and more.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -147,12 +147,13 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 <!-- ROADMAP -->
 ## Roadmap
 
-- [ ] Feature 1
-- [ ] Feature 2
-- [ ] Feature 3
-    - [ ] Nested Feature
+- [x] User Stats
+- [ ] Proto Templates
+- [ ] Notes - Create notes/journal entries for each proto
+- [ ] Proto Market
+    - [ ] Share your created protocols and save others to your library. 
 
-See the [open issues](https://github.com/github_username/repo_name/issues) for a full list of proposed features (and known issues).
+See the [open issues](https://github.com/christophermorin/protos_V0/issues) for a full list of proposed features (and known issues).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -179,7 +180,7 @@ Don't forget to give the project a star! Thanks again!
 <!-- LICENSE -->
 ## License
 
-Distributed under the MIT License. See `LICENSE.txt` for more information.
+Distributed under the MIT License.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -188,9 +189,10 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 <!-- CONTACT -->
 ## Contact
 
-Your Name - [@twitter_handle](https://twitter.com/twitter_handle) - email@email_client.com
+* Twitter - [@Longhumans](https://twitter.com/longhumans)
+* LinkedIn - [Chris Morin](https://www.linkedin.com/in/chrisjmorin/)
 
-Project Link: [https://github.com/github_username/repo_name](https://github.com/github_username/repo_name)
+Project Link: [https://github.com/christophermorin/protos_V0](https://github.com/christophermorin/protos_V0)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -199,9 +201,7 @@ Project Link: [https://github.com/github_username/repo_name](https://github.com/
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
 
-* []()
-* []()
-* []()
+* Default background in demo image [Peter Hammer](https://unsplash.com/photos/SXTj90G1f5c)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -222,7 +222,7 @@ Project Link: [https://github.com/github_username/repo_name](https://github.com/
 [license-url]: https://github.com/github_username/repo_name/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/linkedin_username
-[product-screenshot]: https://github.com/christophermorin/assets/blob/fa12adfcbfdedca65f76d8bc38109d7b403e3aa8/proto_demo.png
+[product-screenshot]: https://github.com/christophermorin/assets/blob/de52817c8314cfe848df50d463b120858e8d7a12/protos_demo_v2.png
 [Node.js]: https://img.shields.io/badge/node.js-182446?style=for-the-badge&logo=nodedotjs&logoColor=green
 [Node-url]: https://nodejs.org/en/
 [MongoDb]: https://img.shields.io/badge/mongodb-023430?style=for-the-badge&logo=mongodb&logoColor=green
