@@ -38,7 +38,7 @@
 <h3 align="center">Protos</h3>
 
   <p align="center">
-    Build consistency.
+    Build consistency
     <br />
     <a href="https://github.com/christophermorin/protos_V0"><strong>Explore the docs »</strong></a>
     <br />
