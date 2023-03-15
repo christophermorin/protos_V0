@@ -32,7 +32,7 @@ function ProtoTabs() {
     };
     getActive();
   }, []);
-  const handleClick = (event, proto) => {
+  const handleDisplayProto = (event, proto) => {
     const found = displayedProtos.find((item) => item._id === proto._id);
     if (!found) {
       dispatch(displayedAddOne(proto));
@@ -44,7 +44,7 @@ function ProtoTabs() {
     <ActiveProtosButton
       key={proto._id}
       title={proto.title}
-      action={() => handleClick(event, proto)}
+      action={() => handleDisplayProto(event, proto)}
     />
   ))
     : null;

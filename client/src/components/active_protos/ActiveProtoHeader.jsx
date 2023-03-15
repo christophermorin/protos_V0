@@ -17,6 +17,7 @@ import userStatsServices from '../../services/userStatsServices';
 import { setActiveProtos } from '../../reducers/activeProtosReducer';
 import { displayedRemoveOne, displayedUpdateList } from '../../reducers/displayedProtosReducer';
 import { setNotification, resetNotification } from '../../reducers/notificationsReducer';
+import ActionButton from '../buttons/ActionButton';
 
 function ActiveProtoHeader({
   protoTitle, protoDescription, protoId, isComplete,
@@ -63,10 +64,12 @@ function ActiveProtoHeader({
         title: protoTitle,
         isComplete,
       });
+      dispatch(displayedRemoveOne(protoId));
     } catch (error) {
       console.log('In complete proto', error);
     }
   };
+  console.log(isComplete)
 
   return (
     <Paper
@@ -125,7 +128,7 @@ function ActiveProtoHeader({
         gap: 2,
       }}
       >
-        {isComplete && <Typography variant="caption" onClick={handleComplete} />}
+        {isComplete && <ActionButton title="Complete" action={handleComplete} />}
       </Box>
     </Paper>
   );
